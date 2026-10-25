@@ -160,7 +160,7 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 20px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -173,14 +173,50 @@
             transform: translateY(-4px);
         }
 
+        /* Game Image & Badge Container */
+        .game-img-container {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .game-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .game-img {
+            transform: scale(1.05);
+        }
+
+        .game-badge-new {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #ff2a6d;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+
         .game-header {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 12px;
+            padding-bottom: 10px;
         }
 
         .game-title {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 6px;
@@ -190,8 +226,8 @@
         .game-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 6px;
+            margin-top: 6px;
         }
 
         .tag {
@@ -199,7 +235,7 @@
             border: 1px solid var(--badge-border);
             color: var(--accent-color);
             font-size: 0.75rem;
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 8px;
             font-weight: 600;
         }
@@ -213,13 +249,13 @@
         .game-info {
             font-size: 0.88rem;
             color: var(--text-muted);
-            margin-bottom: 18px;
+            margin-bottom: 15px;
         }
 
         .info-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             padding: 4px 8px;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 8px;
@@ -241,7 +277,7 @@
             border-radius: 6px;
             font-size: 0.8rem;
             color: #ffd54f;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         /* Download Buttons Group */
@@ -257,7 +293,7 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            padding: 11px;
+            padding: 10px;
             background: var(--accent-gradient);
             color: #000;
             font-weight: 800;
@@ -321,9 +357,39 @@
         <!-- Games Grid -->
         <div class="games-grid">
 
+            <!-- NEW: Crash Team Racing Port Android -->
+            <div class="game-card">
+                <div>
+                    <div class="game-img-container">
+                        <span class="game-badge-new">جديد</span>
+                        <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Crash_Team_Racing_Cover.jpg" alt="Crash Team Racing" class="game-img">
+                    </div>
+                    <div class="game-header">
+                        <div class="game-title">Crash Team Racing Port Android</div>
+                        <div class="game-meta">
+                            <span class="tag">#سباق</span>
+                            <span class="tag">#port</span>
+                            <span class="tag offline">📶 بدون نت</span>
+                        </div>
+                    </div>
+                    <div class="game-info">
+                        <div class="info-item"><span class="info-label">حجم الـ APK:</span><span class="info-value">145 ميجابايت</span></div>
+                        <div class="info-item"><span class="info-label">حجم الـ Data:</span><span class="info-value">20 جيجابايت</span></div>
+                        <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">بورت أندرويد</span></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://t.me/RAF2007mmaaggq/58875" target="_blank" class="btn-download">📥 تحميل APK (145MB)</a>
+                    <a href="https://gofile.io/d/I20s4kJM" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (20GB)</a>
+                </div>
+            </div>
+
             <!-- 1. SCARFACE -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/2/29/Scarface_The_World_Is_Yours_Cover.jpg" alt="SCARFACE" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">SCARFACE Port</div>
                         <div class="game-meta">
@@ -346,6 +412,9 @@
             <!-- 2. Black -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/a/ad/Black_cover_art.jpg" alt="Black" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Black Port</div>
                         <div class="game-meta">
@@ -368,6 +437,9 @@
             <!-- 3. PES 2017 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/e/e5/Pro_Evolution_Soccer_2017_cover.jpg" alt="PES 2017" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">PES 2017 Port</div>
                         <div class="game-meta">
@@ -389,6 +461,9 @@
             <!-- 4. Prince of Persia The Sands Of Time -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/3/36/Prince_of_persia_sands_of_time_cover.jpg" alt="Prince of Persia" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Prince of Persia: The Sands Of Time</div>
                         <div class="game-meta">
@@ -409,6 +484,9 @@
             <!-- 5. Sleeping Dogs Definitive Edition -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/1/1b/Sleeping_Dogs_Cover_Art.png" alt="Sleeping Dogs" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Sleeping Dogs Definitive Edition</div>
                         <div class="game-meta">
@@ -430,6 +508,9 @@
             <!-- 6. NFS Most Wanted 2012 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/a/a2/Need_for_Speed_Most_Wanted_2012_cover.jpg" alt="NFS Most Wanted" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">NFS Most Wanted 2012 Port</div>
                         <div class="game-meta">
@@ -452,6 +533,9 @@
             <!-- 7. Naruto Storm 2 & 3 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/6/67/Naruto_Storm_2_Box_Art.jpg" alt="Naruto Storm" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Naruto Ninja Storm 2 & 3</div>
                         <div class="game-meta">
@@ -473,6 +557,9 @@
             <!-- 8. Bloodborne -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/6/63/Bloodborne_%28artwork%29.jpg" alt="Bloodborne" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Bloodborne Port Android</div>
                         <div class="game-meta">
@@ -495,6 +582,9 @@
             <!-- 9. Naruto Storm Generations -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/9/91/Naruto_Shippuden_Ultimate_Ninja_Storm_Generations_Box_Art.jpg" alt="Naruto Generations" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Naruto Storm Generations</div>
                         <div class="game-meta">
@@ -515,6 +605,9 @@
             <!-- 10. Forza Horizon 1 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/e/e8/Forza_Horizon_1_cover.jpg" alt="Forza Horizon 1" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Forza Horizon 1 Port</div>
                         <div class="game-meta">
@@ -540,6 +633,9 @@
             <!-- 11. GTA 4 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/b/b0/Grand_Theft_Auto_IV_cover.jpg" alt="GTA IV" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">GTA IV Port Android</div>
                         <div class="game-meta">
@@ -564,6 +660,9 @@
             <!-- 12. Devil May Cry 4 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/2/2f/DMC4_Box_Art.png" alt="Devil May Cry 4" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Devil May Cry 4 Port</div>
                         <div class="game-meta">
@@ -584,6 +683,9 @@
             <!-- 13. Ultra Street Fighter IV -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/7/78/Ultra_Street_Fighter_IV_cover.jpg" alt="Ultra Street Fighter IV" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Ultra Street Fighter IV</div>
                         <div class="game-meta">
@@ -593,8 +695,9 @@
                         </div>
                     </div>
                     <div class="game-info">
-                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">7.49 GB</span></div>
+                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">7.49 GB</span>
                     </div>
+                </div>
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/ultra-street-fighter-iv-134821/" target="_blank" class="btn-download">📥 رابط تحميل اللعبة</a>
@@ -604,6 +707,9 @@
             <!-- 14. NFS Most Wanted Port -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/a/a2/Need_for_Speed_Most_Wanted_2012_cover.jpg" alt="NFS Most Wanted" class="game-img">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">NFS Most Wanted Port</div>
                         <div class="game-meta">
