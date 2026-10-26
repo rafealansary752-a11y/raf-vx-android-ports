@@ -175,7 +175,7 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 20px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -186,6 +186,28 @@
         .game-card:hover {
             border-color: rgba(0, 242, 254, 0.4);
             transform: translateY(-4px);
+        }
+
+        .game-img-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 12px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .game-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .game-card:hover .game-img {
+            transform: scale(1.05);
         }
 
         .game-header {
@@ -338,6 +360,9 @@
             <!-- 1. Crash Team Racing -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/crash-team-racing.webp" alt="Crash Team Racing" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Crash Team Racing Port Android</div>
                         <div class="game-meta">
@@ -361,6 +386,9 @@
             <!-- 2. SCARFACE -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/scarface.webp" alt="SCARFACE" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">SCARFACE Port</div>
                         <div class="game-meta">
@@ -383,6 +411,9 @@
             <!-- 3. Black -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/black.webp" alt="Black" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Black Port</div>
                         <div class="game-meta">
@@ -405,6 +436,9 @@
             <!-- 4. CALL OF DUTY 3 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/call-of-duty-3.webp" alt="CALL OF DUTY 3" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">CALL OF DUTY 3 Port</div>
                         <div class="game-meta">
@@ -429,6 +463,9 @@
             <!-- 5. PES 2017 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/pes-2017.webp" alt="PES 2017" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">PES 2017 Port</div>
                         <div class="game-meta">
@@ -450,6 +487,9 @@
             <!-- 6. Prince of Persia The Sands Of Time -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/prince-of-persia.webp" alt="Prince of Persia" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Prince of Persia: The Sands Of Time</div>
                         <div class="game-meta">
@@ -470,6 +510,9 @@
             <!-- 7. Sleeping Dogs Definitive Edition -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/sleeping-dogs.webp" alt="Sleeping Dogs" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Sleeping Dogs Definitive Edition</div>
                         <div class="game-meta">
@@ -491,6 +534,9 @@
             <!-- 8. NFS Most Wanted 2012 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/nfs-most-wanted.webp" alt="NFS Most Wanted" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">NFS Most Wanted 2012 Port</div>
                         <div class="game-meta">
@@ -513,6 +559,9 @@
             <!-- 9. Naruto Storm 2 & 3 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/naruto-storm-2-3.webp" alt="Naruto Storm" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Naruto Ninja Storm 2 & 3</div>
                         <div class="game-meta">
@@ -534,6 +583,9 @@
             <!-- 10. Bloodborne -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/bloodborne.webp" alt="Bloodborne" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Bloodborne Port Android</div>
                         <div class="game-meta">
@@ -556,6 +608,9 @@
             <!-- 11. Naruto Storm Generations -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/naruto-generations.webp" alt="Naruto Generations" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Naruto Storm Generations</div>
                         <div class="game-meta">
@@ -576,6 +631,9 @@
             <!-- 12. Forza Horizon 1 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/forza-horizon.webp" alt="Forza Horizon 1" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Forza Horizon 1 Port</div>
                         <div class="game-meta">
@@ -601,6 +659,9 @@
             <!-- 13. GTA 4 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/gta-iv.webp" alt="GTA IV" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">GTA IV Port Android</div>
                         <div class="game-meta">
@@ -622,6 +683,9 @@
             <!-- 14. Devil May Cry 4 -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/devil-may-cry-4.webp" alt="Devil May Cry 4" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Devil May Cry 4 Port</div>
                         <div class="game-meta">
@@ -642,6 +706,9 @@
             <!-- 15. Ultra Street Fighter IV -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/ultra-street-fighter-iv.webp" alt="Ultra Street Fighter IV" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">Ultra Street Fighter IV</div>
                         <div class="game-meta">
@@ -662,6 +729,9 @@
             <!-- 16. NFS Most Wanted Port -->
             <div class="game-card">
                 <div>
+                    <div class="game-img-container">
+                        <img src="images/nfs-most-wanted.webp" alt="NFS Most Wanted Port" class="game-img" onerror="this.style.display='none'">
+                    </div>
                     <div class="game-header">
                         <div class="game-title">NFS Most Wanted Port</div>
                         <div class="game-meta">
