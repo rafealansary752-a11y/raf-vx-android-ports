@@ -195,13 +195,30 @@
             border-radius: 12px;
             overflow: hidden;
             margin-bottom: 12px;
-            background: transparent;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* تأثير الخلفية الضبابية الذكية لإزالة الفراغات السوداء بانسجام تام */
+        .game-img-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: inherit;
+            filter: blur(16px);
+            opacity: 0.45;
+            transform: scale(1.2);
         }
 
         .game-img {
+            position: relative;
+            z-index: 1;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             transition: transform 0.3s ease;
         }
@@ -360,7 +377,7 @@
             <!-- 1. Crash Team Racing -->
             <div class="game-card">
                 <div>
-                    <div class="game-img-container">
+                    <div class="game-img-container" style="background-image: url('صور/crash-team-racing.webp');">
                         <img src="صور/crash-team-racing.webp" alt="Crash Team Racing" class="game-img" onerror="this.style.display='none'">
                     </div>
                     <div class="game-header">
@@ -386,7 +403,7 @@
             <!-- 2. SCARFACE -->
             <div class="game-card">
                 <div>
-                    <div class="game-img-container">
+                    <div class="game-img-container" style="background-image: url('صور/scarface.webp');">
                         <img src="صور/scarface.webp" alt="SCARFACE" class="game-img" onerror="this.style.display='none'">
                     </div>
                     <div class="game-header">
@@ -411,7 +428,7 @@
             <!-- 3. Black -->
             <div class="game-card">
                 <div>
-                    <div class="game-img-container">
+                    <div class="game-img-container" style="background-image: url('صور/black.webp');">
                         <img src="صور/black.webp" alt="Black" class="game-img" onerror="this.style.display='none'">
                     </div>
                     <div class="game-header">
@@ -436,7 +453,7 @@
             <!-- 4. CALL OF DUTY 3 -->
             <div class="game-card">
                 <div>
-                    <div class="game-img-container">
+                    <div class="game-img-container" style="background-image: url('صور/call-of-duty-3.webp');">
                         <img src="صور/call-of-duty-3.webp" alt="CALL OF DUTY 3" class="game-img" onerror="this.style.display='none'">
                     </div>
                     <div class="game-header">
@@ -463,7 +480,7 @@
             <!-- 5. PES 2017 -->
             <div class="game-card">
                 <div>
-                    <div class="game-img-container">
+                    <div class="game-img-container" style="background-image: url('صور/pes-2017.webp');">
                         <img src="صور/pes-2017.webp" alt="PES 2017" class="game-img" onerror="this.style.display='none'">
                     </div>
                     <div class="game-header">
@@ -479,300 +496,3 @@
                         <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">أصلية كاملة</span></div>
                     </div>
                 </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/pro-evolution-soccer-2017-135145" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                </div>
-            </div>
-
-            <!-- 6. Prince of Persia The Sands Of Time -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/prince-of-persia.webp" alt="Prince of Persia" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Prince of Persia: The Sands Of Time</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">حجم الـ APK:</span><span class="info-value">27 MB</span></div>
-                        <div class="info-item"><span class="info-label">حجم الـ Data:</span><span class="info-value">2 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/action/prince-of-persia-the-sands-of-time-135106" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                </div>
-            </div>
-
-            <!-- 7. Sleeping Dogs Definitive Edition -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/sleeping-dogs.webp" alt="Sleeping Dogs" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Sleeping Dogs Definitive Edition</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">حجم الـ APK:</span><span class="info-value">46 MB</span></div>
-                        <div class="info-item"><span class="info-label">حجم الـ Data:</span><span class="info-value">15 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/action/sleeping-dogs-134956/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                </div>
-            </div>
-
-            <!-- 8. NFS Most Wanted 2012 -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/nfs-most-wanted.webp" alt="NFS Most Wanted" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">NFS Most Wanted 2012 Port</div>
-                        <div class="game-meta">
-                            <span class="tag">#سباق</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">حجم الـ APK:</span><span class="info-value">36 MB</span></div>
-                        <div class="info-item"><span class="info-label">حجم الملفات:</span><span class="info-value">6 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://devuploads.com/dht5kr7d8gy5" target="_blank" class="btn-download">📥 تحميل APK (36MB)</a>
-                    <a href="https://gofile.io/d/AWp0DlJL" target="_blank" class="btn-download secondary">📂 تحميل ملفات اللعبة (6GB)</a>
-                </div>
-            </div>
-
-            <!-- 9. Naruto Storm 2 & 3 -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/naruto-storm-2-3.webp" alt="Naruto Storm" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Naruto Ninja Storm 2 & 3</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">8.98 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-2-135023" target="_blank" class="btn-download">📥 تحميل Naruto Storm 2</a>
-                    <a href="https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-3-full-burst-135009/" target="_blank" class="btn-download secondary">📥 تحميل Naruto Storm 3</a>
-                </div>
-            </div>
-
-            <!-- 10. Bloodborne -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/bloodborne.webp" alt="Bloodborne" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Bloodborne Port Android</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">حجم الـ APK:</span><span class="info-value">36 MB</span></div>
-                        <div class="info-item"><span class="info-label">حجم اللعبة:</span><span class="info-value">31 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://devuploads.com/bjn7p510l6oj" target="_blank" class="btn-download">📥 تحميل APK (36MB)</a>
-                    <a href="https://gofile.io/d/3uXeYnng" target="_blank" class="btn-download secondary">📂 تحميل ملفات اللعبة (31GB)</a>
-                </div>
-            </div>
-
-            <!-- 11. Naruto Storm Generations -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/naruto-generations.webp" alt="Naruto Generations" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Naruto Storm Generations</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">4.80 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-generations-1349" target="_blank" class="btn-download">📥 تحميل APK + Games</a>
-                </div>
-            </div>
-
-            <!-- 12. Forza Horizon 1 -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/forza-horizon.webp" alt="Forza Horizon 1" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Forza Horizon 1 Port</div>
-                        <div class="game-meta">
-                            <span class="tag">#سباق_سيارات</span>
-                            <span class="tag">#عالم_مفتوح</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="note-box">
-                        ⚠️ تنبيه: هذه اللعبة مخصصة خصيصاً لمعالجات Snapdragon القوية.
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">حجم الـ APK:</span><span class="info-value">51 MB</span></div>
-                        <div class="info-item"><span class="info-label">حجم اللعبة:</span><span class="info-value">6 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://devuploads.com/tc4ayenq5j0l" target="_blank" class="btn-download">📥 تحميل APK (51MB)</a>
-                    <a href="https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file" target="_blank" class="btn-download secondary">📂 تحميل ملف اللعبة (6GB)</a>
-                </div>
-            </div>
-
-            <!-- 13. GTA 4 -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/gta-iv.webp" alt="GTA IV" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">GTA IV Port Android</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">APK + Data</span></div>
-                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">6.38 جيجابايت</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/action/gta-4-grand-theft-auto-iv-apk-44605/" target="_blank" class="btn-download">📥 تحميل APK + Data (6.38GB)</a>
-                </div>
-            </div>
-
-            <!-- 14. Devil May Cry 4 -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/devil-may-cry-4.webp" alt="Devil May Cry 4" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Devil May Cry 4 Port</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">6.41 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/action/devil-may-cry-4-134866" target="_blank" class="btn-download">📥 رابط تحميل اللعبة</a>
-                </div>
-            </div>
-
-            <!-- 15. Ultra Street Fighter IV -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/ultra-street-fighter-iv.webp" alt="Ultra Street Fighter IV" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">Ultra Street Fighter IV</div>
-                        <div class="game-meta">
-                            <span class="tag">#أكشن</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">7.49 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://apkvision.org/games/action/ultra-street-fighter-iv-134821/" target="_blank" class="btn-download">📥 رابط تحميل اللعبة</a>
-                </div>
-            </div>
-
-            <!-- 16. NFS Most Wanted Classic -->
-            <div class="game-card">
-                <div>
-                    <div class="game-img-container">
-                        <img src="صور/nfs-most-wanted-2.webp" alt="NFS Most Wanted Port" class="game-img" onerror="this.style.display='none'">
-                    </div>
-                    <div class="game-header">
-                        <div class="game-title">NFS Most Wanted Port</div>
-                        <div class="game-meta">
-                            <span class="tag">#سباق</span>
-                            <span class="tag">#port</span>
-                            <span class="tag offline">📶 بدون نت</span>
-                        </div>
-                    </div>
-                    <div class="game-info">
-                        <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">4.82 GB</span></div>
-                    </div>
-                </div>
-                <div class="download-group">
-                    <a href="https://github.com/codepdbh/nfsmw-android/releases/tag/v0.3.5" target="_blank" class="btn-download">📥 تحميل الـ APK</a>
-                    <a href="https://www.mediafire.com/file_premium/rpsn6w3k1exiukk/NFS-Mos-Wan-jue-esp.rar/file" target="_blank" class="btn-download secondary">📂 تحميل ملفات اللعبة Data</a>
-                </div>
-            </div>
-
-        </div>
-
-        <footer>
-            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> © 2026</p>
-        </footer>
-    </div>
-
-    <!-- Search Script -->
-    <script>
-        function searchGames() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let cards = document.getElementsByClassName('game-card');
-            for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByClassName('game-title')[0].innerText.toLowerCase();
-                let meta = cards[i].getElementsByClassName('game-meta')[0].innerText.toLowerCase();
-                if (title.includes(input) || meta.includes(input)) {
-                    cards[i].style.display = "flex";
-                } else {
-                    cards[i].style.display = "none";
-                }
-            }
-        }
-    </script>
-
-</body>
-</html>
