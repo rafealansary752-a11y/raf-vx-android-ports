@@ -134,7 +134,7 @@
             text-shadow: 0 0 30px rgba(189, 0, 255, 0.3);
         }
 
-        /* Marquee / New Games Ticker */
+        /* Marquee / New Games Ticker - Infinite Smooth Fix */
         .news-ticker {
             background: rgba(189, 0, 255, 0.1);
             border: 1px dashed rgba(255, 0, 127, 0.4);
@@ -144,20 +144,23 @@
             padding: 8px 0;
             margin-bottom: 15px;
             position: relative;
+            display: flex;
+            width: 100%;
         }
 
         .ticker-text {
             display: inline-block;
-            padding-left: 100%;
-            animation: marquee 25s linear infinite;
+            padding-right: 100%;
+            animation: marquee 12s linear infinite;
             color: #ff75c3;
             font-weight: 700;
             font-size: 0.9rem;
+            will-change: transform;
         }
 
         @keyframes marquee {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+            100% { transform: translate(100%, 0); }
         }
 
         .version-tag {
@@ -555,10 +558,10 @@
         <header>
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
-            <!-- شريط الألعاب المضافة حديثاً المتحرك -->
+            <!-- شريط الألعاب المضافة حديثاً المتحرك بشكل سريع ومتواصل -->
             <div class="news-ticker">
                 <span class="ticker-text">
-                    🔥 تمت الإضافة حديثاً: SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡
+                    🔥 تمت الإضافة حديثاً: SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 تمت الإضافة حديثاً: SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡
                 </span>
             </div>
 
