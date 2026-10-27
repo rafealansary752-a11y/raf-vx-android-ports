@@ -9,15 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(255, 255, 255, 0.04);
-            --card-border: rgba(255, 255, 255, 0.1);
-            --accent-color: #00f2fe;
-            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --bg-color: #07050d;
+            --card-bg: rgba(20, 14, 35, 0.55);
+            --card-border: rgba(189, 0, 255, 0.18);
+            --accent-color: #ff007f;
+            --accent-gradient: linear-gradient(135deg, #bd00ff 0%, #ff007f 100%);
             --text-main: #ffffff;
-            --text-muted: #a0aec0;
-            --badge-bg: rgba(0, 242, 254, 0.15);
-            --badge-border: rgba(0, 242, 254, 0.3);
+            --text-muted: #b4bcce;
+            --badge-bg: rgba(189, 0, 255, 0.15);
+            --badge-border: rgba(189, 0, 255, 0.35);
         }
 
         * {
@@ -31,8 +31,8 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(79, 172, 254, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(0, 242, 254, 0.1) 0px, transparent 50%);
+                radial-gradient(at 10% 10%, rgba(189, 0, 255, 0.12) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(255, 0, 127, 0.1) 0px, transparent 50%);
             background-attachment: fixed;
             color: var(--text-main);
             min-height: 100vh;
@@ -47,35 +47,37 @@
 
         header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 35px 20px;
             margin-bottom: 25px;
             background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
-            border-radius: 24px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            border-radius: 28px;
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
         }
 
         .brand-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 900;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 5px;
+            text-shadow: 0 0 30px rgba(189, 0, 255, 0.3);
         }
 
         .version-tag {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2px 12px;
+            background: rgba(189, 0, 255, 0.1);
+            padding: 4px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
-            color: var(--accent-color);
+            color: #ff75c3;
             border: 1px solid var(--badge-border);
             margin-bottom: 15px;
+            font-weight: 700;
         }
 
         .subtitle {
@@ -85,8 +87,8 @@
         }
 
         .spec-banner {
-            background: rgba(255, 171, 0, 0.1);
-            border: 1px solid rgba(255, 171, 0, 0.3);
+            background: rgba(255, 171, 0, 0.08);
+            border: 1px solid rgba(255, 171, 0, 0.25);
             color: #ffc107;
             padding: 12px 18px;
             border-radius: 16px;
@@ -100,13 +102,13 @@
         }
 
         .search-container {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .search-container input {
             width: 100%;
             padding: 14px 20px;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             color: #fff;
@@ -116,8 +118,40 @@
         }
 
         .search-container input:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            border-color: #ff007f;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Filter Chips */
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .chip:hover, .chip.active {
+            background: var(--accent-gradient);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
         }
 
         .social-links {
@@ -139,22 +173,23 @@
             font-weight: 700;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            background: rgba(0, 136, 204, 0.2);
-            border: 1px solid rgba(0, 136, 204, 0.4);
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(138, 43, 226, 0.35);
         }
 
         .btn-social:hover {
-            background: rgba(0, 136, 204, 0.4);
+            background: rgba(138, 43, 226, 0.3);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
         }
 
         .btn-social.chat {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
         }
 
         .btn-social.chat:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         .games-grid {
@@ -165,16 +200,16 @@
 
         .game-card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--card-border);
-            border-radius: 20px;
+            border-radius: 22px;
             padding: 16px;
             display: flex;
             flex-direction: column;
             gap: 16px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
         }
 
         @media (min-width: 768px) {
@@ -187,8 +222,9 @@
         }
 
         .game-card:hover {
-            border-color: rgba(0, 242, 254, 0.4);
-            transform: translateY(-2px);
+            border-color: rgba(255, 0, 127, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(189, 0, 255, 0.2);
         }
 
         .game-main-content {
@@ -211,13 +247,14 @@
             position: relative;
             width: 100%;
             height: 150px;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
-            background: #05070c;
+            background: #030206;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         @media (min-width: 768px) {
@@ -232,11 +269,11 @@
             max-height: 100%;
             object-fit: contain;
             object-position: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.35s ease;
         }
 
         .game-card:hover .game-img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .game-details {
@@ -262,7 +299,7 @@
         .tag {
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
-            color: var(--accent-color);
+            color: #ff9cf0;
             font-size: 0.75rem;
             padding: 2px 8px;
             border-radius: 8px;
@@ -294,7 +331,7 @@
             display: flex;
             justify-content: space-between;
             padding: 3px 8px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.25);
             border-radius: 6px;
         }
 
@@ -308,7 +345,7 @@
         }
 
         .note-box {
-            background: rgba(255, 171, 0, 0.15);
+            background: rgba(255, 171, 0, 0.12);
             border-right: 3px solid #ffab00;
             padding: 6px 10px;
             border-radius: 6px;
@@ -338,29 +375,32 @@
             width: 100%;
             padding: 10px 14px;
             background: var(--accent-gradient);
-            color: #000;
+            color: #fff;
             font-weight: 800;
             font-size: 0.85rem;
             border: none;
             border-radius: 12px;
             text-decoration: none;
             cursor: pointer;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.2s ease, transform 0.2s ease;
             white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
         }
 
         .btn-download:hover {
-            opacity: 0.9;
+            opacity: 0.92;
+            transform: translateY(-1px);
         }
 
         .btn-download.secondary {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--card-border);
             color: #fff;
+            box-shadow: none;
         }
 
         .btn-download.secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.12);
         }
 
         footer {
@@ -377,7 +417,7 @@
     <div class="container">
         <header>
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
-            <div class="version-tag">المنصة الرسمية - الإصدار V7.0.0</div>
+            <div class="version-tag">المنصة الرسمية - الإصدار V7.1.0 (إصدار الملكي)</div>
             <p class="subtitle">منصة أقوى بورتات ألعاب الأندرويد المحولة بعناية | خالي تماماً من الإعلانات</p>
 
             <div class="spec-banner">
@@ -386,7 +426,17 @@
 
             <!-- Search Bar -->
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث عن لعبتك المفضلة..." onkeyup="searchGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث عن لعبتك المفضلة..." onkeyup="filterGames()">
+            </div>
+
+            <!-- Filter Chips -->
+            <div class="filter-chips">
+                <div class="chip active" onclick="setCategory('all', this)">الكل</div>
+                <div class="chip" onclick="setCategory('أكشن', this)">#أكشن</div>
+                <div class="chip" onclick="setCategory('سباق', this)">#سباق</div>
+                <div class="chip" onclick="setCategory('رعب', this)">#رعب</div>
+                <div class="chip" onclick="setCategory('حرب', this)">#حرب</div>
+                <div class="chip" onclick="setCategory('port', this)">#port</div>
             </div>
 
             <div class="social-links">
@@ -402,7 +452,7 @@
         <div class="games-grid" id="gamesGrid">
 
             <!-- 1. Crash Team Racing -->
-            <div class="game-card">
+            <div class="game-card" data-category="سباق port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/crash-team-racing.webp" alt="Crash Team Racing" class="game-img" onerror="this.style.display='none'">
@@ -428,7 +478,7 @@
             </div>
 
             <!-- 2. SCARFACE -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/scarface.webp" alt="SCARFACE" class="game-img" onerror="this.style.display='none'">
@@ -452,7 +502,7 @@
             </div>
 
             <!-- 3. Black -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/black.webp" alt="Black" class="game-img" onerror="this.style.display='none'">
@@ -476,7 +526,7 @@
             </div>
 
             <!-- 4. CALL OF DUTY 3 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن حرب port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/call-of-duty-3.webp" alt="CALL OF DUTY 3" class="game-img" onerror="this.style.display='none'">
@@ -501,7 +551,7 @@
             </div>
 
             <!-- 5. PES 2017 -->
-            <div class="game-card">
+            <div class="game-card" data-category="رياضة كرة القدم">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/pes-2017.webp" alt="PES 2017" class="game-img" onerror="this.style.display='none'">
@@ -524,7 +574,7 @@
             </div>
 
             <!-- 6. Prince of Persia The Sands Of Time -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/prince-of-persia.webp" alt="Prince of Persia" class="game-img" onerror="this.style.display='none'">
@@ -547,7 +597,7 @@
             </div>
 
             <!-- 7. Sleeping Dogs Definitive Edition -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/sleeping-dogs.webp" alt="Sleeping Dogs" class="game-img" onerror="this.style.display='none'">
@@ -571,7 +621,7 @@
             </div>
 
             <!-- 8. NFS Most Wanted 2012 -->
-            <div class="game-card">
+            <div class="game-card" data-category="سباق port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/nfs-most-wanted.webp" alt="NFS Most Wanted" class="game-img" onerror="this.style.display='none'">
@@ -596,7 +646,7 @@
             </div>
 
             <!-- 9. Naruto Storm 2 & 3 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/naruto-storm-2-3.webp" alt="Naruto Storm" class="game-img" onerror="this.style.display='none'">
@@ -621,7 +671,7 @@
             </div>
 
             <!-- 10. Bloodborne -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/bloodborne.webp" alt="Bloodborne" class="game-img" onerror="this.style.display='none'">
@@ -646,7 +696,7 @@
             </div>
 
             <!-- 11. Naruto Storm Generations -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/naruto-generations.webp" alt="Naruto Generations" class="game-img" onerror="this.style.display='none'">
@@ -670,7 +720,7 @@
             </div>
 
             <!-- 12. Forza Horizon 1 -->
-            <div class="game-card">
+            <div class="game-card" data-category="سباق">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/forza-horizon.webp" alt="Forza Horizon 1" class="game-img" onerror="this.style.display='none'">
@@ -698,7 +748,7 @@
             </div>
 
             <!-- 13. GTA 4 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/gta-iv.webp" alt="GTA IV" class="game-img" onerror="this.style.display='none'">
@@ -722,7 +772,7 @@
             </div>
 
             <!-- 14. Devil May Cry 4 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/devil-may-cry-4.webp" alt="Devil May Cry 4" class="game-img" onerror="this.style.display='none'">
@@ -746,7 +796,7 @@
             </div>
 
             <!-- 15. Ultra Street Fighter IV -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/ultra-street-fighter-iv.webp" alt="Ultra Street Fighter IV" class="game-img" onerror="this.style.display='none'">
@@ -770,7 +820,7 @@
             </div>
 
             <!-- 16. NFS Most Wanted Classic -->
-            <div class="game-card">
+            <div class="game-card" data-category="سباق port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/nfs-most-wanted-2.webp" alt="NFS Most Wanted Port" class="game-img" onerror="this.style.display='none'">
@@ -795,7 +845,7 @@
             </div>
 
             <!-- 17. God of War 3 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/god-of-war-3.webp" alt="God of War 3" class="game-img" onerror="this.style.display='none'">
@@ -821,7 +871,7 @@
             </div>
 
             <!-- 18. Mortal Kombat 9 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/mortal-kombat-9.webp" alt="Mortal Kombat 9" class="game-img" onerror="this.style.display='none'">
@@ -846,7 +896,7 @@
             </div>
 
             <!-- 19. Gears of War 2 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن حرب port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/gears-of-war-2.webp" alt="Gears of War 2" class="game-img" onerror="this.style.display='none'">
@@ -871,7 +921,7 @@
             </div>
 
             <!-- 20. WWE 12 -->
-            <div class="game-card">
+            <div class="game-card" data-category="رياضة port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/wwe-12.webp" alt="WWE 12" class="game-img" onerror="this.style.display='none'">
@@ -896,7 +946,7 @@
             </div>
 
             <!-- 21. Metal Gear Rising: Revengeance -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/metal-gear-rising.webp" alt="Metal Gear Rising" class="game-img" onerror="this.style.display='none'">
@@ -921,7 +971,7 @@
             </div>
 
             <!-- 22. inFAMOUS Second Son -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/infamous-second-son.webp" alt="inFAMOUS Second Son" class="game-img" onerror="this.style.display='none'">
@@ -947,7 +997,7 @@
             </div>
 
             <!-- 23. Call of Duty Modern Warfare 2 -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن حرب port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/cod-mw2.webp" alt="COD Modern Warfare 2" class="game-img" onerror="this.style.display='none'">
@@ -972,7 +1022,7 @@
             </div>
 
             <!-- 24. Naruto Shippuden: Ultimate Ninja Storm Revolution -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/naruto-revolution.webp" alt="Naruto Storm Revolution" class="game-img" onerror="this.style.display='none'">
@@ -997,7 +1047,7 @@
             </div>
 
             <!-- 25. Def Jam: Fight for NY -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/def-jam.webp" alt="Def Jam Fight for NY" class="game-img" onerror="this.style.display='none'">
@@ -1022,7 +1072,7 @@
             </div>
 
             <!-- 26. Metal Gear Solid 2 HD -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/mgs-2.webp" alt="Metal Gear Solid 2 HD" class="game-img" onerror="this.style.display='none'">
@@ -1047,7 +1097,7 @@
             </div>
 
             <!-- 27. Resident Evil 7 -->
-            <div class="game-card">
+            <div class="game-card" data-category="رعب أكشن port">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/resident-evil-7.webp" alt="Resident Evil 7" class="game-img" onerror="this.style.display='none'">
@@ -1073,7 +1123,7 @@
             </div>
 
             <!-- 28. INSIDE -->
-            <div class="game-card">
+            <div class="game-card" data-category="أكشن مغامرة">
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/inside.webp" alt="INSIDE" class="game-img" onerror="this.style.display='none'">
@@ -1104,15 +1154,36 @@
         </footer>
     </div>
 
-    <!-- Search Script -->
+    <!-- Advanced Filter & Search Script -->
     <script>
-        function searchGames() {
+        let currentCategory = 'all';
+
+        function setCategory(category, element) {
+            currentCategory = category;
+            
+            // Update active chip style
+            let chips = document.getElementsByClassName('chip');
+            for (let chip of chips) {
+                chip.classList.remove('active');
+            }
+            element.classList.add('active');
+            
+            filterGames();
+        }
+
+        function filterGames() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('game-card');
+
             for (let i = 0; i < cards.length; i++) {
                 let title = cards[i].getElementsByClassName('game-title')[0].innerText.toLowerCase();
                 let meta = cards[i].getElementsByClassName('game-meta')[0].innerText.toLowerCase();
-                if (title.includes(input) || meta.includes(input)) {
+                let categories = cards[i].getAttribute('data-category').toLowerCase();
+
+                let matchesSearch = title.includes(input) || meta.includes(input);
+                let matchesCategory = (currentCategory === 'all' || categories.includes(currentCategory.toLowerCase()));
+
+                if (matchesSearch && matchesCategory) {
                     cards[i].style.display = "flex";
                 } else {
                     cards[i].style.display = "none";
