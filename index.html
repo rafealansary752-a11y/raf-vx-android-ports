@@ -43,6 +43,72 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        /* Top Menu (Three Dots) */
+        .top-menu-container {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+        }
+
+        .menu-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            border-color: #ff007f;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+        }
+
+        .menu-dropdown {
+            position: absolute;
+            top: 48px;
+            right: 0;
+            background: #100b1e;
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            width: 200px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+            overflow: hidden;
+            z-index: 101;
+        }
+
+        .menu-dropdown.active {
+            display: block;
+        }
+
+        .menu-item {
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.2s;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background: rgba(189, 0, 255, 0.2);
         }
 
         header {
@@ -66,6 +132,32 @@
             letter-spacing: 3px;
             margin-bottom: 5px;
             text-shadow: 0 0 30px rgba(189, 0, 255, 0.3);
+        }
+
+        /* Marquee / New Games Ticker */
+        .news-ticker {
+            background: rgba(189, 0, 255, 0.1);
+            border: 1px dashed rgba(255, 0, 127, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 8px 0;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .ticker-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 25s linear infinite;
+            color: #ff75c3;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
         }
 
         .version-tag {
@@ -210,6 +302,7 @@
             gap: 16px;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
 
         @media (min-width: 768px) {
@@ -225,6 +318,30 @@
             border-color: rgba(255, 0, 127, 0.5);
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(189, 0, 255, 0.2);
+        }
+
+        /* Favorite Heart Button inside Card */
+        .fav-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--card-border);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            z-index: 5;
+        }
+
+        .fav-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 0, 127, 0.2);
         }
 
         .game-main-content {
@@ -426,8 +543,25 @@
 <body>
 
     <div class="container">
+        <!-- Top Menu (Three Dots) -->
+        <div class="top-menu-container">
+            <div class="menu-btn" onclick="toggleMenu()">⋮</div>
+            <div class="menu-dropdown" id="menuDropdown">
+                <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
+                <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب</div>
+            </div>
+        </div>
+
         <header>
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
+
+            <!-- شريط الألعاب المضافة حديثاً المتحرك -->
+            <div class="news-ticker">
+                <span class="ticker-text">
+                    🔥 تمت الإضافة حديثاً: SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡
+                </span>
+            </div>
+
             <div class="version-tag">المنصة الرسمية - الإصدار V7.1.0 (إصدار الملكي)</div>
             <p class="subtitle">منصة أقوى بورتات ألعاب الأندرويد المحولة بعناية | خالي تماماً من الإعلانات</p>
 
@@ -463,7 +597,8 @@
         <div class="games-grid" id="gamesGrid">
 
             <!-- 1. Crash Team Racing -->
-            <div class="game-card" data-category="سباق port">
+            <div class="game-card" data-id="crash-team-racing" data-category="سباق port">
+                <div class="fav-btn" onclick="toggleFavorite('crash-team-racing', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/crash-team-racing.webp" alt="Crash Team Racing" class="game-img" onerror="this.style.display='none'">
@@ -490,7 +625,8 @@
             </div>
 
             <!-- 2. SCARFACE -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="scarface" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('scarface', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/scarface.webp" alt="SCARFACE" class="game-img" onerror="this.style.display='none'">
@@ -515,7 +651,8 @@
             </div>
 
             <!-- 3. Black -->
-            <div class="game-card" data-category="أكشن">
+            <div class="game-card" data-id="black" data-category="أكشن">
+                <div class="fav-btn" onclick="toggleFavorite('black', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/black.webp" alt="Black" class="game-img" onerror="this.style.display='none'">
@@ -540,7 +677,8 @@
             </div>
 
             <!-- 4. CALL OF DUTY 3 -->
-            <div class="game-card" data-category="أكشن حرب port">
+            <div class="game-card" data-id="call-of-duty-3" data-category="أكشن حرب port">
+                <div class="fav-btn" onclick="toggleFavorite('call-of-duty-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/call-of-duty-3.webp" alt="CALL OF DUTY 3" class="game-img" onerror="this.style.display='none'">
@@ -566,7 +704,8 @@
             </div>
 
             <!-- 5. PES 2017 -->
-            <div class="game-card" data-category="رياضة كرة القدم">
+            <div class="game-card" data-id="pes-2017" data-category="رياضة كرة القدم">
+                <div class="fav-btn" onclick="toggleFavorite('pes-2017', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/pes-2017.webp" alt="PES 2017" class="game-img" onerror="this.style.display='none'">
@@ -590,7 +729,8 @@
             </div>
 
             <!-- 6. Prince of Persia The Sands Of Time -->
-            <div class="game-card" data-category="أكشن">
+            <div class="game-card" data-id="prince-of-persia" data-category="أكشن">
+                <div class="fav-btn" onclick="toggleFavorite('prince-of-persia', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/prince-of-persia.webp" alt="Prince of Persia" class="game-img" onerror="this.style.display='none'">
@@ -614,7 +754,8 @@
             </div>
 
             <!-- 7. Sleeping Dogs Definitive Edition -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="sleeping-dogs" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('sleeping-dogs', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/sleeping-dogs.webp" alt="Sleeping Dogs" class="game-img" onerror="this.style.display='none'">
@@ -642,7 +783,8 @@
             </div>
 
             <!-- 8. NFS Most Wanted 2012 -->
-            <div class="game-card" data-category="سباق port">
+            <div class="game-card" data-id="nfs-most-wanted" data-category="سباق port">
+                <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/nfs-most-wanted.webp" alt="NFS Most Wanted" class="game-img" onerror="this.style.display='none'">
@@ -668,7 +810,8 @@
             </div>
 
             <!-- 9. Naruto Storm 2 & 3 -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="naruto-storm-2-3" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('naruto-storm-2-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/naruto-storm-2-3.webp" alt="Naruto Storm" class="game-img" onerror="this.style.display='none'">
@@ -694,7 +837,8 @@
             </div>
 
             <!-- 10. Bloodborne -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="bloodborne" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('bloodborne', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/bloodborne.webp" alt="Bloodborne" class="game-img" onerror="this.style.display='none'">
@@ -720,7 +864,8 @@
             </div>
 
             <!-- 11. Naruto Storm Generations -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="naruto-generations" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('naruto-generations', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/naruto-generations.webp" alt="Naruto Generations" class="game-img" onerror="this.style.display='none'">
@@ -745,7 +890,8 @@
             </div>
 
             <!-- 12. Forza Horizon 1 -->
-            <div class="game-card" data-category="سباق">
+            <div class="game-card" data-id="forza-horizon-1" data-category="سباق">
+                <div class="fav-btn" onclick="toggleFavorite('forza-horizon-1', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/forza-horizon.webp" alt="Forza Horizon 1" class="game-img" onerror="this.style.display='none'">
@@ -774,7 +920,8 @@
             </div>
 
             <!-- 13. GTA 4 -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="gta-iv" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('gta-iv', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/gta-iv.webp" alt="GTA IV" class="game-img" onerror="this.style.display='none'">
@@ -799,7 +946,8 @@
             </div>
 
             <!-- 14. Devil May Cry 4 -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="devil-may-cry-4" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-4', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/devil-may-cry-4.webp" alt="Devil May Cry 4" class="game-img" onerror="this.style.display='none'">
@@ -824,7 +972,8 @@
             </div>
 
             <!-- 15. Ultra Street Fighter IV -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="ultra-street-fighter-iv" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('ultra-street-fighter-iv', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/ultra-street-fighter-iv.webp" alt="Ultra Street Fighter IV" class="game-img" onerror="this.style.display='none'">
@@ -849,7 +998,8 @@
             </div>
 
             <!-- 16. NFS Most Wanted Classic -->
-            <div class="game-card" data-category="سباق port">
+            <div class="game-card" data-id="nfs-most-wanted-classic" data-category="سباق port">
+                <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted-classic', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/nfs-most-wanted-2.webp" alt="NFS Most Wanted Port" class="game-img" onerror="this.style.display='none'">
@@ -875,7 +1025,8 @@
             </div>
 
             <!-- 17. God of War 3 -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="god-of-war-3" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('god-of-war-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/god-of-war-3.webp" alt="God of War 3" class="game-img" onerror="this.style.display='none'">
@@ -902,7 +1053,8 @@
             </div>
 
             <!-- 18. Mortal Kombat 9 -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="mortal-kombat-9" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-9', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/mortal-kombat-9.webp" alt="Mortal Kombat 9" class="game-img" onerror="this.style.display='none'">
@@ -928,7 +1080,8 @@
             </div>
 
             <!-- 19. Gears of War 2 -->
-            <div class="game-card" data-category="أكشن حرب port">
+            <div class="game-card" data-id="gears-of-war-2" data-category="أكشن حرب port">
+                <div class="fav-btn" onclick="toggleFavorite('gears-of-war-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/gears-of-war-2.webp" alt="Gears of War 2" class="game-img" onerror="this.style.display='none'">
@@ -954,7 +1107,8 @@
             </div>
 
             <!-- 20. WWE 12 -->
-            <div class="game-card" data-category="رياضة port">
+            <div class="game-card" data-id="wwe-12" data-category="رياضة port">
+                <div class="fav-btn" onclick="toggleFavorite('wwe-12', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/wwe-12.webp" alt="WWE 12" class="game-img" onerror="this.style.display='none'">
@@ -980,7 +1134,8 @@
             </div>
 
             <!-- 21. Metal Gear Rising: Revengeance -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="metal-gear-rising" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('metal-gear-rising', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/metal-gear-rising.webp" alt="Metal Gear Rising" class="game-img" onerror="this.style.display='none'">
@@ -1006,7 +1161,8 @@
             </div>
 
             <!-- 22. inFAMOUS Second Son -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="infamous-second-son" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('infamous-second-son', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/infamous-second-son.webp" alt="inFAMOUS Second Son" class="game-img" onerror="this.style.display='none'">
@@ -1033,7 +1189,8 @@
             </div>
 
             <!-- 23. Call of Duty Modern Warfare 2 -->
-            <div class="game-card" data-category="أكشن حرب port">
+            <div class="game-card" data-id="cod-mw2" data-category="أكشن حرب port">
+                <div class="fav-btn" onclick="toggleFavorite('cod-mw2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/cod-mw2.webp" alt="COD Modern Warfare 2" class="game-img" onerror="this.style.display='none'">
@@ -1059,7 +1216,8 @@
             </div>
 
             <!-- 24. Naruto Shippuden: Ultimate Ninja Storm Revolution -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="naruto-revolution" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('naruto-revolution', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/naruto-revolution.webp" alt="Naruto Storm Revolution" class="game-img" onerror="this.style.display='none'">
@@ -1085,7 +1243,8 @@
             </div>
 
             <!-- 25. Def Jam: Fight for NY -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="def-jam" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('def-jam', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/def-jam.webp" alt="Def Jam Fight for NY" class="game-img" onerror="this.style.display='none'">
@@ -1111,7 +1270,8 @@
             </div>
 
             <!-- 26. Metal Gear Solid 2 HD -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="mgs-2" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('mgs-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/mgs-2.webp" alt="Metal Gear Solid 2 HD" class="game-img" onerror="this.style.display='none'">
@@ -1137,7 +1297,8 @@
             </div>
 
             <!-- 27. Resident Evil 7 -->
-            <div class="game-card" data-category="رعب أكشن port">
+            <div class="game-card" data-id="resident-evil-7" data-category="رعب أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('resident-evil-7', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/resident-evil-7.webp" alt="Resident Evil 7" class="game-img" onerror="this.style.display='none'">
@@ -1164,7 +1325,8 @@
             </div>
 
             <!-- 28. INSIDE -->
-            <div class="game-card" data-category="أكشن مغامرة">
+            <div class="game-card" data-id="inside" data-category="أكشن مغامرة">
+                <div class="fav-btn" onclick="toggleFavorite('inside', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/inside.webp" alt="INSIDE" class="game-img" onerror="this.style.display='none'">
@@ -1190,7 +1352,8 @@
             </div>
 
             <!-- 29. Call of Duty: Black Ops 2 -->
-            <div class="game-card" data-category="أكشن حرب port">
+            <div class="game-card" data-id="cod-black-ops-2" data-category="أكشن حرب port">
+                <div class="fav-btn" onclick="toggleFavorite('cod-black-ops-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/cod-black-ops-2.webp" alt="Call of Duty Black Ops 2" class="game-img" onerror="this.style.display='none'">
@@ -1217,7 +1380,8 @@
             </div>
 
             <!-- 30. God of War: Chains of Olympus -->
-            <div class="game-card" data-category="حرب أكشن port">
+            <div class="game-card" data-id="god-of-war-chains-of-olympus" data-category="حرب أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('god-of-war-chains-of-olympus', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/god-of-war-chains-of-olympus.webp" alt="God of War Chains of Olympus" class="game-img" onerror="this.style.display='none'">
@@ -1244,7 +1408,8 @@
             </div>
 
             <!-- 31. Forza Horizon 2 -->
-            <div class="game-card" data-category="سباق عالم مفتوح">
+            <div class="game-card" data-id="forza-horizon-2" data-category="سباق عالم مفتوح">
+                <div class="fav-btn" onclick="toggleFavorite('forza-horizon-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/forza-horizon-2.webp" alt="Forza Horizon 2" class="game-img" onerror="this.style.display='none'">
@@ -1274,7 +1439,8 @@
             </div>
 
             <!-- 32. SEKIRO -->
-            <div class="game-card" data-category="أكشن port">
+            <div class="game-card" data-id="sekiro" data-category="أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('sekiro', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/sekiro.webp" alt="SEKIRO Port" class="game-img" onerror="this.style.display='none'">
@@ -1302,7 +1468,8 @@
             </div>
 
             <!-- 33. FIFA STREET 2012 -->
-            <div class="game-card" data-category="رياضة port">
+            <div class="game-card" data-id="fifa-street-2012" data-category="رياضة port">
+                <div class="fav-btn" onclick="toggleFavorite('fifa-street-2012', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
                         <img src="صور/fifa-street-2012.webp" alt="FIFA STREET 2012" class="game-img" onerror="this.style.display='none'">
@@ -1334,14 +1501,81 @@
         </footer>
     </div>
 
-    <!-- Advanced Filter & Search Script -->
+    <!-- Advanced Script for Search, Filter & Favorites -->
     <script>
         let currentCategory = 'all';
+        let showOnlyFavorites = false;
+
+        // Toggle Three Dots Menu
+        function toggleMenu() {
+            let menu = document.getElementById('menuDropdown');
+            menu.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-btn')) {
+                let dropdowns = document.getElementsByClassName("menu-dropdown");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('active')) {
+                        openDropdown.classList.remove('active');
+                    }
+                }
+            }
+        }
+
+        // Favorites System using localStorage
+        function getFavorites() {
+            let favs = localStorage.getItem('rafvx_favorites');
+            return favs ? JSON.parse(favs) : [];
+        }
+
+        function toggleFavorite(gameId, btnElement) {
+            let favs = getFavorites();
+            let index = favs.indexOf(gameId);
+            
+            if (index > -1) {
+                favs.splice(index, 1);
+                btnElement.innerText = "🤍";
+            } else {
+                favs.push(gameId);
+                btnElement.innerText = "❤️";
+            }
+            
+            localStorage.setItem('rafvx_favorites', JSON.stringify(favs));
+            if (showOnlyFavorites) {
+                filterGames();
+            }
+        }
+
+        // Initialize heart icons on load
+        document.addEventListener("DOMContentLoaded", function() {
+            let favs = getFavorites();
+            let cards = document.getElementsByClassName('game-card');
+            for (let card of cards) {
+                let gameId = card.getAttribute('data-id');
+                let btn = card.getElementsByClassName('fav-btn')[0];
+                if (favs.includes(gameId)) {
+                    btn.innerText = "❤️";
+                }
+            }
+        });
+
+        function filterFavorites() {
+            showOnlyFavorites = true;
+            filterGames();
+        }
+
+        function resetFilter() {
+            showOnlyFavorites = false;
+            filterGames();
+        }
 
         function setCategory(category, element) {
             currentCategory = category;
+            showOnlyFavorites = false;
             
-            // Update active chip style
             let chips = document.getElementsByClassName('chip');
             for (let chip of chips) {
                 chip.classList.remove('active');
@@ -1354,19 +1588,23 @@
         function filterGames() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('game-card');
+            let favs = getFavorites();
 
             for (let i = 0; i < cards.length; i++) {
-                let title = cards[i].getElementsByClassName('game-title')[0].innerText.toLowerCase();
-                let meta = cards[i].getElementsByClassName('game-meta')[0].innerText.toLowerCase();
-                let categories = cards[i].getAttribute('data-category').toLowerCase();
+                let card = cards[i];
+                let gameId = card.getAttribute('data-id');
+                let title = card.getElementsByClassName('game-title')[0].innerText.toLowerCase();
+                let meta = card.getElementsByClassName('game-meta')[0].innerText.toLowerCase();
+                let categories = card.getAttribute('data-category').toLowerCase();
 
                 let matchesSearch = title.includes(input) || meta.includes(input);
                 let matchesCategory = (currentCategory === 'all' || categories.includes(currentCategory.toLowerCase()));
+                let matchesFav = (!showOnlyFavorites || favs.includes(gameId));
 
-                if (matchesSearch && matchesCategory) {
-                    cards[i].style.display = "flex";
+                if (matchesSearch && matchesCategory && matchesFav) {
+                    card.style.display = "flex";
                 } else {
-                    cards[i].style.display = "none";
+                    card.style.display = "none";
                 }
             }
         }
