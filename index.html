@@ -561,7 +561,7 @@
             <!-- شريط الألعاب المضافة حديثاً المتحرك بشكل سريع ومتواصل -->
             <div class="news-ticker">
                 <span class="ticker-text">
-                    🔥 تمت الإضافة حديثاً: SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 تمت الإضافة حديثاً: SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡
+                    🔥 تمت الإضافة حديثاً: Resident Evil 4 Classic 🧟 • SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 تمت الإضافة حديثاً: Resident Evil 4 Classic 🧟 • SEKIRO 🎮 • FIFA Street 2012 ⚽ • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡
                 </span>
             </div>
 
@@ -581,8 +581,8 @@
             <div class="filter-chips">
                 <div class="chip active" onclick="setCategory('all', this)">الكل</div>
                 <div class="chip" onclick="setCategory('أكشن', this)">#أكشن</div>
-                <div class="chip" onclick="setCategory('سباق', this)">#سباق</div>
                 <div class="chip" onclick="setCategory('رعب', this)">#رعب</div>
+                <div class="chip" onclick="setCategory('سباق', this)">#سباق</div>
                 <div class="chip" onclick="setCategory('حرب', this)">#حرب</div>
                 <div class="chip" onclick="setCategory('port', this)">#port</div>
             </div>
@@ -598,6 +598,33 @@
         </header>
 
         <div class="games-grid" id="gamesGrid">
+
+            <!-- Resident Evil 4 Classic -->
+            <div class="game-card" data-id="resident-evil-4-classic" data-category="رعب أكشن port">
+                <div class="fav-btn" onclick="toggleFavorite('resident-evil-4-classic', this)">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container">
+                        <img src="صور/resident-evil-4.webp" alt="Resident Evil 4 Classic" class="game-img" onerror="this.style.display='none'">
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">Resident Evil 4 Classic Port</div>
+                        <div class="port-badge">⚙️ بورت / منفذ غير رسمي للأندرويد</div>
+                        <div class="game-meta">
+                            <span class="tag">#رعب</span>
+                            <span class="tag">#أكشن</span>
+                            <span class="tag">#port</span>
+                            <span class="tag offline">📶 بدون نت</span>
+                        </div>
+                        <div class="game-info">
+                            <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الحجم:</span><span class="info-value">2 GB</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://modsfire.com/wWvnpcAH62hFQa0" target="_blank" class="btn-download">📥 تحميل APK (2GB)</a>
+                </div>
+            </div>
 
             <!-- 1. Crash Team Racing -->
             <div class="game-card" data-id="crash-team-racing" data-category="سباق port">
