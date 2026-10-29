@@ -16,13 +16,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-Android@v3
-
       - name: Create Android Project Structure
         run: |
           mkdir -p android-app/app/src/main/java/com/rafx/app
-          mkdir -p android-app/app/src/main/res/layout
           mkdir -p android-app/app/src/main/res/values
 
           # AndroidManifest.xml
@@ -31,10 +27,7 @@ jobs:
               <uses-permission android:name="android.permission.INTERNET" />
               <application
                   android:allowBackup="true"
-                  android:icon="@mipmap/ic_launcher"
                   android:label="RAFX"
-                  android:roundIcon="@mipmap/ic_launcher_round"
-                  android:supportsRtl="true"
                   android:theme="@style/Theme.AppCompat.Light.NoActionBar">
                   <activity
                       android:name=".MainActivity"
@@ -96,11 +89,6 @@ jobs:
                   versionCode 1
                   versionName "1.0"
               }
-              buildTypes {
-                  release {
-                      minifyEnabled false
-                  }
-              }
           }
           dependencies {
               implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -125,20 +113,10 @@ jobs:
                   mavenCentral()
               }
           }
-          task clean(type: Delete) {
-              delete rootProject.buildDir
-          }
           EOF
 
           # settings.gradle
           cat << 'EOF' > android-app/settings.gradle
-          pluginManagement {
-              repositories {
-                  google()
-                  mavenCentral()
-                  gradlePluginPortal()
-              }
-          }
           dependencyResolutionManagement {
               repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
               repositories {
@@ -150,8 +128,9 @@ jobs:
           include ':app'
           EOF
 
-          # gradle.properties
+          # gradle.properties & local.properties (SDK Path Auto-Config)
           echo "android.useAndroidX=true" > android-app/gradle.properties
+          echo "sdk.dir=$ANDROID_HOME" > android-app/local.properties
 
       - name: Build APK with Gradle
         run: |
