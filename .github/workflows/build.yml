@@ -128,14 +128,14 @@ jobs:
           include ':app'
           EOF
 
-          # gradle.properties & local.properties (SDK Path Auto-Config)
+          # gradle.properties & local.properties
           echo "android.useAndroidX=true" > android-app/gradle.properties
           echo "sdk.dir=$ANDROID_HOME" > android-app/local.properties
 
       - name: Build APK with Gradle
         run: |
           cd android-app
-          chmod +x gradlew || gradle wrapper
+          gradle wrapper --gradle-version 8.5
           ./gradlew assembleRelease
 
       - name: Upload APK Artifact
