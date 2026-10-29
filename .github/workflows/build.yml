@@ -96,20 +96,7 @@ jobs:
           }
           EOF
 
-          # Root build.gradle (Standalone plugin style)
-          cat << 'EOF' > android-app/build.gradle
-          plugins {
-              id 'com.android.application' version '8.1.0' apply false
-          }
-          allprojects {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-          }
-          EOF
-
-          # settings.gradle
+          # settings.gradle (Unified repositories to prevent conflicts)
           cat << 'EOF' > android-app/settings.gradle
           pluginManagement {
               repositories {
@@ -119,7 +106,7 @@ jobs:
               }
           }
           dependencyResolutionManagement {
-              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
               repositories {
                   google()
                   mavenCentral()
@@ -129,9 +116,15 @@ jobs:
           include ':app'
           EOF
 
-          # gradle.properties & local.properties
+          # root build.gradle
+          cat << 'EOF' > android-app/build.gradle
+          plugins {
+              id 'com.android.application' version '8.1.0' apply false
+          }
+          EOF
+
+          # gradle.properties
           echo "android.useAndroidX=true" > android-app/gradle.properties
-          echo "sdk.dir=$ANDROID_HOME" > android-app/local.properties
 
       - name: Build APK with Gradle
         run: |
