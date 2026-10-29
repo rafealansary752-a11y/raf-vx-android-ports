@@ -74,7 +74,7 @@ jobs:
           }
           EOF
 
-          # build.gradle (Module)
+          # app/build.gradle
           cat << 'EOF' > android-app/app/build.gradle
           plugins {
               id 'com.android.application'
@@ -96,16 +96,10 @@ jobs:
           }
           EOF
 
-          # build.gradle (Project)
+          # Root build.gradle (Standalone plugin style)
           cat << 'EOF' > android-app/build.gradle
-          buildscript {
-              repositories {
-                  google()
-                  mavenCentral()
-              }
-              dependencies {
-                  classpath 'com.android.tools.build:gradle:8.1.0'
-              }
+          plugins {
+              id 'com.android.application' version '8.1.0' apply false
           }
           allprojects {
               repositories {
@@ -117,6 +111,13 @@ jobs:
 
           # settings.gradle
           cat << 'EOF' > android-app/settings.gradle
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
           dependencyResolutionManagement {
               repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
               repositories {
