@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAF-VX | المنصة الرسمية لأقوى بورتات الألعاب (الإصدار الملكي)</title>
+    <title>RAF-VX | المنصة الرسمية لأقوى بورتات الألعاب</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #050203;
-            --card-bg: rgba(25, 10, 12, 0.65);
-            --card-border: rgba(255, 26, 64, 0.25);
-            --accent-color: #ff1a40;
-            --accent-gradient: linear-gradient(135deg, #ff1a40 0%, #990012 100%);
+            --bg-color: #07050d;
+            --card-bg: rgba(20, 14, 35, 0.55);
+            --card-border: rgba(189, 0, 255, 0.18);
+            --accent-color: #ff007f;
+            --accent-gradient: linear-gradient(135deg, #bd00ff 0%, #ff007f 100%);
             --text-main: #ffffff;
-            --text-muted: #c5b4bc;
-            --badge-bg: rgba(255, 26, 64, 0.15);
-            --badge-border: rgba(255, 26, 64, 0.4);
+            --text-muted: #b4bcce;
+            --badge-bg: rgba(189, 0, 255, 0.15);
+            --badge-border: rgba(189, 0, 255, 0.35);
         }
 
         * {
@@ -31,8 +31,8 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(at 10% 10%, rgba(255, 26, 64, 0.15) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(153, 0, 18, 0.12) 0px, transparent 50%);
+                radial-gradient(at 10% 10%, rgba(189, 0, 255, 0.12) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(255, 0, 127, 0.1) 0px, transparent 50%);
             background-attachment: fixed;
             color: var(--text-main);
             min-height: 100vh;
@@ -71,19 +71,19 @@
         }
 
         .menu-btn:hover {
-            border-color: #ff1a40;
-            box-shadow: 0 0 15px rgba(255, 26, 64, 0.4);
+            border-color: #ff007f;
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
         }
 
         .menu-dropdown {
             position: absolute;
             top: 48px;
             right: 0;
-            background: #140507;
+            background: #100b1e;
             border: 1px solid var(--card-border);
             border-radius: 14px;
             width: 200px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             display: none;
             overflow: hidden;
             z-index: 101;
@@ -108,7 +108,7 @@
         }
 
         .menu-item:hover {
-            background: rgba(255, 26, 64, 0.2);
+            background: rgba(189, 0, 255, 0.2);
         }
 
         header {
@@ -120,7 +120,7 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--card-border);
             border-radius: 28px;
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
         }
 
         .brand-title {
@@ -131,12 +131,13 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 3px;
             margin-bottom: 5px;
-            text-shadow: 0 0 30px rgba(255, 26, 64, 0.4);
+            text-shadow: 0 0 30px rgba(189, 0, 255, 0.3);
         }
 
+        /* Marquee / New Games Ticker - Infinite Smooth Fix */
         .news-ticker {
-            background: rgba(255, 26, 64, 0.1);
-            border: 1px dashed rgba(255, 26, 64, 0.4);
+            background: rgba(189, 0, 255, 0.1);
+            border: 1px dashed rgba(255, 0, 127, 0.4);
             border-radius: 12px;
             overflow: hidden;
             white-space: nowrap;
@@ -150,8 +151,8 @@
         .ticker-text {
             display: inline-block;
             padding-right: 100%;
-            animation: marquee 14s linear infinite;
-            color: #ff8093;
+            animation: marquee 12s linear infinite;
+            color: #ff75c3;
             font-weight: 700;
             font-size: 0.9rem;
             will-change: transform;
@@ -164,11 +165,11 @@
 
         .version-tag {
             display: inline-block;
-            background: rgba(255, 26, 64, 0.15);
+            background: rgba(189, 0, 255, 0.1);
             padding: 4px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
-            color: #ff8093;
+            color: #ff75c3;
             border: 1px solid var(--badge-border);
             margin-bottom: 15px;
             font-weight: 700;
@@ -212,11 +213,12 @@
         }
 
         .search-container input:focus {
-            border-color: #ff1a40;
-            box-shadow: 0 0 20px rgba(255, 26, 64, 0.4);
+            border-color: #ff007f;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.3);
             background: rgba(255, 255, 255, 0.08);
         }
 
+        /* Filter Chips */
         .filter-chips {
             display: flex;
             gap: 8px;
@@ -244,7 +246,7 @@
             background: var(--accent-gradient);
             color: #fff;
             border-color: transparent;
-            box-shadow: 0 0 15px rgba(255, 26, 64, 0.4);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
         }
 
         .social-links {
@@ -266,14 +268,14 @@
             font-weight: 700;
             font-size: 0.95rem;
             transition: all 0.3s ease;
-            background: rgba(255, 26, 64, 0.15);
-            border: 1px solid rgba(255, 26, 64, 0.35);
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(138, 43, 226, 0.35);
         }
 
         .btn-social:hover {
-            background: rgba(255, 26, 64, 0.3);
+            background: rgba(138, 43, 226, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 26, 64, 0.3);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
         }
 
         .btn-social.chat {
@@ -302,7 +304,7 @@
             flex-direction: column;
             gap: 16px;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
             position: relative;
         }
 
@@ -316,16 +318,17 @@
         }
 
         .game-card:hover {
-            border-color: rgba(255, 26, 64, 0.6);
+            border-color: rgba(255, 0, 127, 0.5);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 26, 64, 0.25);
+            box-shadow: 0 10px 30px rgba(189, 0, 255, 0.2);
         }
 
+        /* Favorite Heart Button inside Card */
         .fav-btn {
             position: absolute;
             top: 15px;
             left: 15px;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0,0,0,0.4);
             border: 1px solid var(--card-border);
             width: 36px;
             height: 36px;
@@ -341,7 +344,7 @@
 
         .fav-btn:hover {
             transform: scale(1.1);
-            background: rgba(255, 26, 64, 0.3);
+            background: rgba(255, 0, 127, 0.2);
         }
 
         .game-main-content {
@@ -356,7 +359,7 @@
                 flex-direction: row;
                 align-items: center;
                 gap: 20px;
-                width: 60%;
+                width: 62%;
             }
         }
 
@@ -366,7 +369,7 @@
             height: 150px;
             border-radius: 14px;
             overflow: hidden;
-            background: #030202;
+            background: #030206;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -416,7 +419,7 @@
         .tag {
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
-            color: #ff8093;
+            color: #ff9cf0;
             font-size: 0.75rem;
             padding: 2px 8px;
             border-radius: 8px;
@@ -459,7 +462,7 @@
             display: flex;
             justify-content: space-between;
             padding: 3px 8px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.25);
             border-radius: 6px;
         }
 
@@ -491,7 +494,7 @@
 
         @media (min-width: 768px) {
             .download-group {
-                width: 35%;
+                width: 33%;
             }
         }
 
@@ -512,7 +515,7 @@
             cursor: pointer;
             transition: opacity 0.2s ease, transform 0.2s ease;
             white-space: nowrap;
-            box-shadow: 0 4px 15px rgba(255, 26, 64, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
         }
 
         .btn-download:hover {
@@ -529,17 +532,6 @@
 
         .btn-download.secondary:hover {
             background: rgba(255, 255, 255, 0.12);
-        }
-
-        .btn-download.dm-copy {
-            background: rgba(0, 229, 255, 0.12);
-            border: 1px solid rgba(0, 229, 255, 0.35);
-            color: #00e5ff;
-            box-shadow: none;
-        }
-
-        .btn-download.dm-copy:hover {
-            background: rgba(0, 229, 255, 0.25);
         }
 
         footer {
@@ -566,14 +558,14 @@
         <header>
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
-            <!-- شريط الألعاب المضافة حديثاً -->
+            <!-- شريط الألعاب المضافة حديثاً المتحرك بشكل سريع ومتواصل -->
             <div class="news-ticker">
                 <span class="ticker-text">
-                    🔥 الإصدار الملكي V7.1.0 • تمت الإضافة: Skyrim 🐉 • Uncharted Collection 🧗‍♂️ • Dead Cells ⚔️ • Max Payne 2 🔫 • تصفح أقوى البورتات وحمل مباشرة عبر 1DM! ⚡ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 الإصدار الملكي V7.1.0 • تمت الإضافة: Skyrim 🐉 • Uncharted Collection 🧗‍♂️ • Dead Cells ⚔️ • Max Payne 2 🔫 • تصفح أقوى البورتات وحمل مباشرة عبر 1DM! ⚡
+                    🔥 تمت الإضافة حديثاً: Dead Cells ⚔️ • Max Payne 2 🔫 • UNCHARTED Collection 🧗‍♂️ • Lego Marvel 🦸‍♂️ • Skyrim 🐉 • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 تمت الإضافة حديثاً: Dead Cells ⚔️ • Max Payne 2 🔫 • UNCHARTED Collection 🧗‍♂️ • Lego Marvel 🦸‍♂️ • Skyrim 🐉 • تصفح أحدث بورتات الأندرويد واكتشف القوة الآن! ⚡
                 </span>
             </div>
 
-            <div class="version-tag">المنصة الرسمية - الإصدار V7.1.0 (الإصدار الملكي 👑)</div>
+            <div class="version-tag">المنصة الرسمية - الإصدار V7.1.0 (إصدار الملكي)</div>
             <p class="subtitle">منصة أقوى بورتات ألعاب الأندرويد المحولة بعناية | خالي تماماً من الإعلانات</p>
 
             <div class="spec-banner">
@@ -631,7 +623,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://dl.apkvision.net/crash-team-racing-nitro-fueled/Crash-Team-Racing-Nitro-Fueled-apkvision.rar" target="_blank" class="btn-download">📥 تحميل اللعبة (20GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/crash-team-racing-nitro-fueled/Crash-Team-Racing-Nitro-Fueled-apkvision.rar', 'Crash Team Racing')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -658,7 +649,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/s6I1i53Ws921HLI" target="_blank" class="btn-download">📥 تحميل اللعبة (3GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/s6I1i53Ws921HLI', 'SCARFACE')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -685,7 +675,6 @@
                 <div class="download-group">
                     <a href="https://modsfire.com/j9kAfdRUY98uAN4" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://modsfire.com/ZA6023vOWc7COtM" target="_blank" class="btn-download secondary">📂 تحميل ملف Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/ZA6023vOWc7COtM', 'Black Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -713,7 +702,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/bhc2FliP9Q32aBA" target="_blank" class="btn-download">📥 تحميل اللعبة (3GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/bhc2FliP9Q32aBA', 'CALL OF DUTY 3')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -739,7 +727,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/pro-evolution-soccer-2017-135145" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/pro-evolution-soccer-2017-135145', 'PES 2017')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -765,7 +752,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/prince-of-persia-the-sands-of-time-135106" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/prince-of-persia-the-sands-of-time-135106', 'Prince of Persia')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -785,7 +771,7 @@
                             <span class="tag offline">📶 بدون نت</span>
                         </div>
                         <div class="note-box">
-                            💡 تحميل APK فقط (49.28MB) مع تنزيل داخلي بحجم 15GB.
+                            💡 تحميل APK فقط (49.28MB) مع تنزيل داخلي بحجم 15GB (بدون الحاجة لملفات Data خارجية).
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
@@ -795,7 +781,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/d1Q7i0z47350X56" target="_blank" class="btn-download">📥 تحميل APK (49.28MB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/d1Q7i0z47350X56', 'Sleeping Dogs')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -823,7 +808,6 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/dht5kr7d8gy5" target="_blank" class="btn-download">📥 تحميل APK (36MB)</a>
                     <a href="https://gofile.io/d/AWp0DlJL" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (6GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/AWp0DlJL', 'NFS Most Wanted Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -851,7 +835,6 @@
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-2-135023" target="_blank" class="btn-download">📥 تحميل Storm 2</a>
                     <a href="https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-3-full-burst-135009/" target="_blank" class="btn-download secondary">📥 تحميل Storm 3</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-2-135023', 'Naruto Storm')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -879,7 +862,6 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/bjn7p510l6oj" target="_blank" class="btn-download">📥 تحميل APK (36MB)</a>
                     <a href="https://gofile.io/d/3uXeYnng" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (31GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/3uXeYnng', 'Bloodborne Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -906,7 +888,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-generations-1349" target="_blank" class="btn-download">📥 تحميل APK + Games</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-generations-1349', 'Naruto Generations')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -937,7 +918,6 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/tc4ayenq5j0l" target="_blank" class="btn-download">📥 تحميل APK (51MB)</a>
                     <a href="https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file" target="_blank" class="btn-download secondary">📂 تحميل ملف Data (6GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file', 'Forza Horizon 1 Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -964,7 +944,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/gta-4-grand-theft-auto-iv-apk-44605/" target="_blank" class="btn-download">📥 تحميل APK + Data (6.38GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/gta-4-grand-theft-auto-iv-apk-44605/', 'GTA IV')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -991,7 +970,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/devil-may-cry-4-134866" target="_blank" class="btn-download">📥 رابط تحميل اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/devil-may-cry-4-134866', 'Devil May Cry 4')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1018,7 +996,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/ultra-street-fighter-iv-134821/" target="_blank" class="btn-download">📥 رابط تحميل اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/ultra-street-fighter-iv-134821/', 'Ultra Street Fighter IV')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1046,7 +1023,6 @@
                 <div class="download-group">
                     <a href="https://github.com/codepdbh/nfsmw-android/releases/tag/v0.3.5" target="_blank" class="btn-download">📥 تحميل الـ APK</a>
                     <a href="https://www.mediafire.com/file_premium/rpsn6w3k1exiukk/NFS-Mos-Wan-jue-esp.rar/file" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file_premium/rpsn6w3k1exiukk/NFS-Mos-Wan-jue-esp.rar/file', 'NFS Classic Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1067,6 +1043,7 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">76 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">38.86 GB</span></div>
                         </div>
                     </div>
@@ -1074,7 +1051,6 @@
                 <div class="download-group">
                     <a href="https://github.com/zFitness/gow3_android/releases/download/v2.1.7-bionic-v4/God.of.War.III-bionic-2.1.7-bionic-v4.apk" target="_blank" class="btn-download">📥 تحميل APK (76MB)</a>
                     <a href="https://mocha.my/share/TucUxdNj3mZbhxFbWhX0cU4Ms9m9tnMP" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (38.86GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/TucUxdNj3mZbhxFbWhX0cU4Ms9m9tnMP', 'GOW 3 Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1102,7 +1078,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/mortal-kombat-9-komplete-edition-135233/" target="_blank" class="btn-download">📥 تحميل APK + Data (6GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/mortal-kombat-9-komplete-edition-135233/', 'Mortal Kombat 9')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1130,7 +1105,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/gears-of-war-2-135221/" target="_blank" class="btn-download">📥 تحميل APK + Data (6.20GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/gears-of-war-2-135221/', 'Gears of War 2')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1158,7 +1132,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/wwe-12-135224/" target="_blank" class="btn-download">📥 تحميل APK + Data (7.33GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/wwe-12-135224/', 'WWE 12')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1174,6 +1147,7 @@
                         <div class="port-badge">⚙️ بورت / منفذ غير رسمي للأندرويد</div>
                         <div class="game-meta">
                             <span class="tag">#أكشن</span>
+                            <span class="tag">#تقطيع_وحذف</span>
                             <span class="tag">#port</span>
                             <span class="tag offline">📶 بدون نت</span>
                         </div>
@@ -1185,7 +1159,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/metal-gear-rising-revengeance-135217/" target="_blank" class="btn-download">📥 تحميل APK + Data (7.23GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/metal-gear-rising-revengeance-135217/', 'Metal Gear Rising')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1207,14 +1180,13 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
-                            <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">22.4 GB</span></div>
+                            <div class="info-item"><span class="info-label">حجم الـ APK:</span><span class="info-value">81.76 MB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://github.com/erickmendes22/iss_android/releases/download/v0.2-Android-Bionic/inFAMOUS-Second-Son-Daedalus-v0.2.apk" target="_blank" class="btn-download">📥 تحميل APK (81MB)</a>
+                    <a href="https://github.com/erickmendes22/iss_android/releases/download/v0.2-Android-Bionic/inFAMOUS-Second-Son-Daedalus-v0.2.apk" target="_blank" class="btn-download">📥 تحميل APK (81.76MB)</a>
                     <a href="https://mocha.my/share/s4N5ELcI0kUwMZfJrmQEbFV8xquIzF6E" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (22.4GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/s4N5ELcI0kUwMZfJrmQEbFV8xquIzF6E', 'inFAMOUS Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1242,7 +1214,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/call-of-duty-modern-warfare-2-135129/" target="_blank" class="btn-download">📥 تحميل APK + Data (6.78GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/call-of-duty-modern-warfare-2-135129/', 'COD MW2')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1270,7 +1241,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-revolution-135046/" target="_blank" class="btn-download">📥 تحميل APK + Data (6.93GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-revolution-135046/', 'Naruto Revolution')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1298,7 +1268,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/def-jam-fight-for-ny-135134/" target="_blank" class="btn-download">📥 تحميل APK + Data (2.22GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/def-jam-fight-for-ny-135134/', 'Def Jam')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1326,7 +1295,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/metal-gear-solid-2-sons-of-liberty-hd-135084/" target="_blank" class="btn-download">📥 تحميل APK + OBB (3.54GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/metal-gear-solid-2-sons-of-liberty-hd-135084/', 'MGS 2')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1355,7 +1323,6 @@
                 <div class="download-group">
                     <a href="https://gofile.io/d/3DHxyR8G" target="_blank" class="btn-download">📥 تحميل APK (5.96MB)</a>
                     <a href="https://gofile.io/d/Gp4WpjOM" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (13.3GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/Gp4WpjOM', 'Resident Evil 7 Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1383,7 +1350,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/Y7u09d1bv1Q6WMQ" target="_blank" class="btn-download">📥 تحميل APK فقط (700MB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/Y7u09d1bv1Q6WMQ', 'INSIDE')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1405,13 +1371,13 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">33.44 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">30.84 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/call-of-duty-black-ops-2-135257/" target="_blank" class="btn-download">📥 تحميل APK + Data (30.84GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/call-of-duty-black-ops-2-135257/', 'BO2')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1433,13 +1399,13 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
-                            <div class="info-item"><span class="info-label">الحجم:</span><span class="info-value">1.12 GB</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">25.57 MB</span></div>
+                            <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">1.12 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/god-of-war-chains-of-olympus-131663/" target="_blank" class="btn-download">📥 تحميل APK + Data (1.12GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/god-of-war-chains-of-olympus-131663/', 'GOW Chains of Olympus')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1463,6 +1429,7 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">108 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">6.35 GB</span></div>
                         </div>
                     </div>
@@ -1470,7 +1437,6 @@
                 <div class="download-group">
                     <a href="https://github.com/Gabrick75/fh2-recompiled/releases/download/v0.4.3/FH2-Recompiled-0.4.3.apk" target="_blank" class="btn-download">📥 تحميل APK (108MB)</a>
                     <a href="https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file?action=check" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (6.35GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file?action=check', 'Forza Horizon 2 Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1490,7 +1456,7 @@
                             <span class="tag offline">📶 بدون نت</span>
                         </div>
                         <div class="note-box">
-                            💡 تحميل APK فقط (363MB) مع تنزيل داخلي بحجم 15GB.
+                            💡 تحميل APK فقط (363MB) مع تنزيل داخلي لملف اللعبة بحجم 15GB.
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
@@ -1500,7 +1466,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/759kzy7p525Fi66" target="_blank" class="btn-download">📥 تحميل APK (363MB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/759kzy7p525Fi66', 'SEKIRO')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1521,14 +1486,13 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
-                            <div class="info-item"><span class="info-label">الحجم:</span><span class="info-value">4 GB</span></div>
+                            <div class="info-item"><span class="info-label">الحجم الإجمالي:</span><span class="info-value">4 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/TCHH1In206zuyyB" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://archive.org/download/fifa-street-2012/FIFA%20Street%20%282012%29.iso" target="_blank" class="btn-download secondary">📂 تحميل ملف Data / ISO</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://archive.org/download/fifa-street-2012/FIFA%20Street%20%282012%29.iso', 'FIFA Street Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1556,7 +1520,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/wWvnpcAH62hFQa0" target="_blank" class="btn-download">📥 تحميل APK (2GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/wWvnpcAH62hFQa0', 'Resident Evil 4 Classic')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1577,6 +1540,7 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">3.35 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">14.19 GB</span></div>
                         </div>
                     </div>
@@ -1584,7 +1548,6 @@
                 <div class="download-group">
                     <a href="https://apkvision.org/games/role-playing/persona-5-royal-135259/" target="_blank" class="btn-download">📥 تحميل APK (3.35MB)</a>
                     <a href="https://apkvision.org/games/role-playing/persona-5-royal-135259/" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (14.19GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/persona-5-royal-135259/', 'Persona 5 Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1605,6 +1568,7 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">19.40 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ OBB:</span><span class="info-value">3.28 GB</span></div>
                         </div>
                     </div>
@@ -1612,7 +1576,6 @@
                 <div class="download-group">
                     <a href="https://apkvision.org/games/racing/gran-turismo-3-a-spec-135264/" target="_blank" class="btn-download">📥 تحميل APK (19.40MB)</a>
                     <a href="https://apkvision.org/games/racing/gran-turismo-3-a-spec-135264/" target="_blank" class="btn-download secondary">📂 تحميل ملفات OBB (3.28GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/racing/gran-turismo-3-a-spec-135264/', 'Gran Turismo 3 OBB')">📋 نسخ رابط OBB لـ 1DM</button>
                 </div>
             </div>
 
@@ -1633,14 +1596,14 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">45.43 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ OBB:</span><span class="info-value">17 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://apkvision.org/games/role-playing/lost-odyssey-135269/" target="_blank" class="btn-download">📥 تحميل APK (45MB)</a>
+                    <a href="https://apkvision.org/games/role-playing/lost-odyssey-135269/" target="_blank" class="btn-download">📥 تحميل APK (45.43MB)</a>
                     <a href="https://apkvision.org/games/role-playing/lost-odyssey-135269/" target="_blank" class="btn-download secondary">📂 تحميل ملفات OBB (17 GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/lost-odyssey-135269/', 'Lost Odyssey OBB')">📋 نسخ رابط OBB لـ 1DM</button>
                 </div>
             </div>
 
@@ -1661,14 +1624,14 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
-                            <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">1020 MB</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">16.50 MB</span></div>
+                            <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">1020.13 MB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://apkvision.org/games/ultimate-spider-man-135248/" target="_blank" class="btn-download">📥 تحميل APK (16MB)</a>
-                    <a href="https://apkvision.org/games/ultimate-spider-man-135248/" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/ultimate-spider-man-135248/', 'Spider-Man Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <a href="https://apkvision.org/games/ultimate-spider-man-135248/" target="_blank" class="btn-download">📥 تحميل APK (16.50MB)</a>
+                    <a href="https://apkvision.org/games/ultimate-spider-man-135248/" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (1020.13MB)</a>
                 </div>
             </div>
 
@@ -1690,14 +1653,14 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة (معربة)</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">50.28 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">6.41 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://modsfire.com/OJ8gI29DwBp29o3" target="_blank" class="btn-download">📥 تحميل APK (50MB)</a>
+                    <a href="https://modsfire.com/OJ8gI29DwBp29o3" target="_blank" class="btn-download">📥 تحميل APK (50.28MB)</a>
                     <a href="https://www.mediafire.com/file/2pufvr7vity7xnd/Call+of+Duty+4+Modern+Warfare+Arabic+By+Mustafa+Gamers.zip/file?action=check" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (6.41GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/2pufvr7vity7xnd/Call+of+Duty+4+Modern+Warfare+Arabic+By+Mustafa+Gamers.zip/file?action=check', 'COD 4 Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1728,7 +1691,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/zB0CPCTpbMozhRl" target="_blank" class="btn-download">📥 تحميل APK والملفات</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/zB0CPCTpbMozhRl', 'GTA 5')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1755,11 +1717,10 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/4sGpPi7Y9J20zQJ" target="_blank" class="btn-download">📥 تحميل APK (2GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/4sGpPi7Y9J20zQJ', 'PES 5')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
-            <!-- 42. DEAD CELLS -->
+            <!-- 42. DEAD CELLS (ألعاب جديدة مضافة من الأسفل) -->
             <div class="game-card" data-id="dead-cells" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('dead-cells', this)">🤍</div>
                 <div class="game-main-content">
@@ -1782,7 +1743,6 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/PY9W334096Pz8R1" target="_blank" class="btn-download">📥 تحميل APK (2GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/PY9W334096Pz8R1', 'Dead Cells')">📋 نسخ رابط 1DM</button>
                 </div>
             </div>
 
@@ -1803,14 +1763,13 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
-                            <div class="info-item"><span class="info-label">الحجم:</span><span class="info-value">1 GB</span></div>
+                            <div class="info-item"><span class="info-label">إجمالي الحجم:</span><span class="info-value">1 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/532AFZhpx4pg1Zr" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://modsfire.com/NplcZdh4Fl8E5pn" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/NplcZdh4Fl8E5pn', 'Max Payne 2 Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1832,6 +1791,7 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">55 MB</span></div>
                             <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">40 GB</span></div>
                         </div>
                     </div>
@@ -1839,7 +1799,6 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/9d2y9kbeuiu8" target="_blank" class="btn-download">📥 تحميل APK (55MB)</a>
                     <a href="https://mocha.my/share/F-hWTLmTRra2YKP9477QAgojW758-VIi" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (40GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/F-hWTLmTRra2YKP9477QAgojW758-VIi', 'Uncharted Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1861,14 +1820,14 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
-                            <div class="info-item"><span class="info-label">الحجم:</span><span class="info-value">6 GB</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">50 MB</span></div>
+                            <div class="info-item"><span class="info-label">ملف اللعبة:</span><span class="info-value">6 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
                     <a href="https://github.com/ttom795/LMS_Android/releases/download/0.3.4/LegoMarvel-0.3.4.apk" target="_blank" class="btn-download">📥 تحميل APK (50MB)</a>
                     <a href="https://dl.apkvision.net/lego-marvel-super-heroes-pc-port/LEGO-Marvel-Super-Heroes-apkvision.zip" target="_blank" class="btn-download secondary">📂 تحميل ملف اللعبة (6GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/lego-marvel-super-heroes-pc-port/LEGO-Marvel-Super-Heroes-apkvision.zip', 'Lego Marvel Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
@@ -1889,33 +1848,36 @@
                         </div>
                         <div class="game-info">
                             <div class="info-item"><span class="info-label">النسخة:</span><span class="info-value">النسخة الاصلية الكاملة</span></div>
-                            <div class="info-item"><span class="info-label">الحجم:</span><span class="info-value">5 GB</span></div>
+                            <div class="info-item"><span class="info-label">الـ APK:</span><span class="info-value">45 MB</span></div>
+                            <div class="info-item"><span class="info-label">الـ Data:</span><span class="info-value">5 GB</span></div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
                     <a href="https://github.com/ttom795/Skyrim_Android/releases/download/0.27.2/Skyrim-0.27.2.apk" target="_blank" class="btn-download">📥 تحميل APK (45MB)</a>
                     <a href="https://www.mediafire.com/file_premium/jb7zmrm25002mfx/the-elder-scrolls-v-skyrim-apkvision.zip/file?action=check" target="_blank" class="btn-download secondary">📂 تحميل ملفات Data (5GB)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file_premium/jb7zmrm25002mfx/the-elder-scrolls-v-skyrim-apkvision.zip/file?action=check', 'Skyrim Data')">📋 نسخ رابط Data لـ 1DM</button>
                 </div>
             </div>
 
         </div>
 
         <footer>
-            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار الملكي) © 2026</p>
+            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> © 2026</p>
         </footer>
     </div>
 
+    <!-- Advanced Script for Search, Filter & Favorites -->
     <script>
         let currentCategory = 'all';
         let showOnlyFavorites = false;
 
+        // Toggle Three Dots Menu
         function toggleMenu() {
             let menu = document.getElementById('menuDropdown');
             menu.classList.toggle('active');
         }
 
+        // Close menu when clicking outside
         window.onclick = function(event) {
             if (!event.target.matches('.menu-btn')) {
                 let dropdowns = document.getElementsByClassName("menu-dropdown");
@@ -1928,6 +1890,7 @@
             }
         }
 
+        // Favorites System using localStorage
         function getFavorites() {
             let favs = localStorage.getItem('rafvx_favorites');
             return favs ? JSON.parse(favs) : [];
@@ -1951,14 +1914,7 @@
             }
         }
 
-        function copy1DM(url, gameName) {
-            navigator.clipboard.writeText(url).then(() => {
-                alert("📋 تم نسخ رابط (" + gameName + ") بنجاح!\n⚡ افتح برنامج 1DM الآن وألصق الرابط للتحميل السريع.");
-            }).catch(err => {
-                prompt("انسخ الرابط يدوياً:", url);
-            });
-        }
-
+        // Initialize heart icons on load
         document.addEventListener("DOMContentLoaded", function() {
             let favs = getFavorites();
             let cards = document.getElementsByClassName('game-card');
@@ -2018,5 +1974,6 @@
             }
         }
     </script>
+
 </body>
-</html>
+    </html>
