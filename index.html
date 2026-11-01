@@ -26,6 +26,8 @@
             padding: 0;
             font-family: 'Cairo', sans-serif;
             -webkit-tap-highlight-color: transparent;
+            direction: rtl;
+            text-align: right;
         }
 
         body {
@@ -49,7 +51,8 @@
         .top-menu-container {
             position: absolute;
             top: 15px;
-            right: 15px;
+            left: 15px;
+            right: auto;
             z-index: 100;
         }
 
@@ -69,15 +72,11 @@
             transition: all 0.3s ease;
         }
 
-        .menu-btn:hover {
-            border-color: #ff1a40;
-            box-shadow: 0 0 15px rgba(255, 26, 64, 0.4);
-        }
-
         .menu-dropdown {
             position: absolute;
             top: 48px;
-            right: 0;
+            left: 0;
+            right: auto;
             background: #140507;
             border: 1px solid var(--card-border);
             border-radius: 14px;
@@ -86,6 +85,7 @@
             display: none;
             overflow: hidden;
             z-index: 101;
+            text-align: right;
         }
 
         .menu-dropdown.active {
@@ -131,6 +131,7 @@
             letter-spacing: 3px;
             margin-bottom: 5px;
             text-shadow: 0 0 30px rgba(255, 26, 64, 0.4);
+            text-align: center;
         }
 
         .news-ticker {
@@ -158,7 +159,7 @@
 
         @keyframes marquee {
             0% { transform: translate(0, 0); }
-            100% { transform: translate(100%, 0); }
+            100% { transform: translate(-100%, 0); }
         }
 
         .version-tag {
@@ -177,6 +178,7 @@
             color: var(--text-muted);
             font-size: 1rem;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .spec-banner {
@@ -192,6 +194,7 @@
             justify-content: center;
             gap: 8px;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .search-container {
@@ -208,12 +211,7 @@
             font-size: 1rem;
             outline: none;
             transition: all 0.3s ease;
-        }
-
-        .search-container input:focus {
-            border-color: #ff1a40;
-            box-shadow: 0 0 20px rgba(255, 26, 64, 0.4);
-            background: rgba(255, 255, 255, 0.08);
+            text-align: right;
         }
 
         .filter-chips {
@@ -267,21 +265,12 @@
             transition: all 0.3s ease;
             background: rgba(255, 26, 64, 0.15);
             border: 1px solid rgba(255, 26, 64, 0.35);
-        }
-
-        .btn-social:hover {
-            background: rgba(255, 26, 64, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 26, 64, 0.3);
+            text-align: center;
         }
 
         .btn-social.chat {
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(255, 255, 255, 0.15);
-        }
-
-        .btn-social.chat:hover {
-            background: rgba(255, 255, 255, 0.12);
         }
 
         .games-grid {
@@ -314,16 +303,11 @@
             }
         }
 
-        .game-card:hover {
-            border-color: rgba(255, 26, 64, 0.6);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 26, 64, 0.25);
-        }
-
         .fav-btn {
             position: absolute;
             top: 15px;
             left: 15px;
+            right: auto;
             background: rgba(0,0,0,0.5);
             border: 1px solid var(--card-border);
             width: 36px;
@@ -336,11 +320,6 @@
             font-size: 1.1rem;
             transition: all 0.3s;
             z-index: 5;
-        }
-
-        .fav-btn:hover {
-            transform: scale(1.1);
-            background: rgba(255, 26, 64, 0.3);
         }
 
         .game-main-content {
@@ -382,11 +361,6 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            transition: transform 0.35s ease;
-        }
-
-        .game-card:hover .game-img {
-            transform: scale(1.08);
         }
 
         .game-details {
@@ -394,6 +368,7 @@
             flex-direction: column;
             gap: 8px;
             flex-grow: 1;
+            text-align: right;
         }
 
         .game-title {
@@ -401,12 +376,14 @@
             font-weight: 700;
             color: #fff;
             line-height: 1.2;
+            text-align: right;
         }
 
         .game-meta {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            justify-content: flex-start;
         }
 
         .tag {
@@ -470,12 +447,14 @@
 
         .note-box {
             background: rgba(255, 171, 0, 0.12);
-            border-right: 3px solid #ffab00;
+            border-left: 3px solid #ffab00;
+            border-right: none;
             padding: 6px 10px;
             border-radius: 6px;
             font-size: 0.78rem;
             color: #ffd54f;
             width: 100%;
+            text-align: right;
         }
 
         .download-group {
@@ -506,14 +485,8 @@
             border-radius: 12px;
             text-decoration: none;
             cursor: pointer;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            white-space: nowrap;
+            text-align: center;
             box-shadow: 0 4px 15px rgba(255, 26, 64, 0.3);
-        }
-
-        .btn-download:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
         }
 
         .btn-download.secondary {
@@ -523,19 +496,11 @@
             box-shadow: none;
         }
 
-        .btn-download.secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
         .btn-download.dm-copy {
             background: rgba(0, 229, 255, 0.12);
             border: 1px solid rgba(0, 229, 255, 0.35);
             color: #00e5ff;
             box-shadow: none;
-        }
-
-        .btn-download.dm-copy:hover {
-            background: rgba(0, 229, 255, 0.25);
         }
 
         footer {
@@ -819,7 +784,7 @@
                 </div>
             </div>
 
-            <!-- 9. Mortal Kombat: Armageddon (الصورة الصحيحة المطابقة لطلبك) -->
+            <!-- 9. Mortal Kombat: Armageddon -->
             <div class="game-card" data-id="mortal-kombat-armageddon" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-armageddon', this)">🤍</div>
                 <div class="game-main-content">
@@ -846,7 +811,6 @@
                 </div>
             </div>
 
-            <!-- باقي الألعاب بالصور الصحيحة -->
             <!-- 10. Skyrim -->
             <div class="game-card" data-id="skyrim" data-category="تقمص الأدوار port">
                 <div class="fav-btn" onclick="toggleFavorite('skyrim', this)">🤍</div>
@@ -2207,29 +2171,6 @@
             }
         });
 
-        function filterFavorites() {
-            showOnlyFavorites = true;
-            filterGames();
-        }
-
-        function resetFilter() {
-            showOnlyFavorites = false;
-            filterGames();
-        }
-
-        function setCategory(category, element) {
-            currentCategory = category;
-            showOnlyFavorites = false;
-            
-            let chips = document.getElementsByClassName('chip');
-            for (let chip of chips) {
-                chip.classList.remove('active');
-            }
-            element.classList.add('active');
-            
-            filterGames();
-        }
-
         function filterGames() {
             let input = document.getElementById('searchInput').value.toLowerCase();
             let cards = document.getElementsByClassName('game-card');
@@ -2252,6 +2193,31 @@
                     card.style.display = "none";
                 }
             }
+        }
+
+        function filterFavorites() {
+            showOnlyFavorites = true;
+            filterGames();
+            toggleMenu();
+        }
+
+        function resetFilter() {
+            showOnlyFavorites = false;
+            filterGames();
+            toggleMenu();
+        }
+
+        function setCategory(category, element) {
+            currentCategory = category;
+            showOnlyFavorites = false;
+            
+            let chips = document.getElementsByClassName('chip');
+            for (let chip of chips) {
+                chip.classList.remove('active');
+            }
+            element.classList.add('active');
+            
+            filterGames();
         }
     </script>
 </body>
