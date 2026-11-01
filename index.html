@@ -572,7 +572,7 @@
                 </span>
             </div>
 
-            <div class="version-tag">المنصة الرسمية - الإصدار V7.1.3 (الإصدار الملكي 👑)</div>
+            <div class="version-tag">المنصة الرسمية - الإصدار V7.1.4 (الإصدار الملكي 👑)</div>
             <p class="subtitle">منصة أقوى بورتات ألعاب الأندرويد المحولة بعناية | خالي تماماً من الإعلانات</p>
 
             <div class="spec-banner">
@@ -2154,24 +2154,23 @@
         let currentCategory = 'all';
         let showOnlyFavorites = false;
 
-        // دالة تبديل وصيانة تلقائية للصور (تجرب jpg ثم webp تلقائياً، وإذا لم توجد تضع شعار RAF-VX الملكي)
+        // دالة الفحص الذكي للصور وتصحيح الامتدادات وأسماء الملفات تلقائياً
         function handleImageError(imgElement, gameId) {
             let currentSrc = imgElement.src;
             
-            // إذا كانت تحاول بصيغة webp ولم تنجح، جرب jpg تلقائياً
-            if (currentSrc.includes('.webp')) {
-                imgElement.src = 'صور/' + gameId + '.jpg';
-                return;
-            }
-            
-            // إذا كانت تحاول بصيغة jpg ولم تنجح، جرب webp تلقائياً
-            if (currentSrc.includes('.jpg') && !imgElement.dataset.triedWebp) {
-                imgElement.dataset.triedWebp = "true";
+            // إذا كانت تنتهي بـ .jpg جرب .webp
+            if (currentSrc.endsWith('.jpg')) {
                 imgElement.src = 'صور/' + gameId + '.webp';
                 return;
             }
+            
+            // إذا كانت تنتهي بـ .webp جرب .jpg
+            if (currentSrc.endsWith('.webp')) {
+                imgElement.src = 'صور/' + gameId + '.jpg';
+                return;
+            }
 
-            // إذا فشلت كلتا الصيغتين، يتم تحويلها للشعار الملكي الأنيق بدلاً من المربع المكسور
+            // إذا فشلت كل الصيغ، يتم عرض الشعار الاحتياطي
             let container = imgElement.parentElement;
             imgElement.style.display = "none";
             container.style.background = "linear-gradient(135deg, #140507 0%, #2b0b10 100%)";
@@ -2262,7 +2261,7 @@
             
             let chips = document.getElementsByClassName('chip');
             for (let chip of chips) {
-                chip.classList.remove('active');
+                chip.classList.remove('alias') || chip.classList.remove('active');
             }
             element.classList.add('active');
             
