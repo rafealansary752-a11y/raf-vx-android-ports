@@ -2154,8 +2154,24 @@
         let currentCategory = 'all';
         let showOnlyFavorites = false;
 
-        // دالة ذكية خارقة للتعامل مع أي صورة مفقودة وتصميم شارة ملكية بديلة تلقائياً
+        // دالة تبديل وصيانة تلقائية للصور (تجرب jpg ثم webp تلقائياً، وإذا لم توجد تضع شعار RAF-VX الملكي)
         function handleImageError(imgElement, gameId) {
+            let currentSrc = imgElement.src;
+            
+            // إذا كانت تحاول بصيغة webp ولم تنجح، جرب jpg تلقائياً
+            if (currentSrc.includes('.webp')) {
+                imgElement.src = 'صور/' + gameId + '.jpg';
+                return;
+            }
+            
+            // إذا كانت تحاول بصيغة jpg ولم تنجح، جرب webp تلقائياً
+            if (currentSrc.includes('.jpg') && !imgElement.dataset.triedWebp) {
+                imgElement.dataset.triedWebp = "true";
+                imgElement.src = 'صور/' + gameId + '.webp';
+                return;
+            }
+
+            // إذا فشلت كلتا الصيغتين، يتم تحويلها للشعار الملكي الأنيق بدلاً من المربع المكسور
             let container = imgElement.parentElement;
             imgElement.style.display = "none";
             container.style.background = "linear-gradient(135deg, #140507 0%, #2b0b10 100%)";
@@ -2242,7 +2258,7 @@
 
         function setCategory(category, element) {
             currentCategory = category;
-            showOnlyFavorites, showOnlyFavorites = false;
+            showOnlyFavorites = false;
             
             let chips = document.getElementsByClassName('chip');
             for (let chip of chips) {
