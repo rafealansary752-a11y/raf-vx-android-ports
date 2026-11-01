@@ -46,7 +46,6 @@
             position: relative;
         }
 
-        /* Top Menu (Three Dots) */
         .top-menu-container {
             position: absolute;
             top: 15px;
@@ -569,11 +568,11 @@
             <!-- شريط الألعاب المضافة حديثاً -->
             <div class="news-ticker">
                 <span class="ticker-text">
-                    🔥 الإصدار الملكي V7.1.1 • تمت الإضافة: Mortal Kombat Armageddon 🐉 • Midnight Club 3 🚗 • Prototype 💥 • Ninja Gaiden Black ⚔️ • Left 4 Dead 2 🧟‍♂️ • Dragon Ball Raging Blast 2 ⚡ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 الإصدار الملكي V7.1.1 • تمت الإضافة: Mortal Kombat Armageddon 🐉 • Midnight Club 3 🚗 • Prototype 💥 • Ninja Gaiden Black ⚔️ • Left 4 Dead 2 🧟‍♂️ • Dragon Ball Raging Blast 2 ⚡
+                    🔥 الإصدار الملكي V7.1.3 • نظام سحب الصور الذكي من مجلد (صور) • دعم تام لصيغ WebP و JPG &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 الإصدار الملكي V7.1.3 • نظام سحب الصور الذكي من مجلد (صور) • دعم تام لصيغ WebP و JPG
                 </span>
             </div>
 
-            <div class="version-tag">المنصة الرسمية - الإصدار V7.1.1 (الإصدار الملكي 👑)</div>
+            <div class="version-tag">المنصة الرسمية - الإصدار V7.1.3 (الإصدار الملكي 👑)</div>
             <p class="subtitle">منصة أقوى بورتات ألعاب الأندرويد المحولة بعناية | خالي تماماً من الإعلانات</p>
 
             <div class="spec-banner">
@@ -613,7 +612,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('crash-team-racing', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/crash-team-racing.webp" alt="Crash Team Racing" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/crash-team-racing.webp" alt="Crash Team Racing" class="game-img" onerror="handleImageError(this, 'crash-team-racing')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Crash Team Racing Port Android</div>
@@ -641,7 +640,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('scarface', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/scarface.webp" alt="SCARFACE" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/scarface.webp" alt="SCARFACE" class="game-img" onerror="handleImageError(this, 'scarface')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">SCARFACE Port</div>
@@ -668,7 +667,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('black', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/black.webp" alt="Black" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/black.webp" alt="Black" class="game-img" onerror="handleImageError(this, 'black')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Black Port</div>
@@ -695,7 +694,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('call-of-duty-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/call-of-duty-3.webp" alt="CALL OF DUTY 3" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/call-of-duty-3.webp" alt="CALL OF DUTY 3" class="game-img" onerror="handleImageError(this, 'call-of-duty-3')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">CALL OF DUTY 3 Port</div>
@@ -723,7 +722,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('pes-2017', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/pes-2017.webp" alt="PES 2017" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/pes-2017.webp" alt="PES 2017" class="game-img" onerror="handleImageError(this, 'pes-2017')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">PES 2017 Port</div>
@@ -749,7 +748,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('prince-of-persia', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/prince-of-persia.webp" alt="Prince of Persia" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/prince-of-persia.webp" alt="Prince of Persia" class="game-img" onerror="handleImageError(this, 'prince-of-persia')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Prince of Persia: The Sands Of Time</div>
@@ -775,7 +774,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('sleeping-dogs', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/sleeping-dogs.webp" alt="Sleeping Dogs" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/sleeping-dogs.webp" alt="Sleeping Dogs" class="game-img" onerror="handleImageError(this, 'sleeping-dogs')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Sleeping Dogs Definitive Edition</div>
@@ -805,7 +804,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/nfs-most-wanted.webp" alt="NFS Most Wanted" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/nfs-most-wanted.webp" alt="NFS Most Wanted" class="game-img" onerror="handleImageError(this, 'nfs-most-wanted')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">NFS Most Wanted 2012 Port</div>
@@ -833,7 +832,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('naruto-storm-2-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/naruto-storm-2-3.webp" alt="Naruto Storm" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/naruto-storm-2-3.webp" alt="Naruto Storm" class="game-img" onerror="handleImageError(this, 'naruto-storm-2-3')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Naruto Ninja Storm 2 & 3</div>
@@ -861,7 +860,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('bloodborne', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/bloodborne.webp" alt="Bloodborne" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/bloodborne.webp" alt="Bloodborne" class="game-img" onerror="handleImageError(this, 'bloodborne')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Bloodborne Port Android</div>
@@ -889,7 +888,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('naruto-generations', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/naruto-generations.webp" alt="Naruto Generations" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/naruto-generations.webp" alt="Naruto Generations" class="game-img" onerror="handleImageError(this, 'naruto-generations')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Naruto Storm Generations</div>
@@ -916,7 +915,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('forza-horizon-1', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/forza-horizon.webp" alt="Forza Horizon 1" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/forza-horizon.webp" alt="Forza Horizon 1" class="game-img" onerror="handleImageError(this, 'forza-horizon')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Forza Horizon 1 Port</div>
@@ -947,7 +946,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('gta-iv', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/gta-iv.webp" alt="GTA IV" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/gta-iv.webp" alt="GTA IV" class="game-img" onerror="handleImageError(this, 'gta-iv')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">GTA IV Port Android</div>
@@ -974,7 +973,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-4', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/devil-may-cry-4.webp" alt="Devil May Cry 4" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/devil-may-cry-4.webp" alt="Devil May Cry 4" class="game-img" onerror="handleImageError(this, 'devil-may-cry-4')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Devil May Cry 4 Port</div>
@@ -1001,7 +1000,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('ultra-street-fighter-iv', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/ultra-street-fighter-iv.webp" alt="Ultra Street Fighter IV" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/ultra-street-fighter-iv.webp" alt="Ultra Street Fighter IV" class="game-img" onerror="handleImageError(this, 'ultra-street-fighter-iv')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Ultra Street Fighter IV</div>
@@ -1028,7 +1027,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted-classic', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/nfs-most-wanted-2.webp" alt="NFS Most Wanted Port" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/nfs-most-wanted-2.webp" alt="NFS Most Wanted Port" class="game-img" onerror="handleImageError(this, 'nfs-most-wanted-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">NFS Most Wanted Port</div>
@@ -1056,7 +1055,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('god-of-war-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/god-of-war-3.webp" alt="God of War 3" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/god-of-war-3.webp" alt="God of War 3" class="game-img" onerror="handleImageError(this, 'god-of-war-3')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">God of War III Port</div>
@@ -1084,7 +1083,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-9', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/mortal-kombat-9.webp" alt="Mortal Kombat 9" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/mortal-kombat-9.webp" alt="Mortal Kombat 9" class="game-img" onerror="handleImageError(this, 'mortal-kombat-9')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Mortal Kombat 9 Komplete Edition Port</div>
@@ -1112,7 +1111,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('gears-of-war-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/gears-of-war-2.webp" alt="Gears of War 2" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/gears-of-war-2.webp" alt="Gears of War 2" class="game-img" onerror="handleImageError(this, 'gears-of-war-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Gears of War 2 Port</div>
@@ -1140,7 +1139,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('wwe-12', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/wwe-12.webp" alt="WWE 12" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/wwe-12.webp" alt="WWE 12" class="game-img" onerror="handleImageError(this, 'wwe-12')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">WWE 12 Port</div>
@@ -1168,7 +1167,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('metal-gear-rising', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/metal-gear-rising.webp" alt="Metal Gear Rising" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/metal-gear-rising.webp" alt="Metal Gear Rising" class="game-img" onerror="handleImageError(this, 'metal-gear-rising')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Metal Gear Rising: Revengeance Port</div>
@@ -1195,7 +1194,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('infamous-second-son', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/infamous-second-son.webp" alt="inFAMOUS Second Son" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/infamous-second-son.webp" alt="inFAMOUS Second Son" class="game-img" onerror="handleImageError(this, 'infamous-second-son')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">inFAMOUS Second Son Port</div>
@@ -1224,7 +1223,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('cod-mw2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/cod-mw2.webp" alt="COD Modern Warfare 2" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/cod-mw2.webp" alt="COD Modern Warfare 2" class="game-img" onerror="handleImageError(this, 'cod-mw2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Call of Duty: Modern Warfare 2 Port</div>
@@ -1252,7 +1251,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('naruto-revolution', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/naruto-revolution.webp" alt="Naruto Storm Revolution" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/naruto-revolution.webp" alt="Naruto Storm Revolution" class="game-img" onerror="handleImageError(this, 'naruto-revolution')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Naruto Storm Revolution Port</div>
@@ -1280,7 +1279,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('def-jam', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/def-jam.webp" alt="Def Jam Fight for NY" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/def-jam.webp" alt="Def Jam Fight for NY" class="game-img" onerror="handleImageError(this, 'def-jam')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Def Jam: Fight for NY Port</div>
@@ -1308,7 +1307,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('mgs-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/mgs-2.webp" alt="Metal Gear Solid 2 HD" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/mgs-2.webp" alt="Metal Gear Solid 2 HD" class="game-img" onerror="handleImageError(this, 'mgs-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Metal Gear Solid 2 HD Port</div>
@@ -1336,7 +1335,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('resident-evil-7', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/resident-evil-7.webp" alt="Resident Evil 7" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/resident-evil-7.webp" alt="Resident Evil 7" class="game-img" onerror="handleImageError(this, 'resident-evil-7')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Resident Evil 7 Port</div>
@@ -1365,7 +1364,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('inside', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/inside.webp" alt="INSIDE" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/inside.webp" alt="INSIDE" class="game-img" onerror="handleImageError(this, 'inside')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">INSIDE Port</div>
@@ -1393,7 +1392,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('cod-black-ops-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/cod-black-ops-2.webp" alt="Call of Duty Black Ops 2" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/cod-black-ops-2.webp" alt="Call of Duty Black Ops 2" class="game-img" onerror="handleImageError(this, 'cod-black-ops-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Call of Duty: Black Ops 2 Port</div>
@@ -1421,7 +1420,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('god-of-war-chains-of-olympus', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/god-of-war-chains-of-olympus.webp" alt="God of War Chains of Olympus" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/god-of-war-chains-of-olympus.webp" alt="God of War Chains of Olympus" class="game-img" onerror="handleImageError(this, 'god-of-war-chains-of-olympus')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">God of War: Chains of Olympus Port</div>
@@ -1449,7 +1448,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('forza-horizon-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/forza-horizon-2.webp" alt="Forza Horizon 2" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/forza-horizon-2.webp" alt="Forza Horizon 2" class="game-img" onerror="handleImageError(this, 'forza-horizon-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Forza Horizon 2 Port</div>
@@ -1480,7 +1479,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('sekiro', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/sekiro.webp" alt="SEKIRO Port" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/sekiro.webp" alt="SEKIRO Port" class="game-img" onerror="handleImageError(this, 'sekiro')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">SEKIRO Port Android</div>
@@ -1510,7 +1509,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('fifa-street-2012', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/fifa-street-2012.webp" alt="FIFA STREET 2012" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/fifa-street-2012.webp" alt="FIFA STREET 2012" class="game-img" onerror="handleImageError(this, 'fifa-street-2012')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">FIFA Street 2012 Port</div>
@@ -1538,7 +1537,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('resident-evil-4-classic', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/re4.webp" alt="Resident Evil 4 Classic" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/re4.webp" alt="Resident Evil 4 Classic" class="game-img" onerror="handleImageError(this, 're4')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Resident Evil 4 Classic Port</div>
@@ -1566,7 +1565,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('persona-5-royal', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/persona-5-royal.webp" alt="Persona 5 Royal" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/persona-5-royal.webp" alt="Persona 5 Royal" class="game-img" onerror="handleImageError(this, 'persona-5-royal')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Persona 5 Royal Port</div>
@@ -1594,7 +1593,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('gran-turismo-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/gran-turismo-3.webp" alt="Gran Turismo 3" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/gran-turismo-3.webp" alt="Gran Turismo 3" class="game-img" onerror="handleImageError(this, 'gran-turismo-3')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Gran Turismo 3 A-Spec Port</div>
@@ -1622,7 +1621,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('lost-odyssey', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/lost-odyssey.webp" alt="Lost Odyssey" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/lost-odyssey.webp" alt="Lost Odyssey" class="game-img" onerror="handleImageError(this, 'lost-odyssey')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Lost Odyssey Port</div>
@@ -1650,7 +1649,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('ultimate-spider-man', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/ultimate-spider-man.webp" alt="Ultimate Spider-Man" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/ultimate-spider-man.webp" alt="Ultimate Spider-Man" class="game-img" onerror="handleImageError(this, 'ultimate-spider-man')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Ultimate Spider-Man Port</div>
@@ -1678,7 +1677,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('cod-4-modern-warfare', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/cod-4.webp" alt="Call of Duty 4 Modern Warfare" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/cod-4.webp" alt="Call of Duty 4 Modern Warfare" class="game-img" onerror="handleImageError(this, 'cod-4')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Call of Duty 4: Modern Warfare (Arabic)</div>
@@ -1707,7 +1706,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('gta-5-port', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/gta-5.webp" alt="GTA 5 Port" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/gta-5.webp" alt="GTA 5 Port" class="game-img" onerror="handleImageError(this, 'gta-5')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">GTA 5 Port Android</div>
@@ -1738,7 +1737,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('pes-5', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/pes-5.jpg" alt="PES 5" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/pes-5.jpg" alt="PES 5" class="game-img" onerror="handleImageError(this, 'pes-5')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">PES 5 Port</div>
@@ -1765,7 +1764,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('dead-cells', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/dead-cells.jpg" alt="Dead Cells" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/dead-cells.jpg" alt="Dead Cells" class="game-img" onerror="handleImageError(this, 'dead-cells')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Dead Cells Port</div>
@@ -1792,7 +1791,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('max-payne-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/max-payne-2.jpg" alt="Max Payne 2" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/max-payne-2.jpg" alt="Max Payne 2" class="game-img" onerror="handleImageError(this, 'max-payne-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Max Payne 2 Port</div>
@@ -1820,7 +1819,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('uncharted-collection', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/uncharted-collection.jpg" alt="Uncharted Collection" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/uncharted-collection.jpg" alt="Uncharted Collection" class="game-img" onerror="handleImageError(this, 'uncharted-collection')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">UNCHARTED Collection Port</div>
@@ -1849,7 +1848,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('lego-marvel', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/lego-marvel.jpg" alt="Lego Marvel" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/lego-marvel.jpg" alt="Lego Marvel" class="game-img" onerror="handleImageError(this, 'lego-marvel')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Lego Marvel Super Heroes Port</div>
@@ -1878,7 +1877,7 @@
                 <div class="fav-btn" onclick="toggleFavorite('skyrim', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/skyrim.jpg" alt="Skyrim" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/skyrim.jpg" alt="Skyrim" class="game-img" onerror="handleImageError(this, 'skyrim')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">The Elder Scrolls V: Skyrim Port</div>
@@ -1901,12 +1900,12 @@
                 </div>
             </div>
 
-            <!-- 47. Mortal Kombat: Armageddon (محدث بصيغة jpg) -->
+            <!-- 47. Mortal Kombat: Armageddon -->
             <div class="game-card" data-id="mortal-kombat-armageddon" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-armageddon', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/mortal-kombat-armageddon.jpg" alt="Mortal Kombat Armageddon" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/mortal-kombat-armageddon.jpg" alt="Mortal Kombat Armageddon" class="game-img" onerror="handleImageError(this, 'mortal-kombat-armageddon')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Mortal Kombat: Armageddon Port</div>
@@ -1928,12 +1927,12 @@
                 </div>
             </div>
 
-            <!-- 48. Midnight Club 3 (محدث بصيغة jpg) -->
+            <!-- 48. Midnight Club 3 -->
             <div class="game-card" data-id="midnight-club-3" data-category="سباق port">
                 <div class="fav-btn" onclick="toggleFavorite('midnight-club-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/midnight-club-3.jpg" alt="Midnight Club 3" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/midnight-club-3.jpg" alt="Midnight Club 3" class="game-img" onerror="handleImageError(this, 'midnight-club-3')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Midnight Club 3: Dub Edition Remix</div>
@@ -1955,12 +1954,12 @@
                 </div>
             </div>
 
-            <!-- 49. Well Dweller (محدث بصيغة jpg) -->
+            <!-- 49. Well Dweller -->
             <div class="game-card" data-id="well-dweller" data-category="أكشن">
                 <div class="fav-btn" onclick="toggleFavorite('well-dweller', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/well-dweller.jpg" alt="Well Dweller" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/well-dweller.jpg" alt="Well Dweller" class="game-img" onerror="handleImageError(this, 'well-dweller')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Well Dweller Port</div>
@@ -1980,12 +1979,12 @@
                 </div>
             </div>
 
-            <!-- 50. Ninja Gaiden Black (محدث بصيغة jpg) -->
+            <!-- 50. Ninja Gaiden Black -->
             <div class="game-card" data-id="ninja-gaiden-black" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('ninja-gaiden-black', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/ninja-gaiden-black.jpg" alt="Ninja Gaiden Black" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/ninja-gaiden-black.jpg" alt="Ninja Gaiden Black" class="game-img" onerror="handleImageError(this, 'ninja-gaiden-black')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Ninja Gaiden Black Port</div>
@@ -2007,12 +2006,12 @@
                 </div>
             </div>
 
-            <!-- 51. Left 4 Dead 2 (محدث بصيغة jpg) -->
+            <!-- 51. Left 4 Dead 2 -->
             <div class="game-card" data-id="left-4-dead-2" data-category="رعب أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('left-4-dead-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/left-4-dead-2.jpg" alt="Left 4 Dead 2" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/left-4-dead-2.jpg" alt="Left 4 Dead 2" class="game-img" onerror="handleImageError(this, 'left-4-dead-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Left 4 Dead 2 Port</div>
@@ -2035,12 +2034,12 @@
                 </div>
             </div>
 
-            <!-- 52. Prototype (محدث بصيغة jpg) -->
+            <!-- 52. Prototype -->
             <div class="game-card" data-id="prototype" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('prototype', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/prototype.jpg" alt="Prototype" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/prototype.jpg" alt="Prototype" class="game-img" onerror="handleImageError(this, 'prototype')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Prototype Port (الجزء الأول)</div>
@@ -2062,12 +2061,12 @@
                 </div>
             </div>
 
-            <!-- 53. Dragon Ball Z: Burst Limit (محدث بصيغة jpg) -->
+            <!-- 53. Dragon Ball Z: Burst Limit -->
             <div class="game-card" data-id="dragon-ball-z-burst-limit" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('dragon-ball-z-burst-limit', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/dragon-ball-z-burst-limit.jpg" alt="Dragon Ball Z Burst Limit" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/dragon-ball-z-burst-limit.jpg" alt="Dragon Ball Z Burst Limit" class="game-img" onerror="handleImageError(this, 'dragon-ball-z-burst-limit')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Dragon Ball Z: Burst Limit Port</div>
@@ -2089,12 +2088,12 @@
                 </div>
             </div>
 
-            <!-- 54. Dragon Ball: Raging Blast 2 (محدث بصيغة jpg) -->
+            <!-- 54. Dragon Ball: Raging Blast 2 -->
             <div class="game-card" data-id="dragon-ball-raging-blast-2" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('dragon-ball-raging-blast-2', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/dragon-ball-raging-blast-2.jpg" alt="Dragon Ball Raging Blast 2" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/dragon-ball-raging-blast-2.jpg" alt="Dragon Ball Raging Blast 2" class="game-img" onerror="handleImageError(this, 'dragon-ball-raging-blast-2')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Dragon Ball: Raging Blast 2 Port</div>
@@ -2116,12 +2115,12 @@
                 </div>
             </div>
 
-            <!-- 55. Devil May Cry 3: Special Edition (محدث بصيغة jpg) -->
+            <!-- 55. Devil May Cry 3: Special Edition -->
             <div class="game-card" data-id="devil-may-cry-3" data-category="أكشن port">
                 <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-3', this)">🤍</div>
                 <div class="game-main-content">
                     <div class="game-img-container">
-                        <img src="صور/devil-may-cry-3.jpg" alt="Devil May Cry 3" class="game-img" onerror="this.style.display='none'">
+                        <img src="صور/devil-may-cry-3.jpg" alt="Devil May Cry 3" class="game-img" onerror="handleImageError(this, 'devil-may-cry-3')">
                     </div>
                     <div class="game-details">
                         <div class="game-title">Devil May Cry 3: Special Edition</div>
@@ -2153,6 +2152,18 @@
     <script>
         let currentCategory = 'all';
         let showOnlyFavorites = false;
+
+        // دالة ذكية تتحقق من صيغة الصورة تلقائياً إذا فشلت (.webp <-> .jpg)
+        function handleImageError(imgElement, gameId) {
+            let currentSrc = imgElement.src;
+            if (currentSrc.endsWith('.webp')) {
+                imgElement.src = 'صور/' + gameId + '.jpg';
+            } else if (currentSrc.endsWith('.jpg')) {
+                imgElement.src = 'صور/' + gameId + '.webp';
+            } else {
+                imgElement.style.display = 'none';
+            }
+        }
 
         function toggleMenu() {
             let menu = document.getElementById('menuDropdown');
