@@ -2242,7 +2242,7 @@
                 let card = cards[i];
                 let gameId = card.getAttribute('data-id');
                 let title = card.getElementsByClassName('game-title')[0].innerText.toLowerCase();
-                let meta = card.getElementsByClassName('game-meta')[0].text ? card.getElementsByClassName('game-meta')[0].innerText.toLowerCase() : "";
+                let meta = card.getElementsByClassName('game-meta')[0] ? card.getElementsByClassName('game-meta')[0].innerText.toLowerCase() : "";
                 let categories = card.getAttribute('data-category').toLowerCase();
 
                 let matchesSearch = title.includes(input) || meta.includes(input);
