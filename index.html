@@ -365,7 +365,7 @@
             height: 150px;
             border-radius: 14px;
             overflow: hidden;
-            background: #030202;
+            background: #0d0406;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -607,7 +607,7 @@
 
         <div class="games-grid" id="gamesGrid">
 
-            <!-- آخر 9 ألعاب مضافة (مرفوعة للأعلى) -->
+            <!-- آخر 9 ألعاب مضافة (مرفوعة للأعلى بصيغة jpg) -->
 
             <!-- 55. Devil May Cry 3: Special Edition -->
             <div class="game-card" data-id="devil-may-cry-3" data-category="أكشن port">
@@ -851,7 +851,7 @@
                 </div>
             </div>
 
-            <!-- باقي الألعاب مرتبة طبيعياً -->
+            <!-- باقي الألعاب -->
 
             <!-- 46. Skyrim -->
             <div class="game-card" data-id="skyrim" data-category="تقمص الأدوار port">
@@ -2157,18 +2157,21 @@
         let currentCategory = 'all';
         let showOnlyFavorites = false;
 
-        // دالة ذكية ومحدثة لمنع اختفاء الصور وتذبذبها أثناء التمرير
+        // دالة ذكية جداً لمنع أي مربعات سوداء أو حلقات خطأ نهائياً
         function handleImageError(imgElement, gameId) {
-            if (imgElement.dataset.fallbackTried === "true") {
-                return;
-            }
-            imgElement.dataset.fallbackTried = "true";
-
-            let currentSrc = imgElement.src;
-            if (currentSrc.includes('.webp')) {
-                imgElement.src = 'صور/' + gameId + '.jpg';
-            } else {
-                imgElement.src = 'صور/' + gameId + '.webp';
+            // إذا فشلت الصورة، نقوم فوراً بتحويل الحاوية لشكل أنيق يحمل شعار المنصة بدلاً من المربع الأسود المكسور
+            let container = imgElement.parentElement;
+            imgElement.style.display = "none";
+            container.style.background = "linear-gradient(135deg, #140507 0%, #2b0b10 100%)";
+            container.style.border = "1px solid rgba(255, 26, 64, 0.3)";
+            
+            // تحقق إذا لم يتم وضع الشعار البديل من قبل، قم بإضافته لمنع التكرار
+            if (!container.querySelector('.fallback-badge')) {
+                let badge = document.createElement('span');
+                badge.className = 'fallback-badge';
+                badge.style.cssText = 'color: #ff8093; font-size: 0.75rem; font-weight: 800; text-align: center; padding: 5px; letter-spacing: 1px;';
+                badge.innerHTML = '🎮 RAF-VX<br><span style="font-size:0.6rem; color:#c5b4bc;">الصورة غير متوفرة</span>';
+                container.appendChild(badge);
             }
         }
 
