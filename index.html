@@ -21,7 +21,7 @@
             --badge-border: rgba(255, 26, 64, 0.4);
             --ticker-bg: rgba(255, 26, 64, 0.08);
             --ticker-border: rgba(255, 26, 64, 0.4);
-            --ticker-text: #ff99a8;
+            --ticker-text: #ffffff;
         }
 
         * {
@@ -208,11 +208,12 @@
         .ticker-text {
             display: inline-block;
             padding-right: 100%;
-            animation: marquee 22s linear infinite;
-            color: var(--ticker-text);
+            animation: marquee 25s linear infinite;
+            color: #ffffff;
             font-weight: 700;
             font-size: 0.95rem;
             will-change: transform;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         @keyframes marquee {
@@ -226,7 +227,7 @@
             padding: 6px 18px;
             border-radius: 22px;
             font-size: 0.9rem;
-            color: var(--ticker-text);
+            color: #ffffff;
             border: 1px solid var(--badge-border);
             margin-bottom: 15px;
             font-weight: 800;
@@ -494,7 +495,7 @@
         .tag {
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
-            color: var(--ticker-text);
+            color: #ffffff;
             font-size: 0.78rem;
             padding: 2px 10px;
             border-radius: 8px;
@@ -640,7 +641,7 @@
 
         <header>
             <!-- اسم 𝐑𝐀𝐅𝐕𝐗 وتحته/فوقه خيار RPG -->
-            <div style="font-size: 0.9rem; color: var(--ticker-text); font-weight: 800; margin-bottom: 5px; letter-spacing: 2px;">RPG • 𝐑𝐀𝐅𝐕𝐗</div>
+            <div style="font-size: 0.9rem; color: #ffffff; font-weight: 800; margin-bottom: 5px; letter-spacing: 2px;">RPG • 𝐑𝐀𝐅𝐕𝐗</div>
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
             <!-- شريط التحديث الأسبوعي المتحرك في المنتصف -->
@@ -1898,7 +1899,9 @@
             document.documentElement.style.setProperty('--badge-border', primaryColor + '66'); // 40% opacity
             document.documentElement.style.setProperty('--ticker-bg', primaryColor + '14'); // 8% opacity
             document.documentElement.style.setProperty('--ticker-border', primaryColor + '66'); // 40% opacity
-            document.documentElement.style.setProperty('--ticker-text', primaryColor === '#ff1a40' ? '#ff99a8' : primaryColor);
+            
+            // تم تثبيت لون النص في الشريط ليظل أبيض ناصع وواضح دائماً مع أي ثيم
+            document.documentElement.style.setProperty('--ticker-text', '#ffffff');
 
             localStorage.setItem('rafvx_primary_color', primaryColor);
             localStorage.setItem('rafvx_dark_color', darkColor);
