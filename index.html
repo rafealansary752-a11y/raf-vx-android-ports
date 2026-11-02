@@ -191,34 +191,23 @@
             text-align: center;
         }
 
-        /* شريط الأخبار المتحرك في المنتصف بين اسم الموقع والإصدار */
+        /* شريط الأخبار المتحرك المضمون */
         .news-ticker {
             background: var(--ticker-bg);
             border: 1px dashed var(--ticker-border);
             border-radius: 14px;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 10px 0;
+            padding: 10px 15px;
             margin: 20px 0;
-            position: relative;
-            display: flex;
             width: 100%;
         }
 
         .ticker-text {
-            display: inline-block;
-            padding-right: 100%;
-            animation: marquee 25s linear infinite;
             color: #ffffff;
             font-weight: 700;
             font-size: 0.95rem;
-            will-change: transform;
             text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        }
-
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
+            display: block;
+            width: 100%;
         }
 
         .version-tag {
@@ -644,11 +633,11 @@
             <div style="font-size: 0.9rem; color: #ffffff; font-weight: 800; margin-bottom: 5px; letter-spacing: 2px;">RPG • 𝐑𝐀𝐅𝐕𝐗</div>
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
-            <!-- شريط التحديث الأسبوعي المتحرك في المنتصف -->
+            <!-- شريط التحديث الأسبوعي المتحرك المضمون -->
             <div class="news-ticker">
-                <span class="ticker-text">
+                <marquee behavior="scroll" direction="right" scrollamount="5" class="ticker-text">
                     🔥 يتم تحديث الموقع بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 يتم تحديث الموقع بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة
-                </span>
+                </marquee>
             </div>
 
             <div class="version-tag">المنصة الرسمية - 𝐑𝐀𝐅𝐕𝐗 الإصدار المطلق 👑</div>
@@ -1893,14 +1882,12 @@
         function setTheme(primaryColor, darkColor) {
             document.documentElement.style.setProperty('--accent-color', primaryColor);
             document.documentElement.style.setProperty('--accent-gradient', `linear-gradient(135deg, ${primaryColor} 0%, ${darkColor} 100%)`);
-            document.documentElement.style.setProperty('--card-border', primaryColor + '4d'); // 30% opacity
-            document.documentElement.style.setProperty('--card-border-hover', primaryColor + 'cc'); // 80% opacity
-            document.documentElement.style.setProperty('--badge-bg', primaryColor + '26'); // 15% opacity
-            document.documentElement.style.setProperty('--badge-border', primaryColor + '66'); // 40% opacity
-            document.documentElement.style.setProperty('--ticker-bg', primaryColor + '14'); // 8% opacity
-            document.documentElement.style.setProperty('--ticker-border', primaryColor + '66'); // 40% opacity
-            
-            // تم تثبيت لون النص في الشريط ليظل أبيض ناصع وواضح دائماً مع أي ثيم
+            document.documentElement.style.setProperty('--card-border', primaryColor + '4d'); 
+            document.documentElement.style.setProperty('--card-border-hover', primaryColor + 'cc'); 
+            document.documentElement.style.setProperty('--badge-bg', primaryColor + '26'); 
+            document.documentElement.style.setProperty('--badge-border', primaryColor + '66'); 
+            document.documentElement.style.setProperty('--ticker-bg', primaryColor + '14'); 
+            document.documentElement.style.setProperty('--ticker-border', primaryColor + '66'); 
             document.documentElement.style.setProperty('--ticker-text', '#ffffff');
 
             localStorage.setItem('rafvx_primary_color', primaryColor);
