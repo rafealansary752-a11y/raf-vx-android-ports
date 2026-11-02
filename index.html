@@ -176,29 +176,6 @@
             background: var(--accent-gradient);
         }
 
-        /* شريط التحديث الأسبوعي فوق الشعار مع مسافة واضحة فوقه وتحته */
-        .top-update-ticker {
-            background: var(--badge-bg);
-            border: 1px dashed var(--badge-border);
-            border-radius: 14px;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 10px 0;
-            margin-top: 15px;
-            margin-bottom: 25px;
-            width: 100%;
-        }
-
-        .top-ticker-text {
-            display: inline-block;
-            padding-right: 100%;
-            animation: marquee 22s linear infinite;
-            color: var(--accent-color);
-            font-weight: 800;
-            font-size: 0.95rem;
-            will-change: transform;
-        }
-
         .brand-title {
             font-size: 3.8rem;
             font-weight: 900;
@@ -206,12 +183,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: 4px;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 0 0 40px rgba(255, 26, 64, 0.5);
             text-align: center;
         }
 
-        /* شريط الأخبار المتحرك */
+        /* شريط الأخبار المتحرك في المنتصف مع مسافة واضحة فوقه وتحته */
         .news-ticker {
             background: rgba(255, 26, 64, 0.08);
             border: 1px dashed rgba(255, 26, 64, 0.4);
@@ -219,6 +196,7 @@
             overflow: hidden;
             white-space: nowrap;
             padding: 10px 0;
+            margin-top: 20px;
             margin-bottom: 20px;
             position: relative;
             display: flex;
@@ -659,18 +637,11 @@
         </div>
 
         <header>
-            <!-- شريط التحديث الأسبوعي المتحرك فوق الشعار مع مسافات مرتبة -->
-            <div class="top-update-ticker">
-                <span class="top-ticker-text">
-                    🔥 يتم تحديث الموقع بشكل أسبوعي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 يتم تحديث الموقع بشكل أسبوعي &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 يتم تحديث الموقع بشكل أسبوعي
-                </span>
-            </div>
-
             <!-- اسم 𝐑𝐀𝐅𝐕𝐗 وتحته/فوقه خيار RPG -->
             <div style="font-size: 0.9rem; color: #ff99a8; font-weight: 800; margin-bottom: 5px; letter-spacing: 2px;">RPG • 𝐑𝐀𝐅𝐕𝐗</div>
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
-            <!-- شريط الأخبار مع التحديث الأسبوعي -->
+            <!-- شريط التحديث الأسبوعي المتحرك في المنتصف -->
             <div class="news-ticker">
                 <span class="ticker-text">
                     🔥 يتم تحديث الموقع بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 يتم تحديث الموقع بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة
@@ -1923,7 +1894,6 @@
             localStorage.setItem('rafvx_dark_color', darkColor);
         }
 
-        // استرجاع الثون المحفوظ عند التحميل
         document.addEventListener("DOMContentLoaded", function() {
             let savedPrimary = localStorage.getItem('rafvx_primary_color');
             let savedDark = localStorage.getItem('rafvx_dark_color');
