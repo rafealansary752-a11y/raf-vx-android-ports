@@ -122,28 +122,29 @@
             color: #fff;
         }
 
-        .theme-picker {
-            padding: 12px 18px;
+        .theme-picker-header {
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 8px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 20px;
         }
 
         .theme-title {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
             font-weight: 700;
         }
 
         .color-dots {
             display: flex;
-            gap: 8px;
+            gap: 10px;
+            justify-content: center;
         }
 
         .color-dot {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid rgba(255,255,255,0.3);
@@ -191,7 +192,7 @@
             text-align: center;
         }
 
-        /* شريط الأخبار المتحرك المضمون */
+        /* شريط الأخبار المتحرك السريع */
         .news-ticker {
             background: var(--ticker-bg);
             border: 1px dashed var(--ticker-border);
@@ -613,29 +614,30 @@
         <div class="top-menu-container">
             <div class="menu-btn" onclick="toggleMenu()">⋮</div>
             <div class="menu-dropdown" id="menuDropdown">
-                <div class="theme-picker">
-                    <span class="theme-title">🎨 اختر لون الموقع:</span>
-                    <div class="color-dots">
-                        <div class="color-dot" style="background: #ff1a40;" onclick="setTheme('#ff1a40', '#800014')"></div>
-                        <div class="color-dot" style="background: #00bcd4;" onclick="setTheme('#00bcd4', '#006064')"></div>
-                        <div class="color-dot" style="background: #4caf50;" onclick="setTheme('#4caf50', '#1b5e20')"></div>
-                        <div class="color-dot" style="background: #ffc107;" onclick="setTheme('#ffc107', '#ff6f00')"></div>
-                        <div class="color-dot" style="background: #9c27b0;" onclick="setTheme('#9c27b0', '#4a148c')"></div>
-                    </div>
-                </div>
                 <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
                 <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب</div>
             </div>
         </div>
 
         <header>
-            <!-- اسم 𝐑𝐀𝐅𝐕𝐗 وتحته/فوقه خيار RPG -->
-            <div style="font-size: 0.9rem; color: #ffffff; font-weight: 800; margin-bottom: 5px; letter-spacing: 2px;">RPG • 𝐑𝐀𝐅𝐕𝐗</div>
+            <!-- خيار تغيير اللون فوق اسم RAFVX مباشرة -->
+            <div class="theme-picker-header">
+                <span class="theme-title">🎨 تغيير اللون:</span>
+                <div class="color-dots">
+                    <div class="color-dot" style="background: #ff1a40;" onclick="setTheme('#ff1a40', '#800014')"></div>
+                    <div class="color-dot" style="background: #00bcd4;" onclick="setTheme('#00bcd4', '#006064')"></div>
+                    <div class="color-dot" style="background: #4caf50;" onclick="setTheme('#4caf50', '#1b5e20')"></div>
+                    <div class="color-dot" style="background: #ffc107;" onclick="setTheme('#ffc107', '#ff6f00')"></div>
+                    <div class="color-dot" style="background: #9c27b0;" onclick="setTheme('#9c27b0', '#4a148c')"></div>
+                </div>
+            </div>
+
+            <!-- اسم RAFVX الملكي -->
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
-            <!-- شريط التحديث الأسبوعي المتحرك المضمون -->
+            <!-- شريط التحديث أسرع -->
             <div class="news-ticker">
-                <marquee behavior="scroll" direction="right" scrollamount="5" class="ticker-text">
+                <marquee behavior="scroll" direction="right" scrollamount="8" class="ticker-text">
                     🔥 يتم تحديث الموقع بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 يتم تحديث الموقع بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة
                 </marquee>
             </div>
