@@ -10,17 +10,17 @@
     <style>
         :root {
             --bg-color: #070305;
-            --card-bg: rgba(18, 5, 10, 0.85);
-            --card-border: rgba(255, 26, 64, 0.25);
+            --card-bg: rgba(18, 5, 10, 0.9);
+            --card-border: rgba(255, 26, 64, 0.3);
             --card-border-hover: rgba(255, 26, 64, 0.9);
             --accent-color: #ff1a40;
             --accent-gradient: linear-gradient(135deg, #ff1a40 0%, #800014 100%);
             --text-main: #ffffff;
-            --text-muted: #c4b5bc;
-            --badge-bg: rgba(255, 26, 64, 0.15);
-            --badge-border: rgba(255, 26, 64, 0.4);
-            --ticker-bg: rgba(255, 26, 64, 0.06);
-            --ticker-border: rgba(255, 26, 64, 0.3);
+            --text-muted: #d1c4cb;
+            --badge-bg: rgba(255, 26, 64, 0.18);
+            --badge-border: rgba(255, 26, 64, 0.5);
+            --ticker-bg: rgba(255, 26, 64, 0.08);
+            --ticker-border: rgba(255, 26, 64, 0.4);
         }
 
         * {
@@ -34,13 +34,13 @@
         body {
             background-color: var(--bg-color);
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(255, 26, 64, 0.12) 0px, transparent 40%),
-                radial-gradient(circle at 90% 90%, rgba(128, 0, 20, 0.15) 0px, transparent 40%);
+                radial-gradient(circle at 15% 15%, rgba(255, 26, 64, 0.15) 0px, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(128, 0, 20, 0.18) 0px, transparent 45%);
             background-attachment: fixed;
             color: var(--text-main);
             min-height: 100vh;
-            padding: 20px 10px;
-            line-height: 1.6;
+            padding: 24px 12px;
+            line-height: 1.7;
             direction: rtl;
             text-align: right;
         }
@@ -50,47 +50,48 @@
             margin: 0 auto;
         }
 
-        /* شريط العلوي السريع لأزرار التحكم والمشاركة */
+        /* شريط العلوي السريع */
         .top-nav-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             background: var(--card-bg);
-            padding: 12px 20px;
-            border-radius: 20px;
+            padding: 14px 22px;
+            border-radius: 22px;
             border: 1px solid var(--card-border);
             backdrop-filter: blur(15px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
         }
 
         .platform-badge-top {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 800;
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
-            color: #ff8095;
-            padding: 6px 14px;
-            border-radius: 12px;
+            color: #ff99ab;
+            padding: 8px 16px;
+            border-radius: 14px;
         }
 
         .top-actions {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             position: relative;
         }
 
         .action-icon-btn {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid var(--card-border);
             color: #fff;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: all 0.3s ease;
         }
 
@@ -102,13 +103,13 @@
 
         .menu-dropdown {
             position: absolute;
-            top: 48px;
+            top: 52px;
             left: 0;
             background: rgba(12, 3, 5, 0.98);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
-            width: 210px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+            border-radius: 16px;
+            width: 230px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.85);
             display: none;
             overflow: hidden;
             z-index: 101;
@@ -120,15 +121,15 @@
         }
 
         .menu-item {
-            padding: 12px 16px;
+            padding: 14px 18px;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
             transition: all 0.2s;
         }
 
@@ -136,16 +137,16 @@
             background: var(--accent-gradient);
         }
 
-        /* الهيدر الاحترافي الجديد */
+        /* الهيدر الفخم */
         header {
             text-align: center;
-            padding: 35px 20px;
-            margin-bottom: 25px;
+            padding: 40px 22px;
+            margin-bottom: 30px;
             background: var(--card-bg);
             backdrop-filter: blur(25px);
             border: 1px solid var(--card-border);
-            border-radius: 28px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
             position: relative;
             overflow: hidden;
         }
@@ -156,7 +157,7 @@
             top: 0;
             right: 0;
             width: 100%;
-            height: 3px;
+            height: 4px;
             background: var(--accent-gradient);
         }
 
@@ -164,94 +165,94 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 15px;
+            gap: 8px;
+            margin-bottom: 18px;
         }
 
         .theme-label {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             font-weight: 700;
         }
 
         .color-dots {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         .color-dot {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             cursor: pointer;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid rgba(255,255,255,0.35);
             transition: transform 0.2s;
         }
 
         .color-dot:hover {
-            transform: scale(1.15);
+            transform: scale(1.2);
         }
 
         .brand-title {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 900;
             background: var(--accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
-            margin-bottom: 5px;
+            letter-spacing: 4px;
+            margin-bottom: 8px;
         }
 
-        /* شريط الأخبار بالسرعة الطبيعية */
+        /* شريط الأخبار بالسرعة العالية والمريحة */
         .news-ticker {
             background: var(--ticker-bg);
             border: 1px solid var(--ticker-border);
-            border-radius: 12px;
-            padding: 8px 12px;
-            margin: 15px 0;
+            border-radius: 14px;
+            padding: 10px 14px;
+            margin: 18px 0;
         }
 
         .ticker-text {
             color: #ffffff;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
 
         .subtitle {
             color: var(--text-muted);
-            font-size: 0.98rem;
-            margin-bottom: 18px;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
             font-weight: 600;
         }
 
         .spec-banner {
-            background: rgba(255, 171, 0, 0.07);
-            border: 1px solid rgba(255, 171, 0, 0.25);
+            background: rgba(255, 171, 0, 0.08);
+            border: 1px solid rgba(255, 171, 0, 0.3);
             color: #ffc107;
-            padding: 12px 18px;
-            border-radius: 14px;
+            padding: 14px 20px;
+            border-radius: 16px;
             font-weight: 700;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 24px;
         }
 
         /* شريط البحث والفلاتر */
         .search-container {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .search-container input {
             width: 100%;
-            padding: 14px 20px;
-            background: rgba(0, 0, 0, 0.5);
+            padding: 16px 22px;
+            background: rgba(0, 0, 0, 0.55);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
+            border-radius: 16px;
             color: #fff;
-            font-size: 1rem;
+            font-size: 1.05rem;
             outline: none;
             transition: all 0.3s ease;
             text-align: right;
@@ -259,26 +260,26 @@
 
         .search-container input:focus {
             border-color: var(--accent-color);
-            box-shadow: 0 0 15px var(--card-border-hover);
+            box-shadow: 0 0 20px var(--card-border-hover);
         }
 
         .filter-chips {
             display: flex;
-            gap: 8px;
+            gap: 10px;
             overflow-x: auto;
-            padding-bottom: 6px;
-            margin-bottom: 15px;
+            padding-bottom: 8px;
+            margin-bottom: 18px;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .chip {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
             color: var(--text-muted);
-            padding: 7px 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
+            padding: 8px 18px;
+            border-radius: 14px;
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -289,27 +290,27 @@
             background: var(--accent-gradient);
             color: #fff;
             border-color: transparent;
-            box-shadow: 0 0 15px var(--card-border-hover);
+            box-shadow: 0 0 18px var(--card-border-hover);
         }
 
         .social-links {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin-top: 18px;
         }
 
         .btn-social {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            padding: 12px 18px;
-            border-radius: 14px;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 16px;
             text-decoration: none;
             color: #fff;
             font-weight: 700;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
             transition: all 0.3s ease;
@@ -321,35 +322,35 @@
         }
 
         .btn-social.chat {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.18);
         }
 
-        /* شبكة الألعاب الاحترافية */
+        /* شبكة الألعاب بمسافات مريحة وواسعة (بدون حشر) */
         .games-grid {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 22px;
         }
 
         .game-card {
             background: var(--card-bg);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(18px);
             border: 1px solid var(--card-border);
-            border-radius: 22px;
-            padding: 18px;
+            border-radius: 26px;
+            padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 20px;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
         }
 
         .game-card:hover {
             border-color: var(--card-border-hover);
-            box-shadow: 0 12px 35px var(--card-border-hover);
-            transform: translateY(-2px);
+            box-shadow: 0 15px 40px var(--card-border-hover);
+            transform: translateY(-3px);
         }
 
         @media (min-width: 768px) {
@@ -357,71 +358,73 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: space-between;
-                padding: 20px;
+                padding: 26px;
             }
         }
 
-        /* رقم اللعبة البارز في الزاوية */
+        /* رقم اللعبة البارز */
         .game-number-badge {
             position: absolute;
-            top: 15px;
-            left: 15px;
+            top: 20px;
+            left: 20px;
             background: var(--accent-gradient);
             color: #fff;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 900;
-            padding: 3px 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            padding: 4px 12px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.6);
             z-index: 4;
         }
 
-        /* زر المفضلة */
+        /* زر المفضلة (القلب) عند كل لعبة بصورة واضحة */
         .fav-btn {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: rgba(0, 0, 0, 0.6);
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.65);
             border: 1px solid var(--card-border);
-            width: 36px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             transition: all 0.3s;
             z-index: 5;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
         .fav-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.15);
             border-color: var(--accent-color);
         }
 
         .game-main-content {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 18px;
             width: 100%;
         }
 
         @media (min-width: 768px) {
             .game-main-content {
-                width: 60%;
+                width: 58%;
             }
         }
 
         .game-img-container {
             position: relative;
-            width: 95px;
-            height: 125px;
-            border-radius: 12px;
+            width: 105px;
+            height: 140px;
+            border-radius: 16px;
             overflow: hidden;
             background: #000;
             flex-shrink: 0;
             border: 1px solid var(--badge-border);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
         }
 
         .game-img-container img {
@@ -433,9 +436,9 @@
         .game-details {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
             flex-grow: 1;
-            padding-left: 20px;
+            padding-left: 24px;
         }
 
         @media (min-width: 768px) {
@@ -445,57 +448,57 @@
         }
 
         .game-title {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: #fff;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .port-tag-text {
-            font-size: 0.72rem;
+            font-size: 0.78rem;
             color: #00e5ff;
             font-weight: 700;
-            background: rgba(0, 229, 255, 0.08);
-            border: 1px solid rgba(0, 229, 255, 0.25);
-            padding: 2px 6px;
-            border-radius: 6px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            padding: 3px 8px;
+            border-radius: 8px;
             width: fit-content;
         }
 
         .game-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 5px;
+            gap: 6px;
         }
 
         .tag {
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
             color: #ffffff;
-            font-size: 0.72rem;
-            padding: 2px 8px;
-            border-radius: 6px;
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 8px;
             font-weight: 700;
         }
 
         .tag.offline {
-            background: rgba(76, 175, 80, 0.15);
-            border-color: rgba(76, 175, 80, 0.3);
+            background: rgba(76, 175, 80, 0.18);
+            border-color: rgba(76, 175, 80, 0.35);
             color: #81c784;
         }
 
         .game-info {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-muted);
             display: flex;
-            gap: 10px;
-            margin-top: 4px;
+            gap: 12px;
+            margin-top: 6px;
         }
 
         .info-item {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 3px 8px;
-            border-radius: 6px;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 4px 10px;
+            border-radius: 8px;
         }
 
         .info-value {
@@ -504,25 +507,26 @@
         }
 
         .note-box {
-            background: rgba(255, 171, 0, 0.08);
-            border-left: 2px solid #ffab00;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
+            background: rgba(255, 171, 0, 0.1);
+            border-left: 3px solid #ffab00;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
             color: #ffe082;
             width: 100%;
         }
 
+        /* مجموعة أزرار التحميل المريحة والمنظمة */
         .download-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
             width: 100%;
         }
 
         @media (min-width: 768px) {
             .download-group {
-                width: 34%;
+                width: 36%;
             }
         }
 
@@ -530,50 +534,50 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             width: 100%;
-            padding: 10px 14px;
+            padding: 12px 16px;
             background: var(--accent-gradient);
             color: #fff;
             font-weight: 800;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             text-decoration: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px var(--badge-bg);
+            box-shadow: 0 5px 18px var(--badge-bg);
             transition: all 0.3s ease;
         }
 
         .btn-download:hover {
-            box-shadow: 0 6px 20px var(--card-border-hover);
+            box-shadow: 0 8px 22px var(--card-border-hover);
             transform: translateY(-2px);
         }
 
         .btn-download.secondary {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
             color: #fff;
             box-shadow: none;
         }
 
         .btn-download.secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .btn-download.dm-copy {
-            background: rgba(0, 229, 255, 0.08);
-            border: 1px solid rgba(0, 229, 255, 0.3);
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.35);
             color: #00e5ff;
             box-shadow: none;
         }
 
         footer {
             text-align: center;
-            padding: 30px 15px 10px;
+            padding: 35px 15px 15px;
             color: var(--text-muted);
-            font-size: 0.88rem;
-            margin-top: 30px;
+            font-size: 0.9rem;
+            margin-top: 35px;
             border-top: 1px solid var(--card-border);
         }
     </style>
@@ -581,12 +585,12 @@
 <body>
 
     <div class="container">
-        <!-- شريط علوي تفاعلي إضافي يخدم المستخدم -->
+        <!-- شريط علوي تفاعلي -->
         <div class="top-nav-bar">
             <div class="platform-badge-top">👑 النسخة الملكية الرسمية</div>
             <div class="top-actions">
                 <button class="action-icon-btn" onclick="sharePlatform()" title="مشاركة المنصة">🔗</button>
-                <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة">⋮</button>
+                <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
                     <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (55)</div>
@@ -609,9 +613,9 @@
 
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
-            <!-- شريط الأخبار بالسرعة الطبيعية -->
+            <!-- شريط الأخبار بالسرعة العالية الجديدة -->
             <div class="news-ticker">
-                <marquee behavior="scroll" direction="right" scrollamount="4" class="ticker-text">
+                <marquee behavior="scroll" direction="right" scrollamount="8" class="ticker-text">
                     🔥 يتم تحديث التطبيق بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔥 يتم تحديث التطبيق بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة
                 </marquee>
             </div>
@@ -645,15 +649,15 @@
             </div>
         </header>
 
-        <!-- شبكة الألعاب المرقمة (1 إلى 55) مع الصور الفعلية -->
+        <!-- شبكة الـ 55 لعبة بالترتيب الجديد والمساحات المريحة -->
         <div class="games-grid" id="gamesGrid">
 
             <!-- 1 -->
             <div class="game-card" data-id="devil-may-cry-3" data-category="أكشن">
                 <div class="game-number-badge">#1</div>
-                <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-3', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="devil-may-cry-3.webp" alt="Devil May Cry 3" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="devil-may-cry-3.webp" alt="Devil May Cry 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Devil May Cry 3: Special Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -670,9 +674,9 @@
             <!-- 2 -->
             <div class="game-card" data-id="dragon-ball-raging-blast-2" data-category="أكشن">
                 <div class="game-number-badge">#2</div>
-                <div class="fav-btn" onclick="toggleFavorite('dragon-ball-raging-blast-2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('dragon-ball-raging-blast-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="dragon-ball-raging-blast-2.webp" alt="Dragon Ball" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="dragon-ball-raging-blast-2.webp" alt="Dragon Ball" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Dragon Ball: Raging Blast 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -689,9 +693,9 @@
             <!-- 3 -->
             <div class="game-card" data-id="dragon-ball-z-burst-limit" data-category="أكشن">
                 <div class="game-number-badge">#3</div>
-                <div class="fav-btn" onclick="toggleFavorite('dragon-ball-z-burst-limit', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('dragon-ball-z-burst-limit', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="dragon-ball-z-burst-limit.webp" alt="Dragon Ball Z" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="dragon-ball-z-burst-limit.webp" alt="Dragon Ball Z" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Dragon Ball Z: Burst Limit</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -708,9 +712,9 @@
             <!-- 4 -->
             <div class="game-card" data-id="prototype" data-category="أكشن">
                 <div class="game-number-badge">#4</div>
-                <div class="fav-btn" onclick="toggleFavorite('prototype', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('prototype', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="prototype.webp" alt="Prototype" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="prototype.webp" alt="Prototype" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Prototype (الجزء الأول)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -727,9 +731,9 @@
             <!-- 5 -->
             <div class="game-card" data-id="left-4-dead-2" data-category="رعب أكشن">
                 <div class="game-number-badge">#5</div>
-                <div class="fav-btn" onclick="toggleFavorite('left-4-dead-2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('left-4-dead-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="left-4-dead-2.webp" alt="Left 4 Dead 2" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="left-4-dead-2.webp" alt="Left 4 Dead 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Left 4 Dead 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -746,9 +750,9 @@
             <!-- 6 -->
             <div class="game-card" data-id="ninja-gaiden-black" data-category="أكشن">
                 <div class="game-number-badge">#6</div>
-                <div class="fav-btn" onclick="toggleFavorite('ninja-gaiden-black', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('ninja-gaiden-black', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="ninja-gaiden-black.webp" alt="Ninja Gaiden" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="ninja-gaiden-black.webp" alt="Ninja Gaiden" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Ninja Gaiden Black</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -765,9 +769,9 @@
             <!-- 7 -->
             <div class="game-card" data-id="well-dweller" data-category="أكشن">
                 <div class="game-number-badge">#7</div>
-                <div class="fav-btn" onclick="toggleFavorite('well-dweller', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('well-dweller', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="well-dweller.webp" alt="Well Dweller" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="well-dweller.webp" alt="Well Dweller" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Well Dweller</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -783,9 +787,9 @@
             <!-- 8 -->
             <div class="game-card" data-id="midnight-club-3" data-category="سباق">
                 <div class="game-number-badge">#8</div>
-                <div class="fav-btn" onclick="toggleFavorite('midnight-club-3', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('midnight-club-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="midnight-club-3.webp" alt="Midnight Club 3" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="midnight-club-3.webp" alt="Midnight Club 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Midnight Club 3: Dub Edition Remix</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -802,9 +806,9 @@
             <!-- 9 -->
             <div class="game-card" data-id="mortal-kombat-armageddon" data-category="أكشن">
                 <div class="game-number-badge">#9</div>
-                <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-armageddon', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-armageddon', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="mortal-kombat-armageddon.webp" alt="Mortal Kombat" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="mortal-kombat-armageddon.webp" alt="Mortal Kombat" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Mortal Kombat: Armageddon</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -821,9 +825,9 @@
             <!-- 10 -->
             <div class="game-card" data-id="skyrim" data-category="أكشن">
                 <div class="game-number-badge">#10</div>
-                <div class="fav-btn" onclick="toggleFavorite('skyrim', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('skyrim', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="skyrim.jpg" alt="Skyrim" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="skyrim.jpg" alt="Skyrim" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">The Elder Scrolls V: Skyrim</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -841,9 +845,9 @@
             <!-- 11 -->
             <div class="game-card" data-id="lego-marvel" data-category="أكشن">
                 <div class="game-number-badge">#11</div>
-                <div class="fav-btn" onclick="toggleFavorite('lego-marvel', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('lego-marvel', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="lego-marvel.jpg" alt="Lego Marvel" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="lego-marvel.jpg" alt="Lego Marvel" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Lego Marvel Super Heroes</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -861,9 +865,9 @@
             <!-- 12 -->
             <div class="game-card" data-id="uncharted-collection" data-category="أكشن">
                 <div class="game-number-badge">#12</div>
-                <div class="fav-btn" onclick="toggleFavorite('uncharted-collection', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('uncharted-collection', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="uncharted-collection.jpg" alt="Uncharted" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="uncharted-collection.jpg" alt="Uncharted" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">UNCHARTED Collection</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -881,9 +885,9 @@
             <!-- 13 -->
             <div class="game-card" data-id="max-payne-2" data-category="أكشن">
                 <div class="game-number-badge">#13</div>
-                <div class="fav-btn" onclick="toggleFavorite('max-payne-2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('max-payne-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="max-payne-2.jpg" alt="Max Payne 2" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="max-payne-2.jpg" alt="Max Payne 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Max Payne 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -901,9 +905,9 @@
             <!-- 14 -->
             <div class="game-card" data-id="dead-cells" data-category="أكشن">
                 <div class="game-number-badge">#14</div>
-                <div class="fav-btn" onclick="toggleFavorite('dead-cells', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('dead-cells', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="dead-cells.jpg" alt="Dead Cells" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="dead-cells.jpg" alt="Dead Cells" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Dead Cells</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -920,9 +924,9 @@
             <!-- 15 -->
             <div class="game-card" data-id="pes-5" data-category="رياضة كرة_القدم">
                 <div class="game-number-badge">#15</div>
-                <div class="fav-btn" onclick="toggleFavorite('pes-5', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('pes-5', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="pes-5.jpg" alt="PES 5" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="pes-5.jpg" alt="PES 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">PES 5</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -939,9 +943,9 @@
             <!-- 16 -->
             <div class="game-card" data-id="gta-5-port" data-category="أكشن">
                 <div class="game-number-badge">#16</div>
-                <div class="fav-btn" onclick="toggleFavorite('gta-5-port', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('gta-5-port', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="gta-5.webp" alt="GTA 5" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="gta-5.webp" alt="GTA 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">GTA 5 Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -959,9 +963,9 @@
             <!-- 17 -->
             <div class="game-card" data-id="cod-4-modern-warfare" data-category="أكشن حرب">
                 <div class="game-number-badge">#17</div>
-                <div class="fav-btn" onclick="toggleFavorite('cod-4-modern-warfare', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('cod-4-modern-warfare', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="cod-4.webp" alt="COD 4" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="cod-4.webp" alt="COD 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Call of Duty 4: Modern Warfare (Arabic)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -979,9 +983,9 @@
             <!-- 18 -->
             <div class="game-card" data-id="ultimate-spider-man" data-category="أكشن">
                 <div class="game-number-badge">#18</div>
-                <div class="fav-btn" onclick="toggleFavorite('ultimate-spider-man', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('ultimate-spider-man', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="ultimate-spider-man.webp" alt="Spider-Man" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="ultimate-spider-man.webp" alt="Spider-Man" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Ultimate Spider-Man</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -998,9 +1002,9 @@
             <!-- 19 -->
             <div class="game-card" data-id="lost-odyssey" data-category="أكشن">
                 <div class="game-number-badge">#19</div>
-                <div class="fav-btn" onclick="toggleFavorite('lost-odyssey', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('lost-odyssey', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="lost-odyssey.webp" alt="Lost Odyssey" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="lost-odyssey.webp" alt="Lost Odyssey" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Lost Odyssey</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1017,9 +1021,9 @@
             <!-- 20 -->
             <div class="game-card" data-id="gran-turismo-3" data-category="سباق">
                 <div class="game-number-badge">#20</div>
-                <div class="fav-btn" onclick="toggleFavorite('gran-turismo-3', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('gran-turismo-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="gran-turismo-3.webp" alt="Gran Turismo 3" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="gran-turismo-3.webp" alt="Gran Turismo 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Gran Turismo 3 A-Spec</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1036,9 +1040,9 @@
             <!-- 21 -->
             <div class="game-card" data-id="persona-5-royal" data-category="أكشن">
                 <div class="game-number-badge">#21</div>
-                <div class="fav-btn" onclick="toggleFavorite('persona-5-royal', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('persona-5-royal', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="persona-5-royal.webp" alt="Persona 5" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="persona-5-royal.webp" alt="Persona 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Persona 5 Royal</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1055,9 +1059,9 @@
             <!-- 22 -->
             <div class="game-card" data-id="resident-evil-4-classic" data-category="رعب أكشن">
                 <div class="game-number-badge">#22</div>
-                <div class="fav-btn" onclick="toggleFavorite('resident-evil-4-classic', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('resident-evil-4-classic', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="re4.webp" alt="Resident Evil 4" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="re4.webp" alt="Resident Evil 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Resident Evil 4 Classic</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1074,9 +1078,9 @@
             <!-- 23 -->
             <div class="game-card" data-id="fifa-street-2012" data-category="رياضة">
                 <div class="game-number-badge">#23</div>
-                <div class="fav-btn" onclick="toggleFavorite('fifa-street-2012', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('fifa-street-2012', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="fifa-street-2012.webp" alt="FIFA Street" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="fifa-street-2012.webp" alt="FIFA Street" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">FIFA Street 2012</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1093,9 +1097,9 @@
             <!-- 24 -->
             <div class="game-card" data-id="sekiro" data-category="أكشن">
                 <div class="game-number-badge">#24</div>
-                <div class="fav-btn" onclick="toggleFavorite('sekiro', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('sekiro', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="sekiro.webp" alt="Sekiro" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="sekiro.webp" alt="Sekiro" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">SEKIRO Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1113,9 +1117,9 @@
             <!-- 25 -->
             <div class="game-card" data-id="forza-horizon-2" data-category="سباق">
                 <div class="game-number-badge">#25</div>
-                <div class="fav-btn" onclick="toggleFavorite('forza-horizon-2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('forza-horizon-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="forza-horizon-2.webp" alt="Forza Horizon 2" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="forza-horizon-2.webp" alt="Forza Horizon 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Forza Horizon 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1133,9 +1137,9 @@
             <!-- 26 -->
             <div class="game-card" data-id="god-of-war-chains-of-olympus" data-category="حرب أكشن">
                 <div class="game-number-badge">#26</div>
-                <div class="fav-btn" onclick="toggleFavorite('god-of-war-chains-of-olympus', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('god-of-war-chains-of-olympus', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="god-of-war-chains-of-olympus.webp" alt="GOW Chains" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="god-of-war-chains-of-olympus.webp" alt="GOW Chains" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">God of War: Chains of Olympus</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1152,9 +1156,9 @@
             <!-- 27 -->
             <div class="game-card" data-id="cod-black-ops-2" data-category="أكشن حرب">
                 <div class="game-number-badge">#27</div>
-                <div class="fav-btn" onclick="toggleFavorite('cod-black-ops-2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('cod-black-ops-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="cod-black-ops-2.webp" alt="BO2" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="cod-black-ops-2.webp" alt="BO2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Call of Duty: Black Ops 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1171,9 +1175,9 @@
             <!-- 28 -->
             <div class="game-card" data-id="inside" data-category="أكشن">
                 <div class="game-number-badge">#28</div>
-                <div class="fav-btn" onclick="toggleFavorite('inside', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('inside', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="inside.webp" alt="Inside" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="inside.webp" alt="Inside" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">INSIDE</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1190,9 +1194,9 @@
             <!-- 29 -->
             <div class="game-card" data-id="resident-evil-7" data-category="رعب أكشن">
                 <div class="game-number-badge">#29</div>
-                <div class="fav-btn" onclick="toggleFavorite('resident-evil-7', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('resident-evil-7', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="resident-evil-7.webp" alt="Resident Evil 7" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="resident-evil-7.webp" alt="Resident Evil 7" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Resident Evil 7</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1210,9 +1214,9 @@
             <!-- 30 -->
             <div class="game-card" data-id="mgs-2" data-category="أكشن">
                 <div class="game-number-badge">#30</div>
-                <div class="fav-btn" onclick="toggleFavorite('mgs-2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('mgs-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="mgs-2.webp" alt="MGS 2" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="mgs-2.webp" alt="MGS 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Metal Gear Solid 2 HD</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1229,9 +1233,9 @@
             <!-- 31 -->
             <div class="game-card" data-id="def-jam" data-category="أكشن">
                 <div class="game-number-badge">#31</div>
-                <div class="fav-btn" onclick="toggleFavorite('def-jam', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('def-jam', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="def-jam.webp" alt="Def Jam" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="def-jam.webp" alt="Def Jam" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Def Jam: Fight for NY</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1248,9 +1252,9 @@
             <!-- 32 -->
             <div class="game-card" data-id="naruto-revolution" data-category="أكشن">
                 <div class="game-number-badge">#32</div>
-                <div class="fav-btn" onclick="toggleFavorite('naruto-revolution', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('naruto-revolution', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="naruto-revolution.webp" alt="Naruto" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="naruto-revolution.webp" alt="Naruto" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Naruto Storm Revolution</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1267,9 +1271,9 @@
             <!-- 33 -->
             <div class="game-card" data-id="cod-mw2" data-category="أكشن حرب">
                 <div class="game-number-badge">#33</div>
-                <div class="fav-btn" onclick="toggleFavorite('cod-mw2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('cod-mw2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="cod-mw2.webp" alt="COD MW2" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="cod-mw2.webp" alt="COD MW2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Call of Duty: Modern Warfare 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1286,9 +1290,9 @@
             <!-- 34 -->
             <div class="game-card" data-id="infamous-second-son" data-category="أكشن">
                 <div class="game-number-badge">#34</div>
-                <div class="fav-btn" onclick="toggleFavorite('infamous-second-son', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('infamous-second-son', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="infamous-second-son.webp" alt="inFAMOUS" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="infamous-second-son.webp" alt="inFAMOUS" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">inFAMOUS Second Son</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1306,9 +1310,9 @@
             <!-- 35 -->
             <div class="game-card" data-id="metal-gear-rising" data-category="أكشن">
                 <div class="game-number-badge">#35</div>
-                <div class="fav-btn" onclick="toggleFavorite('metal-gear-rising', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('metal-gear-rising', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="metal-gear-rising.webp" alt="Metal Gear Rising" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="metal-gear-rising.webp" alt="Metal Gear Rising" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Metal Gear Rising: Revengeance</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1325,9 +1329,9 @@
             <!-- 36 -->
             <div class="game-card" data-id="wwe-12" data-category="رياضة">
                 <div class="game-number-badge">#36</div>
-                <div class="fav-btn" onclick="toggleFavorite('wwe-12', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('wwe-12', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="wwe-12.webp" alt="WWE 12" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="wwe-12.webp" alt="WWE 12" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">WWE 12</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1344,9 +1348,9 @@
             <!-- 37 -->
             <div class="game-card" data-id="gears-of-war-2" data-category="أكشن حرب">
                 <div class="game-number-badge">#37</div>
-                <div class="fav-btn" onclick="toggleFavorite('gears-of-war-2', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('gears-of-war-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="gears-of-war-2.webp" alt="Gears of War 2" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="gears-of-war-2.webp" alt="Gears of War 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Gears of War 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1363,9 +1367,9 @@
             <!-- 38 -->
             <div class="game-card" data-id="mortal-kombat-9" data-category="أكشن">
                 <div class="game-number-badge">#38</div>
-                <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-9', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-9', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="mortal-kombat-9.webp" alt="Mortal Kombat 9" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="mortal-kombat-9.webp" alt="Mortal Kombat 9" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Mortal Kombat 9 Komplete Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1382,9 +1386,9 @@
             <!-- 39 -->
             <div class="game-card" data-id="god-of-war-3" data-category="أكشن">
                 <div class="game-number-badge">#39</div>
-                <div class="fav-btn" onclick="toggleFavorite('god-of-war-3', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('god-of-war-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="god-of-war-3.webp" alt="GOW 3" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="god-of-war-3.webp" alt="GOW 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">God of War III</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1402,9 +1406,9 @@
             <!-- 40 -->
             <div class="game-card" data-id="nfs-most-wanted-classic" data-category="سباق">
                 <div class="game-number-badge">#40</div>
-                <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted-classic', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted-classic', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="nfs-most-wanted.webp" alt="NFS Classic" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="nfs-most-wanted.webp" alt="NFS Classic" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">NFS Most Wanted (Classic)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1422,9 +1426,9 @@
             <!-- 41 -->
             <div class="game-card" data-id="ultra-street-fighter-iv" data-category="أكشن">
                 <div class="game-number-badge">#41</div>
-                <div class="fav-btn" onclick="toggleFavorite('ultra-street-fighter-iv', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('ultra-street-fighter-iv', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="ultra-street-fighter-iv.webp" alt="Street Fighter IV" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="ultra-street-fighter-iv.webp" alt="Street Fighter IV" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Ultra Street Fighter IV</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1441,9 +1445,9 @@
             <!-- 42 -->
             <div class="game-card" data-id="devil-may-cry-4" data-category="أكشن">
                 <div class="game-number-badge">#42</div>
-                <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-4', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-4', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="devil-may-cry-4.webp" alt="DMC 4" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="devil-may-cry-4.webp" alt="DMC 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Devil May Cry 4</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1460,9 +1464,9 @@
             <!-- 43 -->
             <div class="game-card" data-id="gta-iv" data-category="أكشن">
                 <div class="game-number-badge">#43</div>
-                <div class="fav-btn" onclick="toggleFavorite('gta-iv', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('gta-iv', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="gta-iv.webp" alt="GTA IV" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="gta-iv.webp" alt="GTA IV" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">GTA IV Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1479,9 +1483,9 @@
             <!-- 44 -->
             <div class="game-card" data-id="forza-horizon-1" data-category="سباق">
                 <div class="game-number-badge">#44</div>
-                <div class="fav-btn" onclick="toggleFavorite('forza-horizon-1', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('forza-horizon-1', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="forza-horizon.webp" alt="Forza Horizon 1" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="forza-horizon.webp" alt="Forza Horizon 1" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Forza Horizon 1</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1499,9 +1503,9 @@
             <!-- 45 -->
             <div class="game-card" data-id="naruto-generations" data-category="أكشن">
                 <div class="game-number-badge">#45</div>
-                <div class="fav-btn" onclick="toggleFavorite('naruto-generations', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('naruto-generations', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="naruto-generations.webp" alt="Naruto Generations" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="naruto-generations.webp" alt="Naruto Generations" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Naruto Storm Generations</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1518,9 +1522,9 @@
             <!-- 46 -->
             <div class="game-card" data-id="bloodborne" data-category="أكشن">
                 <div class="game-number-badge">#46</div>
-                <div class="fav-btn" onclick="toggleFavorite('bloodborne', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('bloodborne', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="bloodborne.webp" alt="Bloodborne" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="bloodborne.webp" alt="Bloodborne" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Bloodborne Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1538,9 +1542,9 @@
             <!-- 47 -->
             <div class="game-card" data-id="naruto-storm-2-3" data-category="أكشن">
                 <div class="game-number-badge">#47</div>
-                <div class="fav-btn" onclick="toggleFavorite('naruto-storm-2-3', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('naruto-storm-2-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="naruto-storm-2-3.webp" alt="Naruto Storm 2 & 3" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="naruto-storm-2-3.webp" alt="Naruto Storm 2 & 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Naruto Ninja Storm 2 & 3</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1558,9 +1562,9 @@
             <!-- 48 -->
             <div class="game-card" data-id="nfs-most-wanted" data-category="سباق">
                 <div class="game-number-badge">#48</div>
-                <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="nfs-most-wanted-2.webp" alt="NFS Most Wanted 2012" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="nfs-most-wanted-2.webp" alt="NFS Most Wanted 2012" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">NFS Most Wanted 2012</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1578,9 +1582,9 @@
             <!-- 49 -->
             <div class="game-card" data-id="sleeping-dogs" data-category="أكشن">
                 <div class="game-number-badge">#49</div>
-                <div class="fav-btn" onclick="toggleFavorite('sleeping-dogs', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('sleeping-dogs', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="sleeping-dogs.webp" alt="Sleeping Dogs" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="sleeping-dogs.webp" alt="Sleeping Dogs" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Sleeping Dogs Definitive Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1598,9 +1602,9 @@
             <!-- 50 -->
             <div class="game-card" data-id="prince-of-persia" data-category="أكشن">
                 <div class="game-number-badge">#50</div>
-                <div class="fav-btn" onclick="toggleFavorite('prince-of-persia', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('prince-of-persia', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="prince-of-persia.webp" alt="Prince of Persia" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="prince-of-persia.webp" alt="Prince of Persia" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Prince of Persia: The Sands Of Time</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1617,9 +1621,9 @@
             <!-- 51 -->
             <div class="game-card" data-id="pes-2017" data-category="رياضة كرة_القدم">
                 <div class="game-number-badge">#51</div>
-                <div class="fav-btn" onclick="toggleFavorite('pes-2017', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('pes-2017', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="pes-2017.webp" alt="PES 2017" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="pes-2017.webp" alt="PES 2017" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">PES 2017</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1636,9 +1640,9 @@
             <!-- 52 -->
             <div class="game-card" data-id="call-of-duty-3" data-category="أكشن حرب">
                 <div class="game-number-badge">#52</div>
-                <div class="fav-btn" onclick="toggleFavorite('call-of-duty-3', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('call-of-duty-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="call-of-duty-3.webp" alt="COD 3" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="call-of-duty-3.webp" alt="COD 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">CALL OF DUTY 3</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1655,9 +1659,9 @@
             <!-- 53 -->
             <div class="game-card" data-id="black" data-category="أكشن">
                 <div class="game-number-badge">#53</div>
-                <div class="fav-btn" onclick="toggleFavorite('black', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('black', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="black.webp" alt="Black" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="black.webp" alt="Black" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Black</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1675,9 +1679,9 @@
             <!-- 54 -->
             <div class="game-card" data-id="scarface" data-category="أكشن">
                 <div class="game-number-badge">#54</div>
-                <div class="fav-btn" onclick="toggleFavorite('scarface', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('scarface', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="scarface.webp" alt="Scarface" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="scarface.webp" alt="Scarface" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">SCARFACE</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1694,9 +1698,9 @@
             <!-- 55 -->
             <div class="game-card" data-id="crash-team-racing" data-category="سباق">
                 <div class="game-number-badge">#55</div>
-                <div class="fav-btn" onclick="toggleFavorite('crash-team-racing', this)">🤍</div>
+                <div class="fav-btn" onclick="toggleFavorite('crash-team-racing', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="crash-team-racing.webp" alt="Crash Team Racing" onerror="this.src='https://via.placeholder.com/95x125/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-img-container"><img src="crash-team-racing.webp" alt="Crash Team Racing" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
                         <div class="game-title">Crash Team Racing Nitro-Fueled</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1729,8 +1733,8 @@
 
         window.onclick = function(event) {
             let dropdown = document.getElementById('menuDropdown');
-            let btn = document.querySelector('.action-icon-btn');
-            if (!btn.contains(event.target) && !dropdown.contains(event.target)) {
+            let btn = document.querySelector('.action-icon-btn[title="القائمة المتقدمة"]');
+            if (btn && !btn.contains(event.target) && !dropdown.contains(event.target)) {
                 dropdown.classList.remove('active');
             }
         }
@@ -1757,12 +1761,12 @@
         function setTheme(primaryColor, darkColor) {
             document.documentElement.style.setProperty('--accent-color', primaryColor);
             document.documentElement.style.setProperty('--accent-gradient', `linear-gradient(135deg, ${primaryColor} 0%, ${darkColor} 100%)`);
-            document.documentElement.style.setProperty('--card-border', primaryColor + '40'); 
-            document.documentElement.style.setProperty('--card-border-hover', primaryColor + 'cc'); 
-            document.documentElement.style.setProperty('--badge-bg', primaryColor + '26'); 
-            document.documentElement.style.setProperty('--badge-border', primaryColor + '66'); 
+            document.documentElement.style.setProperty('--card-border', primaryColor + '4d'); 
+            document.documentElement.style.setProperty('--card-border-hover', primaryColor + 'e6'); 
+            document.documentElement.style.setProperty('--badge-bg', primaryColor + '2e'); 
+            document.documentElement.style.setProperty('--badge-border', primaryColor + '80'); 
             document.documentElement.style.setProperty('--ticker-bg', primaryColor + '14'); 
-            document.documentElement.style.setProperty('--ticker-border', primaryColor + '50'); 
+            document.documentElement.style.setProperty('--ticker-border', primaryColor + '66'); 
 
             localStorage.setItem('rafvx_primary_color', primaryColor);
             localStorage.setItem('rafvx_dark_color', darkColor);
@@ -1775,15 +1779,7 @@
                 setTheme(savedPrimary, savedDark);
             }
 
-            let favs = getFavorites();
-            let cards = document.getElementsByClassName('game-card');
-            for (let card of cards) {
-                let gameId = card.getAttribute('data-id');
-                let btn = card.getElementsByClassName('fav-btn')[0];
-                if (favs.includes(gameId)) {
-                    btn.innerText = "❤️";
-                }
-            }
+            updateFavoriteUI();
         });
 
         function getFavorites() {
@@ -1809,9 +1805,25 @@
             }
         }
 
+        function updateFavoriteUI() {
+            let favs = getFavorites();
+            let cards = document.getElementsByClassName('game-card');
+            for (let card of cards) {
+                let gameId = card.getAttribute('data-id');
+                let btn = card.getElementsByClassName('fav-btn')[0];
+                if (btn) {
+                    if (favs.includes(gameId)) {
+                        btn.innerText = "❤️";
+                    } else {
+                        btn.innerText = "🤍";
+                    }
+                }
+            }
+        }
+
         function copy1DM(url, gameName) {
             navigator.clipboard.writeText(url).then(() => {
-                alert("📋 تم نسخ رابط (" + gameName + ") بنجاح!\n⚡ افتح برنامج 1DM الآن وألصق الرابط للتحميل السريع.");
+                alert("📋 تم نسخ رابط (" + gameName + ") بنجاح!\n⚡ افتح برنامج 1DM الآن وألصق الرابط للتحميل الفوري.");
             }).catch(err => {
                 prompt("انسخ الرابط يدوياً:", url);
             });
