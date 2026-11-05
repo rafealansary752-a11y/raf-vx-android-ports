@@ -50,12 +50,69 @@
             margin: 0 auto;
         }
 
+        /* بنر التنبيهات السريع (رقم 10) */
+        .update-banner {
+            background: linear-gradient(135deg, rgba(255, 26, 64, 0.25), rgba(128, 0, 20, 0.35));
+            border: 1px solid var(--accent-color);
+            padding: 10px 16px;
+            border-radius: 14px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 26, 64, 0.2);
+        }
+
+        .update-banner button {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        /* شريط الأخبار المصغر والعلوي */
+        .mini-news-ticker {
+            background: var(--ticker-bg);
+            border: 1px solid var(--ticker-border);
+            border-radius: 10px;
+            padding: 6px 12px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #ff99ab;
+        }
+
+        .ticker-track {
+            display: inline-block;
+            white-space: nowrap;
+            animation: tickerScroll 12s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding-left: 40px;
+        }
+
+        @keyframes tickerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+
         /* شريط العلوي السريع */
         .top-nav-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             background: var(--card-bg);
             padding: 14px 22px;
             border-radius: 22px;
@@ -108,7 +165,7 @@
             background: rgba(12, 3, 5, 0.98);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            width: 240px;
+            width: 260px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.85);
             display: none;
             overflow: hidden;
@@ -121,26 +178,32 @@
         }
 
         .menu-item {
-            padding: 14px 18px;
+            padding: 13px 18px;
             color: #fff;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             border-bottom: 1px solid rgba(255,255,255,0.06);
             transition: all 0.2s;
+            text-decoration: none;
         }
 
         .menu-item:hover {
             background: var(--accent-gradient);
         }
 
+        .menu-item.disabled {
+            color: #776b72;
+            cursor: not-allowed;
+        }
+
         /* الهيدر الفخم */
         header {
             text-align: center;
-            padding: 40px 22px;
+            padding: 35px 22px;
             margin-bottom: 30px;
             background: var(--card-bg);
             backdrop-filter: blur(25px);
@@ -201,42 +264,6 @@
             -webkit-text-fill-color: transparent;
             letter-spacing: 4px;
             margin-bottom: 8px;
-        }
-
-        /* شريط الأخبار المطوّر (CSS Ticker Seamless بدون فراغات) */
-        .news-ticker {
-            background: var(--ticker-bg);
-            border: 1px solid var(--ticker-border);
-            border-radius: 14px;
-            padding: 12px 0;
-            margin: 18px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            width: 100%;
-        }
-
-        .ticker-track {
-            display: inline-block;
-            white-space: nowrap;
-            animation: tickerScroll 18s linear infinite;
-        }
-
-        .ticker-item {
-            display: inline-block;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 0.95rem;
-            padding-left: 50px;
-        }
-
-        @keyframes tickerScroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(50%);
-            }
         }
 
         .subtitle {
@@ -315,9 +342,8 @@
         }
 
         .social-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 14px;
+            display: flex;
+            justify-content: center;
             margin-top: 18px;
         }
 
@@ -326,7 +352,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            padding: 14px 20px;
+            padding: 14px 28px;
             border-radius: 16px;
             text-decoration: none;
             color: #fff;
@@ -335,6 +361,8 @@
             background: var(--badge-bg);
             border: 1px solid var(--badge-border);
             transition: all 0.3s ease;
+            max-width: 350px;
+            width: 100%;
         }
 
         .btn-social:hover {
@@ -342,12 +370,7 @@
             transform: translateY(-2px);
         }
 
-        .btn-social.chat {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.18);
-        }
-
-        /* شبكة الألعاب بمسافات مريحة وواسعة (بدون حشر) */
+        /* شبكة الألعاب */
         .games-grid {
             display: flex;
             flex-direction: column;
@@ -383,7 +406,6 @@
             }
         }
 
-        /* رقم اللعبة البارز */
         .game-number-badge {
             position: absolute;
             top: 20px;
@@ -398,7 +420,6 @@
             z-index: 4;
         }
 
-        /* زر المفضلة (القلب) عند كل لعبة بصورة واضحة */
         .fav-btn {
             position: absolute;
             top: 20px;
@@ -508,6 +529,19 @@
             color: #81c784;
         }
 
+        .tag.new-game {
+            background: rgba(255, 171, 0, 0.25);
+            border-color: rgba(255, 171, 0, 0.6);
+            color: #ffc107;
+            animation: pulseTag 1.5s infinite;
+        }
+
+        @keyframes pulseTag {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.8; }
+        }
+
         .game-info {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -537,7 +571,6 @@
             width: 100%;
         }
 
-        /* مجموعة أزرار التحميل المريحة والمنظمة بمساحات فسيحة */
         .download-group {
             display: flex;
             flex-direction: column;
@@ -606,6 +639,20 @@
 <body>
 
     <div class="container">
+        <!-- بنر التنبيهات والتحديثات (رقم 10) -->
+        <div class="update-banner" id="updateBanner">
+            <span>🔥 تم إضافة 8 ألعاب جديدة كلياً للمنصة (Fable 2, Persona 4 Golden, Donkey Kong والمزيد)!</span>
+            <button onclick="closeBanner()">إخفاء</button>
+        </div>
+
+        <!-- شريط الأخبار المصغر -->
+        <div class="mini-news-ticker">
+            <div class="ticker-track">
+                <span class="ticker-item">⚡ تم تحديث المنصة بـ 8 ألعاب جديدة • أهلاً بك في RAF-VX</span>
+                <span class="ticker-item">⚡ تم تحديث المنصة بـ 8 ألعاب جديدة • أهلاً بك في RAF-VX</span>
+            </div>
+        </div>
+
         <!-- شريط علوي تفاعلي -->
         <div class="top-nav-bar">
             <div class="platform-badge-top">👑 النسخة الملكية الرسمية</div>
@@ -614,7 +661,12 @@
                 <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
-                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (55)</div>
+                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (63)</div>
+                    <div class="menu-item" onclick="requestGame()">📥 طلب لعبة أو بورت</div>
+                    <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
+                    <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
+                    <a href="https://t.me/RAF2007mmaaggq" target="_blank" class="menu-item">💬 اريد المساعدة (قروب المشكلات)</a>
+                    <div class="menu-item disabled">⚙️ قسم المحاكيات (قريباً جداً)</div>
                     <div class="menu-item" onclick="scrollToSearch()">🔍 البحث السريع</div>
                 </div>
             </div>
@@ -634,14 +686,6 @@
 
             <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
-            <!-- شريط الأخبار المطوّر (بدون أي فراغات أو تأخير) -->
-            <div class="news-ticker">
-                <div class="ticker-track">
-                    <span class="ticker-item">🔥 يتم تحديث التطبيق بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة</span>
-                    <span class="ticker-item">🔥 يتم تحديث التطبيق بشكل أسبوعي • أهلاً بك في المنصة الملكية لأقوى ألعاب الأندرويد المحولة</span>
-                </div>
-            </div>
-
             <p class="subtitle">أقوى ألعاب الأندرويد المحولة بعناية فائقة | خالي تماماً من الإعلانات</p>
 
             <div class="spec-banner">
@@ -649,11 +693,12 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 55 لعبة..." onkeyup="filterGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 63 لعبة..." onkeyup="filterGames()">
             </div>
 
             <div class="filter-chips">
-                <div class="chip active" onclick="setCategory('all', this)">الكل (55)</div>
+                <div class="chip active" onclick="setCategory('all', this)">الكل (63)</div>
+                <div class="chip" onclick="setCategory('جديد', this)">🔥 الألعاب الجديدة</div>
                 <div class="chip" onclick="setCategory('أكشن', this)">#أكشن</div>
                 <div class="chip" onclick="setCategory('رعب', this)">#رعب</div>
                 <div class="chip" onclick="setCategory('سباق', this)">#سباق</div>
@@ -663,17 +708,167 @@
 
             <div class="social-links">
                 <a href="https://t.me/hdjsqn" target="_blank" class="btn-social">
-                    📢 القناة الأساسية على التليجرام
-                </a>
-                <a href="https://t.me/RAF2007mmaaggq" target="_blank" class="btn-social chat">
-                    💬 مجموعة الدعم والشات (لمن واجه مشكلة)
+                    📢 القناة الأساسية لشروحات التليجرام
                 </a>
             </div>
         </header>
 
-        <!-- شبكة الـ 55 لعبة بمساحات مريحة ومنظمة -->
+        <!-- شبكة الـ 63 لعبة -->
         <div class="games-grid" id="gamesGrid">
 
+            <!-- الألعاب الجديدة المُضافة -->
+            <!-- 56 -->
+            <div class="game-card" data-id="fable-2" data-category="أكشن جديد">
+                <div class="game-number-badge">#56</div>
+                <div class="fav-btn" onclick="toggleFavorite('fable-2', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="fable-2.webp" alt="Fable 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">Fable 2</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/fable-2-135456/" target="_blank" class="btn-download">📥 تحميل APK + OBB</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/fable-2-135456/', 'Fable 2')">📋 نسخ رابط 1DM</button>
+                </div>
+            </div>
+
+            <!-- 57 -->
+            <div class="game-card" data-id="monster-hunter-generations" data-category="أكشن جديد">
+                <div class="game-number-badge">#57</div>
+                <div class="fav-btn" onclick="toggleFavorite('monster-hunter-generations', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="monster-hunter.webp" alt="Monster Hunter" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">Monster Hunter Generations Ultimate</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">11 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/monster-hunter-generations-ultimate-135441/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/monster-hunter-generations-ultimate-135441/', 'Monster Hunter')">📋 نسخ رابط 1DM</button>
+                </div>
+            </div>
+
+            <!-- 58 -->
+            <div class="game-card" data-id="downhill-domination" data-category="سباق جديد">
+                <div class="game-number-badge">#58</div>
+                <div class="fav-btn" onclick="toggleFavorite('downhill-domination', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="downhill.webp" alt="Downhill Domination" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">Downhill Domination</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/racing/downhill-domination-135495/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/racing/downhill-domination-135495/', 'Downhill Domination')">📋 نسخ رابط 1DM</button>
+                </div>
+            </div>
+
+            <!-- 59 -->
+            <div class="game-card" data-id="pes-13" data-category="كرة_القدم جديد">
+                <div class="game-number-badge">#59</div>
+                <div class="fav-btn" onclick="toggleFavorite('pes-13', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="pes-13.webp" alt="PES 2013" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">Pro Evolution Soccer 2013</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#كرة_القدم</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">7 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/simulation/pro-evolution-soccer-2013-135497/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/simulation/pro-evolution-soccer-2013-135497/', 'PES 2013')">📋 نسخ رابط 1DM</button>
+                </div>
+            </div>
+
+            <!-- 60 -->
+            <div class="game-card" data-id="persona-4-golden" data-category="أكشن جديد">
+                <div class="game-number-badge">#60</div>
+                <div class="fav-btn" onclick="toggleFavorite('persona-4-golden', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="persona-4.webp" alt="Persona 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">Persona 4 Golden</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">10 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/role-playing/persona-4-golden-135508/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/persona-4-golden-135508/', 'Persona 4 Golden')">📋 نسخ رابط 1DM</button>
+                </div>
+            </div>
+
+            <!-- 61 -->
+            <div class="game-card" data-id="donkey-kong-bananza" data-category="أكشن جديد">
+                <div class="game-number-badge">#61</div>
+                <div class="fav-btn" onclick="toggleFavorite('donkey-kong-bananza', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="donkey-kong.webp" alt="Donkey Kong" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">Donkey Kong Bananza</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box">💡 تتطلب معالج Snapdragon 8 Elite و 12GB RAM كحد أدنى.</div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">18 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/donkey-kong-bananza-135511/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/donkey-kong-bananza-135511/', 'Donkey Kong')">📋 نسخ رابط 1DM</button>
+                </div>
+            </div>
+
+            <!-- 62 -->
+            <div class="game-card" data-id="ravenfield" data-category="حرب جديد">
+                <div class="game-number-badge">#62</div>
+                <div class="fav-btn" onclick="toggleFavorite('ravenfield', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="ravenfield.webp" alt="Ravenfield" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">Ravenfield</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">974 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/ravenfield-135479/" target="_blank" class="btn-download">📥 تحميل APK فقط</a>
+                </div>
+            </div>
+
+            <!-- 63 -->
+            <div class="game-card" data-id="the-long-drive" data-category="أكشن جديد">
+                <div class="game-number-badge">#63</div>
+                <div class="fav-btn" onclick="toggleFavorite('the-long-drive', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="the-long-drive.webp" alt="The Long Drive" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">The Long Drive</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">493 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/adventure/the-long-drive-135464/" target="_blank" class="btn-download">📥 تحميل APK فقط</a>
+                </div>
+            </div>
+
+            <!-- الألعاب السابقة (من 1 إلى 55) -->
             <!-- 1 -->
             <div class="game-card" data-id="devil-may-cry-3" data-category="أكشن">
                 <div class="game-number-badge">#1</div>
@@ -864,6 +1059,7 @@
                 </div>
             </div>
 
+            <!-- بقية الألعاب من 11 إلى 55 -->
             <!-- 11 -->
             <div class="game-card" data-id="lego-marvel" data-category="أكشن">
                 <div class="game-number-badge">#11</div>
@@ -1740,13 +1936,17 @@
         </div>
 
         <footer>
-            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار المطلق) © 2026</p>
+            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار الملكي) © 2026</p>
         </footer>
     </div>
 
     <script>
         let currentCategory = 'all';
         let showOnlyFavorites = false;
+
+        function closeBanner() {
+            document.getElementById('updateBanner').style.display = 'none';
+        }
 
         function toggleMenu() {
             let menu = document.getElementById('menuDropdown');
@@ -1770,14 +1970,69 @@
             if (navigator.share) {
                 navigator.share({
                     title: 'منصة RAF-VX الملكية',
-                    text: 'أقوى 55 بورت ألعاب أندرويد مجاناً وخالي من الإعلانات!',
+                    text: 'أقوى ألعاب أندرويد المحولة مجاناً وخالي من الإعلانات!',
                     url: window.location.href
                 }).catch(() => {});
             } else {
                 navigator.clipboard.writeText(window.location.href).then(() => {
-                    alert("🔗 تم نسخ رابط المنصة بنجاح! شاركه مع أصدقائك.");
+                    alert("🔗 تم نسخ رابط المنصة بنجاح!");
                 });
             }
+        }
+
+        /* ميزة طلب لعبة (رقم 7) */
+        function requestGame() {
+            let gameName = prompt("اكتب اسم اللعبة أو البورت الذي تمناه إضافته في المنصة:");
+            if (gameName && gameName.trim() !== "") {
+                let text = "السلام عليكم رافع، أتمنى أطلب إضافة هذه اللعبة للموقع: " + gameName;
+                let url = "https://t.me/hdjsqn?text=" + encodeURIComponent(text);
+                window.open(url, '_blank');
+            }
+            toggleMenu();
+        }
+
+        /* ميزة تصدير المفضلة (رقم 8) */
+        function exportFavorites() {
+            let favs = localStorage.getItem('rafvx_favorites');
+            if (!favs || JSON.parse(favs).length === 0) {
+                alert("⚠️ قائمة المفضلة فارغة حالياً!");
+                return;
+            }
+            let blob = new Blob([favs], {type: "application/json"});
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = "rafvx_favorites_backup.json";
+            a.click();
+            toggleMenu();
+        }
+
+        /* ميزة استيراد المفضلة (رقم 8) */
+        function importFavoritesPrompt() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = e => {
+                let file = e.target.files[0];
+                let reader = new FileReader();
+                reader.onload = event => {
+                    try {
+                        let json = JSON.parse(event.target.result);
+                        if (Array.isArray(json)) {
+                            localStorage.setItem('rafvx_favorites', JSON.stringify(json));
+                            updateFavoriteUI();
+                            alert("✅ تم استيراد ألعابك المفضلة بنجاح!");
+                        } else {
+                            alert("❌ الملف غير صالح.");
+                        }
+                    } catch (err) {
+                        alert("❌ حدث خطأ أثناء قراءة الملف.");
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+            toggleMenu();
         }
 
         function setTheme(primaryColor, darkColor) {
@@ -1800,7 +2055,6 @@
             if (savedPrimary && savedDark) {
                 setTheme(savedPrimary, savedDark);
             }
-
             updateFavoriteUI();
         });
 
