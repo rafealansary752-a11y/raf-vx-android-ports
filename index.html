@@ -94,7 +94,7 @@
         .ticker-track {
             display: inline-block;
             white-space: nowrap;
-            animation: tickerScroll 12s linear infinite;
+            animation: tickerScroll 15s linear infinite;
         }
 
         .ticker-item {
@@ -107,7 +107,7 @@
             100% { transform: translateX(50%); }
         }
 
-        /* شريط العلوي السريع مع تصحيح القائمة المنسدلة لتفتح بشكل سليم */
+        /* شريط العلوي السريع مع تصحيح القائمة المنسدلة */
         .top-nav-bar {
             display: flex;
             justify-content: space-between;
@@ -160,7 +160,7 @@
             transform: translateY(-2px);
         }
 
-        /* تعديل القائمة المنسدلة لتظهر بوضوح وسلاسة من الأعلى */
+        /* القائمة المنسدلة */
         .menu-dropdown {
             position: absolute;
             top: 60px;
@@ -203,7 +203,7 @@
             cursor: not-allowed;
         }
 
-        /* الهيدر الفخم */
+        /* الهيدر */
         header {
             text-align: center;
             padding: 35px 22px;
@@ -291,7 +291,6 @@
             margin-bottom: 24px;
         }
 
-        /* شريط البحث والفلاتر */
         .search-container {
             margin-bottom: 18px;
         }
@@ -409,10 +408,11 @@
             }
         }
 
+        /* تنسيق الرقم ووضعه بحيث لا يغطي على اسم اللعبة */
         .game-number-badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 16px;
+            right: 16px;
             background: var(--accent-gradient);
             color: #fff;
             font-size: 0.85rem;
@@ -425,8 +425,8 @@
 
         .fav-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 16px;
+            left: 16px;
             background: rgba(0, 0, 0, 0.65);
             border: 1px solid var(--card-border);
             width: 42px;
@@ -452,11 +452,13 @@
             align-items: center;
             gap: 18px;
             width: 100%;
+            padding-top: 15px; /* مساحة لعدم التداخل */
         }
 
         @media (min-width: 768px) {
             .game-main-content {
                 width: 58%;
+                padding-top: 0;
             }
         }
 
@@ -483,20 +485,22 @@
             flex-direction: column;
             gap: 8px;
             flex-grow: 1;
-            padding-left: 24px;
+            padding-right: 8px;
         }
 
         @media (min-width: 768px) {
             .game-details {
-                padding-left: 0;
+                padding-right: 0;
             }
         }
 
         .game-title {
-            font-size: 1.25rem;
-            font-weight: 800;
+            font-size: 1.3rem;
+            font-weight: 900;
             color: #fff;
-            line-height: 1.3;
+            line-height: 1.35;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: 0.5px;
         }
 
         .port-tag-text {
@@ -550,7 +554,7 @@
             color: var(--text-muted);
             display: flex;
             gap: 12px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .info-item {
@@ -577,7 +581,7 @@
         .download-group {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
         }
 
@@ -593,11 +597,11 @@
             justify-content: center;
             gap: 8px;
             width: 100%;
-            padding: 13px 18px;
+            padding: 12px 16px;
             background: var(--accent-gradient);
             color: #fff;
             font-weight: 800;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             border: none;
             border-radius: 14px;
             text-decoration: none;
@@ -644,19 +648,19 @@
     <div class="container">
         <!-- بنر التنبيهات والتحديثات -->
         <div class="update-banner" id="updateBanner">
-            <span>🔥 تم إضافة 8 ألعاب جديدة كلياً للمنصة وتم ترتيب الألعاب تنازلياً!</span>
+            <span>🔥 تم إضافة ألعاب جديدة وترتيب المنصة لتصبح 74 لعبة ملكية!</span>
             <button onclick="closeBanner()">إخفاء</button>
         </div>
 
         <!-- شريط الأخبار المصغر -->
         <div class="mini-news-ticker">
             <div class="ticker-track">
-                <span class="ticker-item">⚡ تم تحديث المنصة وترقيم الـ 63 لعبة بنجاح • أهلاً بك في RAF-VX</span>
-                <span class="ticker-item">⚡ تم تحديث المنصة وترقيم الـ 63 لعبة بنجاح • أهلاً بك في RAF-VX</span>
+                <span class="ticker-item">⚡ تم تحديث المنصة وترقيم الـ 74 لعبة بنجاح • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
+                <span class="ticker-item">⚡ تم تحديث المنصة وترقيم الـ 74 لعبة بنجاح • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
             </div>
         </div>
 
-        <!-- شريط العلوي السريع مع القائمة المنسدلة المُصلحة -->
+        <!-- شريط العلوي السريع -->
         <div class="top-nav-bar">
             <div class="platform-badge-top">👑 النسخة الملكية الرسمية</div>
             <div class="top-actions">
@@ -664,11 +668,11 @@
                 <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
-                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (63)</div>
-                    <div class="menu-item" onclick="requestGame()">📥 طلب لعبة أو بورت</div>
+                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (74)</div>
+                    <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
                     <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
                     <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
-                    <a href="https://t.me/hdjsqn" target="_blank" class="menu-item">💬 أريد المساعدة (قروب المشكلات)</a>
+                    <a href="https://t.me/RAF2007mmaaggq" target="_blank" class="menu-item">💬 أريد المساعدة (قروب المشكلات)</a>
                     <div class="menu-item disabled">⚙️ قسم المحاكيات (قريباً جداً)</div>
                     <div class="menu-item" onclick="scrollToSearch()">🔍 البحث السريع</div>
                 </div>
@@ -696,11 +700,11 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 63 لعبة..." onkeyup="filterGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 74 لعبة..." onkeyup="filterGames()">
             </div>
 
             <div class="filter-chips">
-                <div class="chip active" onclick="setCategory('all', this)">الكل (63)</div>
+                <div class="chip active" onclick="setCategory('all', this)">الكل (74)</div>
                 <div class="chip" onclick="setCategory('جديد', this)">🔥 الألعاب الجديدة</div>
                 <div class="chip" onclick="setCategory('أكشن', this)">#أكشن</div>
                 <div class="chip" onclick="setCategory('رعب', this)">#رعب</div>
@@ -716,7 +720,7 @@
             </div>
         </header>
 
-        <!-- شبكة الـ 63 لعبة (مرقمة تصاعدياً بدقة من #1 إلى #63) -->
+        <!-- شبكة الـ 74 لعبة (مرقمة تصاعدياً بدقة من #1 إلى #74) -->
         <div class="games-grid" id="gamesGrid">
 
             <!-- 1 -->
@@ -726,7 +730,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="fable-2.webp" alt="Fable 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Fable 2</div>
+                        <div class="game-title">✨ Fable 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
@@ -734,7 +738,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/fable-2-135456/" target="_blank" class="btn-download">📥 تحميل APK + OBB</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/fable-2-135456/', 'Fable 2')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/fable-2-135456/', 'Fable 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -745,7 +749,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="monster-hunter.webp" alt="Monster Hunter" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Monster Hunter Generations Ultimate</div>
+                        <div class="game-title">✨ Monster Hunter Generations Ultimate</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">11 GB</span></div></div>
@@ -753,7 +757,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/monster-hunter-generations-ultimate-135441/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/monster-hunter-generations-ultimate-135441/', 'Monster Hunter')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/monster-hunter-generations-ultimate-135441/', 'Monster Hunter')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -764,7 +768,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="downhill.webp" alt="Downhill Domination" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Downhill Domination</div>
+                        <div class="game-title">✨ Downhill Domination</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4 GB</span></div></div>
@@ -772,7 +776,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/racing/downhill-domination-135495/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/racing/downhill-domination-135495/', 'Downhill Domination')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/racing/downhill-domination-135495/', 'Downhill Domination')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -783,7 +787,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="pes-13.webp" alt="PES 2013" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Pro Evolution Soccer 2013</div>
+                        <div class="game-title">✨ Pro Evolution Soccer 2013</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#كرة_القدم</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">7 GB</span></div></div>
@@ -791,7 +795,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/simulation/pro-evolution-soccer-2013-135497/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/simulation/pro-evolution-soccer-2013-135497/', 'PES 2013')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/simulation/pro-evolution-soccer-2013-135497/', 'PES 2013')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -802,7 +806,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="persona-4.webp" alt="Persona 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Persona 4 Golden</div>
+                        <div class="game-title">✨ Persona 4 Golden</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">10 GB</span></div></div>
@@ -810,7 +814,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/role-playing/persona-4-golden-135508/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/persona-4-golden-135508/', 'Persona 4 Golden')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/persona-4-golden-135508/', 'Persona 4 Golden')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -821,7 +825,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="donkey-kong.webp" alt="Donkey Kong" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Donkey Kong Bananza</div>
+                        <div class="game-title">✨ Donkey Kong Bananza</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="note-box">💡 تتطلب معالج Snapdragon 8 Elite و 12GB RAM كحد أدنى.</div>
@@ -830,7 +834,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/donkey-kong-bananza-135511/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/donkey-kong-bananza-135511/', 'Donkey Kong')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/donkey-kong-bananza-135511/', 'Donkey Kong')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -841,7 +845,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="ravenfield.webp" alt="Ravenfield" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Ravenfield</div>
+                        <div class="game-title">✨ Ravenfield</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">974 MB</span></div></div>
@@ -859,7 +863,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="the-long-drive.webp" alt="The Long Drive" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">The Long Drive</div>
+                        <div class="game-title">✨ The Long Drive</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">493 MB</span></div></div>
@@ -877,7 +881,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="devil-may-cry-3.webp" alt="Devil May Cry 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Devil May Cry 3: Special Edition</div>
+                        <div class="game-title">✨ Devil May Cry 3: Special Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4 GB</span></div></div>
@@ -885,7 +889,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/devil-may-cry-3-special-edition-135333/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/devil-may-cry-3-special-edition-135333/', 'Devil May Cry 3')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/devil-may-cry-3-special-edition-135333/', 'Devil May Cry 3')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -896,7 +900,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="dragon-ball-raging-blast-2.webp" alt="Dragon Ball" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Dragon Ball: Raging Blast 2</div>
+                        <div class="game-title">✨ Dragon Ball: Raging Blast 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
@@ -904,7 +908,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/dragon-ball-raging-blast-2-135037/" target="_blank" class="btn-download">📥 تحميل APK + ISO</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/dragon-ball-raging-blast-2-135037/', 'Dragon Ball Raging Blast 2')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/dragon-ball-raging-blast-2-135037/', 'Dragon Ball Raging Blast 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -915,7 +919,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="dragon-ball-z-burst-limit.webp" alt="Dragon Ball Z" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Dragon Ball Z: Burst Limit</div>
+                        <div class="game-title">✨ Dragon Ball Z: Burst Limit</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
@@ -923,7 +927,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/dragon-ball-z-burst-limit-135036/" target="_blank" class="btn-download">📥 تحميل APK + ISO</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/dragon-ball-z-burst-limit-135036/', 'Dragon Ball Z Burst Limit')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/dragon-ball-z-burst-limit-135036/', 'Dragon Ball Z Burst Limit')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -934,7 +938,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="prototype.webp" alt="Prototype" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Prototype (الجزء الأول)</div>
+                        <div class="game-title">✨ Prototype (الجزء الأول)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
@@ -942,7 +946,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/prototype-135176/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/prototype-135176/', 'Prototype')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/prototype-135176/', 'Prototype')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -953,7 +957,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="left-4-dead-2.webp" alt="Left 4 Dead 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Left 4 Dead 2</div>
+                        <div class="game-title">✨ Left 4 Dead 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6 GB</span></div></div>
@@ -961,7 +965,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/left-4-dead-2-135396/" target="_blank" class="btn-download">📥 تحميل APK + OBB</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/left-4-dead-2-135396/', 'Left 4 Dead 2')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/left-4-dead-2-135396/', 'Left 4 Dead 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -972,7 +976,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="ninja-gaiden-black.webp" alt="Ninja Gaiden" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Ninja Gaiden Black</div>
+                        <div class="game-title">✨ Ninja Gaiden Black</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6 GB</span></div></div>
@@ -980,7 +984,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/ninja-gaiden-black-135406/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/ninja-gaiden-black-135406/', 'Ninja Gaiden Black')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/ninja-gaiden-black-135406/', 'Ninja Gaiden Black')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -991,7 +995,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="well-dweller.webp" alt="Well Dweller" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Well Dweller</div>
+                        <div class="game-title">✨ Well Dweller</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">668 MB</span></div></div>
@@ -1009,7 +1013,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="midnight-club-3.webp" alt="Midnight Club 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Midnight Club 3: Dub Edition Remix</div>
+                        <div class="game-title">✨ Midnight Club 3: Dub Edition Remix</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4 GB</span></div></div>
@@ -1017,7 +1021,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/midnight-club-3-dub-edition-remix-135325/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/midnight-club-3-dub-edition-remix-135325/', 'Midnight Club 3')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/midnight-club-3-dub-edition-remix-135325/', 'Midnight Club 3')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1028,7 +1032,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="mortal-kombat-armageddon.webp" alt="Mortal Kombat" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Mortal Kombat: Armageddon</div>
+                        <div class="game-title">✨ Mortal Kombat: Armageddon</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3 GB</span></div></div>
@@ -1036,7 +1040,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/mortal-kombat-armageddon-135323/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/mortal-kombat-armageddon-135323/', 'Mortal Kombat Armageddon')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/mortal-kombat-armageddon-135323/', 'Mortal Kombat Armageddon')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1047,7 +1051,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="skyrim.jpg" alt="Skyrim" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">The Elder Scrolls V: Skyrim</div>
+                        <div class="game-title">✨ The Elder Scrolls V: Skyrim</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">5 GB</span></div></div>
@@ -1056,7 +1060,7 @@
                 <div class="download-group">
                     <a href="https://github.com/ttom795/Skyrim_Android/releases/download/0.27.2/Skyrim-0.27.2.apk" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://www.mediafire.com/file_premium/jb7zmrm25002mfx/the-elder-scrolls-v-skyrim-apkvision.zip/file" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file_premium/jb7zmrm25002mfx/the-elder-scrolls-v-skyrim-apkvision.zip/file', 'Skyrim Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file_premium/jb7zmrm25002mfx/the-elder-scrolls-v-skyrim-apkvision.zip/file', 'Skyrim Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1067,7 +1071,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="lego-marvel.jpg" alt="Lego Marvel" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Lego Marvel Super Heroes</div>
+                        <div class="game-title">✨ Lego Marvel Super Heroes</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6 GB</span></div></div>
@@ -1076,7 +1080,7 @@
                 <div class="download-group">
                     <a href="https://github.com/ttom795/LMS_Android/releases/download/0.3.4/LegoMarvel-0.3.4.apk" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://dl.apkvision.net/lego-marvel-super-heroes-pc-port/LEGO-Marvel-Super-Heroes-apkvision.zip" target="_blank" class="btn-download secondary">📂 ملفات اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/lego-marvel-super-heroes-pc-port/LEGO-Marvel-Super-Heroes-apkvision.zip', 'Lego Marvel Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/lego-marvel-super-heroes-pc-port/LEGO-Marvel-Super-Heroes-apkvision.zip', 'Lego Marvel Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1087,7 +1091,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="uncharted-collection.jpg" alt="Uncharted" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">UNCHARTED Collection</div>
+                        <div class="game-title">✨ UNCHARTED Collection</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">40 GB</span></div></div>
@@ -1096,7 +1100,7 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/9d2y9kbeuiu8" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://mocha.my/share/F-hWTLmTRra2YKP9477QAgojW758-VIi" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/F-hWTLmTRra2YKP9477QAgojW758-VIi', 'Uncharted Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/F-hWTLmTRra2YKP9477QAgojW758-VIi', 'Uncharted Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1107,7 +1111,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="max-payne-2.jpg" alt="Max Payne 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Max Payne 2</div>
+                        <div class="game-title">✨ Max Payne 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1 GB</span></div></div>
@@ -1116,7 +1120,7 @@
                 <div class="download-group">
                     <a href="https://modsfire.com/532AFZhpx4pg1Zr" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://modsfire.com/NplcZdh4Fl8E5pn" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/NplcZdh4Fl8E5pn', 'Max Payne 2 Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/NplcZdh4Fl8E5pn', 'Max Payne 2 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1127,7 +1131,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="dead-cells.jpg" alt="Dead Cells" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Dead Cells</div>
+                        <div class="game-title">✨ Dead Cells</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">2 GB</span></div></div>
@@ -1135,7 +1139,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/PY9W334096Pz8R1" target="_blank" class="btn-download">📥 تحميل APK</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/PY9W334096Pz8R1', 'Dead Cells')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/PY9W334096Pz8R1', 'Dead Cells')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1146,7 +1150,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="pes-5.jpg" alt="PES 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">PES 5</div>
+                        <div class="game-title">✨ PES 5</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#كرة_القدم</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">2 GB</span></div></div>
@@ -1154,7 +1158,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/4sGpPi7Y9J20zQJ" target="_blank" class="btn-download">📥 تحميل APK</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/4sGpPi7Y9J20zQJ', 'PES 5')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/4sGpPi7Y9J20zQJ', 'PES 5')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1165,7 +1169,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="gta-5.webp" alt="GTA 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">GTA 5 Android</div>
+                        <div class="game-title">✨ GTA 5 Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="note-box">💡 تحميل APK والتنزيل الداخلي (23GB).</div>
@@ -1174,7 +1178,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/zB0CPCTpbMozhRl" target="_blank" class="btn-download">📥 تحميل APK والملفات</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/zB0CPCTpbMozhRl', 'GTA 5')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/zB0CPCTpbMozhRl', 'GTA 5')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1185,7 +1189,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="cod-4.webp" alt="COD 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Call of Duty 4: Modern Warfare (Arabic)</div>
+                        <div class="game-title">✨ Call of Duty 4: Modern Warfare (Arabic)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.41 GB</span></div></div>
@@ -1194,7 +1198,7 @@
                 <div class="download-group">
                     <a href="https://modsfire.com/OJ8gI29DwBp29o3" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://www.mediafire.com/file/2pufvr7vity7xnd/Call+of+Duty+4+Modern+Warfare+Arabic+By+Mustafa+Gamers.zip/file" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/2pufvr7vity7xnd/Call+of+Duty+4+Modern+Warfare+Arabic+By+Mustafa+Gamers.zip/file', 'COD 4 Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/2pufvr7vity7xnd/Call+of+Duty+4+Modern+Warfare+Arabic+By+Mustafa+Gamers.zip/file', 'COD 4 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1205,7 +1209,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="ultimate-spider-man.webp" alt="Spider-Man" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Ultimate Spider-Man</div>
+                        <div class="game-title">✨ Ultimate Spider-Man</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1 GB</span></div></div>
@@ -1213,7 +1217,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/ultimate-spider-man-135248/" target="_blank" class="btn-download">📥 تحميل APK</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/ultimate-spider-man-135248/', 'Spider-Man')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/ultimate-spider-man-135248/', 'Spider-Man')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1224,7 +1228,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="lost-odyssey.webp" alt="Lost Odyssey" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Lost Odyssey</div>
+                        <div class="game-title">✨ Lost Odyssey</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">17 GB</span></div></div>
@@ -1232,7 +1236,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/role-playing/lost-odyssey-135269/" target="_blank" class="btn-download">📥 تحميل APK + OBB</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/lost-odyssey-135269/', 'Lost Odyssey')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/lost-odyssey-135269/', 'Lost Odyssey')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1243,7 +1247,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="gran-turismo-3.webp" alt="Gran Turismo 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Gran Turismo 3 A-Spec</div>
+                        <div class="game-title">✨ Gran Turismo 3 A-Spec</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3.28 GB</span></div></div>
@@ -1251,7 +1255,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/racing/gran-turismo-3-a-spec-135264/" target="_blank" class="btn-download">📥 تحميل APK + OBB</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/racing/gran-turismo-3-a-spec-135264/', 'Gran Turismo 3')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/racing/gran-turismo-3-a-spec-135264/', 'Gran Turismo 3')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1262,7 +1266,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="persona-5-royal.webp" alt="Persona 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Persona 5 Royal</div>
+                        <div class="game-title">✨ Persona 5 Royal</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">14.19 GB</span></div></div>
@@ -1270,7 +1274,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/role-playing/persona-5-royal-135259/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/persona-5-royal-135259/', 'Persona 5')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/role-playing/persona-5-royal-135259/', 'Persona 5')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1281,7 +1285,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="re4.webp" alt="Resident Evil 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Resident Evil 4 Classic</div>
+                        <div class="game-title">✨ Resident Evil 4 Classic</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">2 GB</span></div></div>
@@ -1289,7 +1293,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/wWvnpcAH62hFQa0" target="_blank" class="btn-download">📥 تحميل APK</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/wWvnpcAH62hFQa0', 'Resident Evil 4 Classic')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/wWvnpcAH62hFQa0', 'Resident Evil 4 Classic')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1300,7 +1304,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="fifa-street-2012.webp" alt="FIFA Street" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">FIFA Street 2012</div>
+                        <div class="game-title">✨ FIFA Street 2012</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#رياضة</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4 GB</span></div></div>
@@ -1308,7 +1312,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/TCHH1In206zuyyB" target="_blank" class="btn-download">📥 تحميل APK + ISO</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/TCHH1In206zuyyB', 'FIFA Street 2012')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/TCHH1In206zuyyB', 'FIFA Street 2012')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1319,7 +1323,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="sekiro.webp" alt="Sekiro" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">SEKIRO Android</div>
+                        <div class="game-title">✨ SEKIRO Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="note-box">💡 تحميل APK والتنزيل الداخلي (15GB).</div>
@@ -1328,7 +1332,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/759kzy7p525Fi66" target="_blank" class="btn-download">📥 تحميل APK</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/759kzy7p525Fi66', 'SEKIRO')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/759kzy7p525Fi66', 'SEKIRO')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1339,7 +1343,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="forza-horizon-2.webp" alt="Forza Horizon 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Forza Horizon 2</div>
+                        <div class="game-title">✨ Forza Horizon 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.35 GB</span></div></div>
@@ -1348,7 +1352,7 @@
                 <div class="download-group">
                     <a href="https://github.com/Gabrick75/fh2-recompiled/releases/download/v0.4.3/FH2-Recompiled-0.4.3.apk" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file', 'Forza Horizon 2 Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file', 'Forza Horizon 2 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1359,7 +1363,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="god-of-war-chains-of-olympus.webp" alt="GOW Chains" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">God of War: Chains of Olympus</div>
+                        <div class="game-title">✨ God of War: Chains of Olympus</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#حرب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1.12 GB</span></div></div>
@@ -1367,7 +1371,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/god-of-war-chains-of-olympus-131663/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/god-of-war-chains-of-olympus-131663/', 'GOW Chains of Olympus')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/god-of-war-chains-of-olympus-131663/', 'GOW Chains of Olympus')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1378,7 +1382,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="cod-black-ops-2.webp" alt="BO2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Call of Duty: Black Ops 2</div>
+                        <div class="game-title">✨ Call of Duty: Black Ops 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">30.84 GB</span></div></div>
@@ -1386,7 +1390,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/call-of-duty-black-ops-2-135257/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/call-of-duty-black-ops-2-135257/', 'BO2')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/call-of-duty-black-ops-2-135257/', 'BO2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1397,15 +1401,14 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="inside.webp" alt="Inside" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">INSIDE</div>
+                        <div class="game-title">✨ INSIDE</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">700 MB</span></div></div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://modsfire.com/Y7u09d1bv1Q6WMQ" target="_blank" class="btn-download">📥 تحميل APK</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/Y7u09d1bv1Q6WMQ', 'INSIDE')">📋 نسخ رابط 1DM</button>
+                    <a href="https://modsfire.com/kM63222ih7FmPB5" target="_blank" class="btn-download">📥 تحميل APK فقط</a>
                 </div>
             </div>
 
@@ -1416,7 +1419,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="resident-evil-7.webp" alt="Resident Evil 7" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Resident Evil 7</div>
+                        <div class="game-title">✨ Resident Evil 7</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">13.3 GB</span></div></div>
@@ -1425,7 +1428,7 @@
                 <div class="download-group">
                     <a href="https://gofile.io/d/3DHxyR8G" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://gofile.io/d/Gp4WpjOM" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/Gp4WpjOM', 'Resident Evil 7 Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/Gp4WpjOM', 'Resident Evil 7 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1436,7 +1439,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="mgs-2.webp" alt="MGS 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Metal Gear Solid 2 HD</div>
+                        <div class="game-title">✨ Metal Gear Solid 2 HD</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3.54 GB</span></div></div>
@@ -1444,7 +1447,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/metal-gear-solid-2-sons-of-liberty-hd-135084/" target="_blank" class="btn-download">📥 تحميل APK + OBB</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/metal-gear-solid-2-sons-of-liberty-hd-135084/', 'MGS 2')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/metal-gear-solid-2-sons-of-liberty-hd-135084/', 'MGS 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1455,7 +1458,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="def-jam.webp" alt="Def Jam" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Def Jam: Fight for NY</div>
+                        <div class="game-title">✨ Def Jam: Fight for NY</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">2.22 GB</span></div></div>
@@ -1463,7 +1466,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/def-jam-fight-for-ny-135134/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/def-jam-fight-for-ny-135134/', 'Def Jam')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/def-jam-fight-for-ny-135134/', 'Def Jam')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1474,7 +1477,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="naruto-revolution.webp" alt="Naruto" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Naruto Storm Revolution</div>
+                        <div class="game-title">✨ Naruto Storm Revolution</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.93 GB</span></div></div>
@@ -1482,7 +1485,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-revolution-135046/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-revolution-135046/', 'Naruto Revolution')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-revolution-135046/', 'Naruto Revolution')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1493,7 +1496,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="cod-mw2.webp" alt="COD MW2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Call of Duty: Modern Warfare 2</div>
+                        <div class="game-title">✨ Call of Duty: Modern Warfare 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.78 GB</span></div></div>
@@ -1501,7 +1504,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/call-of-duty-modern-warfare-2-135129/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/call-of-duty-modern-warfare-2-135129/', 'COD MW2')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/call-of-duty-modern-warfare-2-135129/', 'COD MW2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1512,7 +1515,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="infamous-second-son.webp" alt="inFAMOUS" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">inFAMOUS Second Son</div>
+                        <div class="game-title">✨ inFAMOUS Second Son</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">22.4 GB</span></div></div>
@@ -1521,7 +1524,7 @@
                 <div class="download-group">
                     <a href="https://github.com/erickmendes22/iss_android/releases/download/v0.2-Android-Bionic/inFAMOUS-Second-Son-Daedalus-v0.2.apk" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://mocha.my/share/s4N5ELcI0kUwMZfJrmQEbFV8xquIzF6E" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/s4N5ELcI0kUwMZfJrmQEbFV8xquIzF6E', 'inFAMOUS Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/s4N5ELcI0kUwMZfJrmQEbFV8xquIzF6E', 'inFAMOUS Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1532,7 +1535,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="metal-gear-rising.webp" alt="Metal Gear Rising" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Metal Gear Rising: Revengeance</div>
+                        <div class="game-title">✨ Metal Gear Rising: Revengeance</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">7.23 GB</span></div></div>
@@ -1540,7 +1543,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/metal-gear-rising-revengeance-135217/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/metal-gear-rising-revengeance-135217/', 'Metal Gear Rising')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/metal-gear-rising-revengeance-135217/', 'Metal Gear Rising')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1551,7 +1554,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="wwe-12.webp" alt="WWE 12" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">WWE 12</div>
+                        <div class="game-title">✨ WWE 12</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#رياضة</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">7.33 GB</span></div></div>
@@ -1559,7 +1562,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/wwe-12-135224/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/wwe-12-135224/', 'WWE 12')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/wwe-12-135224/', 'WWE 12')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1570,7 +1573,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="gears-of-war-2.webp" alt="Gears of War 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Gears of War 2</div>
+                        <div class="game-title">✨ Gears of War 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.20 GB</span></div></div>
@@ -1578,7 +1581,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/gears-of-war-2-135221/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/gears-of-war-2-135221/', 'Gears of War 2')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/gears-of-war-2-135221/', 'Gears of War 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1589,7 +1592,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="mortal-kombat-9.webp" alt="Mortal Kombat 9" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Mortal Kombat 9 Komplete Edition</div>
+                        <div class="game-title">✨ Mortal Kombat 9 Komplete Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.04 GB</span></div></div>
@@ -1597,7 +1600,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/mortal-kombat-9-komplete-edition-135233/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/mortal-kombat-9-komplete-edition-135233/', 'Mortal Kombat 9')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/mortal-kombat-9-komplete-edition-135233/', 'Mortal Kombat 9')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1608,7 +1611,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="god-of-war-3.webp" alt="GOW 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">God of War III</div>
+                        <div class="game-title">✨ God of War III</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">38.86 GB</span></div></div>
@@ -1617,7 +1620,7 @@
                 <div class="download-group">
                     <a href="https://github.com/zFitness/gow3_android/releases/download/v2.1.7-bionic-v4/God.of.War.III-bionic-2.1.7-bionic-v4.apk" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://mocha.my/share/TucUxdNj3mZbhxFbWhX0cU4Ms9m9tnMP" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/TucUxdNj3mZbhxFbWhX0cU4Ms9m9tnMP', 'GOW 3 Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/TucUxdNj3mZbhxFbWhX0cU4Ms9m9tnMP', 'GOW 3 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1628,7 +1631,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="nfs-most-wanted.webp" alt="NFS Classic" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">NFS Most Wanted (Classic)</div>
+                        <div class="game-title">✨ NFS Most Wanted (Classic)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4.82 GB</span></div></div>
@@ -1637,7 +1640,7 @@
                 <div class="download-group">
                     <a href="https://github.com/codepdbh/nfsmw-android/releases/tag/v0.3.5" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://www.mediafire.com/file_premium/rpsn6w3k1exiukk/NFS-Mos-Wan-jue-esp.rar/file" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file_premium/rpsn6w3k1exiukk/NFS-Mos-Wan-jue-esp.rar/file', 'NFS Classic Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file_premium/rpsn6w3k1exiukk/NFS-Mos-Wan-jue-esp.rar/file', 'NFS Classic Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1648,7 +1651,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="ultra-street-fighter-iv.webp" alt="Street Fighter IV" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Ultra Street Fighter IV</div>
+                        <div class="game-title">✨ Ultra Street Fighter IV</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">7.49 GB</span></div></div>
@@ -1656,7 +1659,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/ultra-street-fighter-iv-134821/" target="_blank" class="btn-download">📥 تحميل اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/ultra-street-fighter-iv-134821/', 'Ultra Street Fighter IV')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/ultra-street-fighter-iv-134821/', 'Ultra Street Fighter IV')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1667,7 +1670,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="devil-may-cry-4.webp" alt="DMC 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Devil May Cry 4</div>
+                        <div class="game-title">✨ Devil May Cry 4</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.41 GB</span></div></div>
@@ -1675,7 +1678,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/devil-may-cry-4-134866" target="_blank" class="btn-download">📥 تحميل اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/devil-may-cry-4-134866', 'Devil May Cry 4')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/devil-may-cry-4-134866', 'Devil May Cry 4')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1686,7 +1689,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="gta-iv.webp" alt="GTA IV" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">GTA IV Android</div>
+                        <div class="game-title">✨ GTA IV Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.38 GB</span></div></div>
@@ -1694,7 +1697,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/gta-4-grand-theft-auto-iv-apk-44605/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/gta-4-grand-theft-auto-iv-apk-44605/', 'GTA IV')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/gta-4-grand-theft-auto-iv-apk-44605/', 'GTA IV')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1705,7 +1708,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="forza-horizon.webp" alt="Forza Horizon 1" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Forza Horizon 1</div>
+                        <div class="game-title">✨ Forza Horizon 1</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.05 GB</span></div></div>
@@ -1714,7 +1717,7 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/tc4ayenq5j0l" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file', 'Forza Horizon 1 Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/sri36saitumg9ls/base.7z/file', 'Forza Horizon 1 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1725,7 +1728,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="naruto-generations.webp" alt="Naruto Generations" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Naruto Storm Generations</div>
+                        <div class="game-title">✨ Naruto Storm Generations</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4.80 GB</span></div></div>
@@ -1733,7 +1736,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-generations-1349" target="_blank" class="btn-download">📥 تحميل APK + Files</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-generations-1349', 'Naruto Generations')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-generations-1349', 'Naruto Generations')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1744,7 +1747,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="bloodborne.webp" alt="Bloodborne" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Bloodborne Android</div>
+                        <div class="game-title">✨ Bloodborne Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">31.03 GB</span></div></div>
@@ -1753,7 +1756,7 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/bjn7p510l6oj" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://gofile.io/d/3uXeYnng" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/3uXeYnng', 'Bloodborne Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/3uXeYnng', 'Bloodborne Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1764,7 +1767,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="naruto-storm-2-3.webp" alt="Naruto Storm 2 & 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Naruto Ninja Storm 2 & 3</div>
+                        <div class="game-title">✨ Naruto Ninja Storm 2 & 3</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8.98 GB</span></div></div>
@@ -1773,7 +1776,7 @@
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-2-135023" target="_blank" class="btn-download">📥 تحميل Storm 2</a>
                     <a href="https://apkvision.org/games/naruto-shippuden-ultimate-ninja-storm-3-full-burst-135009/" target="_blank" class="btn-download secondary">📥 تحميل Storm 3</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-2-135023', 'Naruto Storm')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-2-135023', 'Naruto Storm')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1784,7 +1787,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="nfs-most-wanted-2.webp" alt="NFS Most Wanted 2012" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">NFS Most Wanted 2012</div>
+                        <div class="game-title">✨ NFS Most Wanted 2012</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6.03 GB</span></div></div>
@@ -1793,7 +1796,7 @@
                 <div class="download-group">
                     <a href="https://devuploads.com/dht5kr7d8gy5" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://gofile.io/d/AWp0DlJL" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/AWp0DlJL', 'NFS Most Wanted Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://gofile.io/d/AWp0DlJL', 'NFS Most Wanted Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1804,7 +1807,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="sleeping-dogs.webp" alt="Sleeping Dogs" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Sleeping Dogs Definitive Edition</div>
+                        <div class="game-title">✨ Sleeping Dogs Definitive Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="note-box">💡 تحميل APK والتنزيل الداخلي (15GB).</div>
@@ -1813,7 +1816,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/d1Q7i0z47350X56" target="_blank" class="btn-download">📥 تحميل APK</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/d1Q7i0z47350X56', 'Sleeping Dogs')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/d1Q7i0z47350X56', 'Sleeping Dogs')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1824,7 +1827,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="prince-of-persia.webp" alt="Prince of Persia" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Prince of Persia: The Sands Of Time</div>
+                        <div class="game-title">✨ Prince of Persia: The Sands Of Time</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">2.02 GB</span></div></div>
@@ -1832,7 +1835,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/action/prince-of-persia-the-sands-of-time-135106" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/prince-of-persia-the-sands-of-time-135106', 'Prince of Persia')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/prince-of-persia-the-sands-of-time-135106', 'Prince of Persia')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1843,7 +1846,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="pes-2017.webp" alt="PES 2017" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">PES 2017</div>
+                        <div class="game-title">✨ PES 2017</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#كرة_القدم</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8.19 GB</span></div></div>
@@ -1851,7 +1854,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://apkvision.org/games/pro-evolution-soccer-2017-135145" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/pro-evolution-soccer-2017-135145', 'PES 2017')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/pro-evolution-soccer-2017-135145', 'PES 2017')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1862,7 +1865,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="call-of-duty-3.webp" alt="COD 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">CALL OF DUTY 3</div>
+                        <div class="game-title">✨ CALL OF DUTY 3</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3 GB</span></div></div>
@@ -1870,7 +1873,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/bhc2FliP9Q32aBA" target="_blank" class="btn-download">📥 تحميل اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/bhc2FliP9Q32aBA', 'CALL OF DUTY 3')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/bhc2FliP9Q32aBA', 'CALL OF DUTY 3')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1881,7 +1884,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="black.webp" alt="Black" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Black</div>
+                        <div class="game-title">✨ Black</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1 GB</span></div></div>
@@ -1890,7 +1893,7 @@
                 <div class="download-group">
                     <a href="https://modsfire.com/j9kAfdRUY98uAN4" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://modsfire.com/ZA6023vOWc7COtM" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/ZA6023vOWc7COtM', 'Black Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/ZA6023vOWc7COtM', 'Black Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1901,7 +1904,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="scarface.webp" alt="Scarface" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">SCARFACE</div>
+                        <div class="game-title">✨ SCARFACE</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3 GB</span></div></div>
@@ -1909,7 +1912,7 @@
                 </div>
                 <div class="download-group">
                     <a href="https://modsfire.com/s6I1i53Ws921HLI" target="_blank" class="btn-download">📥 تحميل اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/s6I1i53Ws921HLI', 'SCARFACE')">📋 نسخ رابط 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/s6I1i53Ws921HLI', 'SCARFACE')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1920,7 +1923,7 @@
                 <div class="game-main-content">
                     <div class="game-img-container"><img src="crash-team-racing.webp" alt="Crash Team Racing" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
                     <div class="game-details">
-                        <div class="game-title">Crash Team Racing Nitro-Fueled</div>
+                        <div class="game-title">✨ Crash Team Racing Nitro-Fueled</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">20 GB</span></div></div>
@@ -1929,7 +1932,213 @@
                 <div class="download-group">
                     <a href="https://dl.apkvision.org/crash-team-racing-nitro-fueled/CTR-Nitro-Fueled-v0.4.0-full-apkvision.apk" target="_blank" class="btn-download">📥 تحميل APK</a>
                     <a href="https://dl.apkvision.net/crash-team-racing-nitro-fueled/Crash-Team-Racing-Nitro-Fueled-apkvision.rar" target="_blank" class="btn-download secondary">📂 ملفات Data</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/crash-team-racing-nitro-fueled/Crash-Team-Racing-Nitro-Fueled-apkvision.rar', 'Crash Data')">📋 نسخ رابط Data لـ 1DM</button>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/crash-team-racing-nitro-fueled/Crash-Team-Racing-Nitro-Fueled-apkvision.rar', 'Crash Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 64 (DOOM 2016) -->
+            <div class="game-card" data-id="doom-2016" data-category="أكشن جديد">
+                <div class="game-number-badge">#64</div>
+                <div class="fav-btn" onclick="toggleFavorite('doom-2016', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="doom-2016.webp" alt="DOOM 2016" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ DOOM (2016)</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">21 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/doom-2016-135519/" target="_blank" class="btn-download">📥 تحميل APK + RAR</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/doom-2016-135519/', 'DOOM 2016')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 65 (Gothic Classic) -->
+            <div class="game-card" data-id="gothic-classic" data-category="أكشن جديد">
+                <div class="game-number-badge">#65</div>
+                <div class="fav-btn" onclick="toggleFavorite('gothic-classic', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="gothic-classic.webp" alt="Gothic Classic" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Gothic Classic</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3.55 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/role-playing/gothic-classic-135522/" target="_blank" class="btn-download">📥 تحميل APK فقط</a>
+                </div>
+            </div>
+
+            <!-- 66 (Ratatouille) -->
+            <div class="game-card" data-id="ratatouille" data-category="أكشن جديد">
+                <div class="game-number-badge">#66</div>
+                <div class="fav-btn" onclick="toggleFavorite('ratatouille', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="ratatouille.webp" alt="Ratatouille" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Ratatouille</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1.3 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/adventure/ratatouille-135530/" target="_blank" class="btn-download">📥 تحميل APK فقط</a>
+                </div>
+            </div>
+
+            <!-- 67 (The Last of Us Remastered) -->
+            <div class="game-card" data-id="the-last-of-us-remastered" data-category="رعب أكشن جديد">
+                <div class="game-number-badge">#67</div>
+                <div class="fav-btn" onclick="toggleFavorite('the-last-of-us-remastered', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="the-last-of-us.webp" alt="The Last of Us" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ The Last of Us Remastered</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box">💡 تتطلب معالج Snapdragon 8 gen2 وفوق. اللعبة لايزال فيها أخطاء في الفريمات وسيتم إصدار تحديث لتحسين الأداء وتصبح سلسة قريباً.</div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">41 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/adventure/the-last-of-us-remastered-135545/" target="_blank" class="btn-download">📥 تحميل APK + PKG</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/adventure/the-last-of-us-remastered-135545/', 'The Last of Us')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 68 (I.G.I. 2: Covert Strike) -->
+            <div class="game-card" data-id="igi-2" data-category="حرب أكشن جديد">
+                <div class="game-number-badge">#68</div>
+                <div class="fav-btn" onclick="toggleFavorite('igi-2', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="igi-2.webp" alt="IGI 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ I.G.I. 2: Covert Strike</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#حرب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">2 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/i-g-i-2-covert-strike-135565/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/i-g-i-2-covert-strike-135565/', 'I.G.I. 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 69 (The Closing Shift) -->
+            <div class="game-card" data-id="the-closing-shift" data-category="رعب جديد">
+                <div class="game-number-badge">#69</div>
+                <div class="fav-btn" onclick="toggleFavorite('the-closing-shift', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="the-closing-shift.webp" alt="The Closing Shift" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ The Closing Shift</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1.3 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/simulation/the-closing-shift-135568/" target="_blank" class="btn-download">📥 تحميل APK فقط</a>
+                </div>
+            </div>
+
+            <!-- 70 (Sengoku Basara 2: Heroes) -->
+            <div class="game-card" data-id="sengoku-basara-2" data-category="أكشن جديد">
+                <div class="game-number-badge">#70</div>
+                <div class="fav-btn" onclick="toggleFavorite('sengoku-basara-2', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="sengoku-basara-2.webp" alt="Sengoku Basara 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Sengoku Basara 2: Heroes</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/sengoku-basara-2-heroes-135570/" target="_blank" class="btn-download">📥 تحميل APK + ISO + SaveData</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/sengoku-basara-2-heroes-135570/', 'Sengoku Basara 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 71 (Metro 2033) -->
+            <div class="game-card" data-id="metro-2033" data-category="رعب أكشن جديد">
+                <div class="game-number-badge">#71</div>
+                <div class="fav-btn" onclick="toggleFavorite('metro-2033', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="metro-2033.webp" alt="Metro 2033" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Metro 2033</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/metro-2033-135551/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/metro-2033-135551/', 'Metro 2033')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 72 (Sonic Racing) -->
+            <div class="game-card" data-id="sonic-racing" data-category="سباق جديد">
+                <div class="game-number-badge">#72</div>
+                <div class="fav-btn" onclick="toggleFavorite('sonic-racing', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="sonic-racing.webp" alt="Sonic Racing" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Sonic Racing</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">612.1 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/racing/sonic-racing-135578/" target="_blank" class="btn-download">📥 تحميل APK فقط</a>
+                </div>
+            </div>
+
+            <!-- 73 (Manhunt) -->
+            <div class="game-card" data-id="manhunt" data-category="رعب أكشن جديد">
+                <div class="game-number-badge">#73</div>
+                <div class="fav-btn" onclick="toggleFavorite('manhunt', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="manhunt.webp" alt="Manhunt" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Manhunt</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/manhunt-135447/" target="_blank" class="btn-download">📥 تحميل APK + Data</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/manhunt-135447/', 'Manhunt')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 74 (Prototype 2) -->
+            <div class="game-card" data-id="prototype-2" data-category="أكشن جديد">
+                <div class="game-number-badge">#74</div>
+                <div class="fav-btn" onclick="toggleFavorite('prototype-2', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-img-container"><img src="prototype-2.webp" alt="Prototype 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Prototype 2</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">9 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/prototype-2-135409/" target="_blank" class="btn-download">📥 تحميل APK + RAR</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/prototype-2-135409/', 'Prototype 2')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -1980,13 +2189,10 @@
             }
         }
 
-        function requestGame() {
-            let gameName = prompt("اكتب اسم اللعبة أو البورت الذي تبي إضافته في المنصة:");
-            if (gameName && gameName.trim() !== "") {
-                // تم ربط الطلب بحساب انستغرام الخاص بك مباشرة
-                let url = "https://www.instagram.com/rafea4947?obrf=OGdiODNkN2loaTdx";
-                window.open(url, '_blank');
-            }
+        // دعم منصة RAF-VX ينقلك مباشرة للإنستا بدون طلب اسم اللعبة
+        function supportPlatform() {
+            let url = "https://www.instagram.com/rafea4947?obrf=OGdiODNkN2loaTdx";
+            window.open(url, '_blank');
             toggleMenu();
         }
 
