@@ -755,41 +755,25 @@
             display: flex;
             gap: 8px;
             margin-top: 6px;
-        }
-        .btn-quick-play {
-            background: linear-gradient(135deg, #00e5ff 0%, #007acc 100%);
-            color: #070305;
-            font-weight: 900;
-            border: none;
-            border-radius: 12px;
-            padding: 8px 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            transition: 0.3s;
-            flex: 1;
-        }
-        .btn-quick-play:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 15px rgba(0,229,255,0.5);
+            width: 100%;
         }
         .btn-info-modal {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--card-border);
-            color: #fff;
-            font-weight: 700;
+            background: rgba(0, 229, 255, 0.12);
+            border: 1px solid rgba(0, 229, 255, 0.4);
+            color: #00e5ff;
+            font-weight: 800;
             border-radius: 12px;
-            padding: 8px 12px;
+            padding: 10px 14px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             transition: 0.3s;
+            width: 100%;
+            text-align: center;
         }
         .btn-info-modal:hover {
-            border-color: var(--accent-color);
-            background: rgba(255, 26, 64, 0.15);
+            border-color: #00e5ff;
+            background: rgba(0, 229, 255, 0.25);
+            box-shadow: 0 0 15px rgba(0,229,255,0.3);
         }
         .star-rating {
             display: flex;
@@ -3270,48 +3254,22 @@
                     let actionsRow = document.createElement('div');
                     actionsRow.className = 'game-actions-row';
                     
-                    let quickBtn = document.createElement('button');
-                    quickBtn.className = 'btn-quick-play';
-                    quickBtn.innerHTML = '🚀 تشغيل سريع';
-                    quickBtn.onclick = (function(cCard) {
-                        return function() { quickPlayGame(cCard); };
-                    })(card);
-
                     let infoBtn = document.createElement('button');
                     infoBtn.className = 'btn-info-modal';
-                    infoBtn.innerHTML = 'ℹ️ تفاصيل';
+                    infoBtn.innerHTML = 'ℹ️ تفاصيل ومعلومات اللعبة';
                     infoBtn.onclick = (function(cCard) {
                         return function() { openGameInfoModal(cCard); };
                     })(card);
 
-                    actionsRow.appendChild(quickBtn);
                     actionsRow.appendChild(infoBtn);
                     downloadGroup.insertBefore(actionsRow, downloadGroup.firstChild);
                 }
             }
         }
 
-        // زر التشغيل السريع المباشر (🚀)
-        function quickPlayGame(card) {
-            let title = card.getElementsByClassName('game-title')[0].innerText;
-            // Get first download link
-            let dlLink = card.querySelector('.btn-download:not(.secondary):not(.dm-copy)');
-            let url = dlLink ? dlLink.href : '#';
-            
-            let modal = document.getElementById('gameInfoModal');
-            let body = document.getElementById('modalGameBody');
-            body.innerHTML = `
-                <h3 style="font-size:1.5rem; font-weight:900; color:var(--accent-color); margin-bottom:12px;">🚀 تشغيل ${title}</h3>
-                <p style="color:#d1c4cb; margin-bottom:20px; font-size:0.95rem;">هل تريد بدء تشغيل اللعبة أو الانتقال لرابط التحميل الفوري؟</p>
-                <div style="display:flex; gap:10px; flex-direction:column;">
-                    <a href="${url}" target="_blank" class="emu-btn-link" style="padding:12px; font-size:1rem; background:var(--accent-gradient); color:#fff; border:none;">📥 البدء والتشغيل الفوري</a>
-                    <button onclick="closeGameInfoModal()" class="emu-btn-link" style="padding:10px; background:rgba(255,255,255,0.06); color:#fff; border:1px solid var(--card-border);">إغلاق</button>
-                </div>
-            `;
-            modal.classList.add('active');
-        }
+        // تم استبدال التشغيل السريع بنافذة معلومات وترتيب أنيق ومباشر للتحميل
 
-        // شاشة معلومات منبثقة (Modal تفصيلي)
+        // شاشة معلومات منبثقة (Modal تفصيلي ومنظم)
         function openGameInfoModal(card) {
             let title = card.getElementsByClassName('game-title')[0].innerText;
             let portType = card.querySelector('.port-tag-text') ? card.querySelector('.port-tag-text').innerText : 'بورت رسمي';
@@ -3319,17 +3277,32 @@
             let category = card.getAttribute('data-category');
             let note = card.querySelector('.note-box') ? card.querySelector('.note-box').innerText : 'لا توجد ملاحظات خاصة، اللعبة متوافقة تماماً مع معالجات Snapdragon.';
             
+            // جلب روابط التحميل الخاصة بالبطاقة
+            let dlButtonsHtml = '';
+            let buttons = card.querySelectorAll('.download-group .btn-download');
+            buttons.forEach(btn => {
+                let clone = btn.cloneNode(true);
+                clone.style.margin = '4px 0';
+                clone.style.display = 'block';
+                clone.style.textAlign = 'center';
+                dlButtonsHtml += clone.outerHTML;
+            });
+
             let modal = document.getElementById('gameInfoModal');
             let body = document.getElementById('modalGameBody');
             body.innerHTML = `
-                <h3 style="font-size:1.5rem; font-weight:900; color:#00e5ff; margin-bottom:12px;">🎮 ${title}</h3>
-                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px; font-size:0.95rem; background:rgba(0,0,0,0.4); padding:14px; border-radius:12px;">
-                    <div>⚙️ نوع التشغيل: <span style="color:#fff; font-weight:700;">${portType}</span></div>
-                    <div>📦 حجم اللعبة: <span style="color:#fff; font-weight:700;">${size}</span></div>
+                <h3 style="font-size:1.4rem; font-weight:900; color:#00e5ff; margin-bottom:12px; border-bottom:1px solid rgba(0,229,255,0.2); padding-bottom:8px;">🎮 ${title}</h3>
+                <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px; font-size:0.9rem; background:rgba(0,0,0,0.5); padding:12px; border-radius:12px; border: 1px solid var(--card-border);">
+                    <div>⚙️ التشغيل: <span style="color:#fff; font-weight:700;">${portType}</span></div>
+                    <div>📦 الحجم: <span style="color:#fff; font-weight:700;">${size}</span></div>
                     <div>🏷️ التصنيف: <span style="color:#fff; font-weight:700;">${category}</span></div>
-                    <div>💡 ملاحظة التقنية: <span style="color:#ffe082;">${note}</span></div>
+                    <div>💡 ملاحظة: <span style="color:#ffe082;">${note}</span></div>
                 </div>
-                <button onclick="closeGameInfoModal()" class="emu-btn-link" style="width:100%; padding:10px; background:rgba(255,255,255,0.08); color:#fff; border:1px solid var(--card-border);">إغلاق النافذة</button>
+                <div style="margin-bottom: 14px;">
+                    <p style="font-size:0.85rem; font-weight:700; color:var(--text-muted); margin-bottom:8px;">📥 روابط التحميل والنسخ المتاحة:</p>
+                    ${dlButtonsHtml}
+                </div>
+                <button onclick="closeGameInfoModal()" class="emu-btn-link" style="width:100%; padding:10px; background:rgba(255,255,255,0.08); color:#fff; border:1px solid var(--card-border); font-weight:700;">إغلاق النافذة</button>
             `;
             modal.classList.add('active');
         }
