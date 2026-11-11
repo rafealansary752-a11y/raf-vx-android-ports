@@ -215,7 +215,7 @@
 
         .emulators-content {
             background: rgba(12, 18, 34, 0.98);
-            border: 1px solid rgba(56, 189, 248, 0.4);
+            border: 1px solid var(--accent-color);
             border-radius: 28px;
             width: 100%;
             max-width: 850px;
@@ -251,13 +251,13 @@
 
         .emu-section-title {
             font-size: 1.05rem;
-            color: #38bdf8;
+            color: var(--accent-color);
             font-weight: 800;
             margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            border-bottom: 1px solid var(--card-border);
             padding-bottom: 8px;
         }
 
@@ -270,7 +270,7 @@
 
         .emu-sub-card {
             background: rgba(15, 23, 42, 0.9);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 14px;
             display: flex;
@@ -292,9 +292,9 @@
         }
 
         .emu-btn-link {
-            background: rgba(56, 189, 248, 0.15);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            color: #38bdf8;
+            background: var(--badge-bg);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
             padding: 8px 12px;
             border-radius: 10px;
             font-size: 0.8rem;
@@ -823,6 +823,134 @@
             text-align: right;
         }
 
+    
+        /* === تصميم المساعد المشرف === */
+        .supervisor-badge {
+            margin-bottom: 8px;
+            display: inline-block;
+            background: rgba(255, 26, 64, 0.12);
+            border: 1px solid rgba(255, 26, 64, 0.4);
+            padding: 6px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(255, 26, 64, 0.25);
+        }
+
+        /* === شريط خيارات طرق العرض التفاعلي الجديد === */
+        .layout-switcher-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 12px 20px;
+            margin-bottom: 22px;
+            backdrop-filter: blur(15px);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .layout-switcher-title {
+            font-size: 0.92rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .layout-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .layout-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .layout-btn:hover, .layout-btn.active {
+            background: var(--accent-gradient);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 4px 12px var(--card-border-hover);
+        }
+
+        /* === نمط الشبكة العصرية (Grid 2 Columns) === */
+        .games-grid.grid-mode {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+            gap: 18px !important;
+        }
+        .games-grid.grid-mode .game-card {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            padding: 22px !important;
+        }
+        .games-grid.grid-mode .game-main-content {
+            width: 100% !important;
+        }
+        .games-grid.grid-mode .download-group {
+            width: 100% !important;
+        }
+
+        /* === نمط السلايدر الأفقي السينمائي (Carousel Mode) === */
+        .games-grid.carousel-mode {
+            display: flex !important;
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 20px !important;
+            padding-bottom: 25px !important;
+            padding-top: 10px !important;
+            -webkit-overflow-scrolling: touch;
+        }
+        .games-grid.carousel-mode .game-card {
+            flex: 0 0 340px !important;
+            scroll-snap-align: center !important;
+            flex-direction: column !important;
+            align-items: stretch !important;
+            height: 100% !important;
+        }
+        .games-grid.carousel-mode .game-main-content {
+            width: 100% !important;
+        }
+        .games-grid.carousel-mode .download-group {
+            width: 100% !important;
+        }
+
+        /* === نمط الكروت المصغرة السريعة (Compact Cyber Mode) === */
+        .games-grid.compact-mode {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+            gap: 14px !important;
+        }
+        .games-grid.compact-mode .game-card {
+            padding: 16px !important;
+            flex-direction: column !important;
+            border-radius: 18px !important;
+        }
+        .games-grid.compact-mode .game-title-box {
+            width: 90px !important;
+            height: 105px !important;
+        }
+        .games-grid.compact-mode .game-title {
+            font-size: 1.05rem !important;
+        }
+        .games-grid.compact-mode .btn-download {
+            padding: 8px 10px !important;
+            font-size: 0.8rem !important;
+        }
+        .games-grid.compact-mode .star-rating {
+            display: none !important;
+        }
+
     </style>
 </head>
 <body>
@@ -852,7 +980,7 @@
                     <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
                     <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
                     <a href="https://t.me/RAF2007mmaaggq" target="_blank" class="menu-item">💬 أريد المساعدة (قروب المشكلات)</a>
-                    <div class="menu-item" onclick="openEmulatorsModal()" style="color: #38bdf8; font-weight: 900;">🕹️ قسم المحاكيات الشامل</div>
+                    <div class="menu-item" onclick="openEmulatorsModal()" style="color: var(--accent-color); font-weight: 900;">🕹️ قسم المحاكيات الشامل</div>
                     <div class="menu-item" onclick="scrollToSearch()">🔍 البحث السريع</div>
                 </div>
             </div>
@@ -862,7 +990,19 @@
             <div class="emulators-content">
                 <button class="close-modal-btn" onclick="closeEmulatorsModal()">✕</button>
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <h2 style="font-size: 1.8rem; font-weight: 900; background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    <div style="margin-bottom: 14px; background: rgba(255, 26, 64, 0.08); border: 1px solid var(--card-border); padding: 10px; border-radius: 14px;">
+                        <span style="font-size: 0.88rem; font-weight: 700; color: var(--text-main);">🎨 تخصيص لون المحاكيات والمنصة (الأساسي أحمر):</span>
+                        <div class="color-dots" style="justify-content: center; margin-top: 8px;">
+                            <div class="color-dot" style="background: #ff1a40;" title="أحمر ملكي" onclick="setTheme('#ff1a40', '#800014')"></div>
+                            <div class="color-dot" style="background: #00bcd4;" title="سماوي فخم" onclick="setTheme('#00bcd4', '#006064')"></div>
+                            <div class="color-dot" style="background: #4caf50;" title="أخضر ملكي" onclick="setTheme('#4caf50', '#1b5e20')"></div>
+                            <div class="color-dot" style="background: #ffc107;" title="أصفر ذهبي" onclick="setTheme('#ffc107', '#ff6f00')"></div>
+                            <div class="color-dot" style="background: #9c27b0;" title="موف أرجواني" onclick="setTheme('#9c27b0', '#4a148c')"></div>
+                            <div class="color-dot" style="background: #00e5ff;" title="أزرق براق" onclick="setTheme('#00e5ff', '#004d61')"></div>
+                            <div class="color-dot" style="background: #ff6d00;" title="برتقالي ناري" onclick="setTheme('#ff6d00', '#b23c00')"></div>
+                        </div>
+                    </div>
+                    <h2 style="font-size: 1.8rem; font-weight: 900; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                         RAF OFFICIAL EMULATORS
                     </h2>
                     <p style="color: #94a3b8; font-size: 0.85rem;">مرجعك الشامل للمحاكيات، تعاريف الأداء، ومكتبات ألعاب PC</p>
@@ -974,7 +1114,11 @@
                 </div>
             </div>
 
-            <div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
+            <div class="supervisor-badge">
+    <div style="font-size: 1.35rem; font-weight: 800; color: #ff1a40; letter-spacing: 1px;">(Abdulalim)</div>
+    <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted); margin-top: 2px;">مساعد المطور المشرف (Abdulalim)</div>
+</div>
+<div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
 
             <p class="subtitle">أقوى ألعاب الأندرويد المحولة بعناية فائقة | خالي تماماً من الإعلانات</p>
 
@@ -1004,7 +1148,18 @@
             </div>
         </header>
 
-        <div class="games-grid" id="gamesGrid">
+        
+        <!-- شريط الطرق التفاعلية الجديدة لعرض وتنسيق الألعاب -->
+        <div class="layout-switcher-bar">
+            <span class="layout-switcher-title">⚡ طريقة عرض الألعاب المبتكرة:</span>
+            <div class="layout-buttons">
+                <button class="layout-btn active" id="btn-view-grid" onclick="switchViewMode('grid')">📱 شبكة عصرية (2x2)</button>
+                <button class="layout-btn" id="btn-view-carousel" onclick="switchViewMode('carousel')">🎡 سلايدر أفقي متناغم</button>
+                <button class="layout-btn" id="btn-view-compact" onclick="switchViewMode('compact')">⚡ كروت مصغرة سريعة</button>
+            </div>
+        </div>
+
+        <div class="games-grid grid-mode" id="gamesGrid">
             
             <!-- 1 -->
             <div class="game-card" data-id="fable-2" data-category="أكشن جديد">
@@ -2939,9 +3094,8 @@
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://dl.apkvision.org/need-for-speed-rivals/NFS-Rivals-v1.2.0-Beta-full-apkvision.apk" target="_blank" class="btn-download">📥 تحميل ملف اللعبة (APK)</a>
-                    <a href="https://dl.apkvision.net/need-for-speed-rivals/NFSRivals-apkvision.7z" target="_blank" class="btn-download secondary">📂 تحميل ملف اللعبة (Data)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/need-for-speed-rivals/NFSRivals-apkvision.7z', 'Need For Speed Rivals Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                    <a href="https://apkvision.org/games/racing/need-for-speed-rivals-135647/" target="_blank" class="btn-download">📥 تحميل ملف اللعبة والـ APK (رابط واحد مباشر)</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/racing/need-for-speed-rivals-135647/', 'Need For Speed Rivals')">📋 نسخ رابط اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -3315,6 +3469,40 @@
         document.addEventListener("DOMContentLoaded", function() {
             loadAllRatings();
             updateCategoryCounts();
+        });
+
+    
+        // نظام تبديل نمط عرض الألعاب المبتكر (شبكة، سلايدر أفقي، كروت مصغرة)
+        function switchViewMode(mode) {
+            let grid = document.getElementById('gamesGrid');
+            let btnGrid = document.getElementById('btn-view-grid');
+            let btnCarousel = document.getElementById('btn-view-carousel');
+            let btnCompact = document.getElementById('btn-view-compact');
+
+            if(!grid) return;
+
+            grid.classList.remove('grid-mode', 'carousel-mode', 'compact-mode');
+            if(btnGrid) btnGrid.classList.remove('active');
+            if(btnCarousel) btnCarousel.classList.remove('active');
+            if(btnCompact) btnCompact.classList.remove('active');
+
+            if (mode === 'grid') {
+                grid.classList.add('grid-mode');
+                if(btnGrid) btnGrid.classList.add('active');
+            } else if (mode === 'carousel') {
+                grid.classList.add('carousel-mode');
+                if(btnCarousel) btnCarousel.classList.add('active');
+            } else if (mode === 'compact') {
+                grid.classList.add('compact-mode');
+                if(btnCompact) btnCompact.classList.add('active');
+            }
+
+            localStorage.setItem('rafvx_view_mode', mode);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            let savedMode = localStorage.getItem('rafvx_view_mode') || 'grid';
+            switchViewMode(savedMode);
         });
 
     </script>
