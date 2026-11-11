@@ -567,22 +567,43 @@
             }
         }
 
-        .game-img-container {
+        /* حاوية اسم اللعبة الاحترافي بدلاً من الصورة */
+        .game-title-box {
             position: relative;
-            width: 105px;
+            width: 120px;
             height: 140px;
             border-radius: 16px;
             overflow: hidden;
-            background: #000;
+            background: linear-gradient(145deg, #120307, #24060e);
             flex-shrink: 0;
-            border: 1px solid var(--badge-border);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 6px 20px rgba(255, 26, 64, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
         }
 
-        .game-img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .game-title-box .game-logo-text {
+            font-size: 1.1rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #ff99ab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.25;
+            text-shadow: 0 2px 10px rgba(255, 26, 64, 0.5);
+            word-break: break-word;
+        }
+
+        .game-title-box .game-logo-sub {
+            font-size: 0.65rem;
+            color: #ff1a40;
+            font-weight: 800;
+            margin-top: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .game-details {
@@ -734,14 +755,14 @@
 
     <div class="container">
         <div class="update-banner" id="updateBanner">
-            <span>🔥 تم تحديث المنصة وترقيم جميع الألعاب الـ 87 وتنسيق قسم المحاكيات الشامل وتصحيح الأغلفة بنجاح!</span>
+            <span>🔥 تم تحديث المنصة وعرض أسماء الألعاب بشكل احترافي وجامد بدون صور!</span>
             <button onclick="closeBanner()">إخفاء</button>
         </div>
 
         <div class="mini-news-ticker">
             <div class="ticker-track">
-                <span class="ticker-item">⚡ تم تحديث المنصة وترقيم الـ 87 لعبة بنجاح • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
-                <span class="ticker-item">⚡ تم تحديث المنصة وترقيم الـ 87 لعبة بنجاح • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
+                <span class="ticker-item">⚡ تصميم عصري وأيقوني لأسماء الألعاب • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
+                <span class="ticker-item">⚡ تصميم عصري وأيقوني لأسماء الألعاب • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
             </div>
         </div>
 
@@ -912,7 +933,10 @@
                 <div class="game-number-badge">#1</div>
                 <div class="fav-btn" onclick="toggleFavorite('fable-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2mwt.png" alt="Fable 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Fable 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Fable 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -931,7 +955,10 @@
                 <div class="game-number-badge">#2</div>
                 <div class="fav-btn" onclick="toggleFavorite('monster-hunter-generations', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7d.png" alt="Monster Hunter" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Monster Hunter</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Monster Hunter Generations Ultimate</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -950,7 +977,10 @@
                 <div class="game-number-badge">#3</div>
                 <div class="fav-btn" onclick="toggleFavorite('downhill-domination', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2q1r.png" alt="Downhill Domination" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Downhill</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Downhill Domination</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -969,7 +999,10 @@
                 <div class="game-number-badge">#4</div>
                 <div class="fav-btn" onclick="toggleFavorite('pes-13', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2xux.png" alt="PES 2013" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">PES 2013</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Pro Evolution Soccer 2013</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -988,7 +1021,10 @@
                 <div class="game-number-badge">#5</div>
                 <div class="fav-btn" onclick="toggleFavorite('persona-4-golden', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7c.png" alt="Persona 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Persona 4</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Persona 4 Golden</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1007,7 +1043,10 @@
                 <div class="game-number-badge">#6</div>
                 <div class="fav-btn" onclick="toggleFavorite('donkey-kong-bananza', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1yjj.png" alt="Donkey Kong" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Donkey Kong</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Donkey Kong Bananza</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1027,7 +1066,10 @@
                 <div class="game-number-badge">#7</div>
                 <div class="fav-btn" onclick="toggleFavorite('ravenfield', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1r7v.png" alt="Ravenfield" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Ravenfield</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Ravenfield</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1046,7 +1088,10 @@
                 <div class="game-number-badge">#8</div>
                 <div class="fav-btn" onclick="toggleFavorite('the-long-drive', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2xuz.png" alt="The Long Drive" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Long Drive</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ The Long Drive</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1065,7 +1110,10 @@
                 <div class="game-number-badge">#9</div>
                 <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1vnn.png" alt="Devil May Cry 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">DMC 3</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Devil May Cry 3: Special Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1084,7 +1132,10 @@
                 <div class="game-number-badge">#10</div>
                 <div class="fav-btn" onclick="toggleFavorite('dragon-ball-raging-blast-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2arc.png" alt="Dragon Ball" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">DBZ Raging</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Dragon Ball: Raging Blast 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1103,7 +1154,10 @@
                 <div class="game-number-badge">#11</div>
                 <div class="fav-btn" onclick="toggleFavorite('dragon-ball-z-burst-limit', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2ard.png" alt="Dragon Ball Z" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Burst Limit</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Dragon Ball Z: Burst Limit</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1122,7 +1176,10 @@
                 <div class="game-number-badge">#12</div>
                 <div class="fav-btn" onclick="toggleFavorite('prototype', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7f.png" alt="Prototype" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Prototype</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Prototype (الجزء الأول)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1141,7 +1198,10 @@
                 <div class="game-number-badge">#13</div>
                 <div class="fav-btn" onclick="toggleFavorite('left-4-dead-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7g.png" alt="Left 4 Dead 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Left 4 Dead 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Left 4 Dead 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1160,7 +1220,10 @@
                 <div class="game-number-badge">#14</div>
                 <div class="fav-btn" onclick="toggleFavorite('ninja-gaiden-black', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.png" alt="Ninja Gaiden" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Ninja Gaiden</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Ninja Gaiden Black</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1179,7 +1242,10 @@
                 <div class="game-number-badge">#15</div>
                 <div class="fav-btn" onclick="toggleFavorite('well-dweller', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7i.png" alt="Well Dweller" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Well Dweller</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Well Dweller</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1198,7 +1264,10 @@
                 <div class="game-number-badge">#16</div>
                 <div class="fav-btn" onclick="toggleFavorite('midnight-club-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1vnv.png" alt="Midnight Club 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Midnight Club 3</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Midnight Club 3: Dub Edition Remix</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1217,7 +1286,10 @@
                 <div class="game-number-badge">#17</div>
                 <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-armageddon', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7k.png" alt="Mortal Kombat" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">MK Armageddon</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Mortal Kombat: Armageddon</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1236,7 +1308,10 @@
                 <div class="game-number-badge">#18</div>
                 <div class="fav-btn" onclick="toggleFavorite('skyrim', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1tnv.png" alt="Skyrim" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Skyrim</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ The Elder Scrolls V: Skyrim</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1256,7 +1331,10 @@
                 <div class="game-number-badge">#19</div>
                 <div class="fav-btn" onclick="toggleFavorite('lego-marvel', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1vcp.png" alt="Lego Marvel" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Lego Marvel</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Lego Marvel Super Heroes</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1276,7 +1354,10 @@
                 <div class="game-number-badge">#20</div>
                 <div class="fav-btn" onclick="toggleFavorite('uncharted-collection', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1r7z.png" alt="Uncharted" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">UNCHARTED</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ UNCHARTED Collection</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1296,7 +1377,10 @@
                 <div class="game-number-badge">#21</div>
                 <div class="fav-btn" onclick="toggleFavorite('max-payne-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7l.png" alt="Max Payne 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Max Payne 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Max Payne 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1316,7 +1400,10 @@
                 <div class="game-number-badge">#22</div>
                 <div class="fav-btn" onclick="toggleFavorite('dead-cells', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7m.png" alt="Dead Cells" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Dead Cells</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Dead Cells</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1335,7 +1422,10 @@
                 <div class="game-number-badge">#23</div>
                 <div class="fav-btn" onclick="toggleFavorite('pes-5', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7n.png" alt="PES 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">PES 5</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ PES 5</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1354,7 +1444,10 @@
                 <div class="game-number-badge">#24</div>
                 <div class="fav-btn" onclick="toggleFavorite('gta-5-port', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2rmt.png" alt="GTA 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">GTA 5</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ GTA 5 Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1374,7 +1467,10 @@
                 <div class="game-number-badge">#25</div>
                 <div class="fav-btn" onclick="toggleFavorite('cod-4-modern-warfare', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7o.png" alt="COD 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">COD 4</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Call of Duty 4: Modern Warfare (Arabic)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1394,7 +1490,10 @@
                 <div class="game-number-badge">#26</div>
                 <div class="fav-btn" onclick="toggleFavorite('ultimate-spider-man', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7p.png" alt="Spider-Man" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Spider-Man</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Ultimate Spider-Man</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1413,7 +1512,10 @@
                 <div class="game-number-badge">#27</div>
                 <div class="fav-btn" onclick="toggleFavorite('lost-odyssey', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7q.png" alt="Lost Odyssey" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Lost Odyssey</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Lost Odyssey</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1432,7 +1534,10 @@
                 <div class="game-number-badge">#28</div>
                 <div class="fav-btn" onclick="toggleFavorite('gran-turismo-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7r.png" alt="Gran Turismo 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Gran Turismo 3</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Gran Turismo 3 A-Spec</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1451,7 +1556,10 @@
                 <div class="game-number-badge">#29</div>
                 <div class="fav-btn" onclick="toggleFavorite('persona-5-royal', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7s.png" alt="Persona 5" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Persona 5</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Persona 5 Royal</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1470,7 +1578,10 @@
                 <div class="game-number-badge">#30</div>
                 <div class="fav-btn" onclick="toggleFavorite('resident-evil-4-classic', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7t.png" alt="Resident Evil 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">RE 4 Classic</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Resident Evil 4 Classic</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1489,7 +1600,10 @@
                 <div class="game-number-badge">#31</div>
                 <div class="fav-btn" onclick="toggleFavorite('fifa-street-2012', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7u.png" alt="FIFA Street" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">FIFA Street</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ FIFA Street 2012</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1508,7 +1622,10 @@
                 <div class="game-number-badge">#32</div>
                 <div class="fav-btn" onclick="toggleFavorite('sekiro', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1uzz.png" alt="Sekiro" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">SEKIRO</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ SEKIRO Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1528,7 +1645,10 @@
                 <div class="game-number-badge">#33</div>
                 <div class="fav-btn" onclick="toggleFavorite('forza-horizon-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7v.png" alt="Forza Horizon 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Forza 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Forza Horizon 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1548,7 +1668,10 @@
                 <div class="game-number-badge">#34</div>
                 <div class="fav-btn" onclick="toggleFavorite('god-of-war-chains-of-olympus', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7w.png" alt="GOW Chains" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">GOW Chains</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ God of War: Chains of Olympus</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1567,7 +1690,10 @@
                 <div class="game-number-badge">#35</div>
                 <div class="fav-btn" onclick="toggleFavorite('cod-black-ops-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7x.png" alt="BO2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Black Ops 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Call of Duty: Black Ops 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1586,7 +1712,10 @@
                 <div class="game-number-badge">#36</div>
                 <div class="fav-btn" onclick="toggleFavorite('inside', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7y.png" alt="Inside" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">INSIDE</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ INSIDE</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1605,7 +1734,10 @@
                 <div class="game-number-badge">#37</div>
                 <div class="fav-btn" onclick="toggleFavorite('resident-evil-7', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7z.png" alt="Resident Evil 7" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">RE 7</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Resident Evil 7</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1625,7 +1757,10 @@
                 <div class="game-number-badge">#38</div>
                 <div class="fav-btn" onclick="toggleFavorite('mgs-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x80.png" alt="MGS 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">MGS 2 HD</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Metal Gear Solid 2 HD</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1644,7 +1779,10 @@
                 <div class="game-number-badge">#39</div>
                 <div class="fav-btn" onclick="toggleFavorite('def-jam', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x81.png" alt="Def Jam" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Def Jam</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Def Jam: Fight for NY</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1663,7 +1801,10 @@
                 <div class="game-number-badge">#40</div>
                 <div class="fav-btn" onclick="toggleFavorite('naruto-revolution', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x82.png" alt="Naruto" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Naruto Storm</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Naruto Storm Revolution</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1682,7 +1823,10 @@
                 <div class="game-number-badge">#41</div>
                 <div class="fav-btn" onclick="toggleFavorite('cod-mw2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x83.png" alt="COD MW2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">COD MW2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Call of Duty: Modern Warfare 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1701,7 +1845,10 @@
                 <div class="game-number-badge">#42</div>
                 <div class="fav-btn" onclick="toggleFavorite('infamous-second-son', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x84.png" alt="inFAMOUS" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">inFAMOUS</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ inFAMOUS Second Son</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1721,7 +1868,10 @@
                 <div class="game-number-badge">#43</div>
                 <div class="fav-btn" onclick="toggleFavorite('metal-gear-rising', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x85.png" alt="Metal Gear Rising" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">MGR Revengeance</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Metal Gear Rising: Revengeance</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1740,7 +1890,10 @@
                 <div class="game-number-badge">#44</div>
                 <div class="fav-btn" onclick="toggleFavorite('wwe-12', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x86.png" alt="WWE 12" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">WWE 12</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ WWE 12</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1759,7 +1912,10 @@
                 <div class="game-number-badge">#45</div>
                 <div class="fav-btn" onclick="toggleFavorite('gears-of-war-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x87.png" alt="Gears of War 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Gears of War 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Gears of War 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1778,7 +1934,10 @@
                 <div class="game-number-badge">#46</div>
                 <div class="fav-btn" onclick="toggleFavorite('mortal-kombat-9', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x88.png" alt="Mortal Kombat 9" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">MK 9</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Mortal Kombat 9 Komplete Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1797,7 +1956,10 @@
                 <div class="game-number-badge">#47</div>
                 <div class="fav-btn" onclick="toggleFavorite('god-of-war-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x89.png" alt="GOW 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">GOW 3</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ God of War III</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1817,7 +1979,10 @@
                 <div class="game-number-badge">#48</div>
                 <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted-classic', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8a.png" alt="NFS Classic" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">NFS Classic</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ NFS Most Wanted (Classic)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1837,7 +2002,10 @@
                 <div class="game-number-badge">#49</div>
                 <div class="fav-btn" onclick="toggleFavorite('ultra-street-fighter-iv', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8b.png" alt="Street Fighter IV" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">SF IV</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Ultra Street Fighter IV</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1856,7 +2024,10 @@
                 <div class="game-number-badge">#50</div>
                 <div class="fav-btn" onclick="toggleFavorite('devil-may-cry-4', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8c.png" alt="DMC 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">DMC 4</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Devil May Cry 4</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1875,7 +2046,10 @@
                 <div class="game-number-badge">#51</div>
                 <div class="fav-btn" onclick="toggleFavorite('gta-iv', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1vnc.png" alt="GTA IV" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">GTA IV</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ GTA IV Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1894,7 +2068,10 @@
                 <div class="game-number-badge">#52</div>
                 <div class="fav-btn" onclick="toggleFavorite('forza-horizon-1', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8e.png" alt="Forza Horizon 1" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Forza 1</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Forza Horizon 1</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1914,7 +2091,10 @@
                 <div class="game-number-badge">#53</div>
                 <div class="fav-btn" onclick="toggleFavorite('naruto-generations', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8f.png" alt="Naruto Generations" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Generations</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Naruto Storm Generations</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1933,7 +2113,10 @@
                 <div class="game-number-badge">#54</div>
                 <div class="fav-btn" onclick="toggleFavorite('bloodborne', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8g.png" alt="Bloodborne" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Bloodborne</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Bloodborne Android</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1953,7 +2136,10 @@
                 <div class="game-number-badge">#55</div>
                 <div class="fav-btn" onclick="toggleFavorite('naruto-storm-2-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8h.png" alt="Naruto Storm 2 & 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Storm 2 & 3</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Naruto Ninja Storm 2 & 3</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1973,7 +2159,10 @@
                 <div class="game-number-badge">#56</div>
                 <div class="fav-btn" onclick="toggleFavorite('nfs-most-wanted', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8i.png" alt="NFS Most Wanted 2012" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">NFS 2012</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ NFS Most Wanted 2012</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -1993,7 +2182,10 @@
                 <div class="game-number-badge">#57</div>
                 <div class="fav-btn" onclick="toggleFavorite('sleeping-dogs', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8j.png" alt="Sleeping Dogs" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Sleeping Dogs</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Sleeping Dogs Definitive Edition</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2013,7 +2205,10 @@
                 <div class="game-number-badge">#58</div>
                 <div class="fav-btn" onclick="toggleFavorite('prince-of-persia', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8k.png" alt="Prince of Persia" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Prince of Persia</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Prince of Persia: The Sands Of Time</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2032,7 +2227,10 @@
                 <div class="game-number-badge">#59</div>
                 <div class="fav-btn" onclick="toggleFavorite('pes-2017', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8l.png" alt="PES 2017" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">PES 2017</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ PES 2017</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2051,7 +2249,10 @@
                 <div class="game-number-badge">#60</div>
                 <div class="fav-btn" onclick="toggleFavorite('call-of-duty-3', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8m.png" alt="COD 3" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">COD 3</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ CALL OF DUTY 3</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2070,7 +2271,10 @@
                 <div class="game-number-badge">#61</div>
                 <div class="fav-btn" onclick="toggleFavorite('black', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8n.png" alt="Black" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">BLACK</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Black</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2090,7 +2294,10 @@
                 <div class="game-number-badge">#62</div>
                 <div class="fav-btn" onclick="toggleFavorite('scarface', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8o.png" alt="Scarface" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">SCARFACE</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ SCARFACE</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2109,7 +2316,10 @@
                 <div class="game-number-badge">#63</div>
                 <div class="fav-btn" onclick="toggleFavorite('crash-team-racing', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8p.png" alt="Crash Team Racing" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Crash Racing</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Crash Team Racing Nitro-Fueled</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2129,7 +2339,10 @@
                 <div class="game-number-badge">#64</div>
                 <div class="fav-btn" onclick="toggleFavorite('doom-2016', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8q.png" alt="DOOM 2016" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">DOOM 2016</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ DOOM (2016)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2148,7 +2361,10 @@
                 <div class="game-number-badge">#65</div>
                 <div class="fav-btn" onclick="toggleFavorite('gothic-classic', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8r.png" alt="Gothic Classic" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Gothic</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Gothic Classic</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2167,7 +2383,10 @@
                 <div class="game-number-badge">#66</div>
                 <div class="fav-btn" onclick="toggleFavorite('ratatouille', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8s.png" alt="Ratatouille" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Ratatouille</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Ratatouille</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2186,7 +2405,10 @@
                 <div class="game-number-badge">#67</div>
                 <div class="fav-btn" onclick="toggleFavorite('the-last-of-us-remastered', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://static.wikia.nocookie.net/thelastofus/images/e/ec/LastOfUsRemastered.jpg" alt="The Last of Us" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">TLOU Remastered</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ The Last of Us Remastered</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2207,7 +2429,10 @@
                 <div class="game-number-badge">#68</div>
                 <div class="fav-btn" onclick="toggleFavorite('igi-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8t.png" alt="IGI 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">I.G.I. 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ I.G.I. 2: Covert Strike</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2226,7 +2451,10 @@
                 <div class="game-number-badge">#69</div>
                 <div class="fav-btn" onclick="toggleFavorite('the-closing-shift', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8u.png" alt="The Closing Shift" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Closing Shift</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ The Closing Shift</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2245,7 +2473,10 @@
                 <div class="game-number-badge">#70</div>
                 <div class="fav-btn" onclick="toggleFavorite('sengoku-basara-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8v.png" alt="Sengoku Basara 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Sengoku Basara 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Sengoku Basara 2: Heroes</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2264,7 +2495,10 @@
                 <div class="game-number-badge">#71</div>
                 <div class="fav-btn" onclick="toggleFavorite('metro-2033', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8w.png" alt="Metro 2033" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Metro 2033</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Metro 2033</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2283,7 +2517,10 @@
                 <div class="game-number-badge">#72</div>
                 <div class="fav-btn" onclick="toggleFavorite('sonic-racing', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8x.png" alt="Sonic Racing" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Sonic Racing</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Sonic Racing</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2302,7 +2539,10 @@
                 <div class="game-number-badge">#73</div>
                 <div class="fav-btn" onclick="toggleFavorite('manhunt', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8y.png" alt="Manhunt" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Manhunt</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Manhunt</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2321,7 +2561,10 @@
                 <div class="game-number-badge">#74</div>
                 <div class="fav-btn" onclick="toggleFavorite('prototype-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x8z.png" alt="Prototype 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Prototype 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Prototype 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2340,7 +2583,10 @@
                 <div class="game-number-badge">#75</div>
                 <div class="fav-btn" onclick="toggleFavorite('mafia', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x90.png" alt="Mafia" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">MAFIA</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Mafia</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2359,7 +2605,10 @@
                 <div class="game-number-badge">#76</div>
                 <div class="fav-btn" onclick="toggleFavorite('barnyard', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x91.png" alt="Barnyard" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Barnyard</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Barnyard</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2378,7 +2627,10 @@
                 <div class="game-number-badge">#77</div>
                 <div class="fav-btn" onclick="toggleFavorite('naruto-broken-bond', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x92.png" alt="Naruto" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Broken Bond</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Naruto: The Broken Bond</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2397,7 +2649,10 @@
                 <div class="game-number-badge">#78</div>
                 <div class="fav-btn" onclick="toggleFavorite('pokemon-shield', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x93.png" alt="Pokemon Shield" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Pokemon Shield</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Pokemon Shield</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2416,7 +2671,10 @@
                 <div class="game-number-badge">#79</div>
                 <div class="fav-btn" onclick="toggleFavorite('persona-4-arena', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x94.png" alt="Persona 4 Arena" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Persona 4 Arena</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Persona 4 Arena Ultimax</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2435,7 +2693,10 @@
                 <div class="game-number-badge">#80</div>
                 <div class="fav-btn" onclick="toggleFavorite('monster-hunter-4', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x95.png" alt="Monster Hunter 4" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Monster Hunter 4</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Monster Hunter 4 Ultimate</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2454,7 +2715,10 @@
                 <div class="game-number-badge">#81</div>
                 <div class="fav-btn" onclick="toggleFavorite('nfs-porsche', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x96.png" alt="NFS Porsche" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">NFS Porsche</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Need for Speed: Porsche Unleashed</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2473,7 +2737,10 @@
                 <div class="game-number-badge">#82</div>
                 <div class="fav-btn" onclick="toggleFavorite('vampire-bloodlines', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x97.png" alt="Vampire" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Vampire</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Vampire: The Masquerade – Bloodlines</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2492,7 +2759,10 @@
                 <div class="game-number-badge">#83</div>
                 <div class="fav-btn" onclick="toggleFavorite('dark-souls-remastered', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://sm.ign.com/t/ign_ap/gallery/d/dark-souls/dark-souls-remastered-box-art_v6sv.1080.jpg" alt="Dark Souls" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Dark Souls</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ DARK SOULS: REMASTERED</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2511,7 +2781,10 @@
                 <div class="game-number-badge">#84</div>
                 <div class="fav-btn" onclick="toggleFavorite('wwe-2k14', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x99.png" alt="WWE 2K14" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">WWE 2K14</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ WWE 2K14 Recomp</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2531,7 +2804,10 @@
                 <div class="game-number-badge">#85</div>
                 <div class="fav-btn" onclick="toggleFavorite('euro-truck-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x9a.png" alt="Euro Truck 2" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Euro Truck 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Euro Truck Simulator 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2550,7 +2826,10 @@
                 <div class="game-number-badge">#86</div>
                 <div class="fav-btn" onclick="toggleFavorite('super-mario-odyssey', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://cdn.salla.sa/YgXbbn/34395351-6835-453f-8880-9c18709bbbd2-617x1000-eUUIMFfeqL89AN63hbGgSLmHolA7iNADSB9LPN2I.png" alt="Mario Odyssey" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Mario Odyssey</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Super Mario Odyssey</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
@@ -2570,7 +2849,10 @@
                 <div class="game-number-badge">#87</div>
                 <div class="fav-btn" onclick="toggleFavorite('need-for-speed-rivals', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
-                    <div class="game-img-container"><img src="https://image.api.playstation.com/cdn/EP0006/CUSA00168_00/KZnZ2EidOuCPVhQlO17U1noSkMhlNVIr.png" alt="Need for Speed Rivals" onerror="this.src='https://via.placeholder.com/105x140/180307/ff1a40?text=RAFVX'"></div>
+                    <div class="game-title-box">
+                        <span class="game-logo-text">NFS Rivals</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
                     <div class="game-details">
                         <div class="game-title">✨ Need For Speed Rivals</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
