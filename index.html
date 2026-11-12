@@ -975,7 +975,7 @@
                 <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
-                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (87)</div>
+                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (88)</div>
                     <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
                     <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
                     <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
@@ -1127,12 +1127,12 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 87 لعبة..." onkeyup="filterGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 88 لعبة..." onkeyup="filterGames()">
             </div>
 
             <!-- نظام تبديل الأقسام الجديد بأزرار أفقية بارزة وعدادات إحصائيات مباشرة -->
             <div class="filter-chips" id="filterChipsContainer">
-                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">87</span>)</div>
+                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">88</span>)</div>
                 <div class="chip" onclick="setCategory('جديد', this)">🔥 الألعاب الجديدة (<span id="count-new">45</span>)</div>
                 <div class="chip" onclick="setCategory('أكشن', this)">⚡ #أكشن (<span id="count-action">65</span>)</div>
                 <div class="chip" onclick="setCategory('رعب', this)">👻 #رعب (<span id="count-horror">10</span>)</div>
@@ -1683,15 +1683,25 @@
                     </div>
                     <div class="game-details">
                         <div class="game-title">✨ GTA 5 Android</div>
-                        <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
-                        <div class="note-box">💡 تحميل APK والتنزيل الداخلي (23GB).</div>
-                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">23 GB</span></div></div>
+                        <div class="port-tag-text">📱 منفذ غير رسمي للأندرويد (Port)</div>
+                        <div class="game-meta"><span class="tag">#gta</span><span class="tag">#port</span><span class="tag">#أكشن</span><span class="tag offline">🌐 أوفلاين & أونلاين</span></div>
+                        <div class="note-box">💡 الإصدار الكامل بجميع المهام الرئيسية • الحجم: 70MB للملف المثبت + 64GB تحميل داخلي.</div>
+                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">70 MB + 64 GB</span></div></div>
+                        <div class="custom-extra-details" style="display:none;">
+                            <div style="margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.15); display:flex; flex-direction:column; gap:6px;">
+                                <div>🎮 <strong>المحتوى:</strong> التجربة الكاملة للقصة بجميع مراحلها ومهامها دون أي نقص.</div>
+                                <div>📲 <strong>نوع النسخة:</strong> بورت مطوّر وغير رسمي مخصص لهواتف الأندرويد.</div>
+                                <div>🏷️ <strong>التصنيفات:</strong> #gta | #port</div>
+                                <div>✨ <strong>التحديث:</strong> أحدث نسخة متوفرة ومستقرة.</div>
+                                <div>💾 <strong>المساحة المطلوبة:</strong> 70MB للتثبيت الأولي + 64GB تنزيل البيانات داخل اللعبة.</div>
+                                <div>📡 <strong>وضع اللعب:</strong> تدعم اللعب الفردي (أوفلاين) واللعب الجماعي (أونلاين).</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://modsfire.com/zB0CPCTpbMozhRl" target="_blank" class="btn-download">📥 تحميل ملف اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/zB0CPCTpbMozhRl', 'GTA 5')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                    <a href="https://modsfire.com/YK918vh3Luu7QS2" target="_blank" class="btn-download">📥 تحميل ملف اللعبة</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/YK918vh3Luu7QS2', 'GTA 5')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -3099,6 +3109,29 @@
                 </div>
             </div>
 
+            <!-- 88 (Resident Evil 5) -->
+            <div class="game-card" data-id="resident-evil-5" data-category="رعب أكشن جديد">
+                <div class="game-number-badge">#88</div>
+                <div class="fav-btn" onclick="toggleFavorite('resident-evil-5', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">RE 5</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Resident Evil 5</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">8 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://modsfire.com/mxuaVsB7kbS95Kj" target="_blank" class="btn-download">📥 رابط تحميل APK</a>
+                    <a href="https://www.mediafire.com/file/vxb077skpgnda3y/game.zip/file?action=check" target="_blank" class="btn-download secondary">📥 رابط تحميل ملف اللعبة</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/vxb077skpgnda3y/game.zip/file?action=check', 'Resident Evil 5 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
         </div>
 
         <footer>
@@ -3430,6 +3463,7 @@
             let size = card.querySelector('.info-value') ? card.querySelector('.info-value').innerText : 'غير محدد';
             let category = card.getAttribute('data-category');
             let note = card.querySelector('.note-box') ? card.querySelector('.note-box').innerText : 'لا توجد ملاحظات خاصة، اللعبة متوافقة تماماً مع معالجات Snapdragon.';
+            let extraDetails = card.querySelector('.custom-extra-details') ? card.querySelector('.custom-extra-details').innerHTML : '';
             
             // جلب روابط التحميل الخاصة بالبطاقة
             let dlButtonsHtml = '';
@@ -3451,6 +3485,7 @@
                     <div>📦 الحجم: <span style="color:#fff; font-weight:700;">${size}</span></div>
                     <div>🏷️ التصنيف: <span style="color:#fff; font-weight:700;">${category}</span></div>
                     <div>💡 ملاحظة: <span style="color:#ffe082;">${note}</span></div>
+                    ${extraDetails}
                 </div>
                 <div style="margin-bottom: 14px;">
                     <p style="font-size:0.85rem; font-weight:700; color:var(--text-muted); margin-bottom:8px;">📥 روابط التحميل والنسخ المتاحة:</p>
