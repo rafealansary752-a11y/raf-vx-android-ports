@@ -815,12 +815,23 @@
             border: 1px solid var(--accent-color);
             border-radius: 24px;
             width: 100%;
-            max-width: 500px;
-            padding: 30px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            max-width: 560px;
+            max-height: 86vh;
+            overflow-y: auto;
+            padding: 24px 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
             position: relative;
             color: #fff;
             text-align: right;
+        }
+        .game-info-content .close-modal-btn {
+            position: sticky;
+            top: 0;
+            float: left;
+            z-index: 99;
+            background: #ff1a40;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 26, 64, 0.6);
         }
 
     
@@ -963,8 +974,8 @@
 
         <div class="mini-news-ticker">
             <div class="ticker-track">
-                <span class="ticker-item">⚡ تصميم عصري وأيقوني لأسماء الألعاب • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
-                <span class="ticker-item">⚡ تصميم عصري وأيقوني لأسماء الألعاب • خالي تماماً من الإعلانات • أهلاً بك في RAF-VX</span>
+                <span class="ticker-item">🔥 آخر التحديثات: تم إضافة ألعاب Monster Hunter Freedom Unite و Nazi Zombies: Portable و The Punisher، وتم تحديث لعبة GTA 5 بالكامل! ⚡</span>
+                <span class="ticker-item">🔥 آخر التحديثات: تم إضافة ألعاب Monster Hunter Freedom Unite و Nazi Zombies: Portable و The Punisher، وتم تحديث لعبة GTA 5 بالكامل! ⚡</span>
             </div>
         </div>
 
@@ -975,7 +986,7 @@
                 <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
-                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (88)</div>
+                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (91)</div>
                     <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
                     <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
                     <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
@@ -1127,13 +1138,13 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 88 لعبة..." onkeyup="filterGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 91 لعبة..." onkeyup="filterGames()">
             </div>
 
             <!-- نظام تبديل الأقسام الجديد بأزرار أفقية بارزة وعدادات إحصائيات مباشرة -->
             <div class="filter-chips" id="filterChipsContainer">
-                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">88</span>)</div>
-                <div class="chip" onclick="setCategory('جديد', this)">🔥 الألعاب الجديدة (<span id="count-new">45</span>)</div>
+                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">91</span>)</div>
+                <div class="chip" onclick="setCategory('جديد', this)">🔥 الألعاب الجديدة (<span id="count-new">4</span>)</div>
                 <div class="chip" onclick="setCategory('أكشن', this)">⚡ #أكشن (<span id="count-action">65</span>)</div>
                 <div class="chip" onclick="setCategory('رعب', this)">👻 #رعب (<span id="count-horror">10</span>)</div>
                 <div class="chip" onclick="setCategory('سباق', this)">🏎️ #سباق (<span id="count-racing">15</span>)</div>
@@ -1162,7 +1173,7 @@
         <div class="games-grid grid-mode" id="gamesGrid">
             
             <!-- 1 -->
-            <div class="game-card" data-id="fable-2" data-category="أكشن جديد">
+            <div class="game-card" data-id="fable-2" data-category="أكشن">
                 <div class="game-number-badge">#1</div>
                 <div class="fav-btn" onclick="toggleFavorite('fable-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1173,7 +1184,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Fable 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
                     </div>
                 </div>
@@ -1184,7 +1195,7 @@
             </div>
 
             <!-- 2 -->
-            <div class="game-card" data-id="monster-hunter-generations" data-category="أكشن جديد">
+            <div class="game-card" data-id="monster-hunter-generations" data-category="أكشن">
                 <div class="game-number-badge">#2</div>
                 <div class="fav-btn" onclick="toggleFavorite('monster-hunter-generations', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1195,7 +1206,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Monster Hunter Generations Ultimate</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">11 GB</span></div></div>
                     </div>
                 </div>
@@ -1206,7 +1217,7 @@
             </div>
 
             <!-- 3 -->
-            <div class="game-card" data-id="downhill-domination" data-category="سباق جديد">
+            <div class="game-card" data-id="downhill-domination" data-category="سباق">
                 <div class="game-number-badge">#3</div>
                 <div class="fav-btn" onclick="toggleFavorite('downhill-domination', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1217,7 +1228,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Downhill Domination</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4 GB</span></div></div>
                     </div>
                 </div>
@@ -1228,7 +1239,7 @@
             </div>
 
             <!-- 4 -->
-            <div class="game-card" data-id="pes-13" data-category="كرة_القدم جديد">
+            <div class="game-card" data-id="pes-13" data-category="كرة_القدم">
                 <div class="game-number-badge">#4</div>
                 <div class="fav-btn" onclick="toggleFavorite('pes-13', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1239,7 +1250,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Pro Evolution Soccer 2013</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#كرة_القدم</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#كرة_القدم</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">7 GB</span></div></div>
                     </div>
                 </div>
@@ -1250,7 +1261,7 @@
             </div>
 
             <!-- 5 -->
-            <div class="game-card" data-id="persona-4-golden" data-category="أكشن جديد">
+            <div class="game-card" data-id="persona-4-golden" data-category="أكشن">
                 <div class="game-number-badge">#5</div>
                 <div class="fav-btn" onclick="toggleFavorite('persona-4-golden', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1261,7 +1272,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Persona 4 Golden</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">10 GB</span></div></div>
                     </div>
                 </div>
@@ -1272,7 +1283,7 @@
             </div>
 
             <!-- 6 -->
-            <div class="game-card" data-id="donkey-kong-bananza" data-category="أكشن جديد">
+            <div class="game-card" data-id="donkey-kong-bananza" data-category="أكشن">
                 <div class="game-number-badge">#6</div>
                 <div class="fav-btn" onclick="toggleFavorite('donkey-kong-bananza', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1283,7 +1294,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Donkey Kong Bananza</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="note-box">💡 تتطلب معالج Snapdragon 8 Elite و 12GB RAM كحد أدنى.</div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">18 GB</span></div></div>
                     </div>
@@ -1295,7 +1306,7 @@
             </div>
 
             <!-- 7 -->
-            <div class="game-card" data-id="ravenfield" data-category="حرب جديد">
+            <div class="game-card" data-id="ravenfield" data-category="حرب">
                 <div class="game-number-badge">#7</div>
                 <div class="fav-btn" onclick="toggleFavorite('ravenfield', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1306,7 +1317,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Ravenfield</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">974 MB</span></div></div>
                     </div>
                 </div>
@@ -1317,7 +1328,7 @@
             </div>
 
             <!-- 8 -->
-            <div class="game-card" data-id="the-long-drive" data-category="أكشن جديد">
+            <div class="game-card" data-id="the-long-drive" data-category="أكشن">
                 <div class="game-number-badge">#8</div>
                 <div class="fav-btn" onclick="toggleFavorite('the-long-drive', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1328,7 +1339,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ The Long Drive</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">493 MB</span></div></div>
                     </div>
                 </div>
@@ -1673,7 +1684,7 @@
             </div>
 
             <!-- 24 -->
-            <div class="game-card" data-id="gta-5-port" data-category="أكشن">
+            <div class="game-card" data-id="gta-5-port" data-category="أكشن جديد">
                 <div class="game-number-badge">#24</div>
                 <div class="fav-btn" onclick="toggleFavorite('gta-5-port', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -1684,24 +1695,56 @@
                     <div class="game-details">
                         <div class="game-title">✨ GTA 5 Android</div>
                         <div class="port-tag-text">📱 منفذ غير رسمي للأندرويد (Port)</div>
-                        <div class="game-meta"><span class="tag">#gta</span><span class="tag">#port</span><span class="tag">#أكشن</span><span class="tag offline">🌐 أوفلاين & أونلاين</span></div>
-                        <div class="note-box">💡 الإصدار الكامل بجميع المهام الرئيسية • الحجم: 70MB للملف المثبت + 64GB تحميل داخلي.</div>
-                        <div class="game-info"><div class="info-item">الحجم: <span class="info-value">70 MB + 64 GB</span></div></div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#gta</span><span class="tag">#port</span><span class="tag">#أكشن</span><span class="tag offline">🌐 أوفلاين & أونلاين</span></div>
+                        <div class="note-box">💡 APK + ملف اللعبة • إجمالي الحجم: 65GB (اضغط على التفاصيل لمعرفة طريقة التثبيت ونقل الملفات).</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">65 GB</span></div></div>
                         <div class="custom-extra-details" style="display:none;">
-                            <div style="margin-top:8px; padding-top:8px; border-top:1px dashed rgba(255,255,255,0.15); display:flex; flex-direction:column; gap:6px;">
-                                <div>🎮 <strong>المحتوى:</strong> التجربة الكاملة للقصة بجميع مراحلها ومهامها دون أي نقص.</div>
-                                <div>📲 <strong>نوع النسخة:</strong> بورت مطوّر وغير رسمي مخصص لهواتف الأندرويد.</div>
-                                <div>🏷️ <strong>التصنيفات:</strong> #gta | #port</div>
-                                <div>✨ <strong>التحديث:</strong> أحدث نسخة متوفرة ومستقرة.</div>
-                                <div>💾 <strong>المساحة المطلوبة:</strong> 70MB للتثبيت الأولي + 64GB تنزيل البيانات داخل اللعبة.</div>
-                                <div>📡 <strong>وضع اللعب:</strong> تدعم اللعب الفردي (أوفلاين) واللعب الجماعي (أونلاين).</div>
+                            <div style="margin-top:10px; padding-top:10px; border-top:1px dashed rgba(255,255,255,0.2); display:flex; flex-direction:column; gap:10px; line-height:1.75; font-size:0.88rem;">
+                                <div>
+                                    <strong style="color:#00e5ff; font-size:0.95rem;">1. التثبيت والتهيئة</strong><br>
+                                    1. قم بتثبيت ملف اللعبة بصيغة APK على هاتفك.<br>
+                                    2. بعد اكتمال التثبيت، افتح اللعبة مرة واحدة فقط.<br>
+                                    3. انتظر حتى تكتمل عملية التشغيل الأولية.<br>
+                                    4. أغلق اللعبة إغلاقًا إجباريًا من التطبيقات الحديثة، ولا تكتفِ بالخروج منها بشكل عادي.<br>
+                                    <span style="color:#81c784; font-weight:700;">الهدف: إنشاء مجلد البيانات المطلوب تلقائيًا داخل ذاكرة الهاتف.</span>
+                                </div>
+                                <div>
+                                    <strong style="color:#00e5ff; font-size:0.95rem;">2. استخراج ملفات اللعبة</strong><br>
+                                    1. افتح تطبيق ZArchiver أو MT Manager.<br>
+                                    2. انتقل إلى المجلد الذي يحتوي على أرشيف اللعبة الذي قمت بتنزيله.<br>
+                                    3. اضغط على ملف الأرشيف واختر فك الضغط (Extract).<br>
+                                    4. انتظر حتى تنتهي عملية استخراج الملفات بالكامل.<br>
+                                    5. بعد الاستخراج، ابحث عن المجلد الذي يحمل اسم <code style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:4px;">files</code>.
+                                </div>
+                                <div>
+                                    <strong style="color:#00e5ff; font-size:0.95rem;">3. نسخ ونقل ملفات البيانات</strong><br>
+                                    1. افتح تطبيق MT Manager.<br>
+                                    2. انتقل إلى مجلد اللعبة الذي قمت باستخراجه.<br>
+                                    3. حدد مجلد <code style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:4px;">files</code>.<br>
+                                    4. اختر نسخ (Copy) أو نقل (Move).<br>
+                                    5. انتقل إلى المسار التالي في وحدة التخزين الداخلية:<br>
+                                    <div style="background:rgba(0,0,0,0.6); border:1px solid rgba(0,229,255,0.3); padding:6px 10px; border-radius:8px; color:#00e5ff; font-family:monospace; direction:ltr; text-align:left; margin:4px 0;">Android/data/com.thegwchr.fuzzy/</div>
+                                    6. الصق مجلد <code style="background:rgba(255,255,255,0.1); padding:1px 5px; border-radius:4px;">files</code> مباشرة داخل المجلد المذكور.<br>
+                                    7. إذا ظهرت رسالة تطلب منك دمج المجلدات أو استبدال الملفات، اختر: <strong>دمج (Merge)</strong> أو <strong>استبدال (Replace)</strong> حسب الخيار الذي يظهر لك.
+                                </div>
+                                <div>
+                                    <strong style="color:#00e5ff; font-size:0.95rem;">4. تشغيل اللعبة</strong><br>
+                                    1. تأكد من اكتمال نقل الملفات.<br>
+                                    2. أغلق تطبيق إدارة الملفات.<br>
+                                    3. افتح اللعبة مرة أخرى.<br>
+                                    4. انتظر حتى تتعرف اللعبة على ملفات البيانات وتكتمل عملية التحميل.
+                                </div>
+                                <div style="background:rgba(255,171,0,0.12); border-right:3px solid #ffab00; padding:8px 10px; border-radius:8px; color:#ffe082;">
+                                    <strong>ملاحظة مهمة:</strong> تأكد من وضع مجلد "files" مباشرة داخل مجلد اللعبة، وليس داخل مجلد فرعي إضافي يحمل الاسم نفسه.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://modsfire.com/YK918vh3Luu7QS2" target="_blank" class="btn-download">📥 تحميل ملف اللعبة</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://modsfire.com/YK918vh3Luu7QS2', 'GTA 5')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                    <a href="http://gofile.io/d/guGdOEfk" target="_blank" class="btn-download">📥 تحميل APK</a>
+                    <a href="http://buzzheavier.com/pwhdssa2nerd" target="_blank" class="btn-download secondary">📂 تحميل ملف اللعبة</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('http://buzzheavier.com/pwhdssa2nerd', 'GTA 5 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -2578,7 +2621,7 @@
             </div>
 
             <!-- 64 -->
-            <div class="game-card" data-id="doom-2016" data-category="أكشن جديد">
+            <div class="game-card" data-id="doom-2016" data-category="أكشن">
                 <div class="game-number-badge">#64</div>
                 <div class="fav-btn" onclick="toggleFavorite('doom-2016', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2589,7 +2632,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ DOOM (2016)</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">21 GB</span></div></div>
                     </div>
                 </div>
@@ -2600,7 +2643,7 @@
             </div>
 
             <!-- 65 -->
-            <div class="game-card" data-id="gothic-classic" data-category="أكشن جديد">
+            <div class="game-card" data-id="gothic-classic" data-category="أكشن">
                 <div class="game-number-badge">#65</div>
                 <div class="fav-btn" onclick="toggleFavorite('gothic-classic', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2611,7 +2654,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Gothic Classic</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3.55 GB</span></div></div>
                     </div>
                 </div>
@@ -2622,7 +2665,7 @@
             </div>
 
             <!-- 66 -->
-            <div class="game-card" data-id="ratatouille" data-category="أكشن جديد">
+            <div class="game-card" data-id="ratatouille" data-category="أكشن">
                 <div class="game-number-badge">#66</div>
                 <div class="fav-btn" onclick="toggleFavorite('ratatouille', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2633,7 +2676,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Ratatouille</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1.3 GB</span></div></div>
                     </div>
                 </div>
@@ -2644,7 +2687,7 @@
             </div>
 
             <!-- 67 -->
-            <div class="game-card" data-id="the-last-of-us-remastered" data-category="رعب أكشن جديد">
+            <div class="game-card" data-id="the-last-of-us-remastered" data-category="رعب أكشن">
                 <div class="game-number-badge">#67</div>
                 <div class="fav-btn" onclick="toggleFavorite('the-last-of-us-remastered', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2655,7 +2698,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ The Last of Us Remastered</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="note-box">💡 تتطلب معالج Snapdragon 8 gen2 وفوق. يتضمن التحديث الأخير لتحسين استقرار الرام وتحسين الفريمات.</div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">41 GB</span></div></div>
                     </div>
@@ -2668,7 +2711,7 @@
             </div>
 
             <!-- 68 -->
-            <div class="game-card" data-id="igi-2" data-category="حرب أكشن جديد">
+            <div class="game-card" data-id="igi-2" data-category="حرب أكشن">
                 <div class="game-number-badge">#68</div>
                 <div class="fav-btn" onclick="toggleFavorite('igi-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2679,7 +2722,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ I.G.I. 2: Covert Strike</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#حرب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#حرب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">2 GB</span></div></div>
                     </div>
                 </div>
@@ -2690,7 +2733,7 @@
             </div>
 
             <!-- 69 -->
-            <div class="game-card" data-id="the-closing-shift" data-category="رعب جديد">
+            <div class="game-card" data-id="the-closing-shift" data-category="رعب">
                 <div class="game-number-badge">#69</div>
                 <div class="fav-btn" onclick="toggleFavorite('the-closing-shift', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2701,7 +2744,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ The Closing Shift</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#رعب</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1.3 GB</span></div></div>
                     </div>
                 </div>
@@ -2712,7 +2755,7 @@
             </div>
 
             <!-- 70 -->
-            <div class="game-card" data-id="sengoku-basara-2" data-category="أكشن جديد">
+            <div class="game-card" data-id="sengoku-basara-2" data-category="أكشن">
                 <div class="game-number-badge">#70</div>
                 <div class="fav-btn" onclick="toggleFavorite('sengoku-basara-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2723,7 +2766,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Sengoku Basara 2: Heroes</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">6 GB</span></div></div>
                     </div>
                 </div>
@@ -2734,7 +2777,7 @@
             </div>
 
             <!-- 71 -->
-            <div class="game-card" data-id="metro-2033" data-category="رعب أكشن جديد">
+            <div class="game-card" data-id="metro-2033" data-category="رعب أكشن">
                 <div class="game-number-badge">#71</div>
                 <div class="fav-btn" onclick="toggleFavorite('metro-2033', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2745,7 +2788,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Metro 2033</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
                     </div>
                 </div>
@@ -2756,7 +2799,7 @@
             </div>
 
             <!-- 72 -->
-            <div class="game-card" data-id="sonic-racing" data-category="سباق جديد">
+            <div class="game-card" data-id="sonic-racing" data-category="سباق">
                 <div class="game-number-badge">#72</div>
                 <div class="fav-btn" onclick="toggleFavorite('sonic-racing', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2767,7 +2810,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Sonic Racing</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">612.1 MB</span></div></div>
                     </div>
                 </div>
@@ -2778,7 +2821,7 @@
             </div>
 
             <!-- 73 -->
-            <div class="game-card" data-id="manhunt" data-category="رعب أكشن جديد">
+            <div class="game-card" data-id="manhunt" data-category="رعب أكشن">
                 <div class="game-number-badge">#73</div>
                 <div class="fav-btn" onclick="toggleFavorite('manhunt', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2789,7 +2832,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Manhunt</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3 GB</span></div></div>
                     </div>
                 </div>
@@ -2800,7 +2843,7 @@
             </div>
 
             <!-- 74 -->
-            <div class="game-card" data-id="prototype-2" data-category="أكشن جديد">
+            <div class="game-card" data-id="prototype-2" data-category="أكشن">
                 <div class="game-number-badge">#74</div>
                 <div class="fav-btn" onclick="toggleFavorite('prototype-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2811,7 +2854,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Prototype 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">9 GB</span></div></div>
                     </div>
                 </div>
@@ -2822,7 +2865,7 @@
             </div>
 
             <!-- 75 -->
-            <div class="game-card" data-id="mafia" data-category="أكشن جديد">
+            <div class="game-card" data-id="mafia" data-category="أكشن">
                 <div class="game-number-badge">#75</div>
                 <div class="fav-btn" onclick="toggleFavorite('mafia', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2833,7 +2876,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Mafia</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">28.58 MB</span></div></div>
                     </div>
                 </div>
@@ -2844,7 +2887,7 @@
             </div>
 
             <!-- 76 -->
-            <div class="game-card" data-id="barnyard" data-category="أكشن جديد">
+            <div class="game-card" data-id="barnyard" data-category="أكشن">
                 <div class="game-number-badge">#76</div>
                 <div class="fav-btn" onclick="toggleFavorite('barnyard', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2855,7 +2898,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Barnyard</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1.64 GB</span></div></div>
                     </div>
                 </div>
@@ -2866,7 +2909,7 @@
             </div>
 
             <!-- 77 -->
-            <div class="game-card" data-id="naruto-broken-bond" data-category="أكشن جديد">
+            <div class="game-card" data-id="naruto-broken-bond" data-category="أكشن">
                 <div class="game-number-badge">#77</div>
                 <div class="fav-btn" onclick="toggleFavorite('naruto-broken-bond', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2877,7 +2920,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Naruto: The Broken Bond</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">8 GB</span></div></div>
                     </div>
                 </div>
@@ -2888,7 +2931,7 @@
             </div>
 
             <!-- 78 -->
-            <div class="game-card" data-id="pokemon-shield" data-category="أكشن جديد">
+            <div class="game-card" data-id="pokemon-shield" data-category="أكشن">
                 <div class="game-number-badge">#78</div>
                 <div class="fav-btn" onclick="toggleFavorite('pokemon-shield', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2899,7 +2942,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Pokemon Shield</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">14 GB</span></div></div>
                     </div>
                 </div>
@@ -2910,7 +2953,7 @@
             </div>
 
             <!-- 79 -->
-            <div class="game-card" data-id="persona-4-arena" data-category="أكشن جديد">
+            <div class="game-card" data-id="persona-4-arena" data-category="أكشن">
                 <div class="game-number-badge">#79</div>
                 <div class="fav-btn" onclick="toggleFavorite('persona-4-arena', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2921,7 +2964,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Persona 4 Arena Ultimax</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">16 GB</span></div></div>
                     </div>
                 </div>
@@ -2932,7 +2975,7 @@
             </div>
 
             <!-- 80 -->
-            <div class="game-card" data-id="monster-hunter-4" data-category="أكشن جديد">
+            <div class="game-card" data-id="monster-hunter-4" data-category="أكشن">
                 <div class="game-number-badge">#80</div>
                 <div class="fav-btn" onclick="toggleFavorite('monster-hunter-4', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2943,7 +2986,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Monster Hunter 4 Ultimate</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3 GB</span></div></div>
                     </div>
                 </div>
@@ -2954,7 +2997,7 @@
             </div>
 
             <!-- 81 -->
-            <div class="game-card" data-id="nfs-porsche" data-category="سباق جديد">
+            <div class="game-card" data-id="nfs-porsche" data-category="سباق">
                 <div class="game-number-badge">#81</div>
                 <div class="fav-btn" onclick="toggleFavorite('nfs-porsche', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2965,7 +3008,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Need for Speed: Porsche Unleashed</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">1 GB</span></div></div>
                     </div>
                 </div>
@@ -2976,7 +3019,7 @@
             </div>
 
             <!-- 82 -->
-            <div class="game-card" data-id="vampire-bloodlines" data-category="رعب أكشن جديد">
+            <div class="game-card" data-id="vampire-bloodlines" data-category="رعب أكشن">
                 <div class="game-number-badge">#82</div>
                 <div class="fav-btn" onclick="toggleFavorite('vampire-bloodlines', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -2987,7 +3030,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Vampire: The Masquerade – Bloodlines</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">4 GB</span></div></div>
                     </div>
                 </div>
@@ -2998,7 +3041,7 @@
             </div>
 
             <!-- 83 -->
-            <div class="game-card" data-id="dark-souls-remastered" data-category="أكشن جديد">
+            <div class="game-card" data-id="dark-souls-remastered" data-category="أكشن">
                 <div class="game-number-badge">#83</div>
                 <div class="fav-btn" onclick="toggleFavorite('dark-souls-remastered', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -3009,7 +3052,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ DARK SOULS: REMASTERED</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">5 GB</span></div></div>
                     </div>
                 </div>
@@ -3020,7 +3063,7 @@
             </div>
 
             <!-- 84 -->
-            <div class="game-card" data-id="wwe-2k14" data-category="رياضة جديد">
+            <div class="game-card" data-id="wwe-2k14" data-category="رياضة">
                 <div class="game-number-badge">#84</div>
                 <div class="fav-btn" onclick="toggleFavorite('wwe-2k14', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -3031,7 +3074,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ WWE 2K14 Recomp</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رياضة</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#رياضة</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">9 GB</span></div></div>
                     </div>
                 </div>
@@ -3043,7 +3086,7 @@
             </div>
 
             <!-- 85 -->
-            <div class="game-card" data-id="euro-truck-2" data-category="سباق جديد">
+            <div class="game-card" data-id="euro-truck-2" data-category="سباق">
                 <div class="game-number-badge">#85</div>
                 <div class="fav-btn" onclick="toggleFavorite('euro-truck-2', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -3054,7 +3097,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Euro Truck Simulator 2</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">3.44 GB</span></div></div>
                     </div>
                 </div>
@@ -3065,7 +3108,7 @@
             </div>
 
             <!-- 86 -->
-            <div class="game-card" data-id="super-mario-odyssey" data-category="أكشن جديد">
+            <div class="game-card" data-id="super-mario-odyssey" data-category="أكشن">
                 <div class="game-number-badge">#86</div>
                 <div class="fav-btn" onclick="toggleFavorite('super-mario-odyssey', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -3076,7 +3119,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Super Mario Odyssey</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">7 GB</span></div></div>
                     </div>
                 </div>
@@ -3088,7 +3131,7 @@
             </div>
 
             <!-- 87 (Need for Speed Rivals) -->
-            <div class="game-card" data-id="need-for-speed-rivals" data-category="سباق جديد">
+            <div class="game-card" data-id="need-for-speed-rivals" data-category="سباق">
                 <div class="game-number-badge">#87</div>
                 <div class="fav-btn" onclick="toggleFavorite('need-for-speed-rivals', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -3099,7 +3142,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Need For Speed Rivals</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">9 GB</span></div></div>
                     </div>
                 </div>
@@ -3110,7 +3153,7 @@
             </div>
 
             <!-- 88 (Resident Evil 5) -->
-            <div class="game-card" data-id="resident-evil-5" data-category="رعب أكشن جديد">
+            <div class="game-card" data-id="resident-evil-5" data-category="رعب أكشن">
                 <div class="game-number-badge">#88</div>
                 <div class="fav-btn" onclick="toggleFavorite('resident-evil-5', this)" title="إضافة للمفضلة">🤍</div>
                 <div class="game-main-content">
@@ -3121,7 +3164,7 @@
                     <div class="game-details">
                         <div class="game-title">✨ Resident Evil 5</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد</div>
-                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
                         <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">8 GB</span></div></div>
                     </div>
                 </div>
@@ -3131,6 +3174,74 @@
                     <button class="btn-download dm-copy" onclick="copy1DM('https://www.mediafire.com/file/vxb077skpgnda3y/game.zip/file?action=check', 'Resident Evil 5 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
+
+            <!-- 89 (Monster Hunter Freedom Unite) -->
+            <div class="game-card" data-id="monster-hunter-freedom-unite" data-category="أكشن جديد">
+                <div class="game-number-badge">#89</div>
+                <div class="fav-btn" onclick="toggleFavorite('monster-hunter-freedom-unite', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">MH Freedom Unite</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Monster Hunter Freedom Unite</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + ملف اللعبة)</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">1 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/monster-hunter-freedom-unite-135755/" target="_blank" class="btn-download">📥 تحميل APK + ملف اللعبة</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/monster-hunter-freedom-unite-135755/', 'Monster Hunter Freedom Unite')">📋 نسخ رابط اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 90 (Nazi Zombies: Portable) -->
+            <div class="game-card" data-id="nazi-zombies-portable" data-category="رعب أكشن حرب جديد">
+                <div class="game-number-badge">#90</div>
+                <div class="fav-btn" onclick="toggleFavorite('nazi-zombies-portable', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Nazi Zombies</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Nazi Zombies: Portable</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box">💡 ملف APK فقط؛ قد يتطلب تنزيلاً داخلياً للبيانات بحجم يُقدّر بأقل من 3GB.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">4 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/nazi-zombies-portable-135757/" target="_blank" class="btn-download">📥 تحميل ملف اللعبة (APK)</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/nazi-zombies-portable-135757/', 'Nazi Zombies: Portable')">📋 نسخ رابط اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 91 (The Punisher) -->
+            <div class="game-card" data-id="the-punisher" data-category="أكشن حرب جديد">
+                <div class="game-number-badge">#91</div>
+                <div class="fav-btn" onclick="toggleFavorite('the-punisher', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">The Punisher</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ The Punisher</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + تنزيل داخلي)</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">2.7 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/the-punisher-135770/" target="_blank" class="btn-download">📥 تحميل APK + تنزيل داخلي</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/the-punisher-135770/', 'The Punisher')">📋 نسخ رابط اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
 
         </div>
 
@@ -3170,6 +3281,10 @@
             }
             if (event.target === modal) {
                 closeEmulatorsModal();
+            }
+            let gameModal = document.getElementById('gameInfoModal');
+            if (event.target === gameModal) {
+                closeGameInfoModal();
             }
         }
 
