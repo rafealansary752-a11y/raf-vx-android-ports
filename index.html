@@ -962,6 +962,67 @@
             display: none !important;
         }
 
+
+        /* === عداد التحديث الجوهري === */
+        .major-update-countdown {
+            background: linear-gradient(135deg, rgba(18, 5, 10, 0.95), rgba(45, 8, 20, 0.95));
+            border: 1px solid var(--accent-color);
+            border-radius: 20px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 26, 64, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .major-update-countdown::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+        .countdown-title {
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .countdown-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            direction: ltr;
+        }
+        .cd-box {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 10px 14px;
+            min-width: 68px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .cd-num {
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            line-height: 1.2;
+        }
+        .cd-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
     </style>
 </head>
 <body>
@@ -979,6 +1040,29 @@
             </div>
         </div>
 
+        <div class="major-update-countdown" id="majorUpdateCountdown">
+            <div class="countdown-title">⏳ تبقى على التحديث الجوهري</div>
+            <div class="countdown-boxes">
+                <div class="cd-box">
+                    <span class="cd-num" id="cd-days">00</span>
+                    <span class="cd-label">يوم</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-num" id="cd-hours">00</span>
+                    <span class="cd-label">ساعة</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-num" id="cd-minutes">00</span>
+                    <span class="cd-label">دقيقة</span>
+                </div>
+                <div class="cd-box">
+                    <span class="cd-num" id="cd-seconds">00</span>
+                    <span class="cd-label">ثانية</span>
+                </div>
+            </div>
+        </div>
+
+
         <div class="top-nav-bar">
             <div class="platform-badge-top">👑 النسخة الملكية الرسمية</div>
             <div class="top-actions">
@@ -986,7 +1070,7 @@
                 <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
-                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (91)</div>
+                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (94)</div>
                     <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
                     <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
                     <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
@@ -1138,12 +1222,12 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 91 لعبة..." onkeyup="filterGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 94 لعبة..." onkeyup="filterGames()">
             </div>
 
             <!-- نظام تبديل الأقسام الجديد بأزرار أفقية بارزة وعدادات إحصائيات مباشرة -->
             <div class="filter-chips" id="filterChipsContainer">
-                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">91</span>)</div>
+                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">94</span>)</div>
                 <div class="chip" onclick="setCategory('جديد', this)">🔥 الألعاب الجديدة (<span id="count-new">4</span>)</div>
                 <div class="chip" onclick="setCategory('أكشن', this)">⚡ #أكشن (<span id="count-action">65</span>)</div>
                 <div class="chip" onclick="setCategory('رعب', this)">👻 #رعب (<span id="count-horror">10</span>)</div>
@@ -1742,7 +1826,7 @@
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="http://gofile.io/d/guGdOEfk" target="_blank" class="btn-download">📥 تحميل APK</a>
+                    <a href="https://www.mediafire.com/file/6zawwu1epoqakf1/GTA5_Vulkan_Port.apk/file?dkey=z2y3ntln5hb&r=374" target="_blank" class="btn-download">📥 تحميل ملف التحديث APK</a>
                     <a href="http://buzzheavier.com/pwhdssa2nerd" target="_blank" class="btn-download secondary">📂 تحميل ملف اللعبة</a>
                     <button class="btn-download dm-copy" onclick="copy1DM('http://buzzheavier.com/pwhdssa2nerd', 'GTA 5 Data')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
                 </div>
@@ -3243,6 +3327,73 @@
             </div>
 
 
+
+            <!-- 92 (Oceanhorn 2: Knights of the Lost Realm) -->
+            <div class="game-card" data-id="oceanhorn-2" data-category="أكشن جديد">
+                <div class="game-number-badge">#92</div>
+                <div class="fav-btn" onclick="toggleFavorite('oceanhorn-2', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Oceanhorn 2</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Oceanhorn 2: Knights of the Lost Realm</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + تنزيل داخلي)</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">3 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/adventure/oceanhorn-2-knights-lost-realm-1946/?utm_source=telegram&utm_medium=social&utm_campaign=post_1946_en" target="_blank" class="btn-download">📥 تحميل APK + تنزيل داخلي</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/adventure/oceanhorn-2-knights-lost-realm-1946/?utm_source=telegram&utm_medium=social&utm_campaign=post_1946_en', 'Oceanhorn 2')">📋 نسخ رابط اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 93 (Tom Clancy’s Splinter Cell) -->
+            <div class="game-card" data-id="splinter-cell" data-category="أكشن حرب جديد">
+                <div class="game-number-badge">#93</div>
+                <div class="fav-btn" onclick="toggleFavorite('splinter-cell', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Splinter Cell</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Tom Clancy’s Splinter Cell</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + تنزيل داخلي)</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag">#حرب</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">2.9 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/tom-clancys-splinter-cell-135779/" target="_blank" class="btn-download">📥 تحميل APK + تنزيل داخلي</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/tom-clancys-splinter-cell-135779/', 'Tom Clancy’s Splinter Cell')">📋 نسخ رابط اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
+            <!-- 94 (Lethal Company) -->
+            <div class="game-card" data-id="lethal-company" data-category="رعب أكشن جديد">
+                <div class="game-number-badge">#94</div>
+                <div class="fav-btn" onclick="toggleFavorite('lethal-company', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Lethal Company</span>
+                        <span class="game-logo-sub">RAF-VX</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Lethal Company</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">512 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/action/lethal-company-port-135777/" target="_blank" class="btn-download">📥 تحميل ملف اللعبة (APK)</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/action/lethal-company-port-135777/', 'Lethal Company')">📋 نسخ رابط اللعبة لتطبيق 1DM</button>
+                </div>
+            </div>
+
         </div>
 
         <footer>
@@ -3653,6 +3804,42 @@
         document.addEventListener("DOMContentLoaded", function() {
             let savedMode = localStorage.getItem('rafvx_view_mode') || 'grid';
             switchViewMode(savedMode);
+        });
+
+
+        // عداد تنازلي احترافي إلى يوم الخميس القادم (19 نوفمبر 2026)
+        function startMajorUpdateCountdown() {
+            const targetDate = new Date("2026-11-19T00:00:00+03:00").getTime();
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance <= 0) {
+                    document.getElementById("cd-days").innerText = "00";
+                    document.getElementById("cd-hours").innerText = "00";
+                    document.getElementById("cd-minutes").innerText = "00";
+                    document.getElementById("cd-seconds").innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("cd-days").innerText = String(days).padStart(2, '0');
+                document.getElementById("cd-hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("cd-minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("cd-seconds").innerText = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            startMajorUpdateCountdown();
         });
 
     </script>
