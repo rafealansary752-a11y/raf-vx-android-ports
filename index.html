@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAF-VX | المنصة الملكية لأقوى ألعاب والمحاكيات</title>
+    <title>RAF-VX 8.0.0 | منصة ألعاب أندرويد</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -1023,25 +1023,111 @@
             margin-top: 2px;
         }
 
+
+        /* ===== RAF-VX 8.0 — complete visual refresh ===== */
+        :root{
+            --bg-color:#070b16;--card-bg:rgba(14,22,40,.88);--card-border:rgba(91,126,190,.24);
+            --card-border-hover:rgba(61,226,255,.78);--accent-color:#55e6ff;
+            --accent-gradient:linear-gradient(120deg,#55e6ff 0%,#7775ff 52%,#c46bff 100%);
+            --text-main:#f4f7ff;--text-muted:#a9b6ce;--badge-bg:rgba(85,230,255,.10);
+            --badge-border:rgba(85,230,255,.28);--ticker-bg:rgba(85,230,255,.06);--ticker-border:rgba(85,230,255,.22);
+        }
+        body{padding:18px 14px 40px;background-color:#070b16;background-image:radial-gradient(ellipse at 12% 4%,rgba(62,112,255,.20),transparent 34%),radial-gradient(ellipse at 90% 24%,rgba(161,76,255,.14),transparent 32%),linear-gradient(180deg,#070b16 0%,#0a1020 58%,#070b16 100%);}
+        .container{max-width:1180px;}
+        .update-banner,.top-nav-bar,.mini-news-ticker,.major-update-countdown,.layout-switcher-bar,header{border-radius:18px;}
+        .update-banner{background:linear-gradient(100deg,rgba(27,62,110,.72),rgba(62,36,108,.72));border:1px solid rgba(85,230,255,.3);box-shadow:0 12px 36px rgba(0,0,0,.22);}
+        .update-banner button{border-radius:999px;padding:6px 14px;}
+        .mini-news-ticker{color:#b9f5ff;background:rgba(85,230,255,.055);}
+        .ticker-track{animation-duration:24s;}
+        .major-update-countdown{background:linear-gradient(110deg,rgba(21,51,91,.75),rgba(52,35,93,.7));border:1px solid rgba(130,151,255,.28);box-shadow:0 12px 30px rgba(0,0,0,.18);}
+        .release-status .countdown-boxes{display:none;}
+        .release-status .countdown-title{color:#bdf8ff;font-size:1rem;}
+        .top-nav-bar{background:rgba(12,19,36,.82);border:1px solid rgba(121,150,207,.2);box-shadow:0 14px 35px rgba(0,0,0,.28);backdrop-filter:blur(18px);}
+        .platform-badge-top{background:rgba(85,230,255,.1);border:1px solid rgba(85,230,255,.3);border-radius:999px;padding:8px 16px;color:#c8f9ff;}
+        .action-icon-btn{border-radius:14px;border-color:rgba(133,158,216,.25);background:rgba(255,255,255,.045);}
+        header{position:relative;overflow:hidden;background:linear-gradient(145deg,rgba(16,29,55,.97),rgba(14,18,39,.96));border:1px solid rgba(120,147,209,.24);padding:30px 26px 24px;box-shadow:0 22px 60px rgba(0,0,0,.3);}
+        header:before{content:"";position:absolute;width:340px;height:340px;border:1px solid rgba(85,230,255,.10);border-radius:50%;left:-150px;top:-210px;box-shadow:0 0 0 32px rgba(85,230,255,.025),0 0 0 72px rgba(85,230,255,.018);pointer-events:none;}
+        .brand-title{font-size:clamp(3rem,9vw,5.7rem);letter-spacing:7px;background:linear-gradient(100deg,#fff 12%,#9cf4ff 42%,#a8a5ff 72%,#e2b0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 8px 22px rgba(85,230,255,.16));}
+        .subtitle{color:#c2cce1;font-size:1rem;}
+        .spec-banner{background:rgba(85,230,255,.075);border:1px solid rgba(85,230,255,.22);color:#bdf6ff;border-radius:12px;}
+        .search-container input{border-radius:16px;background:rgba(4,9,20,.72);border:1px solid rgba(137,164,221,.28);padding:16px 20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.04);}
+        .search-container input:focus{border-color:#55e6ff;box-shadow:0 0 0 4px rgba(85,230,255,.09);}
+        .filter-chips{gap:9px;}
+        .chip{border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(142,163,207,.22);padding:9px 16px;transition:.22s;}
+        .chip.active,.chip:hover{background:linear-gradient(110deg,rgba(85,230,255,.18),rgba(135,112,255,.18));border-color:rgba(85,230,255,.65);color:#dffbff;box-shadow:0 5px 18px rgba(85,230,255,.08);}
+        .btn-social{border-radius:999px;background:rgba(85,230,255,.08);border-color:rgba(85,230,255,.28);color:#c8f9ff;}
+        .raf-hero{position:relative;isolation:isolate;overflow:hidden;min-height:300px;margin:24px 0 18px;padding:34px 38px 24px;border-radius:28px;border:1px solid rgba(124,150,219,.24);background:linear-gradient(112deg,rgba(17,34,65,.98),rgba(22,25,57,.94) 58%,rgba(45,25,73,.92));box-shadow:0 24px 60px rgba(0,0,0,.28);}
+        .raf-hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,transparent 55%,rgba(85,230,255,.055)),radial-gradient(circle at 76% 44%,rgba(85,230,255,.12),transparent 26%);}
+        .hero-copy{max-width:610px;position:relative;z-index:2;}
+        .hero-kicker,.library-section-heading span{font-size:.72rem;font-weight:900;letter-spacing:3px;color:#80efff;}
+        .hero-copy h1{font-size:clamp(2.2rem,6vw,4.1rem);line-height:1.12;font-weight:900;margin:12px 0;color:#fff;}
+        .hero-copy h1 span{background:var(--accent-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .hero-copy p{max-width:530px;color:#b8c6df;font-size:.98rem;line-height:1.9;}
+        .hero-actions{display:flex;align-items:center;gap:18px;margin-top:22px;flex-wrap:wrap;}
+        .hero-primary{border:0;border-radius:13px;padding:12px 20px;color:#07111e;font-weight:900;background:linear-gradient(110deg,#75f0ff,#a9a2ff);box-shadow:0 8px 25px rgba(85,230,255,.17);cursor:pointer;}
+        .hero-primary span{font-size:1.2rem;margin-right:10px;}
+        .hero-version{font-size:.72rem;letter-spacing:2px;color:#9aabc9;font-weight:900;}
+        .hero-orbit{position:absolute;left:7%;top:50%;transform:translateY(-50%);width:240px;height:240px;display:grid;place-items:center;opacity:.95;}
+        .orbit-ring{position:absolute;border:1px solid rgba(107,225,255,.28);border-radius:50%;transform:rotate(-24deg);}
+        .ring-one{width:220px;height:145px;}.ring-two{width:165px;height:220px;transform:rotate(48deg);border-color:rgba(174,133,255,.35);}
+        .hero-orbit:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(83,146,255,.12);filter:blur(28px);}
+        .orbit-core{width:104px;height:104px;border-radius:28px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:2.5rem;font-weight:900;color:#fff;background:linear-gradient(145deg,#172f55,#24204f);border:1px solid rgba(135,234,255,.6);box-shadow:0 0 45px rgba(85,230,255,.22),inset 0 0 24px rgba(85,230,255,.12);transform:rotate(-8deg);}
+        .orbit-core span{font-size:.62rem;letter-spacing:4px;color:#8ef1ff;}
+        .orbit-dot{position:absolute;width:9px;height:9px;border-radius:50%;background:#a5f5ff;box-shadow:0 0 16px #55e6ff;}.dot-one{top:28px;right:54px}.dot-two{bottom:38px;left:30px;background:#c4a0ff}.dot-three{top:48%;left:8px;background:#fff;}
+        .hero-stats{display:flex;gap:30px;margin-top:30px;padding-top:18px;border-top:1px solid rgba(164,188,233,.14);}
+        .hero-stats div{display:flex;flex-direction:column;gap:1px;}.hero-stats strong{font-size:1.2rem;color:#f4fbff;font-weight:900;}.hero-stats span{font-size:.72rem;color:#98aaca;}
+        .library-section-heading{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:28px 4px 14px;}
+        .library-section-heading h2{font-size:1.5rem;font-weight:900;color:#f2f6ff;margin-top:2px;}.library-section-heading p{color:#91a2c2;font-size:.8rem;}
+        .layout-switcher-bar{background:rgba(13,22,41,.8);border:1px solid rgba(132,157,211,.2);padding:14px 18px;}
+        .layout-switcher-title{color:#dce8ff;}
+        .layout-btn{border-radius:12px;border:1px solid rgba(137,164,221,.22);background:rgba(255,255,255,.045);}
+        .layout-btn.active,.layout-btn:hover{background:linear-gradient(110deg,rgba(85,230,255,.18),rgba(135,112,255,.2));border-color:rgba(85,230,255,.6);}
+        .games-grid{gap:16px;}
+        .game-card{background:linear-gradient(145deg,rgba(17,27,49,.96),rgba(12,19,36,.94));border:1px solid rgba(123,150,207,.19);border-radius:22px;padding:19px;box-shadow:0 12px 30px rgba(0,0,0,.22);gap:15px;}
+        .game-card:hover{border-color:rgba(85,230,255,.65);box-shadow:0 18px 42px rgba(0,0,0,.3),0 0 25px rgba(85,230,255,.07);transform:translateY(-4px);}
+        .game-number-badge{background:linear-gradient(120deg,#2e9ebc,#6967ce);border-radius:10px;box-shadow:none;}
+        .fav-btn{border-color:rgba(141,165,215,.25);background:rgba(5,10,22,.75);}
+        .game-title-box{border:1px solid rgba(85,230,255,.45);border-radius:18px;background:radial-gradient(circle at 50% 25%,rgba(79,149,201,.28),transparent 65%),linear-gradient(145deg,#172747,#17152f);box-shadow:inset 0 0 24px rgba(85,230,255,.07);}
+        .game-title-box .game-logo-text{background:linear-gradient(135deg,#fff,#a6edff 70%,#c2b1ff);-webkit-background-clip:text;}
+        .game-title-box .game-logo-sub{color:#7feaff;}
+        .game-title{font-size:1.12rem;}
+        .port-tag-text{color:#a4f1ff;background:rgba(85,230,255,.075);border-color:rgba(85,230,255,.2);}
+        .tag{border-radius:999px;background:rgba(85,230,255,.07);border-color:rgba(85,230,255,.2);color:#c7eefa;}
+        .tag.new-game{background:rgba(177,145,255,.12);border-color:rgba(177,145,255,.32);color:#d4c3ff;}
+        .tag.offline{background:rgba(89,211,159,.1);border-color:rgba(89,211,159,.25);color:#8ce8bb;}
+        .note-box{border-radius:12px;background:rgba(255,205,110,.055);border-color:rgba(255,205,110,.2);color:#d8d2bd;}
+        .apk-disclaimer{background:rgba(85,230,255,.055);border-color:rgba(85,230,255,.19);color:#bfeaf1;}
+        .btn-download{border-radius:12px;background:linear-gradient(110deg,#1a8eaa,#5557ba);box-shadow:0 6px 16px rgba(34,122,168,.14);}
+        .btn-download.secondary{background:rgba(126,139,184,.12);border:1px solid rgba(146,163,215,.24);}
+        .btn-download:hover{filter:brightness(1.13);transform:translateY(-2px);}
+        .btn-info-modal{border-radius:11px;background:rgba(85,230,255,.07);border-color:rgba(85,230,255,.22);}
+        .star.active{color:#ffd36b;}
+        .game-info-modal .game-info-content,.emulators-content{background:#101a30;border:1px solid rgba(85,230,255,.25);border-radius:24px;}
+        footer{margin-top:34px;padding:22px;border-radius:18px;background:rgba(14,22,40,.72);border:1px solid rgba(123,150,207,.16);color:#9eacc6;}
+        @media(max-width:760px){
+            body{padding:10px 9px 28px}.raf-hero{padding:25px 20px 20px;min-height:0;border-radius:22px}.hero-orbit{width:120px;height:120px;left:-16px;top:48px;transform:none;opacity:.34}.ring-one{width:120px;height:80px}.ring-two{width:90px;height:120px}.orbit-core{width:65px;height:65px;border-radius:18px;font-size:1.5rem}.hero-copy{max-width:100%}.hero-copy h1{font-size:2.45rem}.hero-copy p{max-width:85%;font-size:.88rem}.hero-stats{gap:17px;justify-content:space-between}.hero-stats strong{font-size:1rem}.hero-stats span{font-size:.64rem}.library-section-heading{align-items:start;flex-direction:column;gap:3px}.library-section-heading h2{font-size:1.25rem}header{padding:22px 14px}.game-card{padding:17px 14px}.game-main-content{gap:12px}.game-title-box{width:92px;height:112px}.game-title-box .game-logo-text{font-size:.88rem}.game-details{padding-right:0}.game-title{font-size:1rem}.download-group{width:100%}.download-group .btn-download{width:100%;text-align:center}.filter-chips{justify-content:flex-start}.chip{font-size:.76rem;padding:7px 12px}
+        }
+        @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
     </style>
 </head>
 <body>
 
     <div class="container">
         <div class="update-banner" id="updateBanner">
-            <span>🔥 تم تحديث المنصة وعرض أسماء الألعاب بشكل احترافي وجامد بدون صور!</span>
+            <span>🚀 RAF-VX 8.0.0 — إعادة تصميم شاملة + مكتبة ألعاب موسّعة</span>
             <button onclick="closeBanner()">إخفاء</button>
         </div>
 
         <div class="mini-news-ticker">
             <div class="ticker-track">
-                <span class="ticker-item">🔥 آخر التحديثات: تم إضافة لعبة God Of War Collection ولعبة Poppy Playtime Chapter 5 وألعاب Naruto Ninja 5 و Lethal Company! ⚡</span>
-                <span class="ticker-item">🔥 آخر التحديثات: تم إضافة لعبة God Of War Collection ولعبة Poppy Playtime Chapter 5 وألعاب Naruto Ninja 5 و Lethal Company! ⚡</span>
+                <span class="ticker-item">✨ الإصدار 8.0.0: تصميم جديد كلياً • ألعاب جديدة • بحث وأقسام أسرع • تجربة محسّنة للجوال ⚡</span>
+                <span class="ticker-item">✨ الإصدار 8.0.0: تصميم جديد كلياً • ألعاب جديدة • بحث وأقسام أسرع • تجربة محسّنة للجوال ⚡</span>
             </div>
         </div>
 
-        <div class="major-update-countdown" id="majorUpdateCountdown">
-            <div class="countdown-title">⏳ تبقى على التحديث الجوهري</div>
+        <div class="major-update-countdown release-status" id="majorUpdateCountdown">
+            <div class="countdown-title">🚀 تم إطلاق RAF-VX 8.0.0 — التحديث الجوهري</div>
             <div class="countdown-boxes">
                 <div class="cd-box">
                     <span class="cd-num" id="cd-days">00</span>
@@ -1070,7 +1156,7 @@
                 <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
                     <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
-                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب (97)</div>
+                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب</div>
                     <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
                     <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
                     <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
@@ -1222,12 +1308,12 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث بين الـ 98 لعبة..." onkeyup="filterGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث في مكتبة RAF-VX..." onkeyup="filterGames()">
             </div>
 
             <!-- نظام تبديل الأقسام الجديد بأزرار أفقية بارزة وعدادات إحصائيات مباشرة -->
             <div class="filter-chips" id="filterChipsContainer">
-                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">97</span>)</div>
+                <div class="chip active" onclick="setCategory('all', this)">🎮 الكل (<span id="count-all">0</span>)</div>
                 <div class="chip" onclick="setCategory('جديد', this)">🔥 الألعاب الجديدة (<span id="count-new">7</span>)</div>
                 <div class="chip" onclick="setCategory('أكشن', this)">⚡ #أكشن (<span id="count-action">68</span>)</div>
                 <div class="chip" onclick="setCategory('رعب', this)">👻 #رعب (<span id="count-horror">11</span>)</div>
@@ -1244,7 +1330,23 @@
         </header>
 
         
-        <!-- شريط الطرق التفاعلية الجديدة لعرض وتنسيق الألعاب -->
+
+        <section class="raf-hero" aria-label="مقدمة منصة RAF-VX">
+            <div class="hero-copy">
+                <span class="hero-kicker">RAF-VX / ANDROID PORTS LIBRARY</span>
+                <h1>اللعبة التالية<br><span>تبدأ من هنا.</span></h1>
+                <p>مكتبة منظمة لبورتات ألعاب الأندرويد، مع روابط التحميل والتفاصيل والتصنيفات في مكان واحد.</p>
+                <div class="hero-actions">
+                    <button class="hero-primary" onclick="document.getElementById('searchInput').focus(); document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});">استكشف المكتبة <span>←</span></button>
+                    <span class="hero-version">VERSION 8.0.0</span>
+                </div>
+            </div>
+            <div class="hero-orbit" aria-hidden="true"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core">VX<span>08</span></div><i class="orbit-dot dot-one"></i><i class="orbit-dot dot-two"></i><i class="orbit-dot dot-three"></i></div>
+            <div class="hero-stats"><div><strong id="heroGameCount">113</strong><span>لعبة في المكتبة</span></div><div><strong>8.0</strong><span>الإصدار الجديد</span></div><div><strong>100%</strong><span>تجربة متجاوبة</span></div></div>
+        </section>
+        <div class="library-section-heading"><div><span>THE LIBRARY</span><h2>اختر مغامرتك القادمة</h2></div><p>ابحث، صفِّ النتائج، واحفظ ألعابك المفضلة.</p></div>
+
+                <!-- شريط الطرق التفاعلية الجديدة لعرض وتنسيق الألعاب -->
         <div class="layout-switcher-bar">
             <span class="layout-switcher-title">⚡ طريقة عرض الألعاب المبتكرة:</span>
             <div class="layout-buttons">
@@ -2783,14 +2885,12 @@
                         <div class="game-title">✨ The Last of Us Remastered</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
-                        <div class="note-box">💡 تتطلب معالج Snapdragon 8 gen2 وفوق. يتضمن التحديث الأخير لتحسين استقرار الرام وتحسين الفريمات.</div>
+                        <div class="note-box">💡 تم تحديث رابط APK إلى إصدار 0.2.0 Android Bionic من GitHub.</div><div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح هنا لملف APK فقط؛ وقد تتطلب اللعبة تنزيل ملفات إضافية من داخلها. لم أتمكن من تأكيد ذلك لعدم اختبار اللعبة.</div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">41 GB</span></div></div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://apkvision.org/games/adventure/the-last-of-us-remastered-135545/" target="_blank" class="btn-download">📥 تحميل ملف اللعبة</a>
-                    <a href="https://mocha.my/share/xJL_ZNJpImBP5GMI9M3dYmpB3wFTA5bK" target="_blank" class="btn-download secondary">🔄 تحميل ملف التحديث (RAM Fix)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://mocha.my/share/xJL_ZNJpImBP5GMI9M3dYmpB3wFTA5bK', 'The Last of Us Update')">📋 نسخ ملف التحديث لتطبيق 1DM</button>
+                    <a href="https://github.com/erickmendes22/tlou-remastered-android/releases/tag/0.2.0-android-bionic" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK — إصدار 0.2.0</a>
                 </div>
             </div>
 
@@ -3408,16 +3508,13 @@
                         <div class="game-title">✨ Naruto Shippuden: Ultimate Ninja 5</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد (APK + ملف اللعبة)</div>
                         <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
-                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">4 GB</span></div></div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">2 GB</span></div></div>
                     </div>
                 </div>
                 <div class="download-group">
-                    <a href="https://dl.apkvision.org/naruto-shippuden-ultimate-ninja-5/Hidden-Leaf-v0.1.0-beta-full-apkvision.apk" target="_blank" class="btn-download">📥 تحميل ملف اللعبة (APK)</a>
-                    <a href="https://dl.apkvision.net/naruto-shippuden-ultimate-ninja-5/Naruto-Shippuden-Ultimate-Ninja-5-apkvision.iso" target="_blank" class="btn-download secondary">📂 تحميل ملف اللعبة (Data)</a>
-                    <button class="btn-download dm-copy" onclick="copy1DM('https://dl.apkvision.net/naruto-shippuden-ultimate-ninja-5/Naruto-Shippuden-Ultimate-Ninja-5-apkvision.iso', 'Naruto Shippuden: Ultimate Ninja 5')">📋 نسخ ملف اللعبة لتطبيق 1DM</button>
+                    <a href="https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-5-135820/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK + ملف اللعبة (رابط واحد)</a>
                 </div>
             </div>
-
 
             <!-- 96 (Poppy Playtime Chapter 5) -->
             <div class="game-card" data-id="poppy-playtime-chapter-5" data-category="رعب أكشن جديد">
@@ -3492,10 +3589,311 @@
                 </div>
             </div>
 
+
+            <!-- 99 (Frostpunk) -->
+            <div class="game-card new-release-card" data-id="frostpunk" data-category="محاكاة وإدارة جديد">
+                <div class="game-number-badge">#99</div>
+                <div class="fav-btn" onclick="toggleFavorite('frostpunk', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Frostpunk</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Frostpunk</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + ملف اللعبة)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#محاكاة وإدارة</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box ">💡 صفحة التحميل تحتوي على APK وملف/ملفات اللعبة وفقاً للمعلومات المرسلة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">9.30 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/simulation/frostpunk-135812/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK + ملف اللعبة</a></div>
+            </div>
+
+            <!-- 100 (DRAGON BALL XENOVERSE) -->
+            <div class="game-card new-release-card" data-id="dragon-ball-xenoverse" data-category="أكشن جديد">
+                <div class="game-number-badge">#100</div>
+                <div class="fav-btn" onclick="toggleFavorite('dragon-ball-xenoverse', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">DRAGON BALL XENOVERSE</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ DRAGON BALL XENOVERSE</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">108 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/action/dragon-ball-xenoverse-135815/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 101 (Juiced) -->
+            <div class="game-card new-release-card" data-id="juiced" data-category="سباق جديد">
+                <div class="game-number-badge">#101</div>
+                <div class="fav-btn" onclick="toggleFavorite('juiced', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Juiced</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Juiced</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + ملفات اللعبة (FHD))</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#سباق</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box ">💡 صفحة التحميل تحتوي على APK وملف/ملفات اللعبة وفقاً للمعلومات المرسلة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">3 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/racing/juiced-135822/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK + ملف اللعبة</a></div>
+            </div>
+
+            <!-- 102 (The Dishwasher: Vampire Smile) -->
+            <div class="game-card new-release-card" data-id="dishwasher-vampire-smile" data-category="أكشن جديد">
+                <div class="game-number-badge">#102</div>
+                <div class="fav-btn" onclick="toggleFavorite('dishwasher-vampire-smile', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">The Dishwasher: Vampire Smile</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ The Dishwasher: Vampire Smile</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">139 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/action/the-dishwasher-vampire-smile-135828/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 103 (POSTAL) -->
+            <div class="game-card new-release-card" data-id="postal" data-category="أكشن جديد">
+                <div class="game-number-badge">#103</div>
+                <div class="fav-btn" onclick="toggleFavorite('postal', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">POSTAL</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ POSTAL</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">142 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/action/postal-8625/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 104 (CRACK) -->
+            <div class="game-card new-release-card" data-id="crack" data-category="مغامرات جديد">
+                <div class="game-number-badge">#104</div>
+                <div class="fav-btn" onclick="toggleFavorite('crack', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">CRACK</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ CRACK</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#مغامرات</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">605 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/adventure/crack-135849/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 105 (The Dishwasher: Dead Samurai) -->
+            <div class="game-card new-release-card" data-id="dishwasher-dead-samurai" data-category="أكشن جديد">
+                <div class="game-number-badge">#105</div>
+                <div class="fav-btn" onclick="toggleFavorite('dishwasher-dead-samurai', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">The Dishwasher: Dead Samurai</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ The Dishwasher: Dead Samurai</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">103 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/action/the-dishwasher-dead-samurai-135843/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 106 (Alien Hominid HD) -->
+            <div class="game-card new-release-card" data-id="alien-hominid-hd" data-category="أكشن جديد">
+                <div class="game-number-badge">#106</div>
+                <div class="fav-btn" onclick="toggleFavorite('alien-hominid-hd', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Alien Hominid HD</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Alien Hominid HD</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">55 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/action/alien-hominid-hd-135845/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 107 (Aura Farming) -->
+            <div class="game-card new-release-card" data-id="aura-farming" data-category="كاجوال جديد">
+                <div class="game-number-badge">#107</div>
+                <div class="fav-btn" onclick="toggleFavorite('aura-farming', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Aura Farming</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Aura Farming</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#كاجوال</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">95 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/casual/aura-farming-135860/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 108 (Rodland of Pipes) -->
+            <div class="game-card new-release-card" data-id="rodland-of-pipes" data-category="مغامرات جديد">
+                <div class="game-number-badge">#108</div>
+                <div class="fav-btn" onclick="toggleFavorite('rodland-of-pipes', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Rodland of Pipes</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Rodland of Pipes</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#مغامرات</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">159 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/adventure/rodland-of-pipes-135858/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 109 (CastleMiner Z) -->
+            <div class="game-card new-release-card" data-id="castleminer-z" data-category="مغامرات جديد">
+                <div class="game-number-badge">#109</div>
+                <div class="fav-btn" onclick="toggleFavorite('castleminer-z', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">CastleMiner Z</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ CastleMiner Z</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#مغامرات</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">160 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/adventure/castleminer-z-135852/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 110 (Blasphemous 2) -->
+            <div class="game-card new-release-card" data-id="blasphemous-2" data-category="أكشن جديد">
+                <div class="game-number-badge">#110</div>
+                <div class="fav-btn" onclick="toggleFavorite('blasphemous-2', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Blasphemous 2</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Blasphemous 2</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">125 MB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/action/blasphemous-2-128400/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 111 (Deus Ex: Game of the Year Edition) -->
+            <div class="game-card new-release-card" data-id="deus-ex-goty" data-category="أكشن جديد">
+                <div class="game-number-badge">#111</div>
+                <div class="fav-btn" onclick="toggleFavorite('deus-ex-goty', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">Deus Ex: Game of the Year Edition</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Deus Ex: Game of the Year Edition</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + ملف اللعبة)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box ">💡 صفحة التحميل تحتوي على APK وملف/ملفات اللعبة وفقاً للمعلومات المرسلة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">1 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/action/deus-ex-game-of-the-year-edition-135854/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK + ملف اللعبة</a></div>
+            </div>
+
+            <!-- 112 (PEAK) -->
+            <div class="game-card new-release-card" data-id="peak" data-category="مغامرات جديد">
+                <div class="game-number-badge">#112</div>
+                <div class="fav-btn" onclick="toggleFavorite('peak', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">PEAK</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ PEAK</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK فقط)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#مغامرات</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح لملف APK فقط. قد تتطلب اللعبة تنزيل ملفات إضافية من داخلها؛ لم أتمكن من التأكد من ذلك لأنني لم أختبر اللعبة.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">2.51 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkvision.org/games/adventure/peak-135853/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK</a></div>
+            </div>
+
+            <!-- 113 (The Godfather: The Game) -->
+            <div class="game-card new-release-card" data-id="the-godfather-the-game" data-category="أكشن جديد">
+                <div class="game-number-badge">#113</div>
+                <div class="fav-btn" onclick="toggleFavorite('the-godfather-the-game', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box">
+                        <span class="game-logo-text">The Godfather: The Game</span>
+                        <span class="game-logo-sub">RAF-VX 8.0</span>
+                    </div>
+                    <div class="game-details">
+                        <div class="game-title">✨ The Godfather: The Game</div>
+                        <div class="port-tag-text">⚙️ بورت أندرويد (APK + تنزيل داخلي)</div>
+                        <div class="game-meta"><span class="tag new-game">🆕 إضافة جديدة</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
+                        <div class="note-box">💡 بعد تثبيت APK، تستكمل اللعبة تنزيل بياناتها من داخل التطبيق.</div>
+                        <div class="game-info"><div class="info-item">إجمالي الحجم: <span class="info-value">3 GB</span></div></div>
+                    </div>
+                </div>
+                <div class="download-group"><a href="https://apkbomb.com/the-godfather-the-game/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK — تنزيل البيانات داخل اللعبة</a></div>
+            </div>
+
         </div>
 
         <footer>
-            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار الملكي) © 2026</p>
+            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار الملكي 8.0.0) © 2026</p>
         </footer>
     </div>
 
@@ -3745,6 +4143,8 @@
             }
 
             document.getElementById('count-all').innerText = total;
+            const heroCount = document.getElementById('heroGameCount');
+            if (heroCount) heroCount.innerText = total;
             document.getElementById('count-new').innerText = newGames;
             document.getElementById('count-action').innerText = action;
             document.getElementById('count-horror').innerText = horror;
@@ -3905,9 +4305,9 @@
         });
 
 
-        // عداد تنازلي احترافي إلى يوم الخميس القادم (19 نوفمبر 2026)
+        // عداد الإصدار — يبقى معطلاً بعد إطلاق النسخة 8.0.0
         function startMajorUpdateCountdown() {
-            const targetDate = new Date("2026-11-19T00:00:00+03:00").getTime();
+            const targetDate = new Date("2027-01-01T00:00:00+03:00").getTime();
 
             function updateTimer() {
                 const now = new Date().getTime();
