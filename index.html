@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAF-VX 8.0.0 | منصة ألعاب أندرويد</title>
+    <title>RAF-VX 9.0.0 | مكتبة ألعاب أندرويد</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -1110,24 +1110,55 @@
         @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
     </style>
+
+    <style id="rafvx-v9-redesign">
+      :root{--bg-color:#070b13;--card-bg:rgba(15,23,38,.92);--card-border:rgba(65,218,205,.20);--card-border-hover:rgba(65,218,205,.75);--accent-color:#48e0cf;--accent-gradient:linear-gradient(125deg,#48e0cf,#a6f36b);--text-main:#f2f7fb;--text-muted:#9aabba;--badge-bg:rgba(72,224,207,.12);--badge-border:rgba(72,224,207,.35);--ticker-bg:rgba(72,224,207,.07);--ticker-border:rgba(72,224,207,.2);--vx-panel:#101a2a;--vx-line:rgba(166,243,107,.18)}
+      html{scroll-behavior:smooth} body{padding:18px 20px 100px;background:#070b13;background-image:radial-gradient(ellipse at 8% 4%,rgba(40,190,180,.16),transparent 32%),radial-gradient(ellipse at 92% 18%,rgba(125,225,111,.10),transparent 30%),linear-gradient(180deg,#070b13,#0a1220 58%,#070b13);color:#f2f7fb}
+      .container{max-width:1440px;width:min(100%,1440px)} .update-banner{background:linear-gradient(105deg,rgba(72,224,207,.15),rgba(166,243,107,.08));border:1px solid rgba(72,224,207,.32);border-radius:13px;box-shadow:none;color:#dffefa}.update-banner button{border-radius:9px}
+      .mini-news-ticker{border-radius:10px;background:rgba(14,27,42,.8);color:#9ff5dc;border-color:rgba(72,224,207,.18)} .ticker-track{animation-duration:25s}
+      .major-update-countdown{display:none!important}
+      .top-nav-bar{background:rgba(10,18,30,.88);border:1px solid rgba(145,178,194,.15);border-radius:18px;padding:12px 18px;box-shadow:0 18px 55px rgba(0,0,0,.24);backdrop-filter:blur(20px)}.platform-badge-top{background:rgba(72,224,207,.10);border:1px solid rgba(72,224,207,.25);color:#a7f5e6;border-radius:10px}.action-icon-btn{border:1px solid rgba(150,190,200,.18);background:#142235;border-radius:12px}.action-icon-btn:hover{background:var(--accent-gradient);color:#07131a}
+      .menu-dropdown{background:#0d1828;border:1px solid rgba(72,224,207,.3);border-radius:14px}.menu-item:hover{background:rgba(72,224,207,.14);color:#baf9eb}
+      header{position:relative;overflow:hidden;margin:20px 0 24px;padding:34px 34px 28px;border:1px solid rgba(72,224,207,.2);border-radius:28px;background:linear-gradient(115deg,rgba(15,30,45,.97),rgba(12,24,38,.9) 58%,rgba(20,42,43,.72));box-shadow:0 25px 75px rgba(0,0,0,.28);text-align:right}
+      header:before{content:"";position:absolute;left:-90px;top:-170px;width:420px;height:420px;border:1px solid rgba(72,224,207,.13);border-radius:50%;box-shadow:0 0 0 34px rgba(72,224,207,.025),0 0 0 72px rgba(72,224,207,.02);pointer-events:none}
+      .theme-picker-box{display:flex;align-items:center;justify-content:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:22px;padding:11px 14px;background:rgba(3,10,18,.36);border:1px solid rgba(255,255,255,.07);border-radius:14px}.theme-label{color:#b4c5d1;font-size:.82rem}.color-dots{gap:8px}.color-dot{width:20px;height:20px;border:2px solid rgba(255,255,255,.5);transition:.2s}.color-dot:hover{transform:scale(1.22)}
+      .supervisor-badge{display:inline-block;padding:9px 15px;border-radius:12px;background:rgba(72,224,207,.07);border:1px solid rgba(72,224,207,.18)}.supervisor-badge div:first-child{color:#6debd8!important}.brand-title{font-size:clamp(3rem,8vw,6.2rem);line-height:1.12;letter-spacing:5px;font-weight:900;background:linear-gradient(100deg,#fff 10%,#75ead8 48%,#b5f18c 85%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;margin:12px 0 2px}.subtitle{color:#b2c4d1;font-size:1.02rem}.spec-banner{display:inline-flex;margin:17px 0 20px;padding:9px 14px;border:1px solid rgba(166,243,107,.22);background:rgba(166,243,107,.07);border-radius:10px;color:#c9f7a9;font-size:.86rem}
+      .search-container{max-width:100%;margin:0 0 18px;position:relative}.vx-search-count{display:block;margin:7px 4px 0;color:#7f9aa8;font-size:.7rem}.search-container input{height:58px;border-radius:15px!important;background:#071321!important;border:1px solid rgba(112,171,184,.28)!important;color:#fff!important;padding:0 20px!important;font-size:1rem!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.015),0 12px 25px rgba(0,0,0,.18)}.search-container input:focus{border-color:#48e0cf!important;box-shadow:0 0 0 4px rgba(72,224,207,.10)!important}
+      .filter-chips{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-start;margin:18px 0}.chip{background:#142338!important;border:1px solid rgba(140,174,190,.17)!important;border-radius:11px!important;padding:9px 14px!important;color:#c5d5df!important;font-weight:800}.chip.active,.chip:hover{background:rgba(72,224,207,.14)!important;border-color:rgba(72,224,207,.55)!important;color:#9ff4e2!important;box-shadow:0 5px 18px rgba(72,224,207,.08)}.social-links{justify-content:flex-start}.btn-social{background:rgba(72,224,207,.1)!important;border:1px solid rgba(72,224,207,.3)!important;color:#a9f3e4!important;border-radius:11px!important}
+      .raf-hero{position:relative;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(220px,.7fr);align-items:center;gap:20px;min-height:310px;padding:35px 42px;margin:24px 0 30px;border-radius:27px;border:1px solid rgba(166,243,107,.22);background:linear-gradient(115deg,#142b39 0%,#10202e 48%,#102a2a 100%);overflow:hidden;box-shadow:0 25px 70px rgba(0,0,0,.3)}.raf-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,rgba(72,224,207,.05));pointer-events:none}.hero-copy{z-index:2}.hero-kicker{color:#80ead8;letter-spacing:2px;font-size:.72rem;font-weight:900}.hero-copy h1{font-size:clamp(2rem,5vw,3.8rem);line-height:1.22;margin:12px 0;color:#f5fbff}.hero-copy h1 span{color:#a8ef8c}.hero-copy p{max-width:600px;color:#afc2cf;font-size:1rem}.hero-primary{background:linear-gradient(110deg,#55e1cf,#b0ed83)!important;color:#07151b!important;border:0!important;border-radius:12px!important;padding:12px 20px!important;font-weight:900}.hero-version{color:#93aab8;font-weight:800;letter-spacing:1px}.hero-orbit{transform:scale(.9)}.orbit-ring{border-color:rgba(87,230,208,.35)!important}.orbit-core{background:linear-gradient(135deg,#5ce2cf,#b1ed83)!important;color:#07151b!important;box-shadow:0 0 65px rgba(72,224,207,.25)}.hero-stats{grid-column:1/-1;display:flex;gap:0;justify-content:flex-start;border-top:1px solid rgba(255,255,255,.1);padding-top:17px;margin-top:5px}.hero-stats>div{padding:0 28px;border-left:1px solid rgba(255,255,255,.1)}.hero-stats>div:first-child{padding-right:0}.hero-stats strong{color:#a8ef8c}.hero-stats span{color:#a9bac5}
+      .library-section-heading{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:35px 0 17px}.library-section-heading>div>span,.vx-eyebrow{color:#73e4d1;letter-spacing:2px;font-size:.7rem;font-weight:900}.library-section-heading h2{font-size:1.8rem;color:#f4fbff}.library-section-heading p{color:#93a7b5}
+      .vx-command-center{margin:22px 0 28px;padding:23px;border-radius:22px;background:linear-gradient(145deg,rgba(16,29,45,.98),rgba(12,24,37,.94));border:1px solid rgba(72,224,207,.2);box-shadow:0 18px 48px rgba(0,0,0,.2)}.vx-command-head{display:flex;justify-content:space-between;align-items:center;gap:15px}.vx-command-head h2{font-size:1.45rem;margin:3px 0;color:#f2f8fb}.vx-command-head p{font-size:.83rem;color:#91a7b6}.vx-live-pill{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:30px;background:rgba(166,243,107,.08);border:1px solid rgba(166,243,107,.2);color:#b7ef98;font-size:.76rem;font-weight:800}.vx-live-pill i{width:7px;height:7px;background:#a6f36b;border-radius:50%;box-shadow:0 0 12px #a6f36b}.vx-tool-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:10px;margin-top:18px}.vx-sort-tool,.vx-tool-button{min-height:67px;padding:12px 14px;border:1px solid rgba(140,177,190,.16);border-radius:14px;background:#0b1726;color:#e7f1f5}.vx-sort-tool{display:flex;flex-direction:column;gap:4px}.vx-sort-tool span{font-size:.72rem;color:#9bb0bd;font-weight:800}.vx-sort-tool select{width:100%;background:transparent;color:#f4fbff;border:0;outline:0;font-size:.88rem;font-weight:800}.vx-sort-tool option{background:#102033}.vx-tool-button{display:flex;align-items:center;gap:12px;text-align:right;cursor:pointer;transition:.2s}.vx-tool-button:hover{border-color:rgba(72,224,207,.55);transform:translateY(-2px);background:#102333}.vx-tool-button b{font-size:1.5rem;color:#80ead8}.vx-tool-button span{font-weight:900;font-size:.84rem}.vx-tool-button small{display:block;color:#849ba9;font-size:.69rem;font-weight:600}.vx-quick-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}.vx-quick-stats>div{padding:12px 14px;background:rgba(255,255,255,.025);border:1px solid rgba(140,177,190,.10);border-radius:12px}.vx-quick-stats span,.vx-quick-stats small{display:block;color:#8fa5b3;font-size:.7rem}.vx-quick-stats strong{display:inline-block;color:#b4f29a;font-size:1.35rem;margin:2px 6px 0 0}.vx-recent-wrap{margin-top:16px;padding-top:13px;border-top:1px solid rgba(255,255,255,.08)}.vx-recent-title{display:flex;justify-content:space-between;color:#d9e9ef;font-size:.85rem;margin-bottom:10px}.vx-recent-title button{background:none;border:0;color:#7fe5d3;cursor:pointer}.vx-recent-list{display:flex;gap:8px;overflow:auto;padding-bottom:4px}.vx-recent-item{flex:0 0 auto;max-width:230px;padding:9px 13px;border:1px solid rgba(72,224,207,.18);background:#0b1826;color:#dff8f1;border-radius:10px;cursor:pointer;font-size:.78rem}
+      .layout-switcher-bar{background:#101e2e!important;border:1px solid rgba(72,224,207,.18)!important;border-radius:15px!important;padding:13px 16px!important}.layout-switcher-title{color:#a9c1cb!important}.layout-btn{background:#0a1725!important;border:1px solid rgba(140,177,190,.17)!important;color:#b9cbd5!important;border-radius:9px!important}.layout-btn.active,.layout-btn:hover{background:rgba(72,224,207,.14)!important;color:#a6f4e5!important;border-color:rgba(72,224,207,.5)!important}
+      .games-grid{gap:17px!important;margin-top:18px}.games-grid.grid-mode{grid-template-columns:repeat(3,minmax(0,1fr))!important}.game-card{position:relative!important;min-width:0!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;overflow:hidden!important;padding:17px!important;gap:12px!important;border:1px solid rgba(128,166,180,.16)!important;border-radius:18px!important;background:linear-gradient(155deg,rgba(20,35,52,.97),rgba(11,21,34,.98))!important;box-shadow:0 12px 28px rgba(0,0,0,.16)!important;transition:transform .22s,border-color .22s,box-shadow .22s!important}.game-card:before{content:"";position:absolute;top:0;right:0;left:0;height:3px;background:linear-gradient(90deg,transparent,#49dfcf,#a6f36b,transparent);opacity:.48}.game-card:hover{transform:translateY(-5px)!important;border-color:rgba(72,224,207,.55)!important;box-shadow:0 18px 40px rgba(0,0,0,.28),0 0 22px rgba(72,224,207,.06)!important}.game-number-badge{top:13px!important;right:13px!important;background:rgba(72,224,207,.12)!important;color:#9af1df!important;border:1px solid rgba(72,224,207,.22)!important;border-radius:8px!important}.fav-btn{top:11px!important;left:11px!important;background:#0a1725!important;border:1px solid rgba(255,255,255,.1)!important;border-radius:10px!important}.game-main-content{display:flex!important;align-items:stretch!important;gap:13px!important;margin-top:26px}.game-title-box{flex:0 0 100px!important;min-height:105px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;padding:8px!important;border:1px solid rgba(72,224,207,.16)!important;border-radius:13px!important;background:radial-gradient(circle at 50% 20%,rgba(72,224,207,.15),rgba(6,14,23,.95) 70%)!important}.game-logo-text{font-size:.9rem!important;color:#c4f7e9!important;text-align:center!important;overflow-wrap:anywhere}.game-logo-sub{color:#7895a4!important;font-size:.58rem!important}.game-details{flex:1;min-width:0}.game-title{font-size:.95rem!important;color:#f1f7fa!important;line-height:1.45!important;font-weight:900!important}.port-tag-text{color:#82dcca!important;font-size:.72rem!important}.game-meta{display:flex!important;flex-wrap:wrap!important;gap:5px!important;margin:7px 0!important}.tag{font-size:.62rem!important;border-radius:6px!important;background:rgba(72,224,207,.08)!important;border:1px solid rgba(72,224,207,.12)!important;color:#9bdccd!important;padding:2px 7px!important}.tag.offline{color:#b5e99c!important;background:rgba(166,243,107,.07)!important;border-color:rgba(166,243,107,.15)!important}.tag.new-game{color:#d7ef9c!important}.game-info{color:#9eb1bd!important;font-size:.75rem!important}.info-value{color:#d8f4e9!important;font-weight:900}.note-box{font-size:.7rem!important;line-height:1.6!important;padding:8px 10px!important;background:rgba(166,243,107,.055)!important;border:1px solid rgba(166,243,107,.12)!important;border-radius:9px!important;color:#b8c7b2!important}.download-group{display:flex!important;flex-direction:column!important;gap:7px!important;margin-top:auto!important}.btn-download,.btn-info-modal{border-radius:9px!important;border:1px solid rgba(72,224,207,.25)!important;background:rgba(72,224,207,.10)!important;color:#b8f5e8!important;padding:9px 11px!important;font-size:.75rem!important;font-weight:900!important;text-decoration:none!important;transition:.18s!important}.btn-download:hover,.btn-info-modal:hover{background:linear-gradient(110deg,#53dfce,#a9ef88)!important;color:#07151b!important;transform:translateY(-1px)}.btn-download.secondary{background:rgba(255,255,255,.045)!important;border-color:rgba(160,184,195,.16)!important;color:#c5d5de!important}.dm-copy{background:rgba(166,243,107,.07)!important;border-color:rgba(166,243,107,.22)!important;color:#c8efa9!important}.game-actions-row{display:flex!important;gap:7px!important;flex-wrap:wrap!important}.btn-info-modal{flex:1!important}.vx-compare-add{padding:8px 10px;border-radius:9px;border:1px solid rgba(166,243,107,.25);background:rgba(166,243,107,.07);color:#c5f0a7;font-weight:900;font-size:.72rem;cursor:pointer}.vx-compare-add.selected{background:rgba(166,243,107,.2);border-color:#a6f36b;color:#e3ffd0}
+      .star-rating{margin-top:6px}.star{color:#536777!important}.star.active{color:#f4d477!important}.game-info-modal,.emulators-modal{background:rgba(2,8,14,.84)!important;backdrop-filter:blur(16px)!important}.game-info-content,.emulators-content{background:#0d1a29!important;border:1px solid rgba(72,224,207,.3)!important;border-radius:22px!important;box-shadow:0 30px 90px rgba(0,0,0,.55)!important}.close-modal-btn{background:#14283a!important;border:1px solid rgba(72,224,207,.2)!important;color:#b9f5e9!important;border-radius:10px!important}.emu-section-title{color:#92ebd9!important}.emu-sub-card{background:#102235!important;border:1px solid rgba(72,224,207,.16)!important;border-radius:13px!important}.emu-btn-link{background:rgba(72,224,207,.12)!important;color:#aaf3e4!important;border:1px solid rgba(72,224,207,.22)!important;border-radius:9px!important}
+      .vx-compare-dock{position:fixed;z-index:1500;bottom:16px;left:50%;transform:translateX(-50%);width:min(680px,calc(100% - 24px));display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(9,20,32,.96);border:1px solid rgba(72,224,207,.4);border-radius:16px;box-shadow:0 15px 55px rgba(0,0,0,.55);backdrop-filter:blur(20px)}.vx-compare-dock[hidden]{display:none!important}.vx-compare-dock>div{flex:1;min-width:0}.vx-compare-dock strong,.vx-compare-dock span{display:block}.vx-compare-dock strong{color:#aaf3e4;font-size:.85rem}.vx-compare-dock span{color:#91a8b6;font-size:.7rem}.vx-compare-open{background:linear-gradient(110deg,#53dfce,#a9ef88);color:#07151b;border:0;border-radius:9px;padding:9px 14px;font-weight:900}.vx-compare-clear{background:transparent;border:1px solid rgba(255,255,255,.15);color:#c8d8df;border-radius:8px;padding:8px 10px}.vx-compare-modal{display:none;position:fixed;inset:0;z-index:2500;background:rgba(1,7,13,.88);backdrop-filter:blur(12px);align-items:center;justify-content:center;padding:16px}.vx-compare-modal.active{display:flex}.vx-compare-panel{position:relative;width:min(900px,100%);max-height:85vh;overflow:auto;padding:28px 20px 20px;background:#0d1a29;border:1px solid rgba(72,224,207,.3);border-radius:20px}.vx-compare-table{width:100%;border-collapse:collapse;margin-top:15px;font-size:.82rem}.vx-compare-table th,.vx-compare-table td{padding:12px 10px;border:1px solid rgba(150,180,190,.15);text-align:center}.vx-compare-table th{color:#a9f1e3;background:#13283a}.vx-compare-table td:first-child{color:#9bb1bf;font-weight:900}.vx-compare-title{font-size:1.5rem;color:#e9f8f4}
+      footer{margin-top:38px!important;padding:25px!important;border-top:1px solid rgba(72,224,207,.18)!important;color:#8ea5b2!important}
+      .vx-random-highlight{outline:2px solid #a6f36b!important;box-shadow:0 0 0 6px rgba(166,243,107,.12),0 0 35px rgba(166,243,107,.25)!important;animation:vxPulse .55s ease-in-out 2}@keyframes vxPulse{50%{transform:scale(1.015)}}
+      .tlou-downloads{border-top:1px solid rgba(72,224,207,.16);padding-top:10px}.tlou-downloads .btn-download:first-child{background:linear-gradient(110deg,rgba(72,224,207,.2),rgba(166,243,107,.13))!important;border-color:rgba(72,224,207,.48)!important}
+      .compact-mode .game-card{padding:11px!important}.compact-mode .game-title-box{min-height:75px!important}.carousel-mode .game-card{min-width:300px!important;max-width:350px!important}
+      @media(max-width:1050px){.games-grid.grid-mode{grid-template-columns:repeat(2,minmax(0,1fr))!important}.vx-tool-grid{grid-template-columns:repeat(2,1fr)}}
+      @media(max-width:680px){body{padding:9px 9px 95px}.container{width:100%}.top-nav-bar{padding:9px 11px;margin-bottom:12px}.platform-badge-top{font-size:.72rem;padding:6px 9px}.top-actions{gap:7px}.action-icon-btn{width:39px;height:39px}.menu-dropdown{width:min(270px,calc(100vw - 24px))}header{padding:22px 15px 18px;border-radius:20px;margin:12px 0 17px}.theme-picker-box{padding:9px;gap:8px}.brand-title{font-size:3.5rem;letter-spacing:2px}.subtitle{font-size:.83rem}.spec-banner{font-size:.7rem;line-height:1.6}.search-container input{height:52px!important}.filter-chips{gap:6px}.chip{font-size:.7rem!important;padding:7px 9px!important}.raf-hero{grid-template-columns:1fr;min-height:0;padding:25px 20px;border-radius:20px}.hero-orbit{position:absolute;left:-50px;top:22px;opacity:.23;transform:scale(.72)}.hero-copy{position:relative}.hero-copy h1{font-size:2.35rem}.hero-stats{gap:0;justify-content:space-between}.hero-stats>div{padding:0 10px}.hero-stats strong{font-size:1.1rem}.hero-stats span{font-size:.62rem}.library-section-heading{align-items:flex-start;flex-direction:column;margin:25px 0 13px}.library-section-heading h2{font-size:1.4rem}.library-section-heading p{font-size:.75rem}.vx-command-center{padding:15px;border-radius:17px}.vx-command-head{align-items:flex-start}.vx-command-head h2{font-size:1.15rem}.vx-command-head p{font-size:.72rem}.vx-live-pill{font-size:.65rem;white-space:nowrap;padding:6px 8px}.vx-tool-grid{grid-template-columns:1fr 1fr;gap:7px}.vx-sort-tool,.vx-tool-button{min-height:61px;padding:9px}.vx-tool-button{gap:7px}.vx-tool-button b{font-size:1.2rem}.vx-tool-button span{font-size:.73rem}.vx-tool-button small{font-size:.6rem}.vx-sort-tool select{font-size:.75rem}.vx-quick-stats{grid-template-columns:repeat(2,1fr);gap:7px}.vx-quick-stats>div{padding:9px}.vx-quick-stats strong{font-size:1.1rem}.vx-quick-stats span,.vx-quick-stats small{font-size:.62rem}.layout-switcher-bar{align-items:flex-start!important;flex-direction:column!important}.layout-buttons{width:100%;display:grid!important;grid-template-columns:1fr!important}.layout-btn{width:100%;font-size:.72rem!important}.games-grid.grid-mode{grid-template-columns:1fr!important;gap:11px!important}.game-card{padding:13px!important;border-radius:15px!important}.game-main-content{gap:10px!important}.game-title-box{flex-basis:88px!important;min-height:94px!important}.game-logo-text{font-size:.78rem!important}.game-title{font-size:.88rem!important}.port-tag-text{font-size:.67rem!important}.btn-download,.btn-info-modal{font-size:.72rem!important}.game-number-badge{font-size:.63rem!important}.vx-compare-dock{bottom:8px;padding:9px 10px}.vx-compare-dock strong{font-size:.75rem}.vx-compare-dock span{font-size:.61rem}.vx-compare-open{font-size:.7rem;padding:8px 10px}.vx-compare-panel{padding:25px 10px 12px}.vx-compare-table{font-size:.68rem}.vx-compare-table th,.vx-compare-table td{padding:8px 5px}.vx-compare-title{font-size:1.15rem}}
+      @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    </style>
+
 </head>
 <body>
 
     <div class="container">
         <div class="update-banner" id="updateBanner">
-            <span>🚀 RAF-VX 8.0.0 — إعادة تصميم شاملة + مكتبة ألعاب موسّعة</span>
+            <span>🚀 RAF-VX 9.0.0 — الجيل الجديد من مكتبة ألعاب الأندرويد</span>
             <button onclick="closeBanner()">إخفاء</button>
         </div>
 
         <div class="mini-news-ticker">
             <div class="ticker-track">
-                <span class="ticker-item">✨ الإصدار 8.0.0: تصميم جديد كلياً • ألعاب جديدة • بحث وأقسام أسرع • تجربة محسّنة للجوال ⚡</span>
-                <span class="ticker-item">✨ الإصدار 8.0.0: تصميم جديد كلياً • ألعاب جديدة • بحث وأقسام أسرع • تجربة محسّنة للجوال ⚡</span>
+                <span class="ticker-item">⚡ RAF-VX 9.0.0 • مكتبة أكبر • أدوات ذكية • مقارنة ألعاب • سجل المشاهدة • تجربة أسرع</span>
+                <span class="ticker-item">⚡ RAF-VX 9.0.0 • مكتبة أكبر • أدوات ذكية • مقارنة ألعاب • سجل المشاهدة • تجربة أسرع</span>
             </div>
         </div>
 
         <div class="major-update-countdown release-status" id="majorUpdateCountdown">
-            <div class="countdown-title">🚀 تم إطلاق RAF-VX 8.0.0 — التحديث الجوهري</div>
+            <div class="countdown-title">🚀 تم إطلاق RAF-VX 9.0.0 — التحديث الجوهري</div>
             <div class="countdown-boxes">
                 <div class="cd-box">
                     <span class="cd-num" id="cd-days">00</span>
@@ -1308,7 +1339,8 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="🔍 ابحث في مكتبة RAF-VX..." onkeyup="filterGames()">
+                <input type="text" id="searchInput" placeholder="🔍 ابحث باسم اللعبة أو التصنيف..." onkeyup="filterGames()">
+                <span id="vxSearchResults" class="vx-search-count" aria-live="polite">اكتشف مكتبة RAF-VX</span>
             </div>
 
             <!-- نظام تبديل الأقسام الجديد بأزرار أفقية بارزة وعدادات إحصائيات مباشرة -->
@@ -1338,7 +1370,7 @@
                 <p>مكتبة منظمة لبورتات ألعاب الأندرويد، مع روابط التحميل والتفاصيل والتصنيفات في مكان واحد.</p>
                 <div class="hero-actions">
                     <button class="hero-primary" onclick="document.getElementById('searchInput').focus(); document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});">استكشف المكتبة <span>←</span></button>
-                    <span class="hero-version">VERSION 8.0.0</span>
+                    <span class="hero-version">VERSION 9.0.0</span>
                 </div>
             </div>
             <div class="hero-orbit" aria-hidden="true"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core">VX<span>08</span></div><i class="orbit-dot dot-one"></i><i class="orbit-dot dot-two"></i><i class="orbit-dot dot-three"></i></div>
@@ -1346,7 +1378,27 @@
         </section>
         <div class="library-section-heading"><div><span>THE LIBRARY</span><h2>اختر مغامرتك القادمة</h2></div><p>ابحث، صفِّ النتائج، واحفظ ألعابك المفضلة.</p></div>
 
-                <!-- شريط الطرق التفاعلية الجديدة لعرض وتنسيق الألعاب -->
+                <section class="vx-command-center" aria-label="أدوات مكتبة RAF-VX">
+            <div class="vx-command-head">
+                <div><span class="vx-eyebrow">SMART LIBRARY TOOLS</span><h2>مركز التحكم بالمكتبة</h2><p>اكتشف لعبتك، رتّب المكتبة، وقارن خياراتك قبل التحميل.</p></div>
+                <div class="vx-live-pill"><i></i> المكتبة تعمل</div>
+            </div>
+            <div class="vx-tool-grid">
+                <label class="vx-sort-tool"><span>↕ ترتيب الألعاب</span><select id="librarySort" onchange="sortLibrary(this.value)"><option value="default">الترتيب الأصلي</option><option value="name">الاسم: أ — ي</option><option value="name-desc">الاسم: ي — أ</option><option value="size-asc">الحجم: الأصغر أولاً</option><option value="size-desc">الحجم: الأكبر أولاً</option><option value="newest">الإضافات الجديدة أولاً</option></select></label>
+                <button class="vx-tool-button" onclick="pickRandomGame()"><b>🎲</b><span>اقترح لعبة<small>اختيار عشوائي</small></span></button>
+                <button class="vx-tool-button" onclick="showRecentlyViewed()"><b>🕘</b><span>آخر المشاهدات<small>تابع ما فتحته</small></span></button>
+                <button class="vx-tool-button" onclick="clearLibrarySearch()"><b>⌕</b><span>إعادة ضبط البحث<small>عرض كل الألعاب</small></span></button>
+            </div>
+            <div class="vx-quick-stats">
+                <div><span>إجمالي المكتبة</span><strong id="vxTotalCount">113</strong><small>لعبة</small></div>
+                <div><span>المفضلة لديك</span><strong id="vxFavoriteCount">0</strong><small>محفوظة</small></div>
+                <div><span>اختيارات المقارنة</span><strong id="vxCompareCount">0/3</strong><small>حتى 3 ألعاب</small></div>
+                <div><span>آخر زيارة</span><strong id="vxLastVisit">اليوم</strong><small>محلياً على جهازك</small></div>
+            </div>
+            <div class="vx-recent-wrap" id="vxRecentWrap" hidden><div class="vx-recent-title"><strong>🕘 أكملت المشاهدة مؤخراً</strong><button onclick="hideRecentlyViewed()">إخفاء</button></div><div id="vxRecentList" class="vx-recent-list"></div></div>
+        </section>
+
+        <!-- شريط الطرق التفاعلية الجديدة لعرض وتنسيق الألعاب -->
         <div class="layout-switcher-bar">
             <span class="layout-switcher-title">⚡ طريقة عرض الألعاب المبتكرة:</span>
             <div class="layout-buttons">
@@ -2885,12 +2937,14 @@
                         <div class="game-title">✨ The Last of Us Remastered</div>
                         <div class="port-tag-text">⚙️ بورت أندرويد رسمي</div>
                         <div class="game-meta"><span class="tag">#رعب</span><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div>
-                        <div class="note-box">💡 تم تحديث رابط APK إلى إصدار 0.2.0 Android Bionic من GitHub.</div><div class="note-box apk-disclaimer">ℹ️ تنويه: الرابط المتاح هنا لملف APK فقط؛ وقد تتطلب اللعبة تنزيل ملفات إضافية من داخلها. لم أتمكن من تأكيد ذلك لعدم اختبار اللعبة.</div>
+                        <div class="note-box">💡 تم تحديث رابط APK إلى إصدار 0.2.0 Android Bionic، مع الإبقاء على رابط ملف اللعبة فقط، وإضافة زر نسخ مباشر إلى 1DM.</div>
                         <div class="game-info"><div class="info-item">الحجم: <span class="info-value">41 GB</span></div></div>
                     </div>
                 </div>
-                <div class="download-group">
-                    <a href="https://github.com/erickmendes22/tlou-remastered-android/releases/tag/0.2.0-android-bionic" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK — إصدار 0.2.0</a>
+                <div class="download-group tlou-downloads">
+                    <a href="https://github.com/erickmendes22/tlou-remastered-android/releases/tag/0.2.0-android-bionic" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل ملف APK — GitHub 0.2.0</a>
+                    <a href="https://apkvision.org/games/adventure/the-last-of-us-remastered-135545/" target="_blank" rel="noopener noreferrer" class="btn-download secondary">📦 تحميل ملف اللعبة (41 GB)</a>
+                    <button class="btn-download dm-copy" onclick="copy1DM('https://apkvision.org/games/adventure/the-last-of-us-remastered-135545/', 'The Last of Us Remastered — ملف اللعبة')">📋 نسخ رابط ملف اللعبة لتطبيق 1DM</button>
                 </div>
             </div>
 
@@ -3892,8 +3946,17 @@
 
         </div>
 
+        <aside class="vx-compare-dock" id="vxCompareDock" hidden>
+            <div><strong>⚖️ مقارنة الألعاب</strong><span id="vxCompareSummary">اختر حتى 3 ألعاب من البطاقات</span></div>
+            <button class="vx-compare-open" onclick="openCompareModal()">عرض المقارنة</button>
+            <button class="vx-compare-clear" onclick="clearCompare()" aria-label="مسح المقارنة">✕</button>
+        </aside>
+        <div class="vx-compare-modal" id="vxCompareModal" onclick="if(event.target===this)closeCompareModal()">
+            <div class="vx-compare-panel"><button class="close-modal-btn" onclick="closeCompareModal()">✕</button><div id="vxCompareContent"></div></div>
+        </div>
+
         <footer>
-            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار الملكي 8.0.0) © 2026</p>
+            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار 9.0.0) © 2026</p>
         </footer>
     </div>
 
@@ -4339,6 +4402,117 @@
         document.addEventListener("DOMContentLoaded", function() {
             startMajorUpdateCountdown();
         });
+
+
+        // RAF-VX 9.0 — أدوات المكتبة الذكية (محلية بالكامل ولا تحتاج خادماً)
+        let vxCompareIds = [];
+        function vxCards(){ return Array.from(document.querySelectorAll('#gamesGrid .game-card')); }
+        function vxCardName(card){ return (card.querySelector('.game-title')?.innerText || '').replace(/^✨\s*/, '').trim(); }
+        function vxCardSize(card){
+            const raw=(card.querySelector('.info-value')?.innerText||'').toUpperCase().replace(/,/g,'');
+            const m=raw.match(/[\d.]+/); if(!m) return Number.MAX_SAFE_INTEGER;
+            const n=parseFloat(m[0]);
+            if(raw.includes('TB')) return n*1024*1024;
+            if(raw.includes('GB')) return n*1024;
+            if(raw.includes('MB')) return n;
+            return n*1024;
+        }
+        function sortLibrary(mode){
+            const grid=document.getElementById('gamesGrid'); if(!grid) return;
+            const cards=vxCards();
+            if(mode==='default') cards.sort((a,b)=>parseInt(a.querySelector('.game-number-badge')?.innerText.replace(/\D/g,'')||0)-parseInt(b.querySelector('.game-number-badge')?.innerText.replace(/\D/g,'')||0));
+            if(mode==='name') cards.sort((a,b)=>vxCardName(a).localeCompare(vxCardName(b),'ar'));
+            if(mode==='name-desc') cards.sort((a,b)=>vxCardName(b).localeCompare(vxCardName(a),'ar'));
+            if(mode==='size-asc') cards.sort((a,b)=>vxCardSize(a)-vxCardSize(b));
+            if(mode==='size-desc') cards.sort((a,b)=>vxCardSize(b)-vxCardSize(a));
+            if(mode==='newest') cards.sort((a,b)=>(b.classList.contains('new-release-card')?1:0)-(a.classList.contains('new-release-card')?1:0));
+            cards.forEach(card=>grid.appendChild(card));
+            filterGames();
+        }
+        function clearLibrarySearch(){
+            const input=document.getElementById('searchInput'); if(input) input.value='';
+            showOnlyFavorites=false; currentCategory='all';
+            document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+            const allChip=Array.from(document.querySelectorAll('.chip')).find(c=>c.getAttribute('onclick')?.includes("'all'")); if(allChip) allChip.classList.add('active');
+            const sort=document.getElementById('librarySort'); if(sort){sort.value='default';sortLibrary('default');} else filterGames();
+            document.getElementById('gamesGrid')?.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+        function pickRandomGame(){
+            const visible=vxCards().filter(c=>c.style.display!=='none');
+            if(!visible.length){alert('لا توجد ألعاب ظاهرة للاختيار. أعد ضبط البحث أولاً.');return;}
+            const card=visible[Math.floor(Math.random()*visible.length)];
+            card.scrollIntoView({behavior:'smooth',block:'center'});
+            card.classList.add('vx-random-highlight'); setTimeout(()=>card.classList.remove('vx-random-highlight'),1700);
+            openGameInfoModal(card);
+        }
+        function vxSaveRecent(card){
+            const id=card?.getAttribute('data-id'); if(!id)return;
+            let ids=[]; try{ids=JSON.parse(localStorage.getItem('rafvx_recent')||'[]')}catch(e){}
+            ids=[id,...ids.filter(x=>x!==id)].slice(0,8);
+            localStorage.setItem('rafvx_recent',JSON.stringify(ids)); vxRenderRecent();
+        }
+        function vxRenderRecent(){
+            let ids=[];try{ids=JSON.parse(localStorage.getItem('rafvx_recent')||'[]')}catch(e){}
+            const wrap=document.getElementById('vxRecentWrap'),list=document.getElementById('vxRecentList'); if(!wrap||!list)return;
+            const cards=ids.map(id=>vxCards().find(c=>c.dataset.id===id)).filter(Boolean);
+            wrap.hidden=!cards.length; list.innerHTML='';
+            cards.forEach(card=>{const b=document.createElement('button');b.className='vx-recent-item';b.textContent='🎮 '+vxCardName(card);b.onclick=()=>openGameInfoModal(card);list.appendChild(b)});
+        }
+        function showRecentlyViewed(){vxRenderRecent();const wrap=document.getElementById('vxRecentWrap');if(wrap){wrap.hidden=false;wrap.scrollIntoView({behavior:'smooth',block:'center'});}}
+        function hideRecentlyViewed(){const wrap=document.getElementById('vxRecentWrap');if(wrap)wrap.hidden=true;}
+        function vxCompareToggle(id,button){
+            const idx=vxCompareIds.indexOf(id);
+            if(idx>=0){vxCompareIds.splice(idx,1);button.classList.remove('selected');button.textContent='＋ قارن';}
+            else{if(vxCompareIds.length>=3){alert('يمكنك مقارنة 3 ألعاب كحد أقصى. احذف لعبة أولاً.');return;}vxCompareIds.push(id);button.classList.add('selected');button.textContent='✓ تمت الإضافة';}
+            vxRenderCompareDock();
+        }
+        function vxRenderCompareDock(){
+            const dock=document.getElementById('vxCompareDock'),summary=document.getElementById('vxCompareSummary');
+            if(!dock)return; dock.hidden=!vxCompareIds.length;
+            const names=vxCompareIds.map(id=>{const c=vxCards().find(x=>x.dataset.id===id);return c?vxCardName(c):''}).filter(Boolean);
+            if(summary)summary.textContent=names.length?names.join(' • '):'اختر حتى 3 ألعاب من البطاقات';
+            const n=document.getElementById('vxCompareCount');if(n)n.textContent=vxCompareIds.length+'/3';
+        }
+        function clearCompare(){vxCompareIds=[];document.querySelectorAll('.vx-compare-add').forEach(b=>{b.classList.remove('selected');b.textContent='＋ قارن'});vxRenderCompareDock();closeCompareModal();}
+        function openCompareModal(){
+            const cards=vxCompareIds.map(id=>vxCards().find(c=>c.dataset.id===id)).filter(Boolean);
+            if(cards.length<2){alert('اختر لعبتين على الأقل حتى تظهر المقارنة.');return;}
+            const rows=[['اللعبة',...cards.map(vxCardName)],['التصنيف',...cards.map(c=>c.dataset.category||'—')],['الحجم',...cards.map(c=>c.querySelector('.info-value')?.innerText||'غير محدد')],['نوع الإصدار',...cards.map(c=>c.querySelector('.port-tag-text')?.innerText||'غير محدد')],['الملاحظات',...cards.map(c=>c.querySelector('.note-box')?.innerText||'لا توجد ملاحظات')]];
+            const html='<h2 class="vx-compare-title">⚖️ مقارنة الألعاب</h2><p style="color:#91a8b6;font-size:.8rem">قارن الحجم ونوع الإصدار والتصنيف قبل اختيار التحميل.</p><table class="vx-compare-table"><tbody>'+rows.map((r,i)=>'<tr>'+r.map((v,j)=>j===0?'<td>'+v+'</td>':'<td>'+String(v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+            document.getElementById('vxCompareContent').innerHTML=html;document.getElementById('vxCompareModal').classList.add('active');
+        }
+        function closeCompareModal(){document.getElementById('vxCompareModal')?.classList.remove('active');}
+        function vxUpdateDashboard(){
+            const total=vxCards().length,tc=document.getElementById('vxTotalCount'),hc=document.getElementById('heroGameCount');
+            if(tc)tc.textContent=total;if(hc)hc.textContent=total;
+            const fc=document.getElementById('vxFavoriteCount');if(fc)fc.textContent=getFavorites().length;
+            const visit=document.getElementById('vxLastVisit');if(visit)visit.textContent=new Date().toLocaleDateString('ar-SA',{day:'numeric',month:'short'});
+            vxRenderRecent();vxRenderCompareDock();
+        }
+        // Extend the existing card enhancement with comparison and recent-view support.
+        document.addEventListener('DOMContentLoaded',function(){
+            vxUpdateDashboard();
+            vxCards().forEach(card=>{
+                const row=card.querySelector('.game-actions-row');
+                if(row&&!row.querySelector('.vx-compare-add')){
+                    const b=document.createElement('button');b.className='vx-compare-add';b.type='button';b.textContent='＋ قارن';
+                    b.onclick=()=>vxCompareToggle(card.dataset.id,b);row.appendChild(b);
+                }
+            });
+            document.querySelectorAll('.fav-btn').forEach(b=>b.addEventListener('click',()=>setTimeout(vxUpdateDashboard,0)));
+            const search=document.getElementById('searchInput');if(search)search.addEventListener('input',()=>{const n=document.getElementById('vxSearchResults');if(n)n.textContent=vxCards().filter(c=>c.style.display!=='none').length+' نتيجة';});
+            const stamp=localStorage.getItem('rafvx_last_visit');
+            localStorage.setItem('rafvx_last_visit',new Date().toISOString());
+        });
+        // Make copy-to-1DM resilient on browsers without Clipboard API.
+        const vxOriginalCopy1DM=copy1DM;
+        copy1DM=function(url,gameName){
+            if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(()=>alert('📋 تم نسخ رابط '+gameName+' بنجاح. افتح 1DM والصق الرابط لبدء التحميل.')).catch(()=>prompt('انسخ الرابط يدوياً إلى 1DM:',url));}
+            else{prompt('انسخ الرابط يدوياً إلى 1DM:',url);}
+        };
+        // Record a title whenever the details sheet is opened.
+        const vxOriginalOpenInfo=openGameInfoModal;
+        openGameInfoModal=function(card){vxSaveRecent(card);vxOriginalOpenInfo(card);};
 
     </script>
 
