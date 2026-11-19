@@ -1,0 +1,155 @@
+name: RAF-VX Force Display Rodland Cover 108
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raf-vx-force-display-cover-108
+  cancel-in-progress: false
+
+jobs:
+  repair-cover-display:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout RAF-VX
+        uses: actions/checkout@v4
+
+      - name: Verify image and repair game 108 HTML display
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from io import BytesIO
+          from PIL import Image
+          from bs4 import BeautifulSoup
+          import os
+
+          root = Path.cwd()
+          html_path = root / "index.html"
+          image_path = root / "images" / "games" / "108.jpg"
+
+          if not html_path.is_file():
+              raise SystemExit("ERROR: index.html is missing.")
+          if not image_path.is_file():
+              raise SystemExit("ERROR: images/games/108.jpg is missing.")
+
+          raw = image_path.read_bytes()
+          if not raw:
+              raise SystemExit("ERROR: images/games/108.jpg is empty.")
+
+          try:
+              cover = Image.open(BytesIO(raw))
+              cover.verify()
+              cover = Image.open(BytesIO(raw))
+          except Exception as exc:
+              raise SystemExit(f"ERROR: game 108 image is not a valid image: {exc}")
+
+          width, height = cover.size
+          if width < 250 or height < 350 or height <= width:
+              raise SystemExit(f"ERROR: unexpected cover dimensions: {width}x{height}")
+
+          soup = BeautifulSoup(html_path.read_text(encoding="utf-8"), "html.parser")
+          card = soup.select_one('.game-card[data-id="rodland-of-pipes"]')
+          if card is None:
+              raise SystemExit("ERROR: could not find game card data-id=rodland-of-pipes.")
+
+          box = card.select_one(".game-title-box")
+          if box is None:
+              raise SystemExit("ERROR: game 108 .game-title-box is missing.")
+
+          img = box.select_one("img.game-cover-img")
+          if img is None:
+              img = soup.new_tag("img", **{"class": "game-cover-img"})
+              box.clear()
+              box.append(img)
+
+          # Use the same relative path style as the other working covers,
+          # and bypass stale browser/CDN copies with a new query version.
+          img["src"] = "./images/games/108.jpg?v=20261119"
+          img["alt"] = "Rodland of Pipes"
+          img["loading"] = "eager"
+          img["decoding"] = "sync"
+          img["fetchpriority"] = "high"
+          img["style"] = (
+              "display:block!important;"
+              "position:absolute!important;"
+              "inset:0!important;"
+              "width:100%!important;"
+              "height:100%!important;"
+              "max-width:none!important;"
+              "max-height:none!important;"
+              "object-fit:cover!important;"
+              "opacity:1!important;"
+              "visibility:visible!important;"
+              "z-index:2!important;"
+          )
+
+          classes = box.get("class", [])
+          if "has-cover" not in classes:
+              classes.append("has-cover")
+          box["class"] = classes
+          box["style"] = (
+              (box.get("style", "").strip().rstrip(";") + ";")
+              + "position:relative!important;overflow:hidden!important;"
+          )
+
+          # A narrowly scoped CSS fallback in case the site's general cover rule
+          # overrides image sizing or visibility.
+          style_tag = soup.new_tag("style")
+          style_tag.string = """
+          .game-card[data-id="rodland-of-pipes"] .game-title-box {
+              position: relative !important;
+              overflow: hidden !important;
+          }
+          .game-card[data-id="rodland-of-pipes"] .game-title-box > img.game-cover-img {
+              display: block !important;
+              position: absolute !important;
+              inset: 0 !important;
+              width: 100% !important;
+              height: 100% !important;
+              max-width: none !important;
+              max-height: none !important;
+              object-fit: cover !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              z-index: 2 !important;
+          }
+          """
+          if soup.head:
+              # Remove only a previous copy of this repair's uniquely marked style.
+              old = soup.head.find("style", attrs={"data-rafvx-cover-fix": "108"})
+              if old:
+                  old.decompose()
+              style_tag["data-rafvx-cover-fix"] = "108"
+              soup.head.append(style_tag)
+          else:
+              raise SystemExit("ERROR: <head> section missing.")
+
+          html_path.write_text(str(soup), encoding="utf-8")
+
+          report = (
+              "### Rodland of Pipes #108 display repair\n"
+              f"- Verified local image: images/games/108.jpg ({width}x{height}, {len(raw)} bytes).\n"
+              "- Updated only the #108 image element and added narrowly scoped display CSS.\n"
+              "- Set eager loading, high fetch priority, explicit visible sizing, and cache-busting query.\n"
+              "- Other game cards and images were not changed.\n"
+          )
+          print(report)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+              f.write(report)
+          PY
+
+      - name: Commit only index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Fix Rodland of Pipes cover visibility"
+            git push
+          fi
