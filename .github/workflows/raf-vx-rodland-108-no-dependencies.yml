@@ -1,0 +1,123 @@
+name: RAF-VX Repair Rodland Cover 108 - No Dependencies
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raf-vx-repair-rodland-108-no-deps
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Repair only Rodland of Pipes image reference
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Confirm the image file is already present in the repository.
+          test -s images/games/108.jpg || {
+            echo "::error::images/games/108.jpg is missing or empty."
+            exit 1
+          }
+
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("index.html")
+          html = path.read_text(encoding="utf-8")
+
+          # Locate the exact game card by its stable data-id.
+          marker = 'data-id="rodland-of-pipes"'
+          start = html.find(marker)
+          if start < 0:
+              raise SystemExit("ERROR: Rodland of Pipes card was not found.")
+
+          card_start = html.rfind('<div class="game-card', 0, start)
+          if card_start < 0:
+              raise SystemExit("ERROR: start of Rodland game card was not found.")
+
+          card_end = html.find("</div>\n", start)
+          # Use the bounded section up to the next numbered game comment instead.
+          next_game = html.find("<!-- 109", start)
+          if next_game < 0:
+              raise SystemExit("ERROR: boundary after game 108 was not found.")
+
+          section = html[card_start:next_game]
+          img_start = section.find("<img ")
+          if img_start < 0:
+              raise SystemExit("ERROR: image element inside game 108 was not found.")
+          img_end = section.find(">", img_start)
+          if img_end < 0:
+              raise SystemExit("ERROR: malformed image element in game 108.")
+
+          # Match the project's working image markup convention:
+          # explicit ./ path, eager load, and cache-busting query.
+          new_img = (
+              '<img alt="Rodland of Pipes" class="game-cover-img" '
+              'decoding="async" loading="eager" fetchpriority="high" '
+              'src="./images/games/108.jpg?v=20261119"/>'
+          )
+          section = section[:img_start] + new_img + section[img_end + 1:]
+
+          # Add narrowly scoped CSS once; no third-party Python modules are needed.
+          style_marker = 'data-rafvx-rodland-fix="108"'
+          if style_marker not in html:
+              style = """
+          <style data-rafvx-rodland-fix="108">
+          .game-card[data-id="rodland-of-pipes"] .game-title-box {
+              position: relative !important;
+              overflow: hidden !important;
+          }
+          .game-card[data-id="rodland-of-pipes"] .game-cover-img {
+              display: block !important;
+              width: 100% !important;
+              height: 100% !important;
+              max-width: none !important;
+              max-height: none !important;
+              object-fit: cover !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+          }
+          </style>
+          """
+              head_end = html.lower().find("</head>")
+              if head_end < 0:
+                  raise SystemExit("ERROR: </head> tag was not found.")
+              html = html[:head_end] + style + html[head_end:]
+
+          # Re-find card after possible style insertion and replace only that card.
+          marker = 'data-id="rodland-of-pipes"'
+          start = html.find(marker)
+          card_start = html.rfind('<div class="game-card', 0, start)
+          next_game = html.find("<!-- 109", start)
+          section_end = next_game
+          # The section variable was built from the original HTML; insert the repaired card
+          # back into the current HTML without touching any other game.
+          old_section_start = card_start
+          html = html[:old_section_start] + section + html[section_end:]
+
+          path.write_text(html, encoding="utf-8")
+          print("SUCCESS: repaired only Rodland of Pipes (#108) image markup.")
+          print("Image file verified present: images/games/108.jpg")
+          PY
+
+      - name: Commit only index.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No HTML changes were needed."
+          else
+            git commit -m "Repair Rodland of Pipes cover display"
+            git push
+          fi
