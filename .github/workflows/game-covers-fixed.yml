@@ -1,0 +1,210 @@
+name: RAF-VX Game Covers
+
+on:
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: 'Download covers again, including existing ones'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raf-vx-game-covers
+  cancel-in-progress: false
+
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout RAF-VX
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install tools
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4 pillow
+
+      - name: Find and download verified covers
+        env:
+          STEAMGRIDDB_API_KEY: ${{ secrets.STEAMGRIDDB_API_KEY }}
+          REFRESH_COVERS: ${{ inputs.refresh }}
+        run: |
+          python - <<'PY'
+          import os, re, time, unicodedata, mimetypes
+          from pathlib import Path
+          from urllib.parse import quote
+          import requests
+          from bs4 import BeautifulSoup
+          from PIL import Image
+          from io import BytesIO
+
+          ROOT = Path.cwd()
+          HTML = ROOT / 'index.html'
+          OUT = ROOT / 'images' / 'games'
+          API = 'https://www.steamgriddb.com/api/v2'
+          KEY = os.environ.get('STEAMGRIDDB_API_KEY', '').strip()
+          FORCE = os.environ.get('REFRESH_COVERS', 'false').lower() == 'true'
+
+          if not KEY:
+              raise SystemExit('Missing repository secret: STEAMGRIDDB_API_KEY')
+          if not HTML.exists():
+              raise SystemExit('index.html was not found at the repository root.')
+
+          session = requests.Session()
+          session.headers.update({'Authorization': f'Bearer {KEY}', 'User-Agent': 'RAF-VX-CoverBot/1.0'})
+
+          def norm(value):
+              value = unicodedata.normalize('NFKD', value or '')
+              value = ''.join(ch for ch in value if not unicodedata.combining(ch))
+              value = value.casefold().replace('&', ' and ')
+              value = re.sub(r'[^a-z0-9]+', ' ', value)
+              return ' '.join(value.split())
+
+          # Explicit aliases only; no fuzzy/approximate matches are accepted.
+          aliases = {
+              'PES 2013': 'Pro Evolution Soccer 2013',
+              'Prototype (الجزء الأول)': 'Prototype',
+              'DMC 3': 'Devil May Cry 3: Special Edition',
+              'DBZ Raging': 'Dragon Ball: Raging Blast 2',
+              'Burst Limit': 'Dragon Ball Z: Burst Limit',
+              'Long Drive': 'The Long Drive',
+          }
+
+          html = HTML.read_text(encoding='utf-8')
+          soup = BeautifulSoup(html, 'html.parser')
+          cards = soup.select('.game-card')
+          if not cards:
+              raise SystemExit('No .game-card elements were found; stopping without changing the site.')
+
+          OUT.mkdir(parents=True, exist_ok=True)
+          downloaded, skipped, missing, errors = [], [], [], []
+
+          def api_get(url):
+              response = session.get(url, timeout=35)
+              if response.status_code == 429:
+                  time.sleep(3)
+                  response = session.get(url, timeout=35)
+              response.raise_for_status()
+              payload = response.json()
+              if not payload.get('success', False):
+                  raise RuntimeError('SteamGridDB API returned an unsuccessful response')
+              return payload.get('data', [])
+
+          for index, card in enumerate(cards, start=1):
+              title_el = card.select_one('.game-title')
+              title = title_el.get_text(' ', strip=True) if title_el else ''
+              title = re.sub(r'^\s*[✨⭐🎮]+\s*', '', title).strip()
+              if not title:
+                  missing.append(f'#{index}: title not found')
+                  continue
+
+              search_title = aliases.get(title, title)
+              filename = f'{index:03d}'
+              existing = list(OUT.glob(filename + '.*'))
+              if existing and not FORCE:
+                  # Keep an existing image; do not overwrite a manually reviewed cover.
+                  image_path = existing[0]
+                  box = card.select_one('.game-title-box')
+                  if box and not box.select_one('img.game-cover-img'):
+                      box.clear()
+                      img = soup.new_tag('img', src=image_path.relative_to(ROOT).as_posix(), alt=title,
+                                         **{'class': 'game-cover-img', 'loading': 'lazy', 'decoding': 'async'})
+                      box.append(img)
+                      box['class'] = list(set((box.get('class') or []) + ['has-cover']))
+                  skipped.append(title + ' (existing)')
+                  continue
+
+              try:
+                  results = api_get(f'{API}/search/autocomplete/{quote(search_title, safe="")}')
+                  wanted = norm(search_title)
+                  exact = [g for g in results if norm(g.get('name', '')) == wanted]
+                  if not exact:
+                      missing.append(title + ' (no exact database match)')
+                      continue
+                  exact.sort(key=lambda g: (not bool(g.get('verified')), g.get('id', 0)))
+                  game_id = exact[0]['id']
+
+                  grids = api_get(f'{API}/grids/game/{game_id}?dimensions=600x900&types=static&nsfw=false&humor=false')
+                  if not grids:
+                      missing.append(title + ' (no safe static portrait cover)')
+                      continue
+                  grids.sort(key=lambda g: (not bool(g.get('verified', False)), -(g.get('score') or 0)))
+                  image_url = grids[0].get('url')
+                  if not image_url:
+                      missing.append(title + ' (cover URL missing)')
+                      continue
+
+                  response = requests.get(image_url, timeout=45, headers={'User-Agent': 'RAF-VX-CoverBot/1.0'})
+                  response.raise_for_status()
+                  if len(response.content) > 12 * 1024 * 1024:
+                      raise RuntimeError('cover file is larger than 12 MB')
+                  image = Image.open(BytesIO(response.content))
+                  image.verify()
+                  fmt = (image.format or 'JPEG').upper()
+                  ext = {'JPEG': '.jpg', 'PNG': '.png', 'WEBP': '.webp'}.get(fmt)
+                  if not ext:
+                      raise RuntimeError('unsupported image format: ' + fmt)
+                  for old in OUT.glob(filename + '.*'):
+                      old.unlink()
+                  image_path = OUT / (filename + ext)
+                  image_path.write_bytes(response.content)
+
+                  box = card.select_one('.game-title-box')
+                  if box:
+                      box.clear()
+                      img = soup.new_tag('img', src=image_path.relative_to(ROOT).as_posix(), alt=title,
+                                         **{'class': 'game-cover-img', 'loading': 'lazy', 'decoding': 'async'})
+                      box.append(img)
+                      box['class'] = list(set((box.get('class') or []) + ['has-cover']))
+                      downloaded.append(title)
+                  else:
+                      missing.append(title + ' (cover container not found)')
+              except Exception as exc:
+                  errors.append(f'{title}: {type(exc).__name__}: {exc}')
+              time.sleep(0.25)
+
+          # Add image styling once. Existing cards without a confirmed cover keep their original title tile.
+          style = '''\n        /* RAF-VX local game covers */\n        .game-title-box.has-cover { padding: 0 !important; overflow: hidden; background: #090b10; }\n        .game-title-box .game-cover-img { display: block; width: 100%; height: 100%; min-height: 140px; object-fit: cover; border-radius: 13px; }\n        @media (max-width: 767px) { .game-title-box.has-cover { width: 104px; height: 140px; min-width: 104px; } }\n        @media (min-width: 768px) { .game-title-box.has-cover { width: 120px; height: 140px; min-width: 120px; } }\n        '''
+          styles = soup.find_all('style')
+          if styles and 'RAF-VX local game covers' not in styles[0].get_text():
+              styles[0].append(style)
+
+          HTML.write_text(str(soup), encoding='utf-8')
+
+          summary = []
+          summary.append(f'Game cards found: {len(cards)}')
+          summary.append(f'New covers downloaded: {len(downloaded)}')
+          summary.append(f'Existing covers kept: {len(skipped)}')
+          summary.append(f'No exact match / no cover: {len(missing)}')
+          summary.append(f'Errors: {len(errors)}')
+          if missing:
+              summary += ['', '### Needs manual review'] + ['- ' + x for x in missing]
+          if errors:
+              summary += ['', '### Errors'] + ['- ' + x for x in errors]
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a', encoding='utf-8') as f:
+              f.write('\n'.join(summary) + '\n')
+          print('\n'.join(summary))
+          PY
+
+      - name: Commit generated covers and HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html images/games
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add verified local game covers"
+            git push
+          fi
