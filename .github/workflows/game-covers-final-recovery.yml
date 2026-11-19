@@ -1,0 +1,295 @@
+name: RAF-VX Final Cover Recovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raf-vx-final-cover-recovery
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout RAF-VX
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: python -m pip install --disable-pip-version-check requests beautifulsoup4 pillow rapidfuzz
+
+      - name: Recover the remaining cover art
+        env:
+          STEAMGRIDDB_API_KEY: ${{ secrets.STEAMGRIDDB_API_KEY }}
+        run: |
+          python - <<'PY'
+          import os, re, time, unicodedata
+          from pathlib import Path
+          from io import BytesIO
+          from urllib.parse import quote
+          import requests
+          from bs4 import BeautifulSoup
+          from PIL import Image, ImageDraw, ImageFont
+          from rapidfuzz.fuzz import ratio
+
+          ROOT = Path.cwd()
+          HTML = ROOT / "index.html"
+          OUT = ROOT / "images" / "games"
+          API = "https://www.steamgriddb.com/api/v2"
+          KEY = os.environ.get("STEAMGRIDDB_API_KEY", "").strip()
+
+          # Only these seven IDs are in scope. Existing covers and all other cards are untouched.
+          TARGETS = {
+              9: {
+                  "title": "Devil May Cry 3: Special Edition",
+                  "queries": ["Devil May Cry 3", "DMC 3"]
+              },
+              46: {
+                  "title": "Mortal Kombat 9 Komplete Edition",
+                  "queries": ["Mortal Kombat 9", "Mortal Kombat Komplete Edition", "Mortal Kombat 2011"]
+              },
+              51: {
+                  "title": "GTA IV Android",
+                  "queries": ["Grand Theft Auto IV", "GTA IV", "Grand Theft Auto 4"]
+              },
+              63: {
+                  "title": "Crash Team Racing Nitro-Fueled",
+                  "queries": ["Crash Team Racing Nitro Fueled", "Crash Team Racing", "CTR Nitro Fueled"]
+              },
+              107: {
+                  "title": "Aura Farming",
+                  "queries": ["Aura Farming"]
+              },
+              108: {
+                  "title": "Rodland of Pipes",
+                  "queries": ["Rodland of Pipes"]
+              },
+              110: {
+                  "title": "Blasphemous 2",
+                  "queries": ["Blasphemous 2", "Blasphemous II"]
+              },
+          }
+
+          if not KEY:
+              raise SystemExit("Missing repository secret STEAMGRIDDB_API_KEY.")
+          if not HTML.exists():
+              raise SystemExit("index.html missing; stopping safely.")
+
+          def norm(s):
+              s = unicodedata.normalize("NFKD", s or "")
+              s = "".join(c for c in s if not unicodedata.combining(c))
+              s = s.casefold().replace("&", " and ")
+              return re.sub(r"[^a-z0-9]+", " ", s).strip()
+
+          session = requests.Session()
+          session.headers.update({
+              "Authorization": f"Bearer {KEY}",
+              "User-Agent": "RAF-VX-Cover-Recovery/1.0"
+          })
+
+          def api(url):
+              r = session.get(url, timeout=35)
+              if r.status_code == 429:
+                  time.sleep(5)
+                  r = session.get(url, timeout=35)
+              r.raise_for_status()
+              payload = r.json()
+              if not payload.get("success"):
+                  return []
+              return payload.get("data", [])
+
+          def download_image(url, path):
+              r = requests.get(url, timeout=45, headers={"User-Agent": "RAF-VX-Cover-Recovery/1.0"})
+              r.raise_for_status()
+              if len(r.content) > 12 * 1024 * 1024:
+                  raise RuntimeError("image exceeds 12 MB")
+              im = Image.open(BytesIO(r.content))
+              im.verify()
+              im = Image.open(BytesIO(r.content)).convert("RGB")
+              if im.width < 250 or im.height < 350:
+                  raise RuntimeError("image dimensions too small for a cover")
+              im.save(path, "JPEG", quality=92, optimize=True)
+
+          soup = BeautifulSoup(HTML.read_text(encoding="utf-8"), "html.parser")
+          cards = soup.select(".game-card")
+          if len(cards) < 113:
+              raise SystemExit(f"Expected 113 cards; found {len(cards)}. Stopping safely.")
+
+          OUT.mkdir(parents=True, exist_ok=True)
+          got, kept, unresolved, errors = [], [], [], []
+
+          for number, item in TARGETS.items():
+              card = cards[number - 1]
+              box = card.select_one(".game-title-box")
+              if box is None:
+                  unresolved.append(f"#{number} {item['title']}: missing cover container")
+                  continue
+
+              local = list(OUT.glob(f"{number:03d}.*"))
+              attached = box.select_one("img.game-cover-img")
+              if local or attached:
+                  kept.append(f"#{number} {item['title']}: already has a local/attached image")
+                  continue
+
+              matched_game = None
+              best_score = 0
+              try:
+                  for query in item["queries"]:
+                      results = api(f"{API}/search/autocomplete/{quote(query, safe='')}")
+                      for game in results:
+                          score = max(
+                              ratio(norm(game.get("name", "")), norm(query)),
+                              ratio(norm(game.get("name", "")), norm(item["title"]))
+                          )
+                          # Keep a deliberately high threshold to avoid attaching unrelated games.
+                          if score > best_score:
+                              best_score, matched_game = score, game
+                      if matched_game and best_score >= 88:
+                          break
+                      time.sleep(0.2)
+
+                  if not matched_game or best_score < 82:
+                      unresolved.append(f"#{number} {item['title']}: no sufficiently close SteamGridDB game match")
+                      continue
+
+                  grids = api(
+                      f"{API}/grids/game/{matched_game['id']}?dimensions=600x900&types=static&nsfw=false&humor=false"
+                  )
+                  if not grids:
+                      unresolved.append(f"#{number} {item['title']}: no static portrait grid available")
+                      continue
+
+                  grids.sort(key=lambda x: (not bool(x.get("verified")), -(x.get("score") or 0)))
+                  target = OUT / f"{number:03d}.jpg"
+                  download_image(grids[0]["url"], target)
+
+                  img = soup.new_tag(
+                      "img",
+                      src=target.relative_to(ROOT).as_posix(),
+                      alt=item["title"],
+                      **{"class": "game-cover-img", "loading": "lazy", "decoding": "async"}
+                  )
+                  box.clear()
+                  box.append(img)
+                  box["class"] = list(set((box.get("class") or []) + ["has-cover"]))
+                  got.append(f"#{number} {item['title']} (match: {matched_game.get('name')}, score: {best_score:.0f})")
+
+              except Exception as exc:
+                  errors.append(f"#{number} {item['title']}: {type(exc).__name__}: {exc}")
+              time.sleep(0.25)
+
+          # The two niche Android titles may have no catalog artwork. Create clean, clearly branded
+          # typographic fallback posters rather than downloading unrelated artwork.
+          def font(size, bold=False):
+              candidates = [
+                  "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+                  "/usr/share/fonts/truetype/liberation2/LiberationSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf"
+              ]
+              for candidate in candidates:
+                  if Path(candidate).exists():
+                      return ImageFont.truetype(candidate, size)
+              return ImageFont.load_default()
+
+          for number, title, subtitle in [
+              (107, "AURA FARMING", "RAF-VX • ANDROID PORT"),
+              (108, "RODLAND OF PIPES", "RAF-VX • ANDROID PORT"),
+          ]:
+              if list(OUT.glob(f"{number:03d}.*")) or cards[number-1].select_one(".game-title-box img"):
+                  continue
+              try:
+                  im = Image.new("RGB", (600, 900))
+                  px = im.load()
+                  for y in range(900):
+                      for x in range(600):
+                          t = y / 900
+                          glow = max(0, 1 - (((x-300)/430)**2 + ((y-350)/520)**2))
+                          px[x, y] = (
+                              int(8 + 22*glow),
+                              int(5 + 7*(1-t)),
+                              int(14 + 35*glow)
+                          )
+                  d = ImageDraw.Draw(im)
+                  d.rounded_rectangle((32, 32, 568, 868), radius=30, outline=(255, 26, 64), width=5)
+                  d.text((300, 330), "RAF-VX", font=font(42, True), fill=(255, 80, 110), anchor="mm")
+                  words = title.split()
+                  lines, current = [], ""
+                  for word in words:
+                      trial = (current + " " + word).strip()
+                      if d.textbbox((0,0), trial, font=font(47, True))[2] > 480 and current:
+                          lines.append(current)
+                          current = word
+                      else:
+                          current = trial
+                  if current:
+                      lines.append(current)
+                  y = 430 - (len(lines)-1)*34
+                  for line in lines:
+                      d.text((300, y), line, font=font(47, True), fill=(255,255,255), anchor="mm", stroke_width=1, stroke_fill=(120,0,25))
+                      y += 72
+                  d.text((300, 760), subtitle, font=font(22, True), fill=(255,153,171), anchor="mm")
+                  target = OUT / f"{number:03d}.jpg"
+                  im.save(target, "JPEG", quality=92, optimize=True)
+                  box = cards[number-1].select_one(".game-title-box")
+                  img = soup.new_tag(
+                      "img", src=target.relative_to(ROOT).as_posix(), alt=title,
+                      **{"class": "game-cover-img", "loading": "lazy", "decoding": "async"}
+                  )
+                  box.clear()
+                  box.append(img)
+                  box["class"] = list(set((box.get("class") or []) + ["has-cover"]))
+                  got.append(f"#{number} {title} (RAF-VX branded fallback poster, not original game artwork)")
+              except Exception as exc:
+                  errors.append(f"#{number} fallback: {type(exc).__name__}: {exc}")
+
+          # A typographic fallback is a valid local image, so do not leave those IDs in the unresolved report.
+          unresolved = [
+              line for line in unresolved
+              if not (line.startswith("#107 ") and (OUT / "107.jpg").exists())
+              and not (line.startswith("#108 ") and (OUT / "108.jpg").exists())
+          ]
+
+          HTML.write_text(str(soup), encoding="utf-8")
+
+          report = [
+              f"Recovery targets: {len(TARGETS)}",
+              f"Images added: {len(got)}",
+              f"Already present and untouched: {len(kept)}",
+              f"Still unresolved: {len(unresolved)}",
+              f"Errors: {len(errors)}",
+              "",
+              "### Added",
+              *["- " + x for x in got],
+              "",
+              "### Kept unchanged",
+              *["- " + x for x in kept],
+              "",
+              "### Unresolved",
+              *["- " + x for x in unresolved],
+              "",
+              "### Errors",
+              *["- " + x for x in errors],
+          ]
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a", encoding="utf-8") as f:
+              f.write("\n".join(report) + "\n")
+          print("\n".join(report))
+          PY
+
+      - name: Commit only cover changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html images/games
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Recover remaining RAF-VX game covers"
+            git push
+          fi
