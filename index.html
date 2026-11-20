@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAF-VX 10.5.0 | مكتبة ألعاب أندرويد</title>
+    <title>RAF-VX 10.6.0 | مكتبة ألعاب أندرويد</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -1184,6 +1184,12 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 .vx-results-box{margin-top:12px;padding:13px;border:1px solid rgba(72,224,207,.22);border-radius:14px;background:rgba(5,15,25,.65)}
 .vx-result-entry{padding:10px;margin-top:8px;border-radius:10px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.07);font-size:.84rem;line-height:1.8}
 .vx-result-entry b{color:#9cf0dc}
+.vx-game-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.vx-game-actions .vx-result-btn{margin:0;min-height:48px}
+.vx-search-form{display:grid;grid-template-columns:1fr auto;gap:8px;margin:10px 0;padding:12px;border:1px solid rgba(72,224,207,.2);border-radius:12px}
+.vx-search-form input{min-width:0}
+.vx-game-status-note{font-size:.78rem;color:#aab8c8;margin-top:7px;line-height:1.7}
+@media(max-width:420px){.vx-game-actions{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1214,19 +1220,19 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 
     <div class="container">
         <div class="update-banner" id="updateBanner">
-            <span>🚀 RAF-VX 10.5.0 — الجيل الجديد من مكتبة ألعاب الأندرويد</span>
+            <span>🚀 RAF-VX 10.6.0 — الجيل الجديد من مكتبة ألعاب الأندرويد</span>
             <button onclick="closeBanner()">إخفاء</button>
         </div>
 
         <div class="mini-news-ticker">
             <div class="ticker-track">
-                <span class="ticker-item">⚡ RAF-VX 10.5.0 • مكتبة أكبر • أدوات ذكية • مقارنة ألعاب • سجل المشاهدة • تجربة أسرع</span>
-                <span class="ticker-item">⚡ RAF-VX 10.5.0 • مكتبة أكبر • أدوات ذكية • مقارنة ألعاب • سجل المشاهدة • تجربة أسرع</span>
+                <span class="ticker-item">⚡ RAF-VX 10.6.0 • مكتبة أكبر • أدوات ذكية • مقارنة ألعاب • سجل المشاهدة • تجربة أسرع</span>
+                <span class="ticker-item">⚡ RAF-VX 10.6.0 • مكتبة أكبر • أدوات ذكية • مقارنة ألعاب • سجل المشاهدة • تجربة أسرع</span>
             </div>
         </div>
 
         <div class="major-update-countdown release-status" id="majorUpdateCountdown">
-            <div class="countdown-title">🚀 تم إطلاق RAF-VX 10.5.0 — التحديث الجوهري</div>
+            <div class="countdown-title">🚀 تم إطلاق RAF-VX 10.6.0 — التحديث الجوهري</div>
             <div class="countdown-boxes">
                 <div class="cd-box">
                     <span class="cd-num" id="cd-days">00</span>
@@ -4272,37 +4278,38 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  function statusForResult(value){
    const t=String(value||'').toLocaleLowerCase('ar');
    if(/لا يعمل|لم يعمل|لا تفتح|لا يفتح|تعطل مباشرة|crash|black screen|شاشة سوداء|غير قابل للعب/.test(t))return ['red','غير متوافق'];
-   if(/مشاكل|مشكلة|تقطيع|تهنيق|تعليق|انخفاض|يحتاج|حرارة|lag|stutter|glitch/.test(t))return ['orange','يعمل مع مشاكل'];
+   if(/مشاكل|مشكلة|تقطيع|تهنيق|تعليق|انخفاض|حرارة|lag|stutter|glitch/.test(t))return ['orange','يعمل مع مشاكل'];
    if(/ممتاز|سلس|ثابت|بدون مشاكل|يعمل تمام|قابل للعب|60\s*fps|90\s*fps|120\s*fps/.test(t))return ['green','متوافق حسب التجربة'];
    return ['gray','غير محدد'];
  }
  function statusDot(value){const st=statusForResult(value);return `<span class="vx-status vx-${st[0]}"><i></i>${st[1]}</span>`;}
- function renderGameResults(card){
+ function chipRank(chip){const t=String(chip||'').toLowerCase();if(/8\s*elite|8\s*gen\s*5|8\s*gen\s*4/.test(t))return 4;if(/8\s*gen\s*3/.test(t))return 3;if(/8\s*gen\s*2/.test(t))return 2;if(/8s\s*gen\s*4/.test(t))return 2.5;return 0;}
+ function gameMinimum(card){const note=card?.querySelector('.note-box')?.textContent||'';return /snapdragon\s*8\s*elite/i.test(note)?4:0;}
+ function estimatedStatus(card,chip){const rank=chipRank(chip),min=gameMinimum(card);if(!rank)return ['gray','لا يوجد تقدير'];if(min&&rank<min)return ['red','أقل من الحد المذكور'];return ['green','متوافق مبدئياً'];}
+ function renderGameResults(card,filter=''){
    const box=$('modalGameBody')?.querySelector('#rafGameResults');if(!box||!card)return;
    const gid=card.dataset.id,rows=Array.isArray(rafExperiences[gid])?rafExperiences[gid]:[];
+   const q=String(filter||'').trim().toLocaleLowerCase('ar');
+   const matched=rows.filter(x=>!q||String(x.device||'').toLocaleLowerCase('ar').includes(q)||String(x.chip||'').toLocaleLowerCase('ar').includes(q));
    const list=box.querySelector('#rafResultRows');if(!list)return;
-   list.innerHTML=rows.length?rows.map(x=>`<div class="vx-result-entry"><b>${escRaf(x.device)}</b> ${statusDot(x.result)}<br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>المحاكي: ${escRaf(x.emulator||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small></div>`).join(''):'<p class="nexus-muted">لا توجد نتائج منشورة لهذه اللعبة حتى الآن.</p>';
+   list.innerHTML=matched.length?matched.map(x=>`<div class="vx-result-entry"><b>${escRaf(x.device)}</b> ${statusDot(x.result)}<br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small></div>`).join(''):(()=>{const guess=devices.filter(d=>!q||d[0].toLocaleLowerCase('ar').includes(q)||d[1].toLocaleLowerCase('ar').includes(q));if(!guess.length)return '<p class="nexus-muted">لا توجد نتيجة منشورة لهذا الهاتف في هذه اللعبة حتى الآن.</p>';return guess.map(d=>{const st=estimatedStatus(card,d[1]);return `<div class="vx-result-entry"><b>${escRaf(d[0])}</b> <span class="vx-status vx-${st[0]}"><i></i>${st[1]}</span><br>المعالج: ${escRaf(d[1])}<br><small>تقدير مبدئي من مواصفات المعالج وملاحظات اللعبة؛ ليس تجربة فعلية ولا يضمن التشغيل.</small></div>`}).join('')})() ;
  }
  function addResultControls(card){
    const body=$('modalGameBody');if(!body||!card)return;
    const gid=card.dataset.id,title=name(card);
    body.querySelector('#rafGameResults')?.remove();
    const box=document.createElement('section');box.id='rafGameResults';box.className='vx-results-box';
-   box.innerHTML=`<h4 style="color:#a8f1df;font-weight:900">📱 أداء اللعبة على هاتفك</h4><p class="nexus-muted">تظهر هنا كل النتائج المنشورة لهذه اللعبة حسب الجهاز.</p><div id="rafResultRows"><p class="nexus-muted">جارٍ تحميل النتائج…</p></div><button class="vx-result-btn" id="rafOpenSubmit">＋ إرسال نتيجة لهذه اللعبة</button>`;
+   box.innerHTML=`<h3 style="color:#a8f1df;font-weight:950;font-size:1.12rem">📱 أداء هذه اللعبة على هاتفك</h3><p class="nexus-muted">ابحث عن تجربة هاتفك لهذه اللعبة فقط، أو أرسل تجربتك لنفس اللعبة.</p><div class="vx-game-actions"><button class="vx-result-btn" id="rafOpenSearch">🔎 بحث نتائج هاتفي</button><button class="vx-result-btn" id="rafOpenSubmit">＋ إرسال نتيجة هاتفي</button></div><div id="rafGameSearchForm" hidden class="vx-search-form"><input id="rafGameSearchDevice" class="nexus-input" placeholder="اكتب اسم الهاتف أو المعالج"><button class="vx-result-btn" id="rafGameSearchGo">بحث</button></div><div id="rafResultRows"><p class="nexus-muted">جارٍ تحميل النتائج المنشورة لهذه اللعبة…</p></div><p class="vx-game-status-note">🟢 متوافق مبدئياً/حسب التجربة • 🟠 يعمل مع مشاكل • 🔴 غير متوافق حسب التجربة. التقدير المبدئي ليس ضماناً للتشغيل.</p>`;
    body.appendChild(box);renderGameResults(card);
+   box.querySelector('#rafOpenSearch').onclick=()=>{const f=box.querySelector('#rafGameSearchForm');f.hidden=!f.hidden;};
+   box.querySelector('#rafGameSearchGo').onclick=()=>renderGameResults(card,box.querySelector('#rafGameSearchDevice').value);
+   box.querySelector('#rafGameSearchDevice').addEventListener('keydown',e=>{if(e.key==='Enter')renderGameResults(card,e.target.value)});
    box.querySelector('#rafOpenSubmit').onclick=()=>{
      if(box.querySelector('#rafSubmitForm'))return;
      const form=document.createElement('div');form.id='rafSubmitForm';form.className='vx-result-entry';
-     form.innerHTML=`<label>اختر هاتفك</label><select id="rafSubmitDevice" class="nexus-input">${devices.map((d,i)=>`<option value="${i}">${escRaf(d[0])} — ${escRaf(d[1])}</option>`).join('')}<option value="custom">هاتف آخر (اكتب اسمه)</option></select><input id="rafSubmitCustom" class="nexus-input" style="display:none;margin-top:8px" placeholder="اكتب اسم الهاتف الكامل"><label>نتيجة الأداء</label><textarea id="rafSubmitResult" rows="3" placeholder="مثال: يعمل بسلاسة 60 FPS / يعمل مع تقطيع / لا يعمل"></textarea><button class="vx-result-btn" id="rafSubmitGo">إرسال النتيجة ↗</button><p class="nexus-muted">ملاحظة: عند الإرسال سيتم توجيهك إلى GitHub لتأكيد نشر النتيجة. بعد اعتمادها آلياً ستظهر في الموقع.</p>`; 
-     form.querySelector('#rafSubmitDevice').onchange=e=>form.querySelector('#rafSubmitCustom').style.display=e.target.value==='custom'?'block':'none';
+     form.innerHTML=`<b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>اسم الهاتف</label><input id="rafSubmitDeviceName" class="nexus-input" placeholder="مثال: Samsung Galaxy S24 Ultra"><label>المعالج</label><input id="rafSubmitChip" class="nexus-input" placeholder="مثال: Snapdragon 8 Gen 3 for Galaxy"><label>الأداء</label><textarea id="rafSubmitResult" rows="3" placeholder="مثال: 60 FPS ثابت / تقطيع متقطع / لا تعمل"></textarea><button class="vx-result-btn" id="rafSubmitGo">إرسال النتيجة إلى GitHub ↗</button><p class="nexus-muted">ملاحظة: سيتم توجيهك إلى GitHub لتأكيد إرسال النتيجة. بعد المعالجة الآلية ستُحفظ تحت هذه اللعبة تحديداً وتظهر في نتائج البحث.</p>`;
      box.appendChild(form);
-     form.querySelector('#rafSubmitGo').onclick=()=>{const sel=form.querySelector('#rafSubmitDevice').value,custom=form.querySelector('#rafSubmitCustom').value.trim(),d=sel==='custom'?{0:custom,1:'غير محدد'}:devices[+sel],result=form.querySelector('#rafSubmitResult').value.trim();if(!d[0]||!result){alert('اختر الهاتف واكتب نتيجة الأداء.');return}const formBody=`اللعبة: ${title}
-معرّف اللعبة: ${gid}
-الجهاز: ${d[0]}
-المعالج: ${d[1]}
-المحاكي والإصدار: غير مذكور
-نتيجة التجربة: ${result}`;
-     const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(formBody);window.open(url,'_blank','noopener');};
+     form.querySelector('#rafSubmitGo').onclick=()=>{const device=form.querySelector('#rafSubmitDeviceName').value.trim(),chip=form.querySelector('#rafSubmitChip').value.trim(),result=form.querySelector('#rafSubmitResult').value.trim();if(!device||!chip||!result){alert('اكتب اسم الهاتف والمعالج ونتيجة الأداء.');return}const formBody=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nالمحاكي والإصدار: غير مذكور\nنتيجة التجربة: ${result}`;const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(formBody);window.open(url,'_blank','noopener');};
    };
  }
  window.rafSearchPerformance=()=>{
@@ -4324,7 +4331,14 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 المحاكي والإصدار: ${e}
 نتيجة التجربة: ${n}`;const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(body);window.open(url,'_blank','noopener');};
  window.rafNexusLanguage=()=>{const en=document.documentElement.lang!=='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';$('rafLangBtn').textContent=en?'🌐 العربية':'🌐 English';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=en?el.dataset.en:el.dataset.ar);localStorage.setItem('rafvx_lang',en?'en':'ar');alert(en?'The main navigation language is switched. Some game-specific content remains in its original language.':'تمت إعادة الواجهة إلى العربية.');};
- document.addEventListener('DOMContentLoaded',()=>{fill();refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
+ function addNarutoGame(){
+   if(document.querySelector('#gamesGrid [data-id="naruto-storm-4"]'))return;
+   const c=document.createElement('div');c.className='game-card';c.dataset.id='naruto-storm-4';c.dataset.category='أكشن';
+   c.innerHTML=`<div class="game-number-badge">#115</div><div class="fav-btn" onclick="toggleFavorite('naruto-storm-4', this)" title="إضافة للمفضلة">🤍</div><div class="game-main-content"><div class="game-title-box game-cover-box"><span class="game-cover-fallback"><span class="game-logo-text">NARUTO SHIPPUDEN</span><span class="game-logo-sub">ULTIMATE NINJA STORM 4</span></span></div><div class="game-details"><div class="game-title">✨ NARUTO SHIPPUDEN: Ultimate Ninja STORM 4</div><div class="port-tag-text">⚙️ إدراج بورت مجتمعي — تحقق من توافق النسخة والجهاز</div><div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div><div class="game-info"><div class="info-item">الحجم الإجمالي: <span class="info-value">14 GB</span></div></div><div class="note-box">ℹ️ لم تتم إضافة ملفات APK أو ملفات اللعبة من مصادر غير رسمية. استخدم نسخة تملكها ومصدراً مرخصاً.</div></div></div><div class="download-group"><a href="https://store.steampowered.com/app/349040/NARUTO_SHIPPUDEN_Ultimate_Ninja_STORM_4/" target="_blank" rel="noopener" class="btn-download">🔗 صفحة اللعبة الرسمية</a></div>`;
+   document.getElementById('gamesGrid')?.appendChild(c);
+ }
+ function addInlineGameActions(){cards().forEach(card=>{if(card.querySelector('.vx-card-performance'))return;const a=document.createElement('div');a.className='vx-game-actions vx-card-performance';a.innerHTML='<button class="vx-result-btn" type="button">🔎 نتائج الأداء</button><button class="vx-result-btn" type="button">＋ أرسل نتيجتك</button>';a.children[0].onclick=()=>window.openGameInfoModal?.(card);a.children[1].onclick=()=>{window.openGameInfoModal?.(card);setTimeout(()=>document.querySelector('#rafOpenSubmit')?.click(),80)};const target=card.querySelector('.download-group')||card;target.parentNode.insertBefore(a,target.nextSibling);});}
+ document.addEventListener('DOMContentLoaded',()=>{addNarutoGame();fill();addInlineGameActions();refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
 })();
 </script>
 
