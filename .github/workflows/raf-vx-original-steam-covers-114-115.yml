@@ -1,0 +1,105 @@
+name: RAF-VX - Install ORIGINAL Covers 114 and 115
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  original-covers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout RAF-VX
+        uses: actions/checkout@v4
+
+      - name: Download real game artwork from Steam CDN
+        run: |
+          python -m pip install --quiet requests pillow
+          python - <<'PY'
+          import io
+          import os
+          import requests
+          from PIL import Image
+
+          # Steam app IDs:
+          # 1790600 = DRAGON BALL: Sparking! ZERO
+          # 349040  = NARUTO SHIPPUDEN: Ultimate Ninja STORM 4
+          games = {
+              "114.jpg": {
+                  "app_id": "1790600",
+                  "name": "DRAGON BALL: Sparking! ZERO",
+              },
+              "115.jpg": {
+                  "app_id": "349040",
+                  "name": "NARUTO SHIPPUDEN: Ultimate Ninja STORM 4",
+              },
+          }
+
+          # These are Steam's own artwork files for each exact game.
+          # Try portrait library art first, then the official header/capsule art.
+          artwork_types = [
+              "library_600x900.jpg",
+              "library_hero.jpg",
+              "header.jpg",
+              "capsule_616x353.jpg",
+          ]
+
+          session = requests.Session()
+          session.headers.update({
+              "User-Agent": "Mozilla/5.0 RAF-VX original cover updater",
+              "Referer": "https://store.steampowered.com/",
+          })
+
+          os.makedirs("images/games", exist_ok=True)
+
+          for output_name, game in games.items():
+              app_id = game["app_id"]
+              saved = False
+              errors = []
+
+              for artwork in artwork_types:
+                  url = f"https://cdn.cloudflare.steamstatic.com/steam/apps/{app_id}/{artwork}"
+                  try:
+                      response = session.get(url, timeout=45)
+                      if response.status_code != 200:
+                          errors.append(f"{artwork}: HTTP {response.status_code}")
+                          continue
+
+                      image = Image.open(io.BytesIO(response.content))
+                      image.verify()
+                      image = Image.open(io.BytesIO(response.content)).convert("RGB")
+
+                      if image.width < 300 or image.height < 180:
+                          errors.append(f"{artwork}: image too small {image.size}")
+                          continue
+
+                      image.save(f"images/games/{output_name}", "JPEG", quality=94, optimize=True)
+                      print(
+                          f"OK: {game['name']} -> images/games/{output_name} "
+                          f"({image.width}x{image.height}) from {url}"
+                      )
+                      saved = True
+                      break
+                  except Exception as exc:
+                      errors.append(f"{artwork}: {exc}")
+
+              if not saved:
+                  raise RuntimeError(
+                      f"Could not download genuine Steam artwork for {game['name']}. "
+                      + " | ".join(errors)
+                  )
+
+          PY
+
+      - name: Commit original artwork using the exact RAF-VX image paths
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/games/114.jpg images/games/115.jpg
+          if git diff --cached --quiet; then
+            echo "No image changes detected."
+            exit 0
+          fi
+          git commit -m "Replace RAF-VX 114 and 115 with original game artwork"
+          git push
