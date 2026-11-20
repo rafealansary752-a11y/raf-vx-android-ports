@@ -1119,6 +1119,11 @@
 
 
 .vx-status{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:800;margin:3px 4px;color:#cbd5e1}.vx-status i{width:9px;height:9px;border-radius:50%;display:inline-block;background:#94a3b8}.vx-red i{background:#ef4444;box-shadow:0 0 8px #ef4444}.vx-orange i{background:#f59e0b;box-shadow:0 0 8px #f59e0b}.vx-green i{background:#22c55e;box-shadow:0 0 8px #22c55e}.vx-gray i{background:#94a3b8}
+
+.vx-card-performance{display:flex;flex-wrap:wrap;gap:8px}
+.vx-card-performance .vx-result-btn{flex:1 1 145px;min-width:0}
+.vx-card-performance .vx-share-game{border-color:rgba(71,190,180,.38)}
+@media(max-width:480px){.vx-card-performance .vx-result-btn{font-size:.88rem;padding:11px 8px}}
 </style>
 
     <style id="rafvx-v9-redesign">
@@ -4271,6 +4276,18 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  function renderRecent(){let ids=[];try{ids=JSON.parse(localStorage.getItem('rafvx_recent')||'[]')}catch(e){}const root=$('nexusRecentList');root.innerHTML='';ids.forEach(id=>{const c=cards().find(x=>x.dataset.id===id);if(!c)return;const b=document.createElement('button');b.textContent='🎮 '+name(c);b.onclick=()=>{window.openGameInfoModal?.(c)};root.appendChild(b)});if(!root.children.length)root.innerHTML='<p class="nexus-muted">لا توجد مشاهدات محفوظة بعد.</p>';}
  window.rafNexusRandom=()=>{const a=cards();if(!a.length)return;const c=a[Math.floor(Math.random()*a.length)];c.scrollIntoView({behavior:'smooth',block:'center'});window.openGameInfoModal?.(c)};
  window.rafNexusShareSite=()=>{const data={title:'RAF-VX',text:'اكتشف مكتبة RAF-VX لألعاب أندرويد',url:location.href};if(navigator.share)navigator.share(data).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(location.href).then(()=>alert('تم نسخ رابط الموقع'));else prompt('انسخ رابط الموقع',location.href)};
+ window.rafShareGame=async(card)=>{
+   if(!card)return;
+   const title=name(card);
+   const url=new URL(location.href);
+   url.hash='game-'+encodeURIComponent(card.dataset.id||'');
+   const data={title:title,text:'شاهد هذه اللعبة على RAF-VX: '+title,url:url.href};
+   try{
+     if(navigator.share)await navigator.share(data);
+     else if(navigator.clipboard){await navigator.clipboard.writeText(url.href);alert('تم نسخ رابط اللعبة');}
+     else prompt('انسخ رابط اللعبة',url.href);
+   }catch(e){if(e?.name!=='AbortError')prompt('انسخ رابط اللعبة',url.href);}
+ };
  const RAF_REPO='rafealansary752-a11y/raf-vx-android-ports';
  const RAF_DATA_URL='https://raw.githubusercontent.com/'+RAF_REPO+'/main/data/experiences.json';
  let rafExperiences={};
@@ -4338,7 +4355,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    c.innerHTML=`<div class="game-number-badge">#115</div><div class="fav-btn" onclick="toggleFavorite('naruto-storm-4', this)" title="إضافة للمفضلة">🤍</div><div class="game-main-content"><div class="game-title-box game-cover-box"><img class="game-cover-img" src="images/games/115.jpg" alt="غلاف NARUTO SHIPPUDEN: Ultimate Ninja STORM 4" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="game-cover-fallback" hidden><span class="game-logo-text">NARUTO SHIPPUDEN</span><span class="game-logo-sub">ULTIMATE NINJA STORM 4</span></span></div><div class="game-details"><div class="game-title">✨ NARUTO SHIPPUDEN: Ultimate Ninja STORM 4</div><div class="port-tag-text">⚙️ إدراج بورت مجتمعي — تحقق من توافق النسخة والجهاز</div><div class="game-meta"><span class="tag">#أكشن</span><span class="tag offline">📶 بدون نت</span></div><div class="game-info"><div class="info-item">الحجم الإجمالي: <span class="info-value">14 GB</span></div></div></div></div></div><div class="download-group"><a href="https://apkvision.org/games/action/naruto-shippuden-ultimate-ninja-storm-4-135933/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK + ملف اللعبة</a></div>`;
    document.getElementById('gamesGrid')?.appendChild(c);
  }
- function addInlineGameActions(){cards().forEach(card=>{if(card.querySelector('.vx-card-performance'))return;const a=document.createElement('div');a.className='vx-game-actions vx-card-performance';a.innerHTML='<button class="vx-result-btn" type="button">🔎 نتائج الأداء</button><button class="vx-result-btn" type="button">＋ أرسل نتيجتك</button>';a.children[0].onclick=()=>window.openGameInfoModal?.(card);a.children[1].onclick=()=>{window.openGameInfoModal?.(card);setTimeout(()=>document.querySelector('#rafOpenSubmit')?.click(),80)};const target=card.querySelector('.download-group')||card;target.parentNode.insertBefore(a,target.nextSibling);});}
+ function addInlineGameActions(){cards().forEach(card=>{if(card.querySelector('.vx-card-performance'))return;const a=document.createElement('div');a.className='vx-game-actions vx-card-performance';a.innerHTML='<button class="vx-result-btn" type="button">🔎 نتائج الأداء</button><button class="vx-result-btn" type="button">＋ أرسل نتيجتك</button><button class="vx-result-btn vx-share-game" type="button">🔗 مشاركة اللعبة</button>';a.children[0].onclick=()=>window.openGameInfoModal?.(card);a.children[1].onclick=()=>{window.openGameInfoModal?.(card);setTimeout(()=>document.querySelector('#rafOpenSubmit')?.click(),120)};a.children[2].onclick=()=>window.rafShareGame(card);const target=card.querySelector('.download-group')||card;target.parentNode.insertBefore(a,target.nextSibling);});}
  document.addEventListener('DOMContentLoaded',()=>{addNarutoGame();fill();addInlineGameActions();refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
 })();
 </script>
