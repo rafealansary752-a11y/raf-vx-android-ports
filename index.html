@@ -1189,7 +1189,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 <section class="nexus-top" id="rafNexusHome" aria-label="RAF-VX NEXUS">
  <div class="nexus-brand"><div><h2>RAF-VX <span>NEXUS</span></h2><p class="nexus-sub" data-ar="مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق" data-en="Android PC gaming hub — discover, compare and check compatibility">مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق</p></div><span class="nexus-badge">الجيل الجديد</span></div>
  <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('compat')">🧠 فاحص التوافق</button><button class="nexus-btn" onclick="rafNexusPanel('devices')">📱 الأجهزة</button><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
- <nav class="nexus-nav"><button onclick="rafNexusPanel('home')">🏠 الرئيسية</button><button onclick="document.getElementById('gamesGrid').scrollIntoView({behavior:'smooth'})">🎮 مكتبة الألعاب</button><button onclick="openEmulatorsModal()">🕹️ المحاكيات</button><button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button><button onclick="rafNexusPanel('help')">🛠️ المساعدة</button><button onclick="rafNexusPanel('community')">👥 مجتمع RAF-VX</button><button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button></nav>
+ <nav class="nexus-nav"><button onclick="rafNexusPanel('home')">🏠 الرئيسية</button><button onclick="document.getElementById('gamesGrid').scrollIntoView({behavior:'smooth'})">🎮 مكتبة الألعاب</button><button onclick="openEmulatorsModal()">🕹️ المحاكيات</button><button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button><button onclick="rafNexusPanel('help')">🛠️ المساعدة</button><button onclick="rafNexusPanel('community')">👥 مجتمع RAF-VX</button><button onclick="rafNexusPanel('performance')">📱 أداء اللعبة على هاتفك</button><button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button></nav>
  <div class="nexus-stats"><div class="nexus-stat"><b id="nexusGames">—</b><small>لعبة في المكتبة</small></div><div class="nexus-stat"><b id="nexusFavs">—</b><small>المفضلة على جهازك</small></div><div class="nexus-stat"><b id="nexusRecent">—</b><small>آخر المشاهدات</small></div><div class="nexus-stat"><b>محلي</b><small>حفظ الإعدادات على جهازك</small></div></div>
 </section>
 <section class="nexus-panel" id="nexusPanel-home"><h3>✨ مرحباً بك في RAF-VX NEXUS</h3><p class="nexus-muted">منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، ومراجعة توافق الأجهزة. نتائج التوافق لا تُعرض كحقيقة إلا عند توفر تجربة موثقة.</p><div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusRandom()">🎲 اختر لعبة عشوائية</button><button class="nexus-btn" onclick="rafNexusShareSite()">🔗 مشاركة الموقع</button><button class="nexus-btn" onclick="rafNexusPanel('recent')">🕘 سجل المشاهدة</button></div></section>
@@ -1200,6 +1200,13 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 <section class="nexus-panel" id="nexusPanel-compare"><h3>⚖️ مقارنة الألعاب</h3><p class="nexus-muted">استخدم زر «＋ قارن» الموجود على بطاقات الألعاب، ثم افتح أداة المقارنة الموجودة في الموقع.</p><button class="nexus-btn" onclick="document.querySelector('#vxCompareDock button')?.click();document.getElementById('vxCompareDock')?.scrollIntoView({behavior:'smooth'})">فتح قائمة المقارنة</button></section>
 <section class="nexus-panel" id="nexusPanel-help"><h3>🛠️ مركز المساعدة</h3><div class="nexus-grid"><div class="nexus-box"><b>اللعبة لا تبدأ</b><p>تحقق من إصدار المحاكي، ملفات اللعبة، مساحة التخزين، وتعريف الرسوميات.</p></div><div class="nexus-box"><b>شاشة سوداء</b><p>قد تكون المشكلة من واجهة الرسوميات أو تعريف GPU أو ملفات اللعبة.</p></div><div class="nexus-box"><b>تقطيع وانخفاض أداء</b><p>جرّب إعدادات رسومية أقل، وأغلق التطبيقات الخلفية، وتأكد من حرارة الجهاز.</p></div><div class="nexus-box"><b>مشكلة التحكم</b><p>راجع تعيين الأزرار داخل المحاكي وتأكد من اختيار ملف التحكم الصحيح.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-community"><h3>👥 مجتمع RAF-VX</h3><p class="nexus-muted">أرسل نتيجة تشغيل لعبتك على جهازك. ستظهر النتائج تحت اللعبة بعد إرسالها واعتمادها آلياً عبر نظام RAF-VX.</p><div class="nexus-grid"><div class="nexus-box"><label>اسم اللعبة</label><select id="nexusCommunityGame"></select></div><div class="nexus-box"><label>الجهاز والمعالج</label><select id="nexusCommunityDevice"></select></div><div class="nexus-box"><label>المحاكي والإصدار</label><input id="nexusCommunityEmu" placeholder="اسم المحاكي وإصداره"></div><div class="nexus-box"><label>نتيجة التجربة</label><textarea id="nexusCommunityNotes" rows="3" placeholder="اذكر الإعدادات والأداء والمشاكل التي واجهتها"></textarea></div></div><button class="nexus-btn" onclick="rafNexusSubmitCommunity()">إرسال نتيجة</button><p class="nexus-muted">لا تكتب معلومات شخصية أو بيانات حساباتك في التجربة.</p></section>
+<section class="nexus-panel" id="nexusPanel-performance">
+<h3>📱 أداء اللعبة على هاتفك</h3>
+<p class="nexus-muted">اكتب اسم هاتفك للبحث في جميع نتائج التجارب المنشورة. ستظهر الألعاب التي جُرّبت على جهازك مع المحاكي ونتيجة الأداء.</p>
+<div class="nexus-grid"><div class="nexus-box"><label for="rafPerformanceDevice">اسم الهاتف</label><input id="rafPerformanceDevice" type="search" placeholder="مثال: S24 Ultra أو سامسونج جالكسي S24 ألترا"><button class="nexus-btn" type="button" id="rafPerformanceSearch" style="margin-top:10px;width:100%">🔍 بحث عن نتائج هاتفي</button></div></div>
+<div id="rafPerformanceStatus" class="nexus-note">جارٍ تجهيز قاعدة نتائج المجتمع…</div>
+<div id="rafPerformanceResults" aria-live="polite"></div>
+</section>
 <section class="nexus-panel" id="nexusPanel-recent"><h3>🕘 آخر المشاهدات</h3><div id="nexusRecentList" class="nexus-list"><p class="nexus-muted">ستظهر الألعاب التي فتحت تفاصيلها هنا.</p></div></section>
 
 
@@ -4224,7 +4231,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  const $=id=>document.getElementById(id), cards=()=>Array.from(document.querySelectorAll('#gamesGrid .game-card'));
  const name=c=>(c.querySelector('.game-title')?.innerText||'لعبة').replace(/^✨\s*/, '').trim();
  function fill(){const opts=cards().map(c=>({id:c.dataset.id,name:name(c)}));['nexusGame','nexusCommunityGame'].forEach(id=>{const el=$(id);if(!el)return;el.innerHTML=opts.map(o=>`<option value="${o.id}">${o.name.replace(/[<>&"']/g,'')}</option>`).join('')});$('nexusDevice').innerHTML=devices.map((d,i)=>`<option value="${i}">${d[0]}</option>`).join('');$('nexusCommunityDevice').innerHTML=devices.map((d,i)=>`<option value="${i}">${d[0]} — ${d[1]}</option>`).join('');$('nexusDeviceList').innerHTML=devices.map(d=>`<div class="nexus-box"><b>📱 ${d[0]}</b><p>المعالج: ${d[1]}<br>الرسوميات: ${d[2]}<br>الذاكرة: ${d[3]}<br><span class="nexus-badge">بيانات الجهاز — غير مختبر تلقائياً</span></p></div>`).join('');}
- window.rafNexusPanel=id=>{document.querySelectorAll('.nexus-panel').forEach(p=>p.classList.remove('active'));const p=$('nexusPanel-'+id);if(p)p.classList.add('active');if(id==='recent')renderRecent();if(id==='compat')compat();p?.scrollIntoView({behavior:'smooth',block:'nearest'});};
+ window.rafNexusPanel=id=>{document.querySelectorAll('.nexus-panel').forEach(p=>p.classList.remove('active'));const p=$('nexusPanel-'+id);if(p)p.classList.add('active');if(id==='recent')renderRecent();if(id==='compat')compat();if(id==='performance'){loadRafExperiences().then(()=>{const st=$('rafPerformanceStatus');if(st)st.textContent='قاعدة النتائج جاهزة. اكتب اسم هاتفك ثم اضغط بحث.';if($('rafPerformanceDevice')?.value.trim())window.rafSearchPerformance();});}p?.scrollIntoView({behavior:'smooth',block:'nearest'});};
  function compat(){const d=devices[+$('nexusDevice').value]||devices[0],c=cards().find(x=>x.dataset.id===$('nexusGame').value);if(!c)return;$('nexusCompatResult').innerHTML=`<b>${name(c)}</b><br>الجهاز: ${d[0]}<br>المعالج: ${d[1]}<br>معالج الرسوميات: ${d[2]}<br>الذاكرة: ${d[3]}<br><br><span class="nexus-badge">حالة التوافق: غير مختبر لهذا الجهاز</span><p class="nexus-muted">لم تُسجل تجربة موثقة لهذه اللعبة على هذا الجهاز في قاعدة RAF-VX الحالية. لا يمكن استنتاج FPS أو ضمان التشغيل من المواصفات وحدها.</p>`;}
  $('nexusDevice')?.addEventListener('change',compat);$('nexusGame')?.addEventListener('change',compat);
  function refreshStats(){const f=JSON.parse(localStorage.getItem('rafvx_favorites')||'[]'),r=JSON.parse(localStorage.getItem('rafvx_recent')||'[]');$('nexusGames').textContent=cards().length;$('nexusFavs').textContent=f.length;$('nexusRecent').textContent=r.length;}
@@ -4234,29 +4241,45 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  const RAF_REPO='rafealansary752-a11y/raf-vx-android-ports';
  const RAF_DATA_URL='https://raw.githubusercontent.com/'+RAF_REPO+'/main/data/experiences.json';
  let rafExperiences={};
- async function loadRafExperiences(){try{const r=await fetch(RAF_DATA_URL+'?v='+Date.now());if(r.ok)rafExperiences=await r.json();}catch(e){rafExperiences={};}}
+ async function loadRafExperiences(){try{const r=await fetch(RAF_DATA_URL+'?v='+Date.now());if(r.ok){rafExperiences=await r.json();}else{rafExperiences={};}}catch(e){rafExperiences={};}const activeCard=document.querySelector('#gameInfoModal.active')?.dataset?.gameCard;if(activeCard)renderGameResults(activeCard);return rafExperiences;}
  function escRaf(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+ function renderGameResults(card){
+   const box=$('modalGameBody')?.querySelector('#rafGameResults');if(!box||!card)return;
+   const gid=card.dataset.id,rows=Array.isArray(rafExperiences[gid])?rafExperiences[gid]:[];
+   const list=box.querySelector('#rafResultRows');if(!list)return;
+   list.innerHTML=rows.length?rows.map(x=>`<div class="vx-result-entry"><b>${escRaf(x.device)}</b><br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>المحاكي: ${escRaf(x.emulator||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small></div>`).join(''):'<p class="nexus-muted">لا توجد نتائج منشورة لهذه اللعبة حتى الآن.</p>';
+ }
  function addResultControls(card){
-   const body=$('modalGameBody'); if(!body||!card)return;
-   const gid=card.dataset.id, title=name(card);
+   const body=$('modalGameBody');if(!body||!card)return;
+   const gid=card.dataset.id,title=name(card);
    body.querySelector('#rafGameResults')?.remove();
    const box=document.createElement('section');box.id='rafGameResults';box.className='vx-results-box';
-   const rows=Array.isArray(rafExperiences[gid])?rafExperiences[gid]:[];
-   box.innerHTML=`<h4 style="color:#a8f1df;font-weight:900">📱 نتيجة اللعبة على هاتفك</h4><p class="nexus-muted">نتائج مستقلة لكل جهاز؛ يمكن عرض عدة أجهزة وتجارب للعبة نفسها.</p><div id="rafResultRows">${rows.length?rows.map(x=>`<div class="vx-result-entry"><b>${escRaf(x.device)}</b><br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>المحاكي: ${escRaf(x.emulator||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small></div>`).join(''):'<p class="nexus-muted">لا توجد نتائج منشورة لهذه اللعبة حتى الآن.</p>'}</div><button class="vx-result-btn" id="rafOpenSubmit">＋ إرسال نتيجة</button>`;
-   body.appendChild(box);
+   box.innerHTML=`<h4 style="color:#a8f1df;font-weight:900">📱 أداء اللعبة على هاتفك</h4><p class="nexus-muted">تظهر هنا كل النتائج المنشورة لهذه اللعبة حسب الجهاز.</p><div id="rafResultRows"><p class="nexus-muted">جارٍ تحميل النتائج…</p></div><button class="vx-result-btn" id="rafOpenSubmit">＋ إرسال نتيجة لهذه اللعبة</button>`;
+   body.appendChild(box);renderGameResults(card);
    box.querySelector('#rafOpenSubmit').onclick=()=>{
      if(box.querySelector('#rafSubmitForm'))return;
      const form=document.createElement('div');form.id='rafSubmitForm';form.className='vx-result-entry';
-     form.innerHTML=`<label>جهازك</label><select id="rafSubmitDevice" class="nexus-input">${devices.map((d,i)=>`<option value="${i}">${escRaf(d[0])} — ${escRaf(d[1])}</option>`).join('')}</select><label>المحاكي والإصدار</label><input id="rafSubmitEmu" placeholder="مثال: GameHub 6.0"><label>نتيجة التجربة</label><textarea id="rafSubmitResult" rows="3" placeholder="اكتب الأداء والإعدادات والملاحظات"></textarea><button class="vx-result-btn" id="rafSubmitGo">متابعة إرسال النتيجة ↗</button>`;
+     form.innerHTML=`<label>اختر هاتفك</label><select id="rafSubmitDevice" class="nexus-input">${devices.map((d,i)=>`<option value="${i}">${escRaf(d[0])} — ${escRaf(d[1])}</option>`).join('')}</select><label>المحاكي والإصدار</label><input id="rafSubmitEmu" placeholder="مثال: GameHub 6.0"><label>نتيجة التجربة</label><textarea id="rafSubmitResult" rows="3" placeholder="اكتب الأداء والإعدادات والملاحظات، مثل متوسط FPS"></textarea><button class="vx-result-btn" id="rafSubmitGo">إرسال النتيجة للمراجعة ↗</button><p class="nexus-muted">ستفتح صفحة GitHub لتأكيد إرسال البلاغ؛ بعد معالجته ونشره سيظهر في بحث أداء الهاتف.</p>`;
      box.appendChild(form);
      form.querySelector('#rafSubmitGo').onclick=()=>{const d=devices[+form.querySelector('#rafSubmitDevice').value],emu=form.querySelector('#rafSubmitEmu').value.trim(),result=form.querySelector('#rafSubmitResult').value.trim();if(!emu||!result){alert('اكتب المحاكي ونتيجة التجربة.');return}const formBody=`اللعبة: ${title}
 معرّف اللعبة: ${gid}
 الجهاز: ${d[0]}
 المعالج: ${d[1]}
 المحاكي والإصدار: ${emu}
-نتيجة التجربة: ${result}`;const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&body='+encodeURIComponent(formBody);window.open(url,'_blank','noopener');};
+نتيجة التجربة: ${result}`;
+     const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&body='+encodeURIComponent(formBody);window.open(url,'_blank','noopener');};
    };
  }
+ window.rafSearchPerformance=()=>{
+   const q=($('rafPerformanceDevice')?.value||'').trim().toLocaleLowerCase('ar');
+   const out=$('rafPerformanceResults'),status=$('rafPerformanceStatus');if(!q){status.textContent='اكتب اسم الهاتف أولاً.';out.innerHTML='';return}
+   const found=[];
+   cards().forEach(c=>{const rows=Array.isArray(rafExperiences[c.dataset.id])?rafExperiences[c.dataset.id]:[];rows.forEach(x=>{const device=String(x.device||'').toLocaleLowerCase('ar');if(device.includes(q)||q.includes(device)&&device.length>3)found.push({game:name(c),...x});});});
+   status.textContent=found.length?`تم العثور على ${found.length} نتيجة منشورة تطابق «${$('rafPerformanceDevice').value.trim()}».`:`لا توجد نتائج منشورة تطابق «${$('rafPerformanceDevice').value.trim()}» حالياً.`;
+   out.innerHTML=found.map(x=>`<article class="vx-result-entry"><b>🎮 ${escRaf(x.game)}</b><br><b>📱 ${escRaf(x.device)}</b><br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>المحاكي: ${escRaf(x.emulator||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small></article>`).join('');
+ };
+ $('rafPerformanceSearch')?.addEventListener('click',window.rafSearchPerformance);
+ $('rafPerformanceDevice')?.addEventListener('keydown',e=>{if(e.key==='Enter')window.rafSearchPerformance()});
  const oldOpen=window.openGameInfoModal;
  if(typeof oldOpen==='function'){window.openGameInfoModal=function(card){oldOpen(card);addResultControls(card);};}
  window.rafNexusSubmitCommunity=()=>{const g=$('nexusCommunityGame').value,title=$('nexusCommunityGame').selectedOptions[0]?.text||'',dev=devices[+$('nexusCommunityDevice').value]||devices[0],d=dev[0],chip=dev[1],e=$('nexusCommunityEmu').value.trim(),n=$('nexusCommunityNotes').value.trim();if(!d||!e||!n){alert('أكمل الجهاز والمحاكي ونتيجة التجربة.');return}const body=`اللعبة: ${title}
