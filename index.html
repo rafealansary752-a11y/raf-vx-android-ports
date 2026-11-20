@@ -4279,14 +4279,19 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  window.rafShareGame=async(card)=>{
    if(!card)return;
    const title=name(card);
+   const gameId=String(card.dataset.id||'').trim();
+   if(!gameId){alert('تعذر إنشاء رابط خاص بهذه اللعبة.');return;}
+   // A unique query URL is reliable on GitHub Pages and survives external sharing apps.
    const url=new URL(location.href);
-   url.hash='game-'+encodeURIComponent(card.dataset.id||'');
-   const data={title:title,text:'شاهد هذه اللعبة على RAF-VX: '+title,url:url.href};
+   url.hash='';
+   url.search='';
+   url.searchParams.set('game',gameId);
+   const data={title:title,text:'افتح هذه اللعبة مباشرةً في RAF-VX: '+title,url:url.href};
    try{
      if(navigator.share)await navigator.share(data);
-     else if(navigator.clipboard){await navigator.clipboard.writeText(url.href);alert('تم نسخ رابط اللعبة');}
-     else prompt('انسخ رابط اللعبة',url.href);
-   }catch(e){if(e?.name!=='AbortError')prompt('انسخ رابط اللعبة',url.href);}
+     else if(navigator.clipboard){await navigator.clipboard.writeText(url.href);alert('تم نسخ رابط اللعبة المباشر');}
+     else prompt('انسخ رابط اللعبة المباشر',url.href);
+   }catch(e){if(e?.name!=='AbortError')prompt('انسخ رابط اللعبة المباشر',url.href);}
  };
  const RAF_REPO='rafealansary752-a11y/raf-vx-android-ports';
  const RAF_DATA_URL='https://raw.githubusercontent.com/'+RAF_REPO+'/main/data/experiences.json';
@@ -4359,9 +4364,27 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    document.getElementById('gamesGrid')?.appendChild(c);
  }
  function addInlineGameActions(){cards().forEach(card=>{if(card.querySelector('.vx-card-performance'))return;const a=document.createElement('div');a.className='vx-game-actions vx-card-performance';a.innerHTML='<button class="vx-result-btn" type="button">🔎 نتائج الأداء</button><button class="vx-result-btn" type="button">＋ أرسل نتيجتك</button><button class="vx-result-btn vx-share-game" type="button">🔗 مشاركة اللعبة</button>';a.children[0].onclick=()=>window.openGameInfoModal?.(card);a.children[1].onclick=()=>{window.openGameInfoModal?.(card);setTimeout(()=>{const b=document.querySelector('#rafOpenSubmit');if(b){b.click();setTimeout(()=>document.querySelector('#rafSubmitForm')?.scrollIntoView({behavior:'smooth',block:'center'}),100);}},500)};a.children[2].onclick=()=>window.rafShareGame(card);const target=card.querySelector('.download-group')||card;target.parentNode.insertBefore(a,target.nextSibling);});}
- function rafOpenSharedGame(){const raw=location.hash||'';if(!raw.startsWith('#game-'))return;let id='';try{id=decodeURIComponent(raw.slice(6));}catch(e){id=raw.slice(6);}const card=cards().find(c=>String(c.dataset.id||'')===id);if(!card)return;window.openGameInfoModal?.(card);setTimeout(()=>document.getElementById('gameInfoModal')?.scrollIntoView({behavior:'smooth',block:'start'}),180);}
- document.addEventListener('DOMContentLoaded',()=>{addNarutoGame();fill();addInlineGameActions();setTimeout(rafOpenSharedGame,500);refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
+ function rafOpenSharedGame(){
+   let id=new URLSearchParams(location.search).get('game')||'';
+   // Backward compatibility with previously shared #game-ID links.
+   if(!id&&location.hash.startsWith('#game-')){try{id=decodeURIComponent(location.hash.slice(6));}catch(e){id=location.hash.slice(6);}}
+   if(!id)return;
+   const open=()=>{
+     const card=cards().find(c=>String(c.dataset.id||'')===id);
+     if(!card)return false;
+     card.scrollIntoView({behavior:'smooth',block:'center'});
+     if(typeof window.openGameInfoModal==='function')window.openGameInfoModal(card);
+     else if(typeof openGameInfoModal==='function')openGameInfoModal(card);
+     setTimeout(()=>document.getElementById('gameInfoModal')?.scrollIntoView({behavior:'smooth',block:'start'}),250);
+     return true;
+   };
+   if(open())return;
+   // Retry briefly in case the game's card is appended after DOMContentLoaded.
+   let tries=0;const timer=setInterval(()=>{tries++;if(open()||tries>=20)clearInterval(timer);},250);
+ }
+ document.addEventListener('DOMContentLoaded',()=>{addNarutoGame();fill();addInlineGameActions();setTimeout(rafOpenSharedGame,150);refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
  window.addEventListener('hashchange',rafOpenSharedGame);
+ window.addEventListener('pageshow',rafOpenSharedGame);
 })();
 </script>
 
