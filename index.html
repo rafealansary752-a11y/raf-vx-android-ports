@@ -4745,28 +4745,42 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  if(typeof oldOpen==='function'){window.openGameInfoModal=function(card){oldOpen(card);addResultControls(card);};}
  window.rafNexusSubmitCommunity=()=>alert('افتح بطاقة اللعبة المطلوبة ثم اختر «إرسال نتيجة هاتفي».');
  window.rafNexusLanguage=()=>{const en=document.documentElement.lang!=='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';$('rafLangBtn').textContent=en?'🌐 العربية':'🌐 English';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=en?el.dataset.en:el.dataset.ar);localStorage.setItem('rafvx_lang',en?'en':'ar');alert(en?'The main navigation language is switched. Some game-specific content remains in its original language.':'تمت إعادة الواجهة إلى العربية.');};
- function addInlineGameActions(){
-   cards().forEach(card=>{
-     if(card.querySelector('.vx-card-performance'))return;
-     const a=document.createElement('div');
-     a.className='vx-game-actions vx-card-performance';
-     a.innerHTML='<button class="vx-result-btn" type="button">🔎 بحث نتائج هاتفي</button><button class="vx-result-btn" type="button">＋ إرسال نتيجة هاتفي</button>';
+ function addInlineGameActions(root=document){
+   const gameCards=Array.from(root.querySelectorAll?.('#gamesGrid .game-card')||[]);
+   gameCards.forEach(card=>{
+     const gameId=String(card.dataset.id||'').trim();
+     if(!gameId||card.querySelector(':scope > .vx-card-performance'))return;
+     const actions=document.createElement('div');
+     actions.className='vx-game-actions vx-card-performance';
+     actions.dataset.gameId=gameId;
+     actions.innerHTML='<button class="vx-result-btn" type="button" data-action="search">🔎 بحث نتائج هاتفي</button><button class="vx-result-btn" type="button" data-action="submit">＋ إرسال نتيجة هاتفي</button>';
      const openFeature=(feature)=>{
-       window.openGameInfoModal?.(card);
+       /* Open the exact game whose card owns these buttons. */
+       if(typeof window.openGameInfoModal!=='function'){
+         if(typeof openGameInfoModal==='function')openGameInfoModal(card);
+         else return;
+       }else window.openGameInfoModal(card);
        setTimeout(()=>{
-         const button=document.querySelector(feature==='search'?'#rafOpenSearch':'#rafOpenSubmit');
-         if(button){button.click();setTimeout(()=>{
-           const target=feature==='search'?document.querySelector('#rafGameSearchForm'):document.querySelector('#rafSubmitForm');
+         const modalBody=document.getElementById('modalGameBody');
+         const controls=modalBody?.querySelector('#rafGameResults');
+         const button=controls?.querySelector(feature==='search'?'#rafOpenSearch':'#rafOpenSubmit');
+         if(!button)return;
+         button.click();
+         setTimeout(()=>{
+           const target=feature==='search'
+             ? controls.querySelector('#rafGameSearchForm')
+             : controls.querySelector('#rafSubmitForm');
            target?.scrollIntoView({behavior:'smooth',block:'center'});
-         },120);}
+         },120);
        },180);
      };
-     a.children[0].onclick=()=>openFeature('search');
-     a.children[1].onclick=()=>openFeature('submit');
-     /* أزرار الأداء جزء ظاهر من بطاقة اللعبة نفسها، خارج نافذة التفاصيل. */
-     card.appendChild(a);
+     actions.querySelector('[data-action="search"]').addEventListener('click',()=>openFeature('search'));
+     actions.querySelector('[data-action="submit"]').addEventListener('click',()=>openFeature('submit'));
+     /* Append as the final visible section of this game's own card. */
+     card.appendChild(actions);
    });
  }
+
  function rafOpenSharedGame(){
    let id=new URLSearchParams(location.search).get('game')||'';
    // Backward compatibility with previously shared #game-ID links.
@@ -4785,7 +4799,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    // Retry briefly in case the game's card is appended after DOMContentLoaded.
    let tries=0;const timer=setInterval(()=>{tries++;if(open()||tries>=20)clearInterval(timer);},250);
  }
- document.addEventListener('DOMContentLoaded',()=>{fill();populateRafDeviceSelects();addInlineGameActions();setTimeout(rafOpenSharedGame,150);refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
+ document.addEventListener('DOMContentLoaded',()=>{fill();populateRafDeviceSelects();addInlineGameActions();const gamesGrid=document.getElementById('gamesGrid');if(gamesGrid&&'MutationObserver'in window){const gameCardObserver=new MutationObserver(()=>addInlineGameActions(gamesGrid));gameCardObserver.observe(gamesGrid,{childList:true,subtree:true});}setTimeout(rafOpenSharedGame,150);refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
  window.addEventListener('hashchange',rafOpenSharedGame);
  window.addEventListener('pageshow',rafOpenSharedGame);
 })();
