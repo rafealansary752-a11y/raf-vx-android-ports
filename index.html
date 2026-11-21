@@ -1145,6 +1145,12 @@
  .performance-search-grid .nexus-box{padding:12px}
 }
 
+
+/* RAF-VX 12.1.7: Keep each game's performance controls visible as full-width rows below its card content. */
+#gamesGrid .game-card{flex-wrap:wrap!important;}
+#gamesGrid .game-card > .vx-card-performance{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;flex:0 0 100%!important;width:100%!important;max-width:100%!important;order:90!important;}
+#gamesGrid .game-card > .vx-inline-performance-panel{display:block!important;flex:0 0 100%!important;width:100%!important;max-width:100%!important;order:91!important;}
+@media(max-width:520px){#gamesGrid .game-card > .vx-card-performance{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
 </style>
 
     <style id="rafvx-v9-redesign">
