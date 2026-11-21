@@ -1,0 +1,152 @@
+name: RAF-VX - Save Game Experiences
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: raf-vx-save-experiences-${{ github.repository }}-${{ github.event.repository.default_branch }}
+  cancel-in-progress: false
+
+jobs:
+  save-experience:
+    if: "${{ contains(github.event.issue.body || '', 'المصدر: RAF-VX نموذج إرسال التجارب') }}"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Validate and save the submitted experience
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          body = os.environ.get("ISSUE_BODY", "")
+          issue_url = os.environ["ISSUE_URL"].strip()
+          issue_number = int(os.environ["ISSUE_NUMBER"])
+          marker = "المصدر: RAF-VX نموذج إرسال التجارب"
+
+          if marker not in body:
+              raise SystemExit("Not a RAF-VX experience submission.")
+
+          def field(label):
+              match = re.search(
+                  r"^" + re.escape(label) + r"\s*:\s*(.*?)\s*$",
+                  body,
+                  flags=re.MULTILINE,
+              )
+              return match.group(1).strip() if match else ""
+
+          game = field("اللعبة")
+          game_id = field("معرّف اللعبة")
+          device = field("الجهاز")
+          chip = field("المعالج")
+          result = field("نتيجة التجربة")
+
+          required = {
+              "اللعبة": game,
+              "معرّف اللعبة": game_id,
+              "الجهاز": device,
+              "المعالج": chip,
+              "نتيجة التجربة": result,
+          }
+          missing = [key for key, value in required.items() if not value]
+          if missing:
+              raise SystemExit("Missing required fields: " + ", ".join(missing))
+
+          if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,99}", game_id):
+              raise SystemExit("Invalid game ID format: " + game_id)
+
+          allowed_results = {
+              "120 FPS ثابت بدون مشاكل",
+              "90 FPS ثابت بدون مشاكل",
+              "60 FPS ثابت بدون مشاكل",
+              "45 FPS مستقر",
+              "30 FPS مستقر",
+              "يعمل لكن مع تقطيع متقطع",
+              "يعمل لكن مع مشاكل وتهنيق",
+              "لا يعمل أو يتعطل عند التشغيل",
+          }
+          if result not in allowed_results:
+              raise SystemExit("The submitted performance result is not an allowed form option.")
+
+          if len(game) > 160 or len(device) > 160 or len(chip) > 160:
+              raise SystemExit("One or more submitted fields are too long.")
+
+          # Confirm that the submitted game ID really exists in the site's current index.html.
+          index_file = Path("index.html")
+          if not index_file.is_file():
+              raise SystemExit("index.html was not found at the repository root.")
+          html = index_file.read_text(encoding="utf-8")
+          card_pattern = re.compile(
+              r'<(?:div|article)\b(?=[^>]*\bclass=["\'][^"\']*\bgame-card\b[^"\']*["\'])'
+              r'(?=[^>]*\bdata-id=["\']' + re.escape(game_id) + r'["\'])[^>]*>',
+              re.IGNORECASE,
+          )
+          if not card_pattern.search(html):
+              raise SystemExit(f"Game ID {game_id!r} does not exist as a game-card in index.html.")
+
+          database = Path("data/experiences.json")
+          database.parent.mkdir(parents=True, exist_ok=True)
+          if database.exists():
+              try:
+                  data = json.loads(database.read_text(encoding="utf-8"))
+              except json.JSONDecodeError as exc:
+                  raise SystemExit(f"data/experiences.json is invalid JSON: {exc}")
+          else:
+              data = {}
+
+          if not isinstance(data, dict):
+              raise SystemExit("The experiences database root must be a JSON object.")
+
+          rows = data.setdefault(game_id, [])
+          if not isinstance(rows, list):
+              raise SystemExit(f"Database entry for {game_id!r} must be an array.")
+
+          if any(isinstance(row, dict) and row.get("issue_url") == issue_url for row in rows):
+              print(f"Issue #{issue_number} was already saved; skipping duplicate.")
+          else:
+              rows.append({
+                  "game": game,
+                  "device": device,
+                  "chip": chip,
+                  "result": result,
+                  "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                  "issue_url": issue_url,
+                  "issue_number": issue_number,
+              })
+              database.write_text(
+                  json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+                  encoding="utf-8",
+              )
+              print(f"Saved issue #{issue_number} under game ID {game_id}.")
+          PY
+
+      - name: Commit and push the updated results database
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/experiences.json
+          if git diff --cached --quiet; then
+            echo "No new database entry to commit."
+            exit 0
+          fi
+          git commit -m "Save RAF-VX game experience"
+          git push origin "HEAD:${DEFAULT_BRANCH}"
