@@ -17,6 +17,15 @@
       "date": "2026-11-21",
       "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/6",
       "issue_number": 6
+    },
+    {
+      "game": "Fable 2",
+      "device": "سامسونج جالكسي S25 ألترا",
+      "chip": "Snapdragon 8 Elite for Galaxy",
+      "result": "120 FPS ثابت بدون مشاكل",
+      "date": "2026-11-21",
+      "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/7",
+      "issue_number": 7
     }
   ]
 }
