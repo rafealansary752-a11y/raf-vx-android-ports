@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAF-VX 12.0 | مكتبة ألعاب أندرويد</title>
+    <title>RAF-VX 12.0 | مكتبة ألعاب أندرويد | RAF-VX 12.0.8</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -4547,9 +4547,36 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  let rafExperiencesLoaded=false;
  let rafExperiencesError='';
  let rafExperiencesPromise=null;
- async function loadRafExperiences(force=false){if(rafExperiencesPromise&&!force)return rafExperiencesPromise;rafExperiencesPromise=(async()=>{try{const r=await fetch(RAF_DATA_URL+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);const data=await r.json();rafExperiences=data&&typeof data==='object'?data:{};rafExperiencesLoaded=true;rafExperiencesError='';if(typeof populateRafDeviceSelects==='function')populateRafDeviceSelects();}catch(e){rafExperiencesLoaded=false;rafExperiencesError=String(e?.message||e);console.warn('RAF-VX: تعذر تحميل قاعدة النتائج',e);}const activeCard=document.querySelector('#gameInfoModal.active')?.dataset?.gameCard;if(activeCard)renderGameResults(activeCard);return rafExperiences;})();try{return await rafExperiencesPromise;}finally{rafExperiencesPromise=null;}}
+ async function loadRafExperiences(force=false){
+   if(rafExperiencesPromise&&!force)return rafExperiencesPromise;
+   rafExperiencesPromise=(async()=>{
+     try{
+       const response=await fetch(RAF_DATA_URL+'?v='+Date.now(),{cache:'no-store'});
+       if(!response.ok)throw new Error('HTTP '+response.status);
+       const data=await response.json();
+       if(!data||typeof data!=='object'||Array.isArray(data))throw new Error('صيغة قاعدة التجارب غير صحيحة');
+       rafExperiences=data;
+       rafExperiencesLoaded=true;
+       rafExperiencesError='';
+       if(typeof populateRafDeviceSelects==='function')populateRafDeviceSelects();
+     }catch(error){
+       rafExperiencesError=String(error?.message||error);
+       // Keep the last successfully loaded data if a temporary request fails.
+       if(!rafExperiencesLoaded)rafExperiences={};
+       console.warn('RAF-VX: تعذر تحميل قاعدة النتائج',error);
+     }
+     return rafExperiences;
+   })();
+   try{return await rafExperiencesPromise;}finally{rafExperiencesPromise=null;}
+ }
  function escRaf(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
- function normRafDevice(v){return String(v||'').normalize('NFKC').toLocaleLowerCase('ar').replace(/[أإآٱ]/g,'ا').replace(/[ى]/g,'ي').replace(/[ـ]/g,'').replace(/[ًٌٍَُِّْ]/g,'').replace(/[()（）._-]/g,' ').replace(/\s+/g,' ').trim();}
+ function normRafDevice(v){
+   return String(v||'').normalize('NFKC').toLocaleLowerCase('ar')
+     .replace(/[أإآٱ]/g,'ا').replace(/[ى]/g,'ي').replace(/[ة]/g,'ه')
+     .replace(/[ـ]/g,'').replace(/[ًٌٍَُِّْ]/g,'')
+     .replace(/[()（）\[\]{}._-]/g,' ').replace(/[،,]/g,' ')
+     .replace(/\s+/g,' ').trim();
+ }
  function getRafKnownDevices(){const known=new Map();devices.forEach(d=>known.set(normRafDevice(d[0]),[String(d[0]).trim(),String(d[1]||'')]));Object.values(rafExperiences||{}).forEach(rows=>{if(!Array.isArray(rows))return;rows.forEach(x=>{const label=String(x?.device||'').trim(),key=normRafDevice(label);if(key&&!known.has(key))known.set(key,[label,String(x?.chip||'غير محدد')]);});});return [...known.values()].sort((a,b)=>a[0].localeCompare(b[0],'ar'));}
  function statusForResult(value){
    const t=String(value||'').toLocaleLowerCase('ar').replace(/\s+/g,' ').trim();
@@ -4565,35 +4592,63 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  function gameMinimum(card){const note=card?.querySelector('.note-box')?.textContent||'';return /snapdragon\s*8\s*elite/i.test(note)?4:0;}
  function estimatedStatus(card,chip){const rank=chipRank(chip),min=gameMinimum(card);if(!rank)return ['gray','لا يوجد تقدير'];if(min&&rank<min)return ['red','أقل من الحد المذكور'];return ['green','متوافق مبدئياً'];}
  function getRafGameRows(card){
-   const gid=String(card?.dataset?.id||'');
+   const gid=String(card?.dataset?.id||'').trim();
    const title=normRafDevice(name(card));
-   const direct=Array.isArray(rafExperiences?.[gid])?rafExperiences[gid]:[];
-   // Primary lookup is the card ID. Fallback supports legacy/mismatched keys
-   // by matching the stored game title, so new submissions do not disappear.
-   const extra=[];
+   const collected=[];
+   // Read the canonical game bucket first, then scan all buckets as a
+   // compatibility fallback for older or differently keyed submissions.
+   const direct=rafExperiences && Array.isArray(rafExperiences[gid]) ? rafExperiences[gid] : [];
+   collected.push(...direct);
    Object.entries(rafExperiences||{}).forEach(([key,items])=>{
-     if(!Array.isArray(items)||key===gid)return;
+     if(!Array.isArray(items))return;
+     if(key===gid)return;
      items.forEach(item=>{
        const itemGame=normRafDevice(item?.game||'');
-       if(itemGame&&itemGame===title)extra.push(item);
+       const itemId=String(item?.game_id||item?.gameId||item?.game_key||'').trim();
+       if((itemGame && itemGame===title) || (itemId && itemId===gid))collected.push(item);
      });
    });
    const seen=new Set();
-   return [...direct,...extra].filter(item=>{
-     const id=String(item?.issue_number??'')+'|'+normRafDevice(item?.device)+'|'+String(item?.date||'')+'|'+String(item?.result||'');
-     if(seen.has(id))return false;seen.add(id);return true;
+   return collected.filter(item=>{
+     const issue=String(item?.issue_number??item?.issue??'').trim();
+     const identity=issue
+       ? 'issue:'+issue
+       : [normRafDevice(item?.game),normRafDevice(item?.device),normRafDevice(item?.chip),
+          String(item?.date||''),normRafDevice(item?.result)].join('|');
+     if(seen.has(identity))return false;
+     seen.add(identity);
+     return true;
    });
  }
  function renderGameResults(card,filter=''){
-   const box=$('modalGameBody')?.querySelector('#rafGameResults');if(!box||!card)return;
+   const box=document.querySelector('#modalGameBody #rafGameResults');
+   if(!box||!card)return;
+   const list=box.querySelector('#rafResultRows');
+   if(!list)return;
+   if(!rafExperiencesLoaded){
+     list.innerHTML='<div class="vx-result-entry"><b>تعذر تحميل قاعدة التجارب المنشورة حالياً.</b><p class="nexus-muted">تحقق من اتصال الإنترنت ثم اضغط البحث مرة أخرى. لن نعرض رسالة «لا توجد نتائج» عند فشل التحميل.</p></div>';
+     return;
+   }
    const rows=getRafGameRows(card);
-   const q=String(filter||'').trim();
-   const nq=normRafDevice(q);
-   const matched=rows.filter(x=>!nq||normRafDevice(x.device)===nq||normRafDevice(x.chip)===nq);
-   const list=box.querySelector('#rafResultRows');if(!list)return;
-   if(!q){list.innerHTML='<p class="nexus-muted">اختر هاتفك من قائمة البحث لعرض التجارب المنشورة لهذا الهاتف فقط.</p>';return;}
-   if(!rafExperiencesLoaded){list.innerHTML='<div class="vx-result-entry"><b>تعذر تحميل قاعدة التجارب المنشورة.</b><p class="nexus-muted">تحقق من وجود data/experiences.json وإمكانية الوصول إليه، ثم أعد المحاولة.</p></div>';return;}
-   list.innerHTML=matched.length?matched.map(x=>`<div class="vx-result-entry"><b>${escRaf(x.device)}</b> ${statusDot(x.result)}<br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small></div>`).join(''):'<div class="vx-result-entry"><b>لا توجد تجربة منشورة لهذا الهاتف في هذه اللعبة حتى الآن.</b><p class="nexus-muted">يمكنك إرسال تجربتك من زر «إرسال نتيجة هاتفي» لتُراجع وتُضاف بعد المعالجة.</p></div>';
+   const query=normRafDevice(filter);
+   if(!query){
+     list.innerHTML='<p class="nexus-muted">اختر هاتفك من قائمة البحث لعرض التجارب المنشورة لهذا الهاتف فقط.</p>';
+     return;
+   }
+   const matched=rows.filter(item=>{
+     const device=normRafDevice(item?.device);
+     const chip=normRafDevice(item?.chip);
+     return device===query || chip===query;
+   });
+   list.innerHTML=matched.length ? matched.map(item=>`
+     <div class="vx-result-entry">
+       <b>${escRaf(item.device||'جهاز غير محدد')}</b> ${statusDot(item.result)}<br>
+       المعالج: ${escRaf(item.chip||'غير محدد')}<br>
+       النتيجة: ${escRaf(item.result||'غير محددة')}<br>
+       <small>${escRaf(item.date||'')}</small>
+       ${item.issue_url?`<br><a href="${escRaf(item.issue_url)}" target="_blank" rel="noopener">مصدر التجربة</a>`:''}
+     </div>`).join('')
+     : '<div class="vx-result-entry"><b>لا توجد تجربة منشورة لهذا الهاتف في هذه اللعبة حتى الآن.</b><p class="nexus-muted">تم تحميل قاعدة البيانات بنجاح، لكن لا يوجد سجل مطابق لاسم الهاتف المختار.</p></div>';
  }
  function addResultControls(card){
    const body=$('modalGameBody');if(!body||!card)return;
@@ -4606,16 +4661,16 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    const fillGameSearchDevices=()=>{const previous=searchSelect.value;searchSelect.innerHTML='<option value="">اختر هاتفك للبحث</option>'+getRafKnownDevices().map(([device,chip])=>`<option value="${escRaf(device)}">${escRaf(device)} — ${escRaf(chip)}</option>`).join('');if(previous)searchSelect.value=getRafKnownDevices().find(([d])=>normRafDevice(d)===normRafDevice(previous))?.[0]||'';};
    fillGameSearchDevices();
    box.querySelector('#rafResultRows').innerHTML='<p class="nexus-muted">اختر البحث أو إرسال تجربة جديدة.</p>';
-   box.querySelector('#rafOpenSearch').onclick=async()=>{const f=box.querySelector('#rafGameSearchForm'),submit=box.querySelector('#rafSubmitForm');submit?.remove();f.hidden=!f.hidden;if(!f.hidden){box.querySelector('#rafResultRows').innerHTML='<p class="nexus-muted">اختر هاتفك لعرض النتائج المنشورة.</p>';await loadRafExperiences(true);fillGameSearchDevices();searchSelect.focus();}};
+   box.querySelector('#rafOpenSearch').onclick=async()=>{const f=box.querySelector('#rafGameSearchForm'),submit=box.querySelector('#rafSubmitForm');submit?.remove();f.hidden=!f.hidden;if(!f.hidden){box.querySelector('#rafResultRows').innerHTML='<p class="nexus-muted">جارٍ تحديث قائمة الهواتف ونتائج اللعبة…</p>';await loadRafExperiences(true);fillGameSearchDevices();box.querySelector('#rafResultRows').innerHTML='<p class="nexus-muted">اختر هاتفك لعرض النتائج المنشورة.</p>';searchSelect.focus();}};
    box.querySelector('#rafGameSearchGo').onclick=async()=>{if(!searchSelect.value){alert('اختر هاتفك أولاً.');return;}box.querySelector('#rafResultRows').innerHTML='<p class="nexus-muted">جارٍ تحميل النتائج…</p>';await loadRafExperiences(true);renderGameResults(card,searchSelect.value);};
    searchSelect.addEventListener('change',async()=>{if(!searchSelect.value){box.querySelector('#rafResultRows').innerHTML='<p class="nexus-muted">اختر هاتفك لعرض النتائج المنشورة.</p>';return;}await loadRafExperiences();renderGameResults(card,searchSelect.value);});
    box.querySelector('#rafOpenSubmit').onclick=()=>{
      box.querySelector('#rafGameSearchForm').hidden=true;
      if(box.querySelector('#rafSubmitForm')){box.querySelector('#rafSubmitForm').scrollIntoView({behavior:'smooth',block:'center'});return;}
      const form=document.createElement('div');form.id='rafSubmitForm';form.className='vx-result-entry';
-     form.innerHTML=`<b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>الهاتف والمعالج</label><select id="rafSubmitDevice" class="nexus-input"><option value="">اختر هاتفك</option>${devices.map((d,i)=>`<option value="${i}">${escRaf(d[0])} — ${escRaf(d[1])}</option>`).join("")}</select><label>نتيجة الأداء</label><select id="rafSubmitResult" class="nexus-input"><option value="">اختر نتيجة الأداء</option><option value="120 FPS ثابت بدون مشاكل">120 FPS — ثابت</option><option value="90 FPS ثابت بدون مشاكل">90 FPS — ثابت</option><option value="60 FPS ثابت بدون مشاكل">60 FPS — ثابت</option><option value="45 FPS مستقر">45 FPS — مستقر</option><option value="30 FPS مستقر">30 FPS — مستقر</option><option value="يعمل لكن مع تقطيع متقطع">يعمل — تقطيع متقطع</option><option value="يعمل لكن مع مشاكل وتهنيق">يعمل — مشاكل وتهنيق</option><option value="لا يعمل أو يتعطل عند التشغيل">لا يعمل</option></select><button class="vx-result-btn" id="rafSubmitGo">إرسال النتيجة إلى GitHub ↗</button><p class="nexus-muted">ملاحظة: سيتم توجيهك إلى GitHub لتأكيد إرسال النتيجة. بعد المعالجة الآلية ستُحفظ تحت هذه اللعبة تحديداً وتظهر في نتائج البحث.</p>`;
+     form.innerHTML=`<b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>الهاتف والمعالج</label><select id="rafSubmitDevice" class="nexus-input"><option value="">اختر هاتفك</option>${getRafKnownDevices().map(([device,chip])=>`<option value="${escRaf(device)}">${escRaf(device)} — ${escRaf(chip)}</option>`).join("")}</select><label>نتيجة الأداء</label><select id="rafSubmitResult" class="nexus-input"><option value="">اختر نتيجة الأداء</option><option value="120 FPS ثابت بدون مشاكل">120 FPS — ثابت</option><option value="90 FPS ثابت بدون مشاكل">90 FPS — ثابت</option><option value="60 FPS ثابت بدون مشاكل">60 FPS — ثابت</option><option value="45 FPS مستقر">45 FPS — مستقر</option><option value="30 FPS مستقر">30 FPS — مستقر</option><option value="يعمل لكن مع تقطيع متقطع">يعمل — تقطيع متقطع</option><option value="يعمل لكن مع مشاكل وتهنيق">يعمل — مشاكل وتهنيق</option><option value="لا يعمل أو يتعطل عند التشغيل">لا يعمل</option></select><button class="vx-result-btn" id="rafSubmitGo">إرسال النتيجة إلى GitHub ↗</button><p class="nexus-muted">ملاحظة: سيتم توجيهك إلى GitHub لتأكيد إرسال النتيجة. بعد المعالجة الآلية ستُحفظ تحت هذه اللعبة تحديداً وتظهر في نتائج البحث.</p>`;
      box.appendChild(form);
-     form.querySelector('#rafSubmitGo').onclick=()=>{const deviceIndex=form.querySelector('#rafSubmitDevice').value,selected=deviceIndex===''?null:devices[Number(deviceIndex)],result=form.querySelector('#rafSubmitResult').value;if(!selected||!result){alert('اختر هاتفك ونتيجة الأداء أولاً.');return}const device=selected[0],chip=selected[1];const formBody=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nنتيجة التجربة: ${result}\nالمصدر: RAF-VX نموذج إرسال التجارب`;const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(formBody);window.location.href=url;};
+     form.querySelector('#rafSubmitGo').onclick=()=>{const device=form.querySelector('#rafSubmitDevice').value,selected=getRafKnownDevices().find(([label])=>normRafDevice(label)===normRafDevice(device)),result=form.querySelector('#rafSubmitResult').value;if(!selected||!result){alert('اختر هاتفك ونتيجة الأداء أولاً.');return}const chip=selected[1];const formBody=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nنتيجة التجربة: ${result}\nالمصدر: RAF-VX نموذج إرسال التجارب`;const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(formBody);window.location.href=url;};
    };
  }
  window.rafSearchPerformance=async()=>{
@@ -4625,7 +4680,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    status.textContent='جارٍ تحميل النتائج المنشورة…';out.innerHTML='<p class="nexus-muted">لحظة، نبحث في نتائج جميع الألعاب.</p>';
    await loadRafExperiences(true);
    const selected=normRafDevice(q),found=[];
-   cards().forEach(c=>{const rows=Array.isArray(rafExperiences[c.dataset.id])?rafExperiences[c.dataset.id]:[];rows.forEach(x=>{const dn=normRafDevice(x.device);if(dn===selected)found.push({game:name(c),...x});});});
+   cards().forEach(c=>{getRafGameRows(c).forEach(x=>{const dn=normRafDevice(x?.device);if(dn===selected)found.push({game:name(c),...x});});});
    status.textContent=found.length?`تم العثور على ${found.length} نتيجة منشورة للهاتف «${select.selectedOptions[0]?.textContent||select.value}».`:`لا توجد نتائج منشورة لهذا الهاتف حالياً. يمكنك فتح صفحة أي لعبة وإرسال تجربتك لتظهر لاحقاً.`;
    out.innerHTML=found.map(x=>`<article class="vx-result-entry"><b>🎮 ${escRaf(x.game)}</b><br><b>📱 ${escRaf(x.device)}</b> ${statusDot(x.result)}<br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small></article>`).join('');
  };
