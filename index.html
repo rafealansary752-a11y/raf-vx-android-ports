@@ -4552,10 +4552,12 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  function normRafDevice(v){return String(v||'').normalize('NFKC').toLocaleLowerCase('ar').replace(/[أإآٱ]/g,'ا').replace(/[ى]/g,'ي').replace(/[ـ]/g,'').replace(/[ًٌٍَُِّْ]/g,'').replace(/[()（）._-]/g,' ').replace(/\s+/g,' ').trim();}
  function getRafKnownDevices(){const known=new Map();devices.forEach(d=>known.set(normRafDevice(d[0]),[String(d[0]).trim(),String(d[1]||'')]));Object.values(rafExperiences||{}).forEach(rows=>{if(!Array.isArray(rows))return;rows.forEach(x=>{const label=String(x?.device||'').trim(),key=normRafDevice(label);if(key&&!known.has(key))known.set(key,[label,String(x?.chip||'غير محدد')]);});});return [...known.values()].sort((a,b)=>a[0].localeCompare(b[0],'ar'));}
  function statusForResult(value){
-   const t=String(value||'').toLocaleLowerCase('ar');
+   const t=String(value||'').toLocaleLowerCase('ar').replace(/\s+/g,' ').trim();
+   // Positive phrases must be checked before the generic word 'مشاكل',
+   // because 'بدون مشاكل' contains that word but is a positive result.
+   if(/بدون مشاكل|ثابت بدون مشاكل|ممتاز|سلس|ثابت|يعمل تمام|قابل للعب|(?:60|90|120)\s*fps/.test(t))return ['green','متوافق حسب التجربة'];
    if(/لا يعمل|لم يعمل|لا تفتح|لا يفتح|تعطل مباشرة|crash|black screen|شاشة سوداء|غير قابل للعب/.test(t))return ['red','غير متوافق'];
    if(/مشاكل|مشكلة|تقطيع|تهنيق|تعليق|انخفاض|حرارة|lag|stutter|glitch/.test(t))return ['orange','يعمل مع مشاكل'];
-   if(/ممتاز|سلس|ثابت|بدون مشاكل|يعمل تمام|قابل للعب|60\s*fps|90\s*fps|120\s*fps/.test(t))return ['green','متوافق حسب التجربة'];
    return ['gray','غير محدد'];
  }
  function statusDot(value){const st=statusForResult(value);return `<span class="vx-status vx-${st[0]}"><i></i>${st[1]}</span>`;}
