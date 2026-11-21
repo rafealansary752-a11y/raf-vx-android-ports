@@ -1237,8 +1237,12 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 <section class="nexus-panel" id="nexusPanel-community"><h3>👥 مجتمع RAF-VX</h3><p class="nexus-muted">أرسل تجربة موثقة من صفحة اللعبة نفسها. اختر الهاتف ونتيجة الأداء فقط؛ لا نطلب اسم محاكي أو أداة تشغيل.</p><div class="nexus-box"><b>كيف ترسل تجربتك؟</b><p>افتح بطاقة اللعبة ← نتائج الأداء ← إرسال نتيجة هاتفي. ستنتقل إلى GitHub لمراجعة تفاصيل التجربة ثم تأكيد فتح البلاغ، وبعد معالجته ستظهر النتيجة المنشورة في البحث.</p></div><button class="nexus-btn" onclick="document.querySelector('#gamesGrid')?.scrollIntoView({behavior:'smooth'})">استعرض الألعاب</button></section>
 <section class="nexus-panel" id="nexusPanel-performance">
 <h3>📱 أداء اللعبة على هاتفك</h3>
-<p class="nexus-muted">اختر هاتفك من القائمة لعرض الألعاب ونتائج الأداء المنشورة له.</p>
-<div class="nexus-grid"><div class="nexus-box"><label for="rafPerformanceDevice">اسم الهاتف</label><select id="rafPerformanceDevice" class="nexus-input"><option value="">اختر هاتفك من القائمة</option></select><button class="nexus-btn" type="button" id="rafPerformanceSearch" style="margin-top:10px;width:100%">🔍 بحث عن نتائج هاتفي</button></div></div>
+<p class="nexus-muted">اكتب اسم هاتفك ومعالجه في خانة واحدة، ثم اختر اللعبة لعرض التجارب المنشورة.</p>
+<div class="performance-search-grid">
+ <div class="nexus-box"><label for="rafPerformanceDevice">اسم الهاتف والمعالج</label><input id="rafPerformanceDevice" class="nexus-input" type="text" placeholder="مثال: Samsung S20 Ultra, Snapdragon 8" autocomplete="off"></div>
+ <div class="nexus-box"><label for="rafPerformanceGame">اللعبة</label><select id="rafPerformanceGame" class="nexus-input"><option value="">اختر اللعبة</option></select></div>
+</div>
+<button class="nexus-btn performance-search-submit" type="button" id="rafPerformanceSearch">🔍 بحث عن نتائج هاتفي</button>
 <p class="nexus-muted">🟢 نتيجة إيجابية • 🟠 يعمل مع مشاكل • 🔴 لم يعمل. الحالة تُستنتج من وصف المستخدم وليست فحصاً آلياً.</p><div id="rafPerformanceStatus" class="nexus-note">اختر الهاتف واللعبة لعرض تجارب الأداء المنشورة.</div>
 <div id="rafPerformanceResults" aria-live="polite"></div>
 </section>
@@ -1247,7 +1251,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 
     <div class="container">
         <div class="update-banner" id="updateBanner">
-            <span>🚀 RAF-VX 12.0 — الجيل الجديد من مكتبة ألعاب الأندرويد</span>
+            <span>🚀 RAF-VX 12.1.1 — نظام الأداء الموحد من مكتبة ألعاب الأندرويد</span>
             <button onclick="closeBanner()">إخفاء</button>
         </div>
 
@@ -4689,26 +4693,26 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
      box.querySelector('#rafGameSearchForm').hidden=true;
      if(box.querySelector('#rafSubmitForm')){box.querySelector('#rafSubmitForm').scrollIntoView({behavior:'smooth',block:'center'});return;}
      const form=document.createElement('div');form.id='rafSubmitForm';form.className='vx-result-entry';
-     form.innerHTML=`<b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>الهاتف والمعالج</label><select id="rafSubmitDevice" class="nexus-input"><option value="">اختر هاتفك</option>${getRafKnownDevices().map(([device,chip])=>`<option value="${escRaf(device)}">${escRaf(device)} — ${escRaf(chip)}</option>`).join("")}</select><label>نتيجة الأداء</label><select id="rafSubmitResult" class="nexus-input"><option value="">اختر نتيجة الأداء</option><option value="120 FPS ثابت بدون مشاكل">120 FPS — ثابت</option><option value="90 FPS ثابت بدون مشاكل">90 FPS — ثابت</option><option value="60 FPS ثابت بدون مشاكل">60 FPS — ثابت</option><option value="45 FPS مستقر">45 FPS — مستقر</option><option value="30 FPS مستقر">30 FPS — مستقر</option><option value="يعمل لكن مع تقطيع متقطع">يعمل — تقطيع متقطع</option><option value="يعمل لكن مع مشاكل وتهنيق">يعمل — مشاكل وتهنيق</option><option value="لا يعمل أو يتعطل عند التشغيل">لا يعمل</option></select><button class="vx-result-btn" id="rafSubmitGo">إرسال النتيجة إلى GitHub ↗</button><p class="nexus-muted">ملاحظة: سيتم توجيهك إلى GitHub لتأكيد إرسال النتيجة. بعد المعالجة الآلية ستُحفظ تحت هذه اللعبة تحديداً وتظهر في نتائج البحث.</p>`;
+     form.innerHTML=`<b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>اسم الهاتف والمعالج</label><input id="rafSubmitDevice" class="nexus-input" type="text" placeholder="مثال: Samsung S20 Ultra, Snapdragon 8" autocomplete="off"><label>نتيجة الأداء</label><select id="rafSubmitResult" class="nexus-input"><option value="">اختر نتيجة الأداء</option><option value="120 FPS ثابت بدون مشاكل">120 FPS — ثابت</option><option value="90 FPS ثابت بدون مشاكل">90 FPS — ثابت</option><option value="60 FPS ثابت بدون مشاكل">60 FPS — ثابت</option><option value="45 FPS مستقر">45 FPS — مستقر</option><option value="30 FPS مستقر">30 FPS — مستقر</option><option value="يعمل لكن مع تقطيع متقطع">يعمل — تقطيع متقطع</option><option value="يعمل لكن مع مشاكل وتهنيق">يعمل — مشاكل وتهنيق</option><option value="لا يعمل أو يتعطل عند التشغيل">لا يعمل</option></select><button class="vx-result-btn" id="rafSubmitGo">إرسال النتيجة إلى GitHub ↗</button><p class="nexus-muted">ملاحظة: سيتم توجيهك إلى GitHub لتأكيد إرسال النتيجة. بعد المعالجة الآلية ستُحفظ تحت هذه اللعبة تحديداً وتظهر في نتائج البحث.</p>`;
      box.appendChild(form);
-     form.querySelector('#rafSubmitGo').onclick=()=>{const device=form.querySelector('#rafSubmitDevice').value,selected=getRafKnownDevices().find(([label])=>normRafDevice(label)===normRafDevice(device)),result=form.querySelector('#rafSubmitResult').value;if(!selected||!result){alert('اختر هاتفك ونتيجة الأداء أولاً.');return}const chip=selected[1];const formBody=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nنتيجة التجربة: ${result}\nالمصدر: RAF-VX نموذج إرسال التجارب`;const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(formBody);window.location.href=url;};
+     form.querySelector('#rafSubmitGo').onclick=()=>{const raw=form.querySelector('#rafSubmitDevice').value.trim(),parts=raw.split(/[,،]/).map(x=>x.trim()).filter(Boolean),device=parts[0]||'',chip=parts.slice(1).join('، ')||'غير محدد',result=form.querySelector('#rafSubmitResult').value;if(!device||!result){alert('اكتب اسم الهاتف والمعالج واختر نتيجة الأداء أولاً. افصل بين الهاتف والمعالج بفاصلة.');return}const formBody=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nنتيجة التجربة: ${result}\nالمصدر: RAF-VX نموذج إرسال التجارب`;const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(formBody);window.location.href=url;};
    };
  }
  window.rafSearchPerformance=async()=>{
    const select=$('rafPerformanceDevice'),gameSelect=$('rafPerformanceGame');
    const out=$('rafPerformanceResults'),status=$('rafPerformanceStatus');
    if(!out||!status)return;
-   const device=select?.value||'',gameId=gameSelect?.value||'';
+   const device=select?.value?.trim()||'',gameId=gameSelect?.value||'';
    if(!device||!gameId){status.textContent='اختر هاتفك واللعبة أولاً.';out.innerHTML='';return;}
    status.textContent='جارٍ تحميل النتائج المنشورة…';
    out.innerHTML='<p class="nexus-muted">نبحث عن تجارب هذا الهاتف في اللعبة المحددة.</p>';
    await loadRafExperiences(true);
    const card=cards().find(c=>String(c.dataset.id||'')===gameId);
    if(!card){status.textContent='تعذر العثور على اللعبة المحددة.';out.innerHTML='';return;}
-   const selected=normRafDevice(device);
-   const found=getRafGameRows(card).filter(x=>normRafDevice(x?.device)===selected);
+   const query=normRafDevice(device);
+   const found=getRafGameRows(card).filter(x=>{const full=normRafDevice(String(x?.device||'')+' '+String(x?.chip||''));return full.includes(query)||query.includes(normRafDevice(x?.device))&&normRafDevice(x?.device)||query.includes(normRafDevice(x?.chip))&&normRafDevice(x?.chip);});
    status.textContent=found.length
-     ? `تم العثور على ${found.length} تجربة منشورة لـ ${select.selectedOptions[0]?.textContent||device} في ${name(card)}.`
+     ? `تم العثور على ${found.length} تجربة منشورة لـ ${device} في ${name(card)}.`
      : `لا توجد تجارب منشورة لهذا الهاتف في ${name(card)} حالياً.`;
    out.innerHTML=found.map(x=>`<article class="vx-result-entry"><b>🎮 ${escRaf(name(card))}</b><br><b>📱 ${escRaf(x.device)}</b> ${statusDot(x.result)}<br>المعالج: ${escRaf(x.chip||'غير محدد')}<br>النتيجة: ${escRaf(x.result)}<br><small>${escRaf(x.date||'')}</small>${x.issue_url?`<br><a href="${escRaf(x.issue_url)}" target="_blank" rel="noopener">مصدر التجربة</a>`:''}</article>`).join('');
  };
@@ -4718,8 +4722,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    el.innerHTML='<option value="">اختر اللعبة</option>'+cards().map(c=>`<option value="${escRaf(c.dataset.id||'')}">${escRaf(name(c))}</option>`).join('');
    if(previous&&cards().some(c=>String(c.dataset.id||'')===previous))el.value=previous;
  }
- const globalDeviceSelect=$('rafPerformanceDevice');
- if(globalDeviceSelect && globalDeviceSelect.options.length<=1)populateRafDeviceSelects();
+ const globalDeviceInput=$('rafPerformanceDevice');
  populateRafPerformanceGames();
  $('rafPerformanceSearch')?.addEventListener('click',window.rafSearchPerformance);
  $('rafPerformanceDevice')?.addEventListener('keydown',e=>{if(e.key==='Enter')window.rafSearchPerformance()});
@@ -4727,7 +4730,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  if(typeof oldOpen==='function'){window.openGameInfoModal=function(card){oldOpen(card);addResultControls(card);};}
  window.rafNexusSubmitCommunity=()=>alert('افتح بطاقة اللعبة المطلوبة ثم اختر «إرسال نتيجة هاتفي».');
  window.rafNexusLanguage=()=>{const en=document.documentElement.lang!=='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';$('rafLangBtn').textContent=en?'🌐 العربية':'🌐 English';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=en?el.dataset.en:el.dataset.ar);localStorage.setItem('rafvx_lang',en?'en':'ar');alert(en?'The main navigation language is switched. Some game-specific content remains in its original language.':'تمت إعادة الواجهة إلى العربية.');};
- function addInlineGameActions(){cards().forEach(card=>{if(card.querySelector('.vx-card-performance'))return;const a=document.createElement('div');a.className='vx-game-actions vx-card-performance';a.innerHTML='<button class="vx-result-btn" type="button">🔎 نتائج الأداء</button><button class="vx-result-btn" type="button">＋ أرسل نتيجتك</button><button class="vx-result-btn vx-share-game" type="button">🔗 مشاركة اللعبة</button>';a.children[0].onclick=()=>window.openGameInfoModal?.(card);a.children[1].onclick=()=>{window.openGameInfoModal?.(card);setTimeout(()=>{const b=document.querySelector('#rafOpenSubmit');if(b){b.click();setTimeout(()=>document.querySelector('#rafSubmitForm')?.scrollIntoView({behavior:'smooth',block:'center'}),100);}},500)};a.children[2].onclick=()=>window.rafShareGame(card);const target=card.querySelector('.download-group')||card;target.parentNode.insertBefore(a,target.nextSibling);});}
+ function addInlineGameActions(){cards().forEach(card=>{if(card.querySelector('.vx-card-performance'))return;const a=document.createElement('div');a.className='vx-game-actions vx-card-performance';a.innerHTML='<button class="vx-result-btn" type="button">📊 أداء اللعبة</button><button class="vx-result-btn" type="button">＋ إرسال نتيجة</button><button class="vx-result-btn vx-share-game" type="button">🔗 مشاركة اللعبة</button>';a.children[0].onclick=()=>window.openGameInfoModal?.(card);a.children[1].onclick=()=>{window.openGameInfoModal?.(card);setTimeout(()=>{const b=document.querySelector('#rafOpenSubmit');if(b){b.click();setTimeout(()=>document.querySelector('#rafSubmitForm')?.scrollIntoView({behavior:'smooth',block:'center'}),100);}},500)};a.children[2].onclick=()=>window.rafShareGame(card);const target=card.querySelector('.download-group')||card;target.parentNode.insertBefore(a,target.nextSibling);});}
  function rafOpenSharedGame(){
    let id=new URLSearchParams(location.search).get('game')||'';
    // Backward compatibility with previously shared #game-ID links.
