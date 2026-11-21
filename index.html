@@ -1150,6 +1150,16 @@
 #gamesGrid .game-card{flex-wrap:wrap!important;}
 #gamesGrid .game-card > .vx-card-performance{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;flex:0 0 100%!important;width:100%!important;max-width:100%!important;order:90!important;}
 #gamesGrid .game-card > .vx-inline-performance-panel{display:block!important;flex:0 0 100%!important;width:100%!important;max-width:100%!important;order:91!important;}
+/* Per-game performance controls are separate siblings directly beneath each complete game card. */
+#gamesGrid > .game-card[hidden] + .vx-game-actions-wrap{display:none!important;}
+#gamesGrid > .vx-game-actions-wrap{display:block!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:-8px 0 18px!important;}
+#gamesGrid > .vx-game-actions-wrap > .vx-card-performance{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:100%!important;margin:0!important;padding:10px!important;border:1px solid rgba(72,224,207,.28)!important;border-radius:14px!important;background:rgba(7,25,34,.92)!important;}
+#gamesGrid > .vx-game-actions-wrap .vx-result-btn{min-width:0!important;width:100%!important;margin:0!important;min-height:52px!important;white-space:normal!important;}
+#gamesGrid > .vx-game-actions-wrap > .vx-inline-performance-panel{display:block!important;width:100%!important;margin:10px 0 0!important;}
+#gamesGrid.grid-mode > .vx-game-actions-wrap{grid-column:1/-1!important;}
+#gamesGrid.carousel-mode > .vx-game-actions-wrap{flex:0 0 340px!important;width:340px!important;scroll-snap-align:center!important;}
+@media(max-width:520px){#gamesGrid > .vx-game-actions-wrap > .vx-card-performance{grid-template-columns:repeat(2,minmax(0,1fr))!important;}#gamesGrid > .vx-game-actions-wrap .vx-result-btn{font-size:.82rem!important;padding:10px 6px!important;}}
+
 @media(max-width:520px){#gamesGrid .game-card > .vx-card-performance{grid-template-columns:repeat(2,minmax(0,1fr))!important;}}
 </style>
 
@@ -4760,13 +4770,14 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    const matched=query?rows.filter(item=>normRafDevice(item?.device)===query||normRafDevice(item?.chip)===query):rows;
    list.innerHTML=matched.length?matched.map(item=>`<article class="vx-result-entry"><b>${escRaf(item.device||'جهاز غير محدد')}</b> ${statusDot(item.result)}<br>المعالج: ${escRaf(item.chip||'غير محدد')}<br>النتيجة: ${escRaf(item.result||'غير محددة')}<br><small>${escRaf(item.date||'')}</small>${item.issue_url?`<br><a href="${escRaf(item.issue_url)}" target="_blank" rel="noopener">مصدر التجربة</a>`:''}</article>`).join(''):'<p class="nexus-muted">لا توجد تجارب مطابقة لهذه اللعبة والهاتف حتى الآن.</p>';
  }
- function openInlineGameFeature(card,actions,feature){
+ function openInlineGameFeature(card,wrap,feature){
    const gid=String(card.dataset.id||'').trim(),title=name(card);
-   let panel=card.querySelector(':scope > .vx-inline-performance-panel');
+   let panel=wrap.querySelector(':scope > .vx-inline-performance-panel');
    if(!panel){
      panel=document.createElement('section');panel.className='vx-results-box vx-inline-performance-panel';
+     panel.dataset.gameId=gid;
      panel.innerHTML=`<h3 style="color:#a8f1df;font-weight:950;font-size:1.12rem">📱 أداء ${escRaf(title)} على هاتفك</h3><div class="vx-inline-feature-area"><p class="nexus-muted">اختر البحث عن تجربة منشورة أو إرسال تجربتك لهذه اللعبة.</p></div>`;
-     actions.insertAdjacentElement('afterend',panel);
+     wrap.appendChild(panel);
    }
    const area=panel.querySelector('.vx-inline-feature-area');
    if(feature==='search'){
@@ -4774,9 +4785,9 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
      const select=area.querySelector('.vx-inline-device');
      const fill=()=>{const old=select.value;select.innerHTML='<option value="">اختر هاتفك</option>'+getRafKnownDevices().map(([d,c])=>`<option value="${escRaf(d)}">${escRaf(d)} — ${escRaf(c)}</option>`).join('');if(old)select.value=old;};
      fill();
-     area.querySelector('.vx-inline-search-go').onclick=async()=>{if(!select.value){alert('اختر هاتفك أولاً.');return;}area.querySelector('.vx-inline-result-rows').innerHTML='<p class="nexus-muted">جارٍ تحميل نتائج هذه اللعبة…</p>';await loadRafExperiences(true);fill();select.value=select.options.length?[...select.options].find(o=>normRafDevice(o.value)===normRafDevice(select.value))?.value||select.value:select.value;renderInlineGameResults(card,panel,select.value);};
+     area.querySelector('.vx-inline-search-go').onclick=async()=>{if(!select.value){alert('اختر هاتفك أولاً.');return;}area.querySelector('.vx-inline-result-rows').innerHTML='<p class="nexus-muted">جارٍ تحميل نتائج هذه اللعبة…</p>';await loadRafExperiences(true);fill();renderInlineGameResults(card,panel,select.value);};
      select.addEventListener('change',()=>{if(select.value)renderInlineGameResults(card,panel,select.value);});
-     loadRafExperiences(true).then(()=>{fill();});
+     loadRafExperiences().then(()=>{if(panel.isConnected)fill();});
    }else{
      area.innerHTML=`<form class="vx-inline-submit-form"><b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>اختر الهاتف والمعالج</label><select class="nexus-input vx-inline-submit-device">${rafDeviceOptions('اختر جهازك من القائمة')}</select><label>نتيجة الأداء</label><select class="nexus-input vx-inline-submit-result"><option value="">اختر نتيجة الأداء</option><option value="120 FPS ثابت بدون مشاكل">120 FPS — ثابت</option><option value="90 FPS ثابت بدون مشاكل">90 FPS — ثابت</option><option value="60 FPS ثابت بدون مشاكل">60 FPS — ثابت</option><option value="45 FPS مستقر">45 FPS — مستقر</option><option value="30 FPS مستقر">30 FPS — مستقر</option><option value="يعمل لكن مع تقطيع متقطع">يعمل — تقطيع متقطع</option><option value="يعمل لكن مع مشاكل وتهنيق">يعمل — مشاكل وتهنيق</option><option value="لا يعمل أو يتعطل عند التشغيل">لا يعمل</option></select><button type="button" class="vx-result-btn vx-inline-submit-go">إرسال نتيجة ${escRaf(title)} إلى GitHub ↗</button><p class="nexus-muted">ستنتقل إلى GitHub لتأكيد إرسال التجربة، وستُسجل باسم هذه اللعبة تحديداً.</p></form>`;
      area.querySelector('.vx-inline-submit-go').onclick=()=>{const raw=area.querySelector('.vx-inline-submit-device').value,parts=raw.split('|||'),device=parts[0]||'',chip=parts[1]||'',result=area.querySelector('.vx-inline-submit-result').value;if(!device||!chip||!result){alert('اختر الهاتف والمعالج ونتيجة الأداء أولاً.');return;}const body=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nنتيجة التجربة: ${result}\nالمصدر: RAF-VX نموذج إرسال التجارب`;location.href='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(body);};
@@ -4784,17 +4795,28 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
  }
  function addInlineGameActions(root=document){
-   const gameCards=Array.from(root.querySelectorAll?.('#gamesGrid .game-card')||[]);
+   const grid=document.getElementById('gamesGrid');
+   if(!grid)return;
+   const gameCards=Array.from(grid.querySelectorAll('.game-card'));
    gameCards.forEach(card=>{
      const gameId=String(card.dataset.id||'').trim();
-     if(!gameId||card.querySelector(':scope > .vx-card-performance'))return;
+     if(!gameId)return;
+     let wrap=card.nextElementSibling;
+     if(wrap?.classList.contains('vx-game-actions-wrap')&&wrap.dataset.gameId===gameId)return;
+     // Remove only a stale wrapper belonging to this same card; never touch game data or GitHub submission code.
+     const stale=Array.from(grid.querySelectorAll('.vx-game-actions-wrap')).find(el=>el.dataset.gameId===gameId);
+     if(stale)stale.remove();
+     wrap=document.createElement('div');
+     wrap.className='vx-game-actions-wrap';
+     wrap.dataset.gameId=gameId;
      const actions=document.createElement('div');
      actions.className='vx-game-actions vx-card-performance';
      actions.dataset.gameId=gameId;
      actions.innerHTML='<button class="vx-result-btn" type="button" data-action="search">🔎 بحث نتائج هاتفي</button><button class="vx-result-btn" type="button" data-action="submit">＋ إرسال نتيجة هاتفي</button>';
-     actions.querySelector('[data-action="search"]').addEventListener('click',()=>openInlineGameFeature(card,actions,'search'));
-     actions.querySelector('[data-action="submit"]').addEventListener('click',()=>openInlineGameFeature(card,actions,'submit'));
-     card.appendChild(actions);
+     actions.querySelector('[data-action="search"]').addEventListener('click',()=>openInlineGameFeature(card,wrap,'search'));
+     actions.querySelector('[data-action="submit"]').addEventListener('click',()=>openInlineGameFeature(card,wrap,'submit'));
+     wrap.appendChild(actions);
+     card.insertAdjacentElement('afterend',wrap);
    });
  }
 
