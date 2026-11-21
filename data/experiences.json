@@ -35,6 +35,15 @@
       "date": "2026-11-21",
       "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/8",
       "issue_number": 8
+    },
+    {
+      "game": "Fable 2",
+      "device": "موتورولا Moto G Power 5G (2024)",
+      "chip": "Dimensity 7020",
+      "result": "45 FPS مستقر",
+      "date": "2026-11-21",
+      "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/9",
+      "issue_number": 9
     }
   ]
 }
