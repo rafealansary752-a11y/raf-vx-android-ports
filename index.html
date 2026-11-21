@@ -1216,6 +1216,11 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 .vx-search-form input{min-width:0}
 .vx-game-status-note{font-size:.78rem;color:#aab8c8;margin-top:7px;line-height:1.7}
 @media(max-width:420px){.vx-game-actions{grid-template-columns:1fr}}
+/* Keep per-game entry points visible on the game card, not inside the details panel */
+#modalGameBody #rafGameResults>.vx-game-actions{display:none!important}
+.vx-card-performance{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;padding:10px;border:1px solid rgba(72,224,207,.28);border-radius:14px;background:rgba(7,25,34,.92)}
+.vx-card-performance .vx-result-btn{margin:0;min-height:54px;font-size:.92rem;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+@media(max-width:520px){.vx-card-performance{grid-template-columns:1fr 1fr}.vx-card-performance .vx-result-btn{font-size:.82rem;padding:10px 7px}}
 </style>
 <!-- RAF-VX covers 114/115: images/games/114.jpg and images/games/115.jpg -->
 </head>
@@ -4740,7 +4745,29 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  if(typeof oldOpen==='function'){window.openGameInfoModal=function(card){oldOpen(card);addResultControls(card);};}
  window.rafNexusSubmitCommunity=()=>alert('افتح بطاقة اللعبة المطلوبة ثم اختر «إرسال نتيجة هاتفي».');
  window.rafNexusLanguage=()=>{const en=document.documentElement.lang!=='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';$('rafLangBtn').textContent=en?'🌐 العربية':'🌐 English';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=en?el.dataset.en:el.dataset.ar);localStorage.setItem('rafvx_lang',en?'en':'ar');alert(en?'The main navigation language is switched. Some game-specific content remains in its original language.':'تمت إعادة الواجهة إلى العربية.');};
- function addInlineGameActions(){cards().forEach(card=>{if(card.querySelector('.vx-card-performance'))return;const a=document.createElement('div');a.className='vx-game-actions vx-card-performance';a.innerHTML='<button class="vx-result-btn" type="button">📊 أداء اللعبة</button><button class="vx-result-btn" type="button">＋ إرسال نتيجة</button><button class="vx-result-btn vx-share-game" type="button">🔗 مشاركة اللعبة</button>';a.children[0].onclick=()=>window.openGameInfoModal?.(card);a.children[1].onclick=()=>{window.openGameInfoModal?.(card);setTimeout(()=>{const b=document.querySelector('#rafOpenSubmit');if(b){b.click();setTimeout(()=>document.querySelector('#rafSubmitForm')?.scrollIntoView({behavior:'smooth',block:'center'}),100);}},500)};a.children[2].onclick=()=>window.rafShareGame(card);const target=card.querySelector('.download-group')||card;target.parentNode.insertBefore(a,target.nextSibling);});}
+ function addInlineGameActions(){
+   cards().forEach(card=>{
+     if(card.querySelector('.vx-card-performance'))return;
+     const a=document.createElement('div');
+     a.className='vx-game-actions vx-card-performance';
+     a.innerHTML='<button class="vx-result-btn" type="button">🔎 بحث نتائج هاتفي</button><button class="vx-result-btn" type="button">＋ إرسال نتيجة هاتفي</button><button class="vx-result-btn vx-share-game" type="button">🔗 مشاركة اللعبة</button>';
+     const openFeature=(feature)=>{
+       window.openGameInfoModal?.(card);
+       setTimeout(()=>{
+         const button=document.querySelector(feature==='search'?'#rafOpenSearch':'#rafOpenSubmit');
+         if(button){button.click();setTimeout(()=>{
+           const target=feature==='search'?document.querySelector('#rafGameSearchForm'):document.querySelector('#rafSubmitForm');
+           target?.scrollIntoView({behavior:'smooth',block:'center'});
+         },120);}
+       },180);
+     };
+     a.children[0].onclick=()=>openFeature('search');
+     a.children[1].onclick=()=>openFeature('submit');
+     a.children[2].onclick=()=>window.rafShareGame(card);
+     const target=card.querySelector('.download-group')||card;
+     target.parentNode.insertBefore(a,target.nextSibling);
+   });
+ }
  function rafOpenSharedGame(){
    let id=new URLSearchParams(location.search).get('game')||'';
    // Backward compatibility with previously shared #game-ID links.
