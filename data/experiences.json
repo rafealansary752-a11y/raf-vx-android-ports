@@ -44,6 +44,15 @@
       "date": "2026-11-21",
       "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/9",
       "issue_number": 9
+    },
+    {
+      "game": "Fable 2",
+      "device": "ون بلس نورد 3",
+      "chip": "Dimensity 9000",
+      "result": "60 FPS ثابت بدون مشاكل",
+      "date": "2026-11-21",
+      "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/10",
+      "issue_number": 10
     }
   ]
 }
