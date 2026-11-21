@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAF-VX 12.1.0 | مكتبة ألعاب أندرويد | أداء المجتمع</title>
+    <title>RAF-VX 12.1.9 | مكتبة ألعاب أندرويد | أداء المجتمع</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -4372,7 +4372,16 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
             if(mode==='size-asc') cards.sort((a,b)=>vxCardSize(a)-vxCardSize(b));
             if(mode==='size-desc') cards.sort((a,b)=>vxCardSize(b)-vxCardSize(a));
             if(mode==='newest') cards.sort((a,b)=>(b.classList.contains('new-release-card')?1:0)-(a.classList.contains('new-release-card')?1:0));
-            cards.forEach(card=>grid.appendChild(card));
+            // Keep each game's dedicated performance row attached to its card while sorting.
+            // The row is a sibling (not part of the card), so moving cards alone would separate them.
+            cards.forEach(card=>{
+                grid.appendChild(card);
+                const gameId=String(card.dataset.id||'').trim();
+                const actionRow=Array.from(grid.children).find(el=>
+                    el.classList?.contains('vx-game-actions-wrap') && String(el.dataset.gameId||'').trim()===gameId
+                );
+                if(actionRow) card.insertAdjacentElement('afterend',actionRow);
+            });
             filterGames();
         }
         function clearLibrarySearch(){
