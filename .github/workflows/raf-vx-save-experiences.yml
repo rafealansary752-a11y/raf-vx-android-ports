@@ -1,0 +1,72 @@
+name: RAF-VX - Save game experience
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: read
+
+jobs:
+  save-experience:
+    if: contains(github.event.issue.body, 'المصدر: RAF-VX نموذج إرسال التجارب')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Add submitted experience to database
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          mkdir -p data
+          python - <<'PY'
+          import json, os, re
+          from pathlib import Path
+          body = os.environ.get('ISSUE_BODY', '')
+          def field(label):
+              m = re.search(r'^' + re.escape(label) + r'\s*:\s*(.*?)\s*$', body, re.M)
+              return m.group(1).strip() if m else ''
+          game_id = field('معرّف اللعبة')
+          game = field('اللعبة')
+          device = field('الجهاز')
+          chip = field('المعالج')
+          result = field('نتيجة التجربة')
+          if not all([game_id, game, device, chip, result]):
+              raise SystemExit('Issue body is missing one or more required RAF-VX fields.')
+          path = Path('data/experiences.json')
+          try:
+              data = json.loads(path.read_text(encoding='utf-8'))
+          except (FileNotFoundError, json.JSONDecodeError):
+              data = {}
+          if not isinstance(data, dict):
+              data = {}
+          rows = data.setdefault(game_id, [])
+          if not isinstance(rows, list):
+              rows = data[game_id] = []
+          issue_url = os.environ['ISSUE_URL']
+          if not any(isinstance(x, dict) and x.get('issue_url') == issue_url for x in rows):
+              rows.append({
+                  'game': game,
+                  'device': device,
+                  'chip': chip,
+                  'result': result,
+                  'date': __import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%d'),
+                  'issue_url': issue_url,
+                  'issue_number': int(os.environ['ISSUE_NUMBER'])
+              })
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit database update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/experiences.json
+          git diff --cached --quiet || git commit -m "Save RAF-VX game experience"
+          git push
