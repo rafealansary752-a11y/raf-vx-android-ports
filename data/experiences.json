@@ -1,1 +1,13 @@
-{}
+{
+  "fable-2": [
+    {
+      "game": "Fable 2",
+      "device": "سامسونج جالكسي A34",
+      "chip": "Dimensity 1080",
+      "result": "يعمل لكن مع مشاكل وتهنيق",
+      "date": "2026-11-21",
+      "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/5",
+      "issue_number": 5
+    }
+  ]
+}
