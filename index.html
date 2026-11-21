@@ -4781,28 +4781,43 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  }
  function openInlineGameFeature(card,wrap,feature){
    const gid=String(card.dataset.id||'').trim(),title=name(card);
+   if(feature==='search'){
+     // Use the existing central performance panel; do not create a second search UI.
+     const gameSelect=document.getElementById('rafPerformanceGame');
+     if(!gid||!gameSelect){alert('تعذر تحديد اللعبة في لوحة الأداء.');return;}
+     if(!Array.from(gameSelect.options).some(option=>option.value===gid))populateRafPerformanceGames();
+     gameSelect.value=gid;
+     if(typeof window.rafNexusPanel==='function')window.rafNexusPanel('performance');
+     else document.getElementById('nexusPanel-performance')?.classList.add('active');
+     const panel=document.getElementById('nexusPanel-performance');
+     panel?.scrollIntoView({behavior:'smooth',block:'start'});
+     loadRafExperiences().then(()=>{
+       if(gameSelect.value!==gid)gameSelect.value=gid;
+       if(typeof window.rafSearchPerformance==='function')window.rafSearchPerformance();
+     });
+     return;
+   }
+
+   // Keep submission attached to this game's external action row.
    let panel=wrap.querySelector(':scope > .vx-inline-performance-panel');
    if(!panel){
      panel=document.createElement('section');panel.className='vx-results-box vx-inline-performance-panel';
      panel.dataset.gameId=gid;
-     panel.innerHTML=`<h3 style="color:#a8f1df;font-weight:950;font-size:1.12rem">📱 أداء ${escRaf(title)} على هاتفك</h3><div class="vx-inline-feature-area"><p class="nexus-muted">اختر البحث عن تجربة منشورة أو إرسال تجربتك لهذه اللعبة.</p></div>`;
+     panel.innerHTML=`<h3 style="color:#a8f1df;font-weight:950;font-size:1.12rem">📱 إرسال تجربة ${escRaf(title)}</h3><div class="vx-inline-feature-area"></div>`;
      wrap.appendChild(panel);
    }
    const area=panel.querySelector('.vx-inline-feature-area');
-   if(feature==='search'){
-     area.innerHTML=`<label>اختر هاتفك للبحث</label><select class="nexus-input vx-inline-device"><option value="">اختر هاتفك</option></select><button type="button" class="vx-result-btn vx-inline-search-go">بحث عن نتيجة ${escRaf(title)}</button><div class="vx-inline-result-rows"><p class="nexus-muted">اختر هاتفك ثم اضغط بحث.</p></div>`;
-     const select=area.querySelector('.vx-inline-device');
-     const fill=()=>{const old=select.value;select.innerHTML='<option value="">اختر هاتفك</option>'+getRafKnownDevices().map(([d,c])=>`<option value="${escRaf(d)}">${escRaf(d)} — ${escRaf(c)}</option>`).join('');if(old)select.value=old;};
-     fill();
-     area.querySelector('.vx-inline-search-go').onclick=async()=>{if(!select.value){alert('اختر هاتفك أولاً.');return;}area.querySelector('.vx-inline-result-rows').innerHTML='<p class="nexus-muted">جارٍ تحميل نتائج هذه اللعبة…</p>';await loadRafExperiences(true);fill();renderInlineGameResults(card,panel,select.value);};
-     select.addEventListener('change',()=>{if(select.value)renderInlineGameResults(card,panel,select.value);});
-     loadRafExperiences().then(()=>{if(panel.isConnected)fill();});
-   }else{
-     area.innerHTML=`<form class="vx-inline-submit-form"><b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>اختر الهاتف والمعالج</label><select class="nexus-input vx-inline-submit-device">${rafDeviceOptions('اختر جهازك من القائمة')}</select><label>نتيجة الأداء</label><select class="nexus-input vx-inline-submit-result"><option value="">اختر نتيجة الأداء</option><option value="120 FPS ثابت بدون مشاكل">120 FPS — ثابت</option><option value="90 FPS ثابت بدون مشاكل">90 FPS — ثابت</option><option value="60 FPS ثابت بدون مشاكل">60 FPS — ثابت</option><option value="45 FPS مستقر">45 FPS — مستقر</option><option value="30 FPS مستقر">30 FPS — مستقر</option><option value="يعمل لكن مع تقطيع متقطع">يعمل — تقطيع متقطع</option><option value="يعمل لكن مع مشاكل وتهنيق">يعمل — مشاكل وتهنيق</option><option value="لا يعمل أو يتعطل عند التشغيل">لا يعمل</option></select><button type="button" class="vx-result-btn vx-inline-submit-go">إرسال نتيجة ${escRaf(title)} إلى GitHub ↗</button><p class="nexus-muted">ستنتقل إلى GitHub لتأكيد إرسال التجربة، وستُسجل باسم هذه اللعبة تحديداً.</p></form>`;
-     area.querySelector('.vx-inline-submit-go').onclick=()=>{const raw=area.querySelector('.vx-inline-submit-device').value,parts=raw.split('|||'),device=parts[0]||'',chip=parts[1]||'',result=area.querySelector('.vx-inline-submit-result').value;if(!device||!chip||!result){alert('اختر الهاتف والمعالج ونتيجة الأداء أولاً.');return;}const body=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nنتيجة التجربة: ${result}\nالمصدر: RAF-VX نموذج إرسال التجارب`;location.href='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(body);};
-   }
+   area.innerHTML=`<form class="vx-inline-submit-form"><b>إرسال نتيجة إلى: ${escRaf(title)}</b><label>اختر الهاتف والمعالج</label><select class="nexus-input vx-inline-submit-device">${rafDeviceOptions('اختر جهازك من القائمة')}</select><label>نتيجة الأداء</label><select class="nexus-input vx-inline-submit-result"><option value="">اختر نتيجة الأداء</option><option value="120 FPS ثابت بدون مشاكل">120 FPS — ثابت</option><option value="90 FPS ثابت بدون مشاكل">90 FPS — ثابت</option><option value="60 FPS ثابت بدون مشاكل">60 FPS — ثابت</option><option value="45 FPS مستقر">45 FPS — مستقر</option><option value="30 FPS مستقر">30 FPS — مستقر</option><option value="يعمل لكن مع تقطيع متقطع">يعمل — تقطيع متقطع</option><option value="يعمل لكن مع مشاكل وتهنيق">يعمل — مشاكل وتهنيق</option><option value="لا يعمل أو يتعطل عند التشغيل">لا يعمل</option></select><button type="button" class="vx-result-btn vx-inline-submit-go">إرسال نتيجة ${escRaf(title)} إلى GitHub ↗</button><p class="nexus-muted">ستنتقل إلى GitHub لتأكيد إنشاء Issue، وستُسجل التجربة تحت هذه اللعبة.</p></form>`;
+   area.querySelector('.vx-inline-submit-go').onclick=()=>{
+     const raw=area.querySelector('.vx-inline-submit-device').value,parts=raw.split('|||'),device=parts[0]||'',chip=parts[1]||'',result=area.querySelector('.vx-inline-submit-result').value;
+     if(!device||!chip||!result){alert('اختر الهاتف والمعالج ونتيجة الأداء أولاً.');return;}
+     const body=`اللعبة: ${title}\nمعرّف اللعبة: ${gid}\nالجهاز: ${device}\nالمعالج: ${chip}\nنتيجة التجربة: ${result}\nالمصدر: RAF-VX نموذج إرسال التجارب`;
+     const url='https://github.com/'+RAF_REPO+'/issues/new?title='+encodeURIComponent('نتيجة تجربة: '+title)+'&labels=game-experience&body='+encodeURIComponent(body);
+     window.open(url,'_blank','noopener,noreferrer');
+   };
    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
  }
+
  function addInlineGameActions(root=document){
    const grid=document.getElementById('gamesGrid');
    if(!grid)return;
