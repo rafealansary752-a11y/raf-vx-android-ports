@@ -1,0 +1,123 @@
+name: RAF-VX - Save Game Experiences
+
+on:
+  issues:
+    types:
+      - opened
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+concurrency:
+  group: raf-vx-save-experiences-${{ github.event.repository.default_branch }}
+  cancel-in-progress: false
+
+jobs:
+  save-experience:
+    if: github.event_name == 'issues' && contains(github.event.issue.body, 'المصدر: RAF-VX نموذج إرسال التجارب')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+
+      - name: Validate and save the submitted experience
+        id: save
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          body = os.environ.get("ISSUE_BODY", "")
+          issue_url = os.environ["ISSUE_URL"]
+          issue_number = int(os.environ["ISSUE_NUMBER"])
+          marker = "المصدر: RAF-VX نموذج إرسال التجارب"
+
+          if marker not in body:
+              raise SystemExit("This issue was not submitted through the RAF-VX form.")
+
+          def read_field(label):
+              pattern = r"^" + re.escape(label) + r"\s*:\s*(.*?)\s*$"
+              match = re.search(pattern, body, flags=re.MULTILINE)
+              return match.group(1).strip() if match else ""
+
+          game = read_field("اللعبة")
+          game_id = read_field("معرّف اللعبة")
+          device = read_field("الجهاز")
+          chip = read_field("المعالج")
+          result = read_field("نتيجة التجربة")
+
+          missing = [name for name, value in {
+              "اللعبة": game,
+              "معرّف اللعبة": game_id,
+              "الجهاز": device,
+              "المعالج": chip,
+              "نتيجة التجربة": result,
+          }.items() if not value]
+          if missing:
+              raise SystemExit("Missing required fields: " + ", ".join(missing))
+
+          if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_-]{0,99}", game_id):
+              raise SystemExit("Invalid game ID: " + game_id)
+
+          database = Path("data/experiences.json")
+          database.parent.mkdir(parents=True, exist_ok=True)
+
+          if database.exists():
+              try:
+                  data = json.loads(database.read_text(encoding="utf-8"))
+              except json.JSONDecodeError as exc:
+                  raise SystemExit(f"The experiences database contains invalid JSON: {exc}")
+          else:
+              data = {}
+
+          if not isinstance(data, dict):
+              raise SystemExit("The experiences database must contain a JSON object.")
+
+          rows = data.setdefault(game_id, [])
+          if not isinstance(rows, list):
+              raise SystemExit(f"The entry for game {game_id} must be a JSON array.")
+
+          if any(isinstance(row, dict) and row.get("issue_url") == issue_url for row in rows):
+              print("This issue has already been saved; no duplicate was added.")
+          else:
+              rows.append({
+                  "game": game,
+                  "device": device,
+                  "chip": chip,
+                  "result": result,
+                  "date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                  "issue_url": issue_url,
+                  "issue_number": issue_number,
+              })
+              database.write_text(
+                  json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+                  encoding="utf-8",
+              )
+              print(f"Saved issue #{issue_number} under game ID {game_id}.")
+          PY
+
+      - name: Commit and push database changes
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/experiences.json
+          if git diff --cached --quiet; then
+            echo "No database changes to commit."
+            exit 0
+          fi
+          git commit -m "Save RAF-VX game experience"
+          git push origin "HEAD:${DEFAULT_BRANCH}"
