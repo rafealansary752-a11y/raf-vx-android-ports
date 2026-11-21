@@ -26,6 +26,15 @@
       "date": "2026-11-21",
       "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/7",
       "issue_number": 7
+    },
+    {
+      "game": "Fable 2",
+      "device": "شاومي Redmi Note 12 5G",
+      "chip": "Snapdragon 4 Gen 1",
+      "result": "45 FPS مستقر",
+      "date": "2026-11-21",
+      "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/8",
+      "issue_number": 8
     }
   ]
 }
