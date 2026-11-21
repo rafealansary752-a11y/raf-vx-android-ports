@@ -54,5 +54,16 @@
       "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/10",
       "issue_number": 10
     }
+  ],
+  "gta-5-port": [
+    {
+      "game": "GTA 5 Android",
+      "device": "آيكو 13",
+      "chip": "Snapdragon 8 Elite",
+      "result": "60 FPS ثابت بدون مشاكل",
+      "date": "2026-11-21",
+      "issue_url": "https://github.com/rafealansary752-a11y/raf-vx-android-ports/issues/11",
+      "issue_number": 11
+    }
   ]
 }
