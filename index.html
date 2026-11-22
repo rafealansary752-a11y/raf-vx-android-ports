@@ -1248,8 +1248,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 
 <section class="nexus-top" id="rafNexusHome" aria-label="RAF-VX NEXUS">
  <div class="nexus-brand"><div><h2>RAF-VX <span>NEXUS</span></h2><p class="nexus-sub" data-ar="مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق" data-en="Android PC gaming hub — discover, compare and check compatibility">مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق</p></div><span class="nexus-badge">الجيل الجديد</span></div>
- <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('performance')">📱 أداء اللعبة على هاتفك</button><button class="nexus-btn" onclick="rafNexusPanel('devices')">📱 الأجهزة</button><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
- <nav class="nexus-nav"><button onclick="rafNexusPanel('home')">🏠 الرئيسية</button><button onclick="document.getElementById('gamesGrid').scrollIntoView({behavior:'smooth'})">🎮 مكتبة الألعاب</button><button onclick="openEmulatorsModal()">🕹️ المحاكيات</button><button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button><button onclick="rafNexusPanel('help')">🛠️ المساعدة</button><button onclick="rafNexusPanel('community')">👥 مجتمع RAF-VX</button><button onclick="rafNexusPanel('performance')">📱 أداء اللعبة على هاتفك</button><button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button></nav>
+ <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('devices')">📱 الأجهزة</button><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
+ <nav class="nexus-nav"><button onclick="rafNexusPanel('home')">🏠 الرئيسية</button><button onclick="document.getElementById('gamesGrid').scrollIntoView({behavior:'smooth'})">🎮 مكتبة الألعاب</button><button onclick="openEmulatorsModal()">🕹️ المحاكيات</button><button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button><button onclick="rafNexusPanel('help')">🛠️ المساعدة</button><button onclick="rafNexusPanel('community')">👥 مجتمع RAF-VX</button><button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button></nav>
  <div class="nexus-stats"><div class="nexus-stat"><b id="nexusGames">—</b><small>لعبة في المكتبة</small></div><div class="nexus-stat"><b id="nexusFavs">—</b><small>المفضلة على جهازك</small></div><div class="nexus-stat"><b id="nexusRecent">—</b><small>آخر المشاهدات</small></div><div class="nexus-stat"><b>محلي</b><small>حفظ الإعدادات على جهازك</small></div></div>
 </section>
 <section class="nexus-panel" id="nexusPanel-home"><h3>✨ مرحباً بك في RAF-VX NEXUS</h3><p class="nexus-muted">منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة تجارب الأداء المنشورة من المجتمع.</p><div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusRandom()">🎲 اختر لعبة عشوائية</button><button class="nexus-btn" onclick="rafNexusShareSite()">🔗 مشاركة الموقع</button><button class="nexus-btn" onclick="rafNexusPanel('recent')">🕘 سجل المشاهدة</button></div></section>
@@ -1259,18 +1259,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 <section class="nexus-panel" id="nexusPanel-emulators"><h3>🕹️ مركز المحاكيات</h3><button class="nexus-btn" onclick="openEmulatorsModal()">فتح مركز المحاكيات الشامل ✨</button><div class="nexus-grid" style="display:none"><div class="nexus-box"><b>GameHub</b><p>بيئة لتشغيل ألعاب الكمبيوتر على أندرويد. تحقق من توافق الإصدار وتعريف الرسوميات لكل لعبة.</p></div><div class="nexus-box"><b>Winlator</b><p>تشغيل تطبيقات وألعاب ويندوز عبر طبقات توافق. الإعدادات تختلف حسب المعالج واللعبة.</p></div><div class="nexus-box"><b>Eden</b><p>محاكي ألعاب Nintendo Switch على أندرويد؛ الأداء يعتمد على اللعبة والجهاز والإصدار.</p></div><div class="nexus-box"><b>Vita3K</b><p>محاكي PlayStation Vita؛ راجع قائمة التوافق الرسمية لكل عنوان.</p></div><div class="nexus-box"><b>PPSSPP</b><p>محاكي PSP، مع خيارات رسومية وتحكم قابلة للتخصيص.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-compare"><h3>⚖️ مقارنة الألعاب</h3><p class="nexus-muted">استخدم زر «＋ قارن» الموجود على بطاقات الألعاب، ثم افتح أداة المقارنة الموجودة في الموقع.</p><button class="nexus-btn" onclick="document.querySelector('#vxCompareDock button')?.click();document.getElementById('vxCompareDock')?.scrollIntoView({behavior:'smooth'})">فتح قائمة المقارنة</button></section>
 <section class="nexus-panel" id="nexusPanel-help"><h3>🛠️ مركز المساعدة</h3><div class="nexus-grid"><div class="nexus-box"><b>اللعبة لا تبدأ</b><p>تحقق من إصدار المحاكي، ملفات اللعبة، مساحة التخزين، وتعريف الرسوميات.</p></div><div class="nexus-box"><b>شاشة سوداء</b><p>قد تكون المشكلة من واجهة الرسوميات أو تعريف GPU أو ملفات اللعبة.</p></div><div class="nexus-box"><b>تقطيع وانخفاض أداء</b><p>جرّب إعدادات رسومية أقل، وأغلق التطبيقات الخلفية، وتأكد من حرارة الجهاز.</p></div><div class="nexus-box"><b>مشكلة التحكم</b><p>راجع تعيين الأزرار داخل المحاكي وتأكد من اختيار ملف التحكم الصحيح.</p></div></div></section>
-<section class="nexus-panel" id="nexusPanel-community"><h3>👥 مجتمع RAF-VX</h3><p class="nexus-muted">أرسل تجربة موثقة من صفحة اللعبة نفسها. اختر الهاتف ونتيجة الأداء فقط؛ لا نطلب اسم محاكي أو أداة تشغيل.</p><div class="nexus-box"><b>كيف ترسل تجربتك؟</b><p>افتح بطاقة اللعبة ← نتائج الأداء ← إرسال نتيجة هاتفي. ستنتقل إلى GitHub لمراجعة تفاصيل التجربة ثم تأكيد فتح البلاغ، وبعد معالجته ستظهر النتيجة المنشورة في البحث.</p></div><button class="nexus-btn" onclick="document.querySelector('#gamesGrid')?.scrollIntoView({behavior:'smooth'})">استعرض الألعاب</button></section>
-<section class="nexus-panel" id="nexusPanel-performance">
-<h3>📱 أداء اللعبة على هاتفك</h3>
-<p class="nexus-muted">اختر هاتفك ومعالجه من القائمة، ثم اختر اللعبة لعرض التجارب المنشورة.</p>
-<div class="performance-search-grid">
- <div class="nexus-box"><label for="rafPerformanceDevice">اختر الهاتف والمعالج</label><select id="rafPerformanceDevice" class="nexus-input"><option value="">اختر جهازك من القائمة (اختياري)</option></select></div>
- <div class="nexus-box"><label for="rafPerformanceGame">اللعبة</label><select id="rafPerformanceGame" class="nexus-input"><option value="">اختر اللعبة</option></select></div>
-</div>
-<button class="nexus-btn performance-search-submit" type="button" id="rafPerformanceSearch">🔍 بحث عن نتائج هاتفي</button>
-<p class="nexus-muted">🟢 نتيجة إيجابية • 🟠 يعمل مع مشاكل • 🔴 لم يعمل. الحالة تُستنتج من وصف المستخدم وليست فحصاً آلياً.</p><div id="rafPerformanceStatus" class="nexus-note">اختر الهاتف واللعبة لعرض تجارب الأداء المنشورة (يمكنك ترك الهاتف دون اختيار).</div>
-<div id="rafPerformanceResults" aria-live="polite"></div>
-</section>
+<section class="nexus-panel" id="nexusPanel-community"><h3>👥 مجتمع RAF-VX</h3><p class="nexus-muted">يمكنك متابعة أخبار وتحديثات مكتبة RAF-VX من هذا القسم.</p><div class="nexus-box"><b>كيف ترسل تجربتك؟</b><p>تابع تحديثات المكتبة والمحتوى الجديد من خلال أقسام الموقع.</p></div><button class="nexus-btn" onclick="document.querySelector('#gamesGrid')?.scrollIntoView({behavior:'smooth'})">استعرض الألعاب</button></section>
+
 <section class="nexus-panel" id="nexusPanel-recent"><h3>🕘 آخر المشاهدات</h3><div id="nexusRecentList" class="nexus-list"><p class="nexus-muted">ستظهر الألعاب التي فتحت تفاصيلها هنا.</p></div></section>
 
 
@@ -4764,7 +4754,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  $('rafPerformanceDevice')?.addEventListener('change',()=>{});
  const oldOpen=window.openGameInfoModal;
  if(typeof oldOpen==='function'){window.openGameInfoModal=function(card){oldOpen(card);};}
- window.rafNexusSubmitCommunity=()=>alert('افتح بطاقة اللعبة المطلوبة ثم اختر «إرسال نتيجة هاتفي».');
+ window.rafNexusSubmitCommunity=()=>{};
  window.rafNexusLanguage=()=>{const en=document.documentElement.lang!=='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';$('rafLangBtn').textContent=en?'🌐 العربية':'🌐 English';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=en?el.dataset.en:el.dataset.ar);localStorage.setItem('rafvx_lang',en?'en':'ar');alert(en?'The main navigation language is switched. Some game-specific content remains in its original language.':'تمت إعادة الواجهة إلى العربية.');};
  function renderInlineGameResults(card,panel,filter=''){
    const list=panel.querySelector('.vx-inline-result-rows');
@@ -4814,27 +4804,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
  }
 
- function addInlineGameActions(root=document){
-   const grid=document.getElementById('gamesGrid');
-   if(!grid)return;
-   const gameCards=Array.from((root===document?grid:root).querySelectorAll('.game-card'));
-   gameCards.forEach(card=>{
-     const gameId=String(card.dataset.id||'').trim();
-     if(!gameId||card.querySelector(':scope > .vx-game-actions-wrap'))return;
-     const wrap=document.createElement('div');
-     wrap.className='vx-game-actions-wrap';
-     wrap.dataset.gameId=gameId;
-     const actions=document.createElement('div');
-     actions.className='vx-game-actions vx-card-performance';
-     actions.dataset.gameId=gameId;
-     actions.innerHTML='<button class="vx-result-btn" type="button" data-action="search">🔎 بحث نتيجة هاتفي</button><button class="vx-result-btn" type="button" data-action="submit">＋ إرسال نتيجة هاتفي</button>';
-     actions.querySelector('[data-action="search"]').addEventListener('click',()=>openInlineGameFeature(card,wrap,'search'));
-     actions.querySelector('[data-action="submit"]').addEventListener('click',()=>openInlineGameFeature(card,wrap,'submit'));
-     wrap.appendChild(actions);
-     // Append inside the card itself: this avoids grid/flex sibling layout issues and guarantees visibility per game.
-     card.appendChild(wrap);
-   });
- }
+ function addInlineGameActions(root=document){ /* أزيلت أدوات نتائج أداء الهاتف بناءً على طلب المستخدم. */ }
 
  function rafOpenSharedGame(){
    let id=new URLSearchParams(location.search).get('game')||'';
