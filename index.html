@@ -1158,6 +1158,13 @@
 #gamesGrid.carousel-mode > .vx-game-actions-wrap{flex:0 0 340px!important;width:340px!important;scroll-snap-align:center!important;}
 @media(max-width:520px){#gamesGrid > .vx-game-actions-wrap > .vx-card-performance{grid-template-columns:repeat(2,minmax(0,1fr))!important;}#gamesGrid > .vx-game-actions-wrap .vx-result-btn{font-size:.82rem!important;padding:10px 6px!important;}}
 
+/* RAF-VX 12.1.11 FIX: per-game performance controls are children of each game card. */
+#gamesGrid .game-card > .vx-game-actions-wrap{display:block!important;position:relative!important;flex:0 0 100%!important;width:100%!important;max-width:100%!important;min-width:0!important;margin:14px 0 0!important;padding:0!important;grid-column:1/-1!important;}
+#gamesGrid .game-card > .vx-game-actions-wrap > .vx-card-performance{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;width:100%!important;margin:0!important;padding:10px!important;border:1px solid rgba(72,224,207,.32)!important;border-radius:14px!important;background:rgba(7,25,34,.96)!important;}
+#gamesGrid .game-card > .vx-game-actions-wrap .vx-result-btn{display:block!important;visibility:visible!important;opacity:1!important;min-width:0!important;width:100%!important;min-height:52px!important;margin:0!important;white-space:normal!important;}
+#gamesGrid .game-card > .vx-game-actions-wrap > .vx-inline-performance-panel{display:block!important;width:100%!important;margin:10px 0 0!important;}
+@media(max-width:520px){#gamesGrid .game-card > .vx-game-actions-wrap > .vx-card-performance{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;padding:8px!important;}#gamesGrid .game-card > .vx-game-actions-wrap .vx-result-btn{font-size:.78rem!important;padding:9px 5px!important;}}
+
 </style>
 
     <style id="rafvx-v9-redesign">
@@ -4391,16 +4398,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
             if(mode==='size-asc') cards.sort((a,b)=>vxCardSize(a)-vxCardSize(b));
             if(mode==='size-desc') cards.sort((a,b)=>vxCardSize(b)-vxCardSize(a));
             if(mode==='newest') cards.sort((a,b)=>(b.classList.contains('new-release-card')?1:0)-(a.classList.contains('new-release-card')?1:0));
-            // Keep each game's dedicated performance row attached to its card while sorting.
-            // The row is a sibling (not part of the card), so moving cards alone would separate them.
-            cards.forEach(card=>{
-                grid.appendChild(card);
-                const gameId=String(card.dataset.id||'').trim();
-                const actionRow=Array.from(grid.children).find(el=>
-                    el.classList?.contains('vx-game-actions-wrap') && String(el.dataset.gameId||'').trim()===gameId
-                );
-                if(actionRow) card.insertAdjacentElement('afterend',actionRow);
-            });
+            // Performance controls now live inside each card, so sorting moves the card and its controls together.
+            cards.forEach(card=>grid.appendChild(card));
             filterGames();
         }
         function clearLibrarySearch(){
@@ -4818,26 +4817,22 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  function addInlineGameActions(root=document){
    const grid=document.getElementById('gamesGrid');
    if(!grid)return;
-   const gameCards=Array.from(grid.querySelectorAll('.game-card'));
+   const gameCards=Array.from((root===document?grid:root).querySelectorAll('.game-card'));
    gameCards.forEach(card=>{
      const gameId=String(card.dataset.id||'').trim();
-     if(!gameId)return;
-     let wrap=card.nextElementSibling;
-     if(wrap?.classList.contains('vx-game-actions-wrap')&&wrap.dataset.gameId===gameId)return;
-     // Remove only a stale wrapper belonging to this same card; never touch game data or GitHub submission code.
-     const stale=Array.from(grid.querySelectorAll('.vx-game-actions-wrap')).find(el=>el.dataset.gameId===gameId);
-     if(stale)stale.remove();
-     wrap=document.createElement('div');
+     if(!gameId||card.querySelector(':scope > .vx-game-actions-wrap'))return;
+     const wrap=document.createElement('div');
      wrap.className='vx-game-actions-wrap';
      wrap.dataset.gameId=gameId;
      const actions=document.createElement('div');
      actions.className='vx-game-actions vx-card-performance';
      actions.dataset.gameId=gameId;
-     actions.innerHTML='<button class="vx-result-btn" type="button" data-action="search">🔎 بحث نتائج هاتفي</button><button class="vx-result-btn" type="button" data-action="submit">＋ إرسال نتيجة هاتفي</button>';
+     actions.innerHTML='<button class="vx-result-btn" type="button" data-action="search">🔎 بحث نتيجة هاتفي</button><button class="vx-result-btn" type="button" data-action="submit">＋ إرسال نتيجة هاتفي</button>';
      actions.querySelector('[data-action="search"]').addEventListener('click',()=>openInlineGameFeature(card,wrap,'search'));
      actions.querySelector('[data-action="submit"]').addEventListener('click',()=>openInlineGameFeature(card,wrap,'submit'));
      wrap.appendChild(actions);
-     card.insertAdjacentElement('afterend',wrap);
+     // Append inside the card itself: this avoids grid/flex sibling layout issues and guarantees visibility per game.
+     card.appendChild(wrap);
    });
  }
 
