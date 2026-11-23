@@ -1259,8 +1259,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  <div class="nexus-brand"><div><h2 class="notranslate" translate="no">RAF-VX <span>NEXUS</span></h2><p class="nexus-sub" data-ar="مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق" data-en="Android PC gaming hub — discover, compare and check compatibility">مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق</p></div><span class="nexus-badge">الجيل الجديد</span></div>
  <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
  <div class="nexus-actions raf-download-test-row">
-   <button class="nexus-btn" type="button" id="rafDownloadTestBtn" onclick="rafRunDownloadTest()">⬇️ اختبار RAF Download</button>
-   <span id="rafDownloadTestStatus" class="nexus-muted" role="status" aria-live="polite"></span>
+   <button class="nexus-btn" type="button" id="rafDownloadsOpenBtn" onclick="rafOpenDownloads()">⬇️ التنزيلات <span id="rafDownloadsCount" class="raf-dl-count">0</span></button>
  </div>
  <div id="google_translate_element" style="display:none!important" aria-hidden="true"></div>
  <nav class="nexus-nav"><button onclick="rafNexusPanel('home')">🏠 الرئيسية</button><button onclick="document.getElementById('gamesGrid').scrollIntoView({behavior:'smooth'})">🎮 مكتبة الألعاب</button><button onclick="openEmulatorsModal()">🕹️ المحاكيات</button><button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button><button onclick="rafNexusPanel('help')">🛠️ المساعدة</button><button onclick="rafNexusPanel('community')">👥 مجتمع RAF-VX</button><button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button></nav>
@@ -4806,27 +4805,7 @@ window.rafGoogleTranslateInit=()=>{
    },350);
  }catch(e){console.warn('RAF language helper:',e);}
 };
-window.rafRunDownloadTest=()=>{
- const status=document.getElementById('rafDownloadTestStatus');
- const btn=document.getElementById('rafDownloadTestBtn');
- if(!status||!btn)return;
- const payload='RAFVX RAF Download test\\nThis is a small test file created by the RAFVX website.\\n';
- const blob=new Blob([payload],{type:'text/plain;charset=utf-8'});
- const url=URL.createObjectURL(blob);
- const a=document.createElement('a');
- a.href=url;a.download='RAFVX-download-test.txt';
- a.style.display='none';document.body.appendChild(a);
- try{
-   a.click();
-   status.textContent=document.documentElement.lang==='en'?'Download request sent. Check your Downloads folder.':'تم إرسال طلب التنزيل. تحقق من مجلد التنزيلات.';
-   status.style.color='#72e6a6';
- }catch(err){
-   status.textContent=document.documentElement.lang==='en'?'Download test failed on this browser.':'تعذر تنفيذ الاختبار في هذا المتصفح.';
-   status.style.color='#ff8a8a';
- }finally{
-   setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1500);
- }
-};
+
  function renderInlineGameResults(card,panel,filter=''){
    const list=panel.querySelector('.vx-inline-result-rows');
    if(!list)return;
@@ -4913,6 +4892,121 @@ window.rafRunDownloadTest=()=>{
  document.addEventListener('DOMContentLoaded',()=>{fill();populateRafDeviceSelects();addInlineGameActions();const gamesGrid=document.getElementById('gamesGrid');if(gamesGrid&&'MutationObserver'in window){const gameCardObserver=new MutationObserver(()=>addInlineGameActions(gamesGrid));gameCardObserver.observe(gamesGrid,{childList:true,subtree:true});}setTimeout(rafOpenSharedGame,150);refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en);window.__rafGoogleTranslateTarget='en';if(!window.__rafGoogleTranslateLoading){window.__rafGoogleTranslateLoading=true;const gt=document.createElement('script');gt.src='https://translate.google.com/translate_a/element.js?cb=rafGoogleTranslateInit';gt.onerror=()=>window.__rafGoogleTranslateLoading=false;document.head.appendChild(gt);}}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
  window.addEventListener('hashchange',rafOpenSharedGame);
  window.addEventListener('pageshow',rafOpenSharedGame);
+})();
+</script>
+
+
+<style id="rafDownloadsStyles">
+.raf-dl-count{display:inline-flex;min-width:21px;height:21px;align-items:center;justify-content:center;border-radius:20px;background:#20b9a2;color:#061513;font-size:11px;font-weight:900;padding:0 5px}
+#rafDownloadsModal{position:fixed;inset:0;z-index:999999;background:rgba(2,7,15,.82);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:14px}
+#rafDownloadsModal.raf-show{display:flex}
+.raf-dl-window{width:min(920px,100%);max-height:min(90vh,900px);overflow:hidden;border:1px solid rgba(80,210,199,.35);border-radius:22px;background:linear-gradient(155deg,#101b2a,#07111d 70%);box-shadow:0 24px 90px #000b;color:#eef8ff;display:flex;flex-direction:column}
+.raf-dl-head{padding:19px 20px 14px;border-bottom:1px solid #ffffff18;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.raf-dl-head h2{margin:0;font-size:22px}.raf-dl-head p{margin:5px 0 0;color:#9bb0c3;font-size:12px}
+.raf-dl-close{border:1px solid #ffffff25;background:#ffffff0d;color:#fff;border-radius:12px;width:40px;height:40px;font-size:20px}
+.raf-dl-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:13px 18px}
+.raf-dl-stat{background:#ffffff09;border:1px solid #ffffff12;border-radius:14px;padding:11px;text-align:center}.raf-dl-stat b{display:block;font-size:20px;color:#62e0cb}.raf-dl-stat span{font-size:11px;color:#9db1c3}
+.raf-dl-tools{padding:0 18px 12px;display:flex;gap:8px;flex-wrap:wrap}
+.raf-dl-search{flex:1;min-width:170px;border:1px solid #ffffff20;border-radius:12px;background:#050d17;color:white;padding:11px 13px;outline:none}
+.raf-dl-tab{border:1px solid #ffffff20;border-radius:12px;background:#ffffff0b;color:#c9d8e5;padding:10px 13px;font-size:12px}
+.raf-dl-tab.active{background:#1aa995;color:#041412;border-color:#1aa995;font-weight:900}
+.raf-dl-list{overflow:auto;padding:0 18px 18px;min-height:160px}
+.raf-dl-row{display:flex;align-items:center;gap:12px;padding:13px;margin:8px 0;border:1px solid #ffffff14;border-radius:15px;background:#ffffff08}
+.raf-dl-icon{width:42px;height:42px;flex:0 0 42px;border-radius:12px;background:#1aa99520;display:grid;place-items:center;font-size:20px}
+.raf-dl-info{min-width:0;flex:1}.raf-dl-info b{display:block;font-size:13px;line-height:1.5;overflow-wrap:anywhere}.raf-dl-info small{display:block;color:#9eb2c4;font-size:11px;margin-top:3px;overflow-wrap:anywhere}
+.raf-dl-badge{display:inline-block!important;width:max-content;border-radius:30px;padding:3px 8px;margin-top:6px!important;font-size:10px!important}
+.raf-dl-badge.direct{background:#123f37;color:#80f0cb}.raf-dl-badge.page{background:#46351b;color:#ffd18a}
+.raf-dl-actions{display:flex;gap:6px;flex-wrap:wrap}
+.raf-dl-action{border:0;border-radius:10px;padding:9px 11px;background:#1db59f;color:#041512;font-size:11px;font-weight:900;text-decoration:none;white-space:nowrap}
+.raf-dl-action.secondary{background:#ffffff12;color:#dbe9f5;border:1px solid #ffffff1c}
+.raf-dl-note{margin:0 18px 16px;padding:11px 13px;border-radius:12px;background:#f0a93b12;border:1px solid #f0a93b35;color:#f3d5a4;font-size:11px;line-height:1.7}
+.raf-dl-empty{text-align:center;padding:35px 12px;color:#a9bdcf}
+@media(max-width:600px){.raf-dl-window{max-height:94vh;border-radius:17px}.raf-dl-head h2{font-size:19px}.raf-dl-row{align-items:flex-start;flex-wrap:wrap}.raf-dl-actions{width:100%;padding-left:54px}.raf-dl-action{flex:1;text-align:center}.raf-dl-summary{padding:10px;gap:6px}.raf-dl-stat{padding:9px 4px}.raf-dl-stat b{font-size:17px}}
+</style>
+<div id="rafDownloadsModal" aria-hidden="true">
+ <section class="raf-dl-window" role="dialog" aria-modal="true" aria-labelledby="rafDlTitle">
+  <header class="raf-dl-head">
+   <div><h2 id="rafDlTitle">⬇️ مركز التنزيلات</h2><p>روابط ملفات الألعاب وسجل الروابط التي فتحتها من RAFVX</p></div>
+   <button class="raf-dl-close" type="button" onclick="rafCloseDownloads()" aria-label="إغلاق">×</button>
+  </header>
+  <div class="raf-dl-summary">
+   <div class="raf-dl-stat"><b id="rafDlDirectCount">0</b><span>ملفات مباشرة محتملة</span></div>
+   <div class="raf-dl-stat"><b id="rafDlPageCount">0</b><span>صفحات استضافة</span></div>
+   <div class="raf-dl-stat"><b id="rafDlHistoryCount">0</b><span>روابط فتحتها</span></div>
+  </div>
+  <div class="raf-dl-tools">
+   <input id="rafDlSearch" class="raf-dl-search" type="search" placeholder="ابحث عن لعبة أو ملف…">
+   <button class="raf-dl-tab active" data-filter="all" type="button">الكل</button>
+   <button class="raf-dl-tab" data-filter="direct" type="button">ملفات مباشرة محتملة</button>
+   <button class="raf-dl-tab" data-filter="page" type="button">صفحات وسيطة</button>
+   <button class="raf-dl-tab" data-filter="history" type="button">السجل</button>
+  </div>
+  <div id="rafDlList" class="raf-dl-list"></div>
+  <p class="raf-dl-note">تنبيه: وصف «ملف مباشر محتمل» مبني على امتداد الرابط أو نمطه، وليس اختبارًا ناجحًا للخادم. قد تفرض بعض الاستضافات تحويلًا أو قيودًا. عند الضغط نفتح رابط الملف الأصلي؛ اكتمال التنزيل يظهر في مدير تنزيلات الهاتف، وليس داخل هذه النافذة.</p>
+ </section>
+</div>
+<script id="rafDownloadsManager">
+(function(){
+ const modal=document.getElementById('rafDownloadsModal');
+ const list=document.getElementById('rafDlList');
+ const search=document.getElementById('rafDlSearch');
+ let activeFilter='all';
+ const directExt=/\.(apk|obb|zip|7z|rar|xapk|apks|aab)(?:$|[?#])/i;
+ const directHostPath=/github\.com\/[^/]+\/[^/]+\/releases\/download\//i;
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function getItems(){
+  const rows=[];
+  document.querySelectorAll('.game-card').forEach(card=>{
+   const title=(card.querySelector('.game-title,h3,h2')?.textContent||card.getAttribute('data-name')||'لعبة').trim();
+   card.querySelectorAll('.download-group a[href]').forEach((a,i)=>{
+    const url=a.href;
+    if(!/^https?:/i.test(url))return;
+    const label=(a.textContent||'تحميل ملف').trim();
+    const isDirect=directExt.test(url)||directHostPath.test(url);
+    rows.push({title,label,url,isDirect,key:title+'|'+label+'|'+url,index:i});
+   });
+  });
+  return rows;
+ }
+ function getHistory(){try{return JSON.parse(localStorage.getItem('rafvx_download_history')||'[]')}catch(e){return[]}}
+ function setHistory(x){localStorage.setItem('rafvx_download_history',JSON.stringify(x.slice(0,60)))}
+ function updateStats(){
+  const items=getItems(),hist=getHistory();
+  document.getElementById('rafDlDirectCount').textContent=items.filter(x=>x.isDirect).length;
+  document.getElementById('rafDlPageCount').textContent=items.filter(x=>!x.isDirect).length;
+  document.getElementById('rafDlHistoryCount').textContent=hist.length;
+  document.getElementById('rafDownloadsCount').textContent=hist.length;
+ }
+ function makeRow(item,history=false){
+  const row=document.createElement('article');row.className='raf-dl-row';
+  const icon=document.createElement('div');icon.className='raf-dl-icon';icon.textContent=history?'🕘':(item.isDirect?'📦':'🌐');
+  const info=document.createElement('div');info.className='raf-dl-info';
+  const title=document.createElement('b');title.textContent=item.title;
+  const sub=document.createElement('small');sub.textContent=item.label+(history&&item.date?' • '+item.date:'');
+  const badge=document.createElement('small');badge.className='raf-dl-badge '+(item.isDirect?'direct':'page');badge.textContent=item.isDirect?'ملف مباشر محتمل':'صفحة استضافة / وسيطة';
+  info.append(title,sub,badge);
+  const actions=document.createElement('div');actions.className='raf-dl-actions';
+  const open=document.createElement('a');open.className='raf-dl-action';open.href=item.url;open.target='_blank';open.rel='noopener noreferrer';open.textContent=item.isDirect?'فتح رابط الملف':'فتح صفحة الاستضافة';
+  open.addEventListener('click',()=>{const h=getHistory();h.unshift({title:item.title,label:item.label,url:item.url,isDirect:item.isDirect,date:new Date().toLocaleString()});setHistory(h);setTimeout(updateStats,50);});
+  const copy=document.createElement('button');copy.className='raf-dl-action secondary';copy.type='button';copy.textContent='نسخ الرابط';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(item.url);copy.textContent='تم النسخ ✓';setTimeout(()=>copy.textContent='نسخ الرابط',1500)}catch(e){prompt('انسخ الرابط:',item.url)}});
+  actions.append(open,copy);row.append(icon,info,actions);return row;
+ }
+ function render(){
+  const q=(search.value||'').trim().toLowerCase(),items=getItems(),hist=getHistory();
+  let data=activeFilter==='history'?hist:items.filter(x=>activeFilter==='all'||(activeFilter==='direct'?x.isDirect:!x.isDirect));
+  data=data.filter(x=>(x.title+' '+x.label+' '+x.url).toLowerCase().includes(q));
+  list.replaceChildren();
+  if(!data.length){const empty=document.createElement('div');empty.className='raf-dl-empty';empty.textContent=activeFilter==='history'?'لم تفتح أي رابط تنزيل من هذه النافذة بعد.':'لا توجد روابط مطابقة لبحثك.';list.append(empty);return;}
+  data.forEach(x=>list.append(makeRow(x,activeFilter==='history')));
+ }
+ window.rafOpenDownloads=()=>{updateStats();render();modal.classList.add('raf-show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';};
+ window.rafCloseDownloads=()=>{modal.classList.remove('raf-show');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';};
+ modal.addEventListener('click',e=>{if(e.target===modal)window.rafCloseDownloads();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('raf-show'))window.rafCloseDownloads();});
+ search.addEventListener('input',render);
+ modal.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;modal.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===btn));render();}));
+ document.addEventListener('DOMContentLoaded',updateStats);
+ updateStats();
 })();
 </script>
 
