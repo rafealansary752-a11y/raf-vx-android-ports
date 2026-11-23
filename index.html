@@ -1317,6 +1317,13 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 @media(min-width:721px) and (max-width:950px){.raf-home-tools{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 
+
+<style id="rafYamlCoverStyles">
+.raf-yaml-covers{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:13px;margin:16px 0 4px;padding:15px;border:1px solid rgba(82,153,255,.25);border-radius:16px;background:linear-gradient(135deg,rgba(18,38,70,.78),rgba(9,20,39,.82))}
+.raf-yaml-copy{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1 1 250px}.raf-yaml-copy strong{color:#d9eaff;font-size:.95rem}.raf-yaml-copy span{color:#a9c2e4;font-size:.8rem}.raf-yaml-copy small{color:#829bbd;font-size:.7rem;line-height:1.6}
+.raf-yaml-actions{display:flex;gap:8px;flex-wrap:wrap}.raf-yaml-upload,.raf-yaml-reset{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 13px;border-radius:10px;border:1px solid rgba(89,153,255,.35);background:rgba(42,105,190,.2);color:#e5f1ff;font-weight:800;font-size:.78rem;cursor:pointer}.raf-yaml-reset{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.13);color:#b7c8dd}.raf-yaml-status{flex:1 0 100%;font-size:.74rem;color:#9dc9ff}
+</style>
+
 </head>
 <body>
 
@@ -1488,6 +1495,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 <div class="chip" onclick="setCategory('سباق', this)">🏎️ #سباق (<span id="count-racing">15</span>)</div>
                 <div class="chip" onclick="setCategory('حرب', this)">⚔️ #حرب (<span id="count-war">11</span>)</div>
                 <div class="chip" onclick="setCategory('كرة_القدم', this)">⚽ #كرة_القدم (<span id="count-football">5</span>)</div>
+                <div class="chip" onclick="setCategory('مغامرات', this)">🧭 #مغامرات (<span id="count-adventure">0</span>)</div>
+                <div class="chip" onclick="setCategory('رياضة', this)">🏆 #رياضة (<span id="count-sports">0</span>)</div>
             </div>
 
             <div class="social-links">
@@ -1508,6 +1517,19 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 <button class="vx-tool-button" onclick="pickRandomGame()"><b>🎲</b><span>اقترح لعبة<small>اختيار عشوائي</small></span></button>
                 <button class="vx-tool-button" onclick="showRecentlyViewed()"><b>🕘</b><span>آخر المشاهدات<small>تابع ما فتحته</small></span></button>
                 <button class="vx-tool-button" onclick="clearLibrarySearch()"><b>⌕</b><span>إعادة ضبط البحث<small>عرض كل الألعاب</small></span></button>
+            </div>
+            <div class="raf-yaml-covers" id="rafYamlCovers">
+                <div class="raf-yaml-copy">
+                    <strong>🖼️ استيراد أغلفة الألعاب بملف YAML</strong>
+                    <span>ارفع ملف .yml واحدًا لربط صور الأغلفة بمعرّفات الألعاب تلقائيًا.</span>
+                    <small>ملاحظة: تُحفظ الروابط على هذا الجهاز والمتصفح فقط. لن تظهر لكل الزوار إلا بعد إضافة الصور/روابطها إلى ملفات الموقع في GitHub.</small>
+                </div>
+                <div class="raf-yaml-actions">
+                    <label class="raf-yaml-upload" for="rafYamlFile">📂 اختيار ملف YAML</label>
+                    <input id="rafYamlFile" type="file" accept=".yml,.yaml,text/yaml,text/plain" hidden>
+                    <button type="button" class="raf-yaml-reset" id="rafYamlReset">إزالة الصور المستوردة</button>
+                </div>
+                <div class="raf-yaml-status" id="rafYamlStatus" aria-live="polite">بانتظار ملف الأغلفة.</div>
             </div>
             <div class="vx-quick-stats">
                 <div><span>إجمالي المكتبة</span><strong id="vxTotalCount">113</strong><small>لعبة</small></div>
@@ -3970,6 +3992,85 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                     <a href="https://apkvision.org/games/action/assassins-creed-4-black-flag-135996/download/v0.8.13-15-g9150ccac-obb/" target="_blank" rel="noopener noreferrer" class="btn-download secondary">📦 تحميل ملف اللعبة OBB</a>
                 </div>
             </div>
+
+            <!-- 128 -->
+            <div class="game-card new-release-card" data-id="gta-5-lite" data-category="أكشن">
+                <div class="game-number-badge">#128</div>
+                <div class="fav-btn" onclick="toggleFavorite('gta-5-lite', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box game-cover-box"><img class="game-cover-img" data-raf-cover="gta-5-lite" src="images/games/gta-5-lite.jpg" alt="غلاف GTA 5 Lite" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="game-cover-fallback" hidden><span class="game-logo-text">GTA 5 Lite</span><span class="game-logo-sub">RAF-VX</span></span></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ GTA 5 Lite</div>
+                        <div class="port-tag-text">📱 منفذ غير رسمي للأندرويد</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag">#GTA</span><span class="tag offline">ملفات APK + بيانات</span></div>
+                        <div class="game-info"><div class="info-item">الحجم الإجمالي: <span class="info-value">32GB</span></div></div>
+                    </div>
+                </div>
+                <div class="note-box">⚠️ روابط خارجية مقدمة من صاحب الموقع؛ لم يتم التحقق من سلامة الملفات أو عملها.</div>
+                <div class="download-group">
+                    <a href="https://gofile.io/d/AL4yyUOo" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK</a>
+                    <a href="http://buzzheavier.com/6vtq6p1o9aiy" target="_blank" rel="noopener noreferrer" class="btn-download secondary">📦 تحميل ملف اللعبة</a>
+                </div>
+            </div>
+
+            <!-- 129 -->
+            <div class="game-card new-release-card" data-id="gta-v-3gb" data-category="أكشن">
+                <div class="game-number-badge">#129</div>
+                <div class="fav-btn" onclick="toggleFavorite('gta-v-3gb', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box game-cover-box"><img class="game-cover-img" data-raf-cover="gta-v-3gb" src="images/games/gta-v-3gb.jpg" alt="غلاف GTA V 3GB" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="game-cover-fallback" hidden><span class="game-logo-text">GTA V 3GB</span><span class="game-logo-sub">RAF-VX</span></span></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ GTA V 3GB</div>
+                        <div class="port-tag-text">📱 نسخة خفيفة غير رسمية للأندرويد</div>
+                        <div class="game-meta"><span class="tag new-game">🔥 جديد</span><span class="tag">#أكشن</span><span class="tag">#GTA</span><span class="tag offline">APK + ملف اللعبة</span></div>
+                        <div class="game-info"><div class="info-item">الحجم الإجمالي: <span class="info-value">3GB</span></div></div>
+                    </div>
+                </div>
+                <div class="note-box">⚠️ روابط خارجية مقدمة من صاحب الموقع؛ لم يتم التحقق من سلامة الملفات أو عملها.</div>
+                <div class="download-group">
+                    <a href="https://modsfire.com/3k8VRB2O8M9deum" target="_blank" rel="noopener noreferrer" class="btn-download">📥 تحميل APK</a>
+                    <a href="https://modsfire.com/35xAgoq7Fr4yqiZ" target="_blank" rel="noopener noreferrer" class="btn-download secondary">📦 تحميل ملف اللعبة</a>
+                </div>
+            </div>
+
+            <!-- 130 -->
+            <div class="game-card new-release-card" data-id="pes-2018" data-category="كرة_القدم رياضة">
+                <div class="game-number-badge">#130</div>
+                <div class="fav-btn" onclick="toggleFavorite('pes-2018', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box game-cover-box"><img class="game-cover-img" data-raf-cover="pes-2018" src="images/games/pes-2018.jpg" alt="غلاف PES 2018" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="game-cover-fallback" hidden><span class="game-logo-text">PES 2018</span><span class="game-logo-sub">RAF-VX</span></span></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ PES 2018</div>
+                        <div class="port-tag-text">⚽ تصنيف: كرة القدم / رياضة</div>
+                        <div class="game-meta"><span class="tag">#كرة_القدم</span><span class="tag">#رياضة</span><span class="tag offline">APK + ملفات اللعبة</span></div>
+                        <div class="game-info"><div class="info-item">الحجم الإجمالي: <span class="info-value">5GB</span></div></div>
+                    </div>
+                </div>
+                <div class="note-box">رابط صفحة اللعبة التي تحتوي على خيارات التحميل.</div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/simulation/pes-2018-136016/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 صفحة تحميل APK وملفات اللعبة</a>
+                </div>
+            </div>
+
+            <!-- 131 -->
+            <div class="game-card new-release-card" data-id="shrek-2" data-category="مغامرات">
+                <div class="game-number-badge">#131</div>
+                <div class="fav-btn" onclick="toggleFavorite('shrek-2', this)" title="إضافة للمفضلة">🤍</div>
+                <div class="game-main-content">
+                    <div class="game-title-box game-cover-box"><img class="game-cover-img" data-raf-cover="shrek-2" src="images/games/shrek-2.jpg" alt="غلاف Shrek 2: The Game" loading="lazy" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span class="game-cover-fallback" hidden><span class="game-logo-text">Shrek 2</span><span class="game-logo-sub">RAF-VX</span></span></div>
+                    <div class="game-details">
+                        <div class="game-title">✨ Shrek 2: The Game</div>
+                        <div class="port-tag-text">🧭 تصنيف: مغامرات</div>
+                        <div class="game-meta"><span class="tag">#مغامرات</span><span class="tag offline">APK + ملفات اللعبة</span></div>
+                        <div class="game-info"><div class="info-item">الحجم الإجمالي: <span class="info-value">1GB</span></div></div>
+                    </div>
+                </div>
+                <div class="note-box">رابط صفحة اللعبة التي تحتوي على خيارات التحميل.</div>
+                <div class="download-group">
+                    <a href="https://apkvision.org/games/adventure/shrek-2-the-game-136022/" target="_blank" rel="noopener noreferrer" class="btn-download">📥 صفحة تحميل APK وملفات اللعبة</a>
+                </div>
+            </div>
+
         <aside class="vx-compare-dock" id="vxCompareDock" hidden>
             <div><strong>⚖️ مقارنة الألعاب</strong><span id="vxCompareSummary">اختر حتى 3 ألعاب من البطاقات</span></div>
             <button class="vx-compare-open" onclick="openCompareModal()">عرض المقارنة</button>
@@ -4250,6 +4351,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
             let racing = 0;
             let war = 0;
             let football = 0;
+            let adventure = 0;
+            let sports = 0;
 
             for(let card of cards) {
                 let cat = card.getAttribute('data-category').toLowerCase();
@@ -4259,6 +4362,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 if(cat.includes('سباق')) racing++;
                 if(cat.includes('حرب')) war++;
                 if(cat.includes('كرة_القدم') || cat.includes('كرة القدم')) football++;
+                if(cat.includes('مغامرات')) adventure++;
+                if(cat.includes('رياضة')) sports++;
             }
 
             document.getElementById('count-all').innerText = total;
@@ -4270,6 +4375,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
             document.getElementById('count-racing').innerText = racing;
             document.getElementById('count-war').innerText = war;
             document.getElementById('count-football').innerText = football;
+            document.getElementById('count-adventure').innerText = adventure;
+            document.getElementById('count-sports').innerText = sports;
         }
 
         // نظام التقييم بالنجوم وحفظه في localStorage
@@ -5519,6 +5626,91 @@ body{
 a{color:#8fc4ff}
 
 </style>
+
+
+<script id="rafYamlCoverImporter">
+(function(){
+  const input=document.getElementById('rafYamlFile');
+  const status=document.getElementById('rafYamlStatus');
+  const reset=document.getElementById('rafYamlReset');
+  const STORAGE_KEY='rafvx_yaml_cover_map_v1';
+  if(!input||!status||!reset)return;
+
+  function parseCoverYaml(text){
+    const map={};
+    let inCovers=false;
+    let currentId='';
+    const lines=String(text||'').replace(/^\uFEFF/,'').split(/\r?\n/);
+    for(let raw of lines){
+      const line=raw.trim();
+      if(!line||line.startsWith('#')||line==='---')continue;
+      if(/^covers\s*:\s*$/.test(line)){inCovers=true;continue;}
+      if(!inCovers)continue;
+      let m=line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.*?)\s*$/);
+      if(m){
+        currentId=m[1];
+        let value=m[2].replace(/^['"]|['"]$/g,'').trim();
+        if(value)map[currentId]=value;
+        continue;
+      }
+      m=line.match(/^-\s*id\s*:\s*['"]?([A-Za-z0-9_-]+)['"]?\s*$/);
+      if(m){currentId=m[1];continue;}
+      m=line.match(/^(?:image|url|src)\s*:\s*(.*?)\s*$/);
+      if(m&&currentId)map[currentId]=m[1].replace(/^['"]|['"]$/g,'').trim();
+    }
+    return map;
+  }
+
+  function applyMap(map){
+    let applied=0;
+    document.querySelectorAll('#gamesGrid .game-card[data-id]').forEach(card=>{
+      const id=card.getAttribute('data-id');
+      const url=map[id];
+      const img=card.querySelector('.game-cover-img');
+      if(!url||!img)return;
+      img.src=url;
+      img.hidden=false;
+      const fallback=img.nextElementSibling;
+      if(fallback)fallback.hidden=true;
+      applied++;
+    });
+    return applied;
+  }
+
+  function restore(){
+    try{
+      const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+      const count=applyMap(saved);
+      if(count)status.textContent='تم استرجاع '+count+' غلاف من الملف المستورد على هذا الجهاز.';
+    }catch(e){status.textContent='تعذر استرجاع روابط الأغلفة المحفوظة.';}
+  }
+
+  input.addEventListener('change',async()=>{
+    const file=input.files&&input.files[0];
+    if(!file)return;
+    try{
+      const text=await file.text();
+      const map=parseCoverYaml(text);
+      const ids=Object.keys(map);
+      if(!ids.length){status.textContent='لم أجد روابط صور. تأكد أن الملف يحتوي قسم covers وروابط الصور.';return;}
+      const count=applyMap(map);
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(map));
+      status.textContent='نجح الاستيراد: '+count+' غلاف. تم حفظ الروابط في هذا المتصفح.';
+    }catch(e){status.textContent='تعذر قراءة ملف YAML. تأكد من صيغة الملف.';}
+    input.value='';
+  });
+
+  reset.addEventListener('click',()=>{
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('#gamesGrid .game-card .game-cover-img[data-raf-cover]').forEach(img=>{
+      const id=img.getAttribute('data-raf-cover');
+      img.src='images/games/'+id+'.jpg';
+    });
+    status.textContent='تمت إزالة روابط الأغلفة المستوردة من هذا المتصفح.';
+  });
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restore);else restore();
+})();
+</script>
 
 </body>
 </html>
