@@ -4081,7 +4081,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 document.body.appendChild(a);
                 a.click();
                 setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 2500);
-                alert("إذا لم يبدأ حفظ الملف، فالتطبيق يحتاج تفعيل تنزيل الملفات من Android WebView.");
+                
             } catch (err) {
                 alert("لم يتمكن التطبيق من حفظ الملف. نحتاج تفعيل تنزيل الملفات في نسخة Android.");
             }
@@ -4851,7 +4851,230 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  const RAF_LANG={
   'الجيل الجديد':'The Next Generation','سجل التحديثات':'Update Log','الرئيسية':'Home','مكتبة الألعاب':'Game Library','المحاكيات':'Emulators','المقارنة':'Compare','المساعدة':'Help','آخر المشاهدات':'Recently Viewed','لعبة في المكتبة':'Games in Library','المفضلة على جهازك':'Your Favorites','آخر المشاهدات':'Recently Viewed','محلي':'Local','حفظ الإعدادات على جهازك':'Settings saved on your device',
   '✨ مرحباً بك في RAF-VX NEXUS':'✨ Welcome to RAF-VX NEXUS','منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة توافقها وأدائها.':'A unified platform to discover games, follow updates, browse titles and review performance reports shared by the community.','🎲 اختر لعبة عشوائية':'🎲 Pick a Random Game','🔗 مشاركة الموقع':'🔗 Share Website','🕘 سجل المشاهدة':'🕘 Viewing History','📋 سجل تحديثات RAF-VX':'📋 RAF-VX Update Log','إضافة لوحة القيادة، قاعدة أجهزة، التنقل بين الأقسام، واللغة.':'Added the dashboard, device database, section navigation and language switching.','أدوات المكتبة الذكية':'Smart Library Tools','المقارنة، آخر المشاهدات، الاختيار العشوائي، والفرز المحلي.':'Comparison, recently viewed, random selection and local sorting.','تنبيه الشفافية':'Transparency Notice','سجل التحديثات الحالي يعرض ما أُضيف في هذه النسخة فقط، ويمكن توسيعه مع كل إصدار لاحق.':'This update log shows what was added in this version and can be expanded with future releases.',
-  '⬇️ التنزيلات':'⬇️ Downloads','مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق':'Android PC Gaming Hub — discover, compare and check compatibility','مركز تنزيلات الألعاب':'Game Downloads Center','ملفات كل لعبة مجمّعة: APK وDATA وOBB والملفات الإضافية':'All game files grouped together: APK, DATA, OBB and additional files','كل الألعاب':'All Games','ملفات مباشرة محتملة':'Potential Direct Files','صفحات استضافة':'Hosting Pages','السجل':'History','إعادة فحص الروابط':'Rescan Links','بحث باسم اللعبة أو APK أو DATA أو OBB…':'Search game, APK, DATA or OBB…','ملف مباشر محتمل':'Potential Direct File','صفحة استضافة / وسيطة':'Hosting / Intermediate Page','تنزيل / فتح الملف':'Download / Open File','فتح صفحة الملف':'Open File Page','نسخ':'Copy','رجوع':'Back','إغلاق':'Close','ملف':'File','ملفات':'Files','ابحث':'Search','لا يوجد سجل تنزيلات حتى الآن.':'No download history yet.','ما لقينا روابط مطابقة. اضغط «إعادة فحص الروابط» بعد فتح تفاصيل اللعبة.':'No matching links found. Press “Rescan Links” after opening the game details.'
+  '⬇️ التنزيلات':'⬇️ Downloads','مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق':'Android PC Gaming Hub — discover, compare and check compatibility','مركز تنزيلات الألعاب':'Game Downloads Center','ملفات كل لعبة مجمّعة: APK وDATA وOBB والملفات الإضافية':'All game files grouped together: APK, DATA, OBB and additional files','كل الألعاب':'All Games','ملفات مباشرة محتملة':'Potential Direct Files','صفحات استضافة':'Hosting Pages','السجل':'History','إعادة فحص الروابط':'Rescan Links','بحث باسم اللعبة أو APK أو DATA أو OBB…':'Search game, APK, DATA or OBB…','ملف مباشر محتمل':'Potential Direct File','صفحة استضافة / وسيطة':'Hosting / Intermediate Page','تنزيل / فتح الملف':'Download / Open File','فتح صفحة الملف':'Open File Page','نسخ':'Copy','رجوع':'Back','إغلاق':'Close','ملف':'File','ملفات':'Files','ابحث':'Search','لا يوجد سجل تنزيلات حتى الآن.':'No download history yet.','ما لقينا روابط مطابقة. اضغط «إعادة فحص الروابط» بعد فتح تفاصيل اللعبة.':'No matching links found. Press “Rescan Links” after opening the game details.',
+  "كل أدوات المكتبة والمحاكيات والمساعدة في مكان واحد — بدون قوائم مخفية.":"All library tools, emulators and help in one place — no hidden menus.",
+  "المفضلة":"Favorites",
+  "ألعابك المحفوظة":"Your saved games",
+  "كل الألعاب":"All Games",
+  "عرض المكتبة كاملة":"View full library",
+  "تصدير المفضلة":"Export Favorites",
+  "حفظ نسخة احتياطية":"Save a backup",
+  "استيراد المفضلة":"Import Favorites",
+  "استعادة نسخة محفوظة":"Restore a backup",
+  "المحاكيات الشامل":"Emulator Hub",
+  "المحاكيات وملحقاتها":"Emulators and add-ons",
+  "مركز المساعدة":"Help Center",
+  "الدخول إلى قروب الشات":"Open chat group",
+  "دعم RAFVX":"Support RAFVX",
+  "دعم المنصة":"Support the platform",
+  "مقارنة الألعاب":"Compare Games",
+  "قارن حتى 3 ألعاب":"Compare up to 3 games",
+  "سجل التحديثات":"Update Log",
+  "آخر إضافات المنصة":"Latest platform updates",
+  "البحث الذكي عن الألعاب والمحاكيات":"Smart Game & Emulator Search",
+  "اختر اللعبة من القائمة وانتقل إليها مباشرة، أو ابحث عن محاكي وملحقاته.":"Choose a game and jump straight to it, or find an emulator and its add-ons.",
+  "افتح البحث الذكي":"Open Smart Search",
+  "📋 سجل تحديثات RAF-VX":"📋 RAF-VX Update Log",
+  "إضافة لوحة القيادة، قاعدة أجهزة، التنقل بين الأقسام، واللغة.":"Added the dashboard, device database, section navigation and language switching.",
+  "أدوات المكتبة الذكية":"Smart Library Tools",
+  "المقارنة، آخر المشاهدات، الاختيار العشوائي، والفرز المحلي.":"Comparison, recently viewed, random selection and local sorting.",
+  "تنبيه الشفافية":"Transparency Notice",
+  "سجل التحديثات الحالي يعرض ما أُضيف في هذه النسخة فقط، ويمكن توسيعه مع كل إصدار لاحق.":"This update log lists changes in this version and can be expanded in future releases.",
+  "🕹️ مركز المحاكيات":"🕹️ Emulator Center",
+  "فتح مركز المحاكيات الشامل ✨":"Open Full Emulator Hub ✨",
+  "بيئة لتشغيل ألعاب الكمبيوتر على أندرويد. تحقق من توافق الإصدار وتعريف الرسوميات لكل لعبة.":"An environment for running PC games on Android. Check version and graphics-driver compatibility for each game.",
+  "تشغيل تطبيقات وألعاب ويندوز عبر طبقات توافق. الإعدادات تختلف حسب المعالج واللعبة.":"Run Windows apps and games through compatibility layers. Settings vary by processor and game.",
+  "محاكي ألعاب Nintendo Switch على أندرويد؛ الأداء يعتمد على اللعبة والجهاز والإصدار.":"Nintendo Switch emulator for Android; performance depends on the game, device and version.",
+  "محاكي PlayStation Vita؛ راجع قائمة التوافق الرسمية لكل عنوان.":"PlayStation Vita emulator; check the official compatibility list for each title.",
+  "محاكي PSP، مع خيارات رسومية وتحكم قابلة للتخصيص.":"PSP emulator with customizable graphics and controls.",
+  "استخدم زر «＋ قارن» الموجود على بطاقات الألعاب، ثم افتح أداة المقارنة الموجودة في الموقع.":"Use the “＋ Compare” button on game cards, then open the comparison tool on the site.",
+  "فتح قائمة المقارنة":"Open Comparison",
+  "🛠️ مركز المساعدة":"🛠️ Help Center",
+  "فتح قروب المساعدة على Telegram ↗":"Open Telegram Help Group ↗",
+  "اللعبة لا تبدأ":"The game will not start",
+  "تحقق من إصدار المحاكي، ملفات اللعبة، مساحة التخزين، وتعريف الرسوميات.":"Check the emulator version, game files, storage space and graphics driver.",
+  "شاشة سوداء":"Black screen",
+  "قد تكون المشكلة من واجهة الرسوميات أو تعريف GPU أو ملفات اللعبة.":"The issue may be caused by the graphics backend, GPU driver or game files.",
+  "تقطيع وانخفاض أداء":"Stuttering and low performance",
+  "جرّب إعدادات رسومية أقل، وأغلق التطبيقات الخلفية، وتأكد من حرارة الجهاز.":"Try lower graphics settings, close background apps and check device temperature.",
+  "مشكلة التحكم":"Control issue",
+  "راجع تعيين الأزرار داخل المحاكي وتأكد من اختيار ملف التحكم الصحيح.":"Check the button mapping in the emulator and make sure the correct control profile is selected.",
+  "ستظهر الألعاب التي فتحت تفاصيلها هنا.":"Games whose details you open will appear here.",
+  "🚀 RAF-VX 12.1.2 — نظام أداء الأجهزة":"🚀 RAF-VX 12.1.2 — Device Performance System",
+  "🚀 تم إطلاق RAF-VX 12.0 — التحديث الجوهري":"🚀 RAF-VX 12.0 — Major Update Released",
+  "يوم":"Days",
+  "ساعة":"Hours",
+  "دقيقة":"Minutes",
+  "ثانية":"Seconds",
+  "👑 النسخة الملكية الرسمية":"👑 Official Royal Edition",
+  "مركز المحاكيات":"Emulator Center",
+  "بوابتك المنظمة للمحاكيات وأدوات التشغيل والتعريفات ومكتبات الألعاب.":"Your organized gateway to emulators, runtime tools, drivers and game libraries.",
+  "⚙️ أدوات التشغيل":"⚙️ Runtime Tools",
+  "🎮 منصات متعددة":"🎮 Multiple Platforms",
+  "قنوات RAFVX":"RAFVX Channels",
+  "قروب الشات الرئيسي":"Main Chat Group",
+  "للنقاش ومشاركة حلول مشاكل الألعاب والمحاكيات.":"Discuss and share solutions for game and emulator issues.",
+  "انضمام للقروب ↗":"Join Group ↗",
+  "قناة التحديثات والأخبار":"Updates and News Channel",
+  "تابع الإضافات والإصدارات وأخبار المنصة.":"Follow additions, releases and platform news.",
+  "زيارة القناة ↗":"Visit Channel ↗",
+  "تشغيل ألعاب الكمبيوتر":"Run PC Games",
+  "منصة لتشغيل وتنظيم ألعاب الكمبيوتر على أجهزة أندرويد.":"A platform for running and organizing PC games on Android devices.",
+  "تحميل GameHub ↗":"Download GameHub ↗",
+  "بيئة تشغيل ألعاب وبرامج Windows على أندرويد.":"Run Windows games and applications on Android.",
+  "الإصدارات ↗":"Releases ↗",
+  "محاكيات أجهزة الألعاب":"Console Emulators",
+  "محاكي PlayStation Portable.":"PlayStation Portable emulator.",
+  "مكتبة PSP ↗":"PSP Library ↗",
+  "محاكي ألعاب PlayStation Vita.":"PlayStation Vita emulator.",
+  "مكتبة Vita ↗":"Vita Library ↗",
+  "تشغيل ألعاب الجيل الثاني من PlayStation.":"Run second-generation PlayStation games.",
+  "ملف BIOS ↗":"BIOS File ↗",
+  "مكتبة PS2 ↗":"PS2 Library ↗",
+  "مشاريع محاكاة PlayStation 3 على أندرويد.":"PlayStation 3 emulation projects on Android.",
+  "فيرموير PS3 ↗":"PS3 Firmware ↗",
+  "مكتبة PS3 ↗":"PS3 Library ↗",
+  "محاكي ألعاب Nintendo Switch.":"Nintendo Switch emulator.",
+  "تحميل Eden ↗":"Download Eden ↗",
+  "مكتبة Switch ↗":"Switch Library ↗",
+  "تعاريف الرسوميات":"Graphics Drivers",
+  "مستودع تعريفات الرسوميات لأجهزة Snapdragon المزودة بمعالجات Adreno. تحقق من توافق إصدار التعريف مع جهازك والمحاكي قبل التثبيت.":"Graphics driver repository for Snapdragon devices with Adreno GPUs. Check driver compatibility with your device and emulator before installing.",
+  "استعراض التعريفات ↗":"Browse Drivers ↗",
+  "مواقع ومكتبات ألعاب الكمبيوتر":"PC Game Sites and Libraries",
+  "روابط خارجية تفتح في تبويب جديد":"External links open in a new tab",
+  "🎨 تخصيص لون المنصة:":"🎨 Customize Platform Color:",
+  "مساعد المطور المشرف (Abdulalim)":"Developer Assistant (Abdulalim)",
+  "أقوى ألعاب الأندرويد المحولة بعناية فائقة | خالي تماماً من الإعلانات":"Carefully curated Android game ports | No ads on this platform",
+  "⚡ جميع الألعاب مخصصة لمعالجات Snapdragon 8 / 7 / 6 لضمان أفضل أداء خارق":"⚡ Games are selected for Snapdragon 8 / 7 / 6 processors for strong performance",
+  "اكتشف مكتبة RAF-VX":"Explore the RAF-VX Library",
+  "نظام تبديل الأقسام الجديد بأزرار أفقية بارزة وعدادات إحصائيات مباشرة":"New section switcher with prominent horizontal buttons and live counters",
+  "🎮 الكل (":"🎮 All (",
+  "🔥 الألعاب الجديدة (":"🔥 New Games (",
+  "⚡ #أكشن (":"⚡ #Action (",
+  "👻 #رعب (":"👻 #Horror (",
+  "🏎️ #سباق (":"🏎️ #Racing (",
+  "⚔️ #حرب (":"⚔️ #War (",
+  "⚽ #كرة_القدم (":"⚽ #Football (",
+  "📢 القناة الأساسية لشروحات التليجرام":"📢 Main Telegram Tutorials Channel",
+  "ابحث، صفِّ النتائج، واحفظ ألعابك المفضلة.":"Search, filter results and save your favorite games.",
+  "مركز التحكم بالمكتبة":"Library Control Center",
+  "اكتشف لعبتك، رتّب المكتبة، وقارن خياراتك قبل التحميل.":"Find a game, organize the library and compare options before downloading.",
+  "المكتبة تعمل":"Library Online",
+  "↕ ترتيب الألعاب":"↕ Sort Games",
+  "الترتيب الأصلي":"Default Order",
+  "الاسم: أ — ي":"Name: A — Z",
+  "الاسم: ي — أ":"Name: Z — A",
+  "الحجم: الأصغر أولاً":"Size: Smallest First",
+  "الحجم: الأكبر أولاً":"Size: Largest First",
+  "الإضافات الجديدة أولاً":"Newest Additions First",
+  "اقترح لعبة":"Suggest a Game",
+  "اختيار عشوائي":"Random Pick",
+  "إعادة ضبط البحث":"Reset Search",
+  "عرض كل الألعاب":"Show All Games",
+  "إجمالي المكتبة":"Total Library",
+  "لعبة":"Games",
+  "المفضلة لديك":"Your Favorites",
+  "محفوظة":"Saved",
+  "اختيارات المقارنة":"Comparison Picks",
+  "حتى 3 ألعاب":"Up to 3 Games",
+  "آخر زيارة":"Last Visit",
+  "اليوم":"Today",
+  "محلياً على جهازك":"Stored on Your Device",
+  "🕘 أكملت المشاهدة مؤخراً":"🕘 Recently Viewed",
+  "شريط الطرق التفاعلية الجديدة لعرض وتنسيق الألعاب":"New interactive game display and layout toolbar",
+  "⚡ طريقة عرض الألعاب المبتكرة:":"⚡ Game Display Modes:",
+  "📱 شبكة عصرية (2x2)":"📱 Modern Grid (2×2)",
+  "🎡 سلايدر أفقي متناغم":"🎡 Horizontal Slider",
+  "⚡ كروت مصغرة سريعة":"⚡ Compact Cards",
+  "💡 تتطلب معالج Snapdragon 8 Elite و 12GB RAM كحد أدنى.":"💡 Requires at least Snapdragon 8 Elite and 12GB RAM.",
+  "✨ Prototype (الجزء الأول)":"✨ Prototype (Part 1)",
+  "📱 منفذ غير رسمي للأندرويد (Port)":"📱 Unofficial Android Port",
+  "🌐 أوفلاين & أونلاين":"🌐 Offline & Online",
+  "💡 APK + ملف اللعبة • إجمالي الحجم: 65GB (اضغط على التفاصيل لمعرفة طريقة التثبيت ونقل الملفات).":"💡 APK + game files • Total size: 65GB (open details for installation and file transfer instructions).",
+  "1. التثبيت والتهيئة":"1. Installation and Setup",
+  "1. استخراج ملفات اللعبة":"1. Extract Game Files",
+  "3. نسخ ونقل ملفات البيانات":"3. Copy and Move Game Data",
+  "4. تشغيل اللعبة":"4. Launch the Game",
+  "📥 تحميل ملف التحديث APK":"📥 Download APK Update",
+  "📂 تحميل ملف اللعبة":"📂 Download Game Files",
+  "📥 تحميل APK":"📥 Download APK",
+  "📥 تحميل ملف APK":"📥 Download APK",
+  "📥 تحميل ملف اللعبة":"📥 Download Game Files",
+  "📥 تحميل ملف اللعبة (APK)":"📥 Download Game File (APK)",
+  "📂 تحميل ملف اللعبة (Data)":"📂 Download Game Data",
+  "📦 تحميل ملف اللعبة OBB":"📦 Download Game OBB",
+  "📥 تحميل APK + ملف اللعبة":"📥 Download APK + Game Files",
+  "📥 تحميل APK + تنزيل داخلي":"📥 Download APK + In-app Data",
+  "📥 تحميل ملف APK — GitHub 0.2.0":"📥 Download APK — GitHub 0.2.0",
+  "📋 نسخ رابط APK إلى 1DM":"📋 Copy APK Link to 1DM",
+  "📋 نسخ رابط ملف اللعبة لتطبيق 1DM":"📋 Copy Game File Link to 1DM",
+  "⚙️ بورت أندرويد":"⚙️ Android Port",
+  "⚙️ بورت أندرويد رسمي":"⚙️ Official Android Port",
+  "⚙️ بورت أندرويد (APK فقط)":"⚙️ Android Port (APK Only)",
+  "⚙️ بورت أندرويد (APK + ملف اللعبة)":"⚙️ Android Port (APK + Game Files)",
+  "⚙️ بورت أندرويد (APK + تنزيل داخلي)":"⚙️ Android Port (APK + In-app Download)",
+  "⚙️ تصنيف: أكشن":"⚙️ Genre: Action",
+  "⚙️ تصنيف: ألعاب تقمص الأدوار":"⚙️ Genre: RPG",
+  "⚙️ تصنيف: مغامرات":"⚙️ Genre: Adventure",
+  "⚙️ تصنيف: سباق":"⚙️ Genre: Racing",
+  "⚙️ تصنيف: استراتيجية":"⚙️ Genre: Strategy",
+  "⚙️ تصنيف: رياضة":"⚙️ Genre: Sports",
+  "⚙️ تصنيف: أكشن ومغامرات":"⚙️ Genre: Action & Adventure",
+  "📶 بدون نت":"📶 Offline",
+  "📋 نسخ ملف اللعبة لتطبيق 1DM":"📋 Copy Game File to 1DM",
+  "📋 نسخ رابط اللعبة لتطبيق 1DM":"📋 Copy Game Link to 1DM",
+  "📥 تحميل APK + ملف اللعبة (رابط واحد مباشر)":"📥 Download APK + Game Files (Single Link)",
+  "📥 رابط تحميل APK":"📥 APK Download Link",
+  "📥 رابط تحميل ملف اللعبة":"📥 Game File Download Link",
+  "الحجم:":"Size:",
+  "إجمالي الحجم:":"Total Size:",
+  "الحجم الإجمالي:":"Total Size:",
+  "🆕 إضافة جديدة":"🆕 New Addition",
+  "🔥 جديد":"🔥 New",
+  "#أكشن":"#Action",
+  "#رعب":"#Horror",
+  "#سباق":"#Racing",
+  "#حرب":"#War",
+  "#كرة_القدم":"#Football",
+  "#مغامرات":"#Adventure",
+  "#رياضة":"#Sports",
+  "#استراتيجية":"#Strategy",
+  "إخفاء":"Hide",
+  "اختر حتى 3 ألعاب من البطاقات":"Choose up to 3 games from the cards",
+  "عرض المقارنة":"View Comparison",
+  "جميع الحقوق محفوظة منصة":"All rights reserved by",
+  "(الإصدار 12.0.1) © 2026":"(Version 12.0.1) © 2026",
+  "🔎 البحث الذكي في RAFVX":"🔎 RAFVX Smart Search",
+  "انتقل مباشرة إلى اللعبة أو افتح أداة المحاكي التي تحتاجها.":"Jump straight to a game or open the emulator tool you need.",
+  "🎮 الألعاب":"🎮 Games",
+  "🕹️ المحاكيات والأدوات":"🕹️ Emulators & Tools",
+  "كل الألعاب مرتبة أبجديًا":"All games sorted alphabetically",
+  "اكتب اسم اللعبة أو المحاكي…":"Type a game or emulator name…",
+  "إغلاق":"Close",
+  "الجيل الجديد":"The Next Generation",
+  "مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق":"Android PC Gaming on Android — discover, compare and check compatibility",
+  "تحميل المحاكي ↗":"Download Emulator ↗",
+  "زيارة موقع ألعاب ↗":"Visit Game Site ↗",
+  "المزيد":"More",
+  "التالي":"Next",
+  "السابق":"Previous",
+  "تفاصيل اللعبة":"Game Details",
+  "إغلاق النافذة":"Close Window",
+  "بحث":"Search",
+  "ابحث عن لعبة":"Search for a game",
+  "لا توجد نتائج":"No results",
+  "جاري التحميل…":"Loading…",
+  "⚙️ تصنيف:":"⚙️ Genre:",
+  "معلومات اللعبة":"Game Information",
+  "التوافق":"Compatibility",
+  "الأداء":"Performance",
+  "إرسال نتيجة":"Submit Result",
+  "اختر جهازك من القائمة":"Choose your device from the list",
+  "اختر نتيجة الأداء":"Choose performance result",
+  "لا توجد تجارب مطابقة لهذه اللعبة والهاتف حتى الآن.":"No matching reports for this game and device yet.",
+  "تعذر تحميل قاعدة التجارب حالياً. تحقق من الاتصال ثم أعد البحث.":"Could not load the test database. Check your connection and search again.",
+  "إرسال نتيجة إلى GitHub ↗":"Submit Result to GitHub ↗",
+  "مصدر التجربة":"Test Source"
  };
  const RAF_LANG_NODES=new WeakMap();
  function rafTranslateTree(root,lang){
@@ -4868,6 +5091,17 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    }else node.nodeValue=original;
   }
   root.querySelectorAll?.('[data-ar][data-en]').forEach(el=>{el.textContent=lang==='en'?el.dataset.en:el.dataset.ar;});
+  const attrs=['placeholder','title','aria-label'];
+  root.querySelectorAll?.('*').forEach(el=>{
+   attrs.forEach(attr=>{
+    if(!el.hasAttribute(attr))return;
+    const key='rafOrig'+attr.replace(/[^a-z]/gi,'');
+    if(!el.dataset[key])el.dataset[key]=el.getAttribute(attr);
+    const original=el.dataset[key].trim();
+    if(lang==='en'&&RAF_LANG[original])el.setAttribute(attr,RAF_LANG[original]);
+    else if(lang==='ar')el.setAttribute(attr,el.dataset[key]);
+   });
+  });
  }
  window.rafNexusLanguage=()=>{
   const next=(document.documentElement.lang==='en')?'ar':'en';
@@ -5108,6 +5342,48 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 #rafSmartSearch .raf-smart-close{position:absolute!important;right:14px!important;top:14px!important;display:grid!important;place-items:center!important;width:40px!important;height:40px!important;border-radius:12px!important;background:linear-gradient(135deg,#ff3159,#a90b32)!important;border:1px solid #ff6b89!important;color:#fff!important;font-size:25px!important;line-height:1!important;font-weight:700!important;box-shadow:0 5px 16px rgba(255,49,89,.25)!important;z-index:5}
 #rafSmartSearch .raf-smart-close:active{transform:scale(.94)}
 @media(max-width:520px){.filter-chips{justify-content:flex-start!important;padding:10px!important;gap:7px!important}.filter-chips .chip{padding:9px 11px!important;font-size:11px!important}.social-links .btn-social{width:100%;text-align:center}}
+</style>
+
+
+<style id="rafvx-deep-blue-theme">
+:root{
+ --bg-color:#030916!important;--card-bg:rgba(8,19,39,.96)!important;
+ --card-border:rgba(55,125,255,.25)!important;--card-border-hover:rgba(72,145,255,.78)!important;
+ --accent-color:#3478ff!important;--accent-gradient:linear-gradient(135deg,#2368f5 0%,#123c9b 100%)!important;
+ --text-main:#f3f7ff!important;--text-muted:#aabbd5!important;
+ --badge-bg:rgba(49,112,255,.16)!important;--badge-border:rgba(70,135,255,.42)!important;
+ --ticker-bg:rgba(45,105,235,.10)!important;--ticker-border:rgba(65,130,255,.38)!important;
+ --rafvx-red:#3478ff!important;--rafvx-red-dark:#123c9b!important;--rafvx-panel:#08172e!important;
+}
+html,body{background-color:#030916!important;color:#f3f7ff!important}
+body{background-image:radial-gradient(circle at 10% 5%,rgba(31,91,210,.20),transparent 38%),radial-gradient(circle at 90% 90%,rgba(13,48,125,.24),transparent 42%)!important}
+.update-banner,.nexus-top,.raf-home-hub,.game-card,.modal-content,.emulators-content,.vx-emu-card,.menu-dropdown,
+.raf-smart-panel,.raf-smart-searchbox,.filter-chips,.library-controls,.nexus-panel{
+ background-color:rgba(7,17,36,.96)!important;border-color:rgba(61,125,255,.25)!important;
+}
+.nexus-top{background:linear-gradient(135deg,rgba(23,77,170,.23),rgba(7,17,36,.98) 68%,rgba(12,38,88,.34))!important}
+.nexus-nav{background:rgba(3,10,24,.97)!important;border-color:rgba(60,125,255,.3)!important}
+.nexus-nav button,.raf-home-tools button,.raf-home-tools a,.vx-tool-button,.filter-chips .chip,
+.raf-smart-tab,.raf-dl-tab,.btn-info-modal,.btn-download.secondary,.menu-dropdown button{
+ background:rgba(38,91,180,.16)!important;border-color:rgba(75,139,255,.34)!important;color:#dce9ff!important;
+}
+.nexus-nav button:hover,.raf-home-tools button:hover,.raf-home-tools a:hover,.vx-tool-button:hover,
+.filter-chips .chip.active,.filter-chips .chip:hover,.raf-smart-tab.active{
+ background:linear-gradient(135deg,rgba(44,112,255,.38),rgba(19,58,139,.45))!important;border-color:#4e91ff!important;color:#fff!important;
+}
+.nexus-nav .raf-smart-search-nav,.raf-home-tools .raf-smart-search-nav,
+.raf-smart-close,.raf-smart-search-nav,.btn-primary,.filter-chips .chip.active{
+ background:linear-gradient(135deg,#347dff,#1645ad)!important;border-color:#5798ff!important;color:#fff!important;
+}
+button,.btn,.btn-download,.vx-result-btn,.raf-dl-action{accent-color:#3478ff}
+a{color:#83b6ff}
+.game-number-badge,.badge,.tag,.category-badge{background:rgba(45,111,245,.2)!important;border-color:rgba(76,143,255,.42)!important}
+.raf-smart-panel{border-color:rgba(65,135,255,.48)!important;box-shadow:0 24px 80px rgba(0,0,0,.68),0 0 35px rgba(35,100,240,.12)!important}
+.raf-smart-close{right:14px!important;left:auto!important}
+.raf-home-tools button,.raf-home-tools a{box-shadow:0 6px 20px rgba(0,0,0,.22)}
+input,select,textarea{background:#06132a!important;color:#eff5ff!important;border-color:rgba(72,135,255,.32)!important}
+option{background:#07152c;color:#eff5ff}
+@media(max-width:600px){body{padding:14px 9px!important}.nexus-top{padding:16px!important}}
 </style>
 
 </body>
