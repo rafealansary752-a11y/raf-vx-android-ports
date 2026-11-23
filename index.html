@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAF-VX 12.1.10 | مكتبة ألعاب أندرويد | أداء المجتمع</title>
+    <title>RAF-VX 12.1.10 | مكتبة ألعاب أندرويد</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -1168,7 +1168,6 @@
 
 
 /* RAF Download test + language helper */
-.raf-download-test-row{align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
 #rafDownloadTestStatus{font-size:.78rem;min-width:120px}
 body{top:0!important}
 html{scroll-padding-top:12px}
@@ -1251,26 +1250,77 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 @media(max-width:520px){.vx-card-performance{grid-template-columns:1fr 1fr}.vx-card-performance .vx-result-btn{font-size:.82rem;padding:10px 7px}}
 </style>
 <!-- RAF-VX covers 114/115: images/games/114.jpg and images/games/115.jpg -->
+
+<style id="rafSmartSearchStyles">
+/* RAFVX app-like navigation refresh */
+.nexus-top{border-color:rgba(255,45,78,.32)!important;background:linear-gradient(135deg,rgba(255,26,64,.12),rgba(14,17,27,.96) 65%,rgba(92,10,31,.16))!important}
+.nexus-nav{position:sticky;top:7px;z-index:900;display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;padding:9px;margin:15px 0 8px;border:1px solid rgba(255,70,100,.22);border-radius:16px;background:rgba(8,10,17,.94);backdrop-filter:blur(18px);scrollbar-width:none}
+.nexus-nav::-webkit-scrollbar{display:none}
+.nexus-nav button{flex:0 0 auto;min-height:42px;border:1px solid rgba(255,255,255,.10);border-radius:12px;padding:8px 14px;background:rgba(255,255,255,.055);color:#f5f5f7;font-weight:800;font-size:12px;white-space:nowrap}
+.nexus-nav button:active,.nexus-nav button:hover{border-color:rgba(255,45,78,.65);background:rgba(255,26,64,.14)}
+.nexus-nav .raf-smart-search-nav{background:linear-gradient(135deg,#ff3159,#a90b32);border-color:#ff3159;color:#fff;box-shadow:0 5px 18px rgba(255,26,64,.22)}
+.raf-legacy-search{display:none!important}
+.menu-dropdown{max-height:min(76vh,620px);overflow-y:auto}
+.menu-group-label{padding:9px 15px 4px;color:#ff718d;font-size:10px;font-weight:900;letter-spacing:.5px;background:rgba(255,255,255,.025);border-top:1px solid rgba(255,255,255,.06)}
+.menu-item{min-height:43px;display:flex;align-items:center}
+.raf-search-highlight{outline:2px solid #ff3159!important;box-shadow:0 0 0 5px rgba(255,49,89,.17),0 12px 35px rgba(255,26,64,.22)!important;transition:box-shadow .25s,outline .25s}
+#rafSmartSearch{position:fixed;inset:0;z-index:1000000;display:none;align-items:center;justify-content:center;padding:12px;background:rgba(2,4,10,.86);backdrop-filter:blur(13px)}
+#rafSmartSearch.active{display:flex}
+.raf-smart-panel{width:min(760px,100%);height:min(88vh,850px);display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,58,91,.42);border-radius:23px;background:linear-gradient(155deg,#151923,#090d16 72%);color:#f7f8fb;box-shadow:0 25px 90px #000c}
+.raf-smart-head{display:flex;align-items:center;gap:10px;padding:16px 17px;border-bottom:1px solid #ffffff14}
+.raf-smart-head-copy{flex:1;min-width:0}.raf-smart-head h2{font-size:19px;margin:0}.raf-smart-head p{font-size:11px;color:#9da8ba;margin:4px 0 0}
+.raf-smart-close{width:39px;height:39px;border-radius:12px;border:1px solid #ffffff20;background:#ffffff0b;color:white;font-size:20px}
+.raf-smart-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 16px 8px}
+.raf-smart-tab{border:1px solid #ffffff19;border-radius:12px;background:#ffffff08;color:#cbd2df;padding:11px;font-size:12px;font-weight:900}
+.raf-smart-tab.active{background:linear-gradient(135deg,#ff3159,#a90b32);border-color:#ff3159;color:#fff}
+.raf-smart-searchbox{padding:0 16px 10px}
+.raf-smart-searchbox input{width:100%;border:1px solid rgba(255,255,255,.16);border-radius:13px;background:#060a12;color:#fff;padding:13px 14px;font-size:14px;outline:none}
+.raf-smart-searchbox input:focus{border-color:#ff4568;box-shadow:0 0 0 3px rgba(255,49,89,.12)}
+.raf-smart-hint{padding:0 17px 8px;color:#8290a5;font-size:10px}
+.raf-smart-results{overflow:auto;overscroll-behavior:contain;padding:0 13px 16px}
+.raf-smart-result{width:100%;display:flex;align-items:center;gap:11px;text-align:right;border:1px solid #ffffff12;border-radius:14px;background:rgba(255,255,255,.045);color:#f6f7fa;padding:11px;margin:6px 0;cursor:pointer}
+.raf-smart-result:active{background:rgba(255,49,89,.15);border-color:#ff4568}
+.raf-smart-result-icon{width:40px;height:40px;flex:0 0 40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,49,89,.13);font-size:19px}
+.raf-smart-result-copy{min-width:0;flex:1}.raf-smart-result-copy b{display:block;font-size:13px}.raf-smart-result-copy small{display:block;color:#9ba8bb;font-size:10px;margin-top:3px;overflow-wrap:anywhere}
+.raf-smart-result-arrow{color:#ff718d;font-size:18px}
+.raf-smart-result-links{display:flex;flex-wrap:wrap;gap:6px;padding:0 10px 8px}
+.raf-smart-result-links a{font-size:10px;text-decoration:none;color:#ffdce3;background:rgba(255,49,89,.12);border:1px solid rgba(255,49,89,.25);border-radius:9px;padding:6px 9px}
+.raf-smart-empty{text-align:center;color:#9ba8bb;padding:32px 12px;font-size:13px}
+.raf-smart-count{padding:0 17px 9px;color:#aab5c5;font-size:10px}
+@media(max-width:600px){
+ .nexus-top{padding:14px!important;border-radius:18px!important}
+ .nexus-nav{top:4px;margin:10px -2px 8px;padding:7px;border-radius:13px}
+ .nexus-nav button{min-height:39px;padding:7px 11px;font-size:11px}
+ .raf-smart-panel{height:92vh;border-radius:17px}
+ .raf-smart-head{padding:12px}
+ .raf-smart-head h2{font-size:17px}
+ .raf-smart-tabs{padding:10px 12px 7px}
+ .raf-smart-searchbox{padding:0 12px 9px}
+ .raf-smart-results{padding:0 9px 12px}
+}
+</style>
+
 </head>
 <body>
 
 <section class="nexus-top" id="rafNexusHome" aria-label="RAF-VX NEXUS">
  <div class="nexus-brand"><div><h2 class="notranslate" translate="no">RAF-VX <span>NEXUS</span></h2><p class="nexus-sub" data-ar="مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق" data-en="Android PC gaming hub — discover, compare and check compatibility">مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق</p></div><span class="nexus-badge">الجيل الجديد</span></div>
  <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
- <div class="nexus-actions raf-download-test-row">
-   <button class="nexus-btn" type="button" id="rafDownloadsOpenBtn" onclick="rafOpenDownloads()">⬇️ التنزيلات <span id="rafDownloadsCount" class="raf-dl-count">0</span></button>
- </div>
- <nav class="nexus-nav"><button onclick="rafNexusPanel('home')">🏠 الرئيسية</button><button onclick="document.getElementById('gamesGrid').scrollIntoView({behavior:'smooth'})">🎮 مكتبة الألعاب</button><button onclick="openEmulatorsModal()">🕹️ المحاكيات</button><button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button><button onclick="rafNexusPanel('help')">🛠️ المساعدة</button><button onclick="rafNexusPanel('community')">👥 مجتمع RAF-VX</button><button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button></nav>
+<nav class="nexus-nav" aria-label="التنقل الرئيسي">
+ <button onclick="rafNexusPanel('home')">🏠 الرئيسية</button>
+ <button class="raf-smart-search-nav" onclick="openRafSmartSearch('games')">🔎 البحث الذكي</button>
+ <button onclick="openEmulatorsModal()">🕹️ المحاكيات</button>
+ <button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button>
+ <button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button>
+</nav>
  <div class="nexus-stats"><div class="nexus-stat"><b id="nexusGames">—</b><small>لعبة في المكتبة</small></div><div class="nexus-stat"><b id="nexusFavs">—</b><small>المفضلة على جهازك</small></div><div class="nexus-stat"><b id="nexusRecent">—</b><small>آخر المشاهدات</small></div><div class="nexus-stat"><b>محلي</b><small>حفظ الإعدادات على جهازك</small></div></div>
 </section>
-<section class="nexus-panel" id="nexusPanel-home"><h3>✨ مرحباً بك في RAF-VX NEXUS</h3><p class="nexus-muted">منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة تجارب الأداء المنشورة من المجتمع.</p><div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusRandom()">🎲 اختر لعبة عشوائية</button><button class="nexus-btn" onclick="rafNexusShareSite()">🔗 مشاركة الموقع</button><button class="nexus-btn" onclick="rafNexusPanel('recent')">🕘 سجل المشاهدة</button></div></section>
+<section class="nexus-panel" id="nexusPanel-home"><h3>✨ مرحباً بك في RAF-VX NEXUS</h3><p class="nexus-muted">منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة توافقها وأدائها.</p><div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusRandom()">🎲 اختر لعبة عشوائية</button><button class="nexus-btn" onclick="rafNexusShareSite()">🔗 مشاركة الموقع</button><button class="nexus-btn" onclick="rafNexusPanel('recent')">🕘 سجل المشاهدة</button></div></section>
 
 <section class="nexus-panel" id="nexusPanel-updates"><h3>📋 سجل تحديثات RAF-VX</h3><div class="nexus-list"><div class="nexus-box"><b>RAF-VX NEXUS — تحديث الواجهة</b><p>إضافة لوحة القيادة، قاعدة أجهزة، التنقل بين الأقسام، واللغة.</p></div><div class="nexus-box"><b>أدوات المكتبة الذكية</b><p>المقارنة، آخر المشاهدات، الاختيار العشوائي، والفرز المحلي.</p></div><div class="nexus-box"><b>تنبيه الشفافية</b><p>سجل التحديثات الحالي يعرض ما أُضيف في هذه النسخة فقط، ويمكن توسيعه مع كل إصدار لاحق.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-emulators"><h3>🕹️ مركز المحاكيات</h3><button class="nexus-btn" onclick="openEmulatorsModal()">فتح مركز المحاكيات الشامل ✨</button><div class="nexus-grid" style="display:none"><div class="nexus-box"><b>GameHub</b><p>بيئة لتشغيل ألعاب الكمبيوتر على أندرويد. تحقق من توافق الإصدار وتعريف الرسوميات لكل لعبة.</p></div><div class="nexus-box"><b>Winlator</b><p>تشغيل تطبيقات وألعاب ويندوز عبر طبقات توافق. الإعدادات تختلف حسب المعالج واللعبة.</p></div><div class="nexus-box"><b>Eden</b><p>محاكي ألعاب Nintendo Switch على أندرويد؛ الأداء يعتمد على اللعبة والجهاز والإصدار.</p></div><div class="nexus-box"><b>Vita3K</b><p>محاكي PlayStation Vita؛ راجع قائمة التوافق الرسمية لكل عنوان.</p></div><div class="nexus-box"><b>PPSSPP</b><p>محاكي PSP، مع خيارات رسومية وتحكم قابلة للتخصيص.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-compare"><h3>⚖️ مقارنة الألعاب</h3><p class="nexus-muted">استخدم زر «＋ قارن» الموجود على بطاقات الألعاب، ثم افتح أداة المقارنة الموجودة في الموقع.</p><button class="nexus-btn" onclick="document.querySelector('#vxCompareDock button')?.click();document.getElementById('vxCompareDock')?.scrollIntoView({behavior:'smooth'})">فتح قائمة المقارنة</button></section>
 <section class="nexus-panel" id="nexusPanel-help"><h3>🛠️ مركز المساعدة</h3><div class="nexus-grid"><div class="nexus-box"><b>اللعبة لا تبدأ</b><p>تحقق من إصدار المحاكي، ملفات اللعبة، مساحة التخزين، وتعريف الرسوميات.</p></div><div class="nexus-box"><b>شاشة سوداء</b><p>قد تكون المشكلة من واجهة الرسوميات أو تعريف GPU أو ملفات اللعبة.</p></div><div class="nexus-box"><b>تقطيع وانخفاض أداء</b><p>جرّب إعدادات رسومية أقل، وأغلق التطبيقات الخلفية، وتأكد من حرارة الجهاز.</p></div><div class="nexus-box"><b>مشكلة التحكم</b><p>راجع تعيين الأزرار داخل المحاكي وتأكد من اختيار ملف التحكم الصحيح.</p></div></div></section>
-<section class="nexus-panel" id="nexusPanel-community"><h3>👥 مجتمع RAF-VX</h3><p class="nexus-muted">يمكنك متابعة أخبار وتحديثات مكتبة RAF-VX من هذا القسم.</p><div class="nexus-box"><b>كيف ترسل تجربتك؟</b><p>تابع تحديثات المكتبة والمحتوى الجديد من خلال أقسام الموقع.</p></div><button class="nexus-btn" onclick="document.querySelector('#gamesGrid')?.scrollIntoView({behavior:'smooth'})">استعرض الألعاب</button></section>
-
 <section class="nexus-panel" id="nexusPanel-recent"><h3>🕘 آخر المشاهدات</h3><div id="nexusRecentList" class="nexus-list"><p class="nexus-muted">ستظهر الألعاب التي فتحت تفاصيلها هنا.</p></div></section>
 
 
@@ -1316,16 +1366,18 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 <button class="action-icon-btn" onclick="sharePlatform()" title="مشاركة المنصة">🔗</button>
                 <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
                 <div class="menu-dropdown" id="menuDropdown">
-                    <div class="menu-item" onclick="filterFavorites()">❤️ ألعابك المفضلة</div>
-                    <div class="menu-item" onclick="resetFilter()">🎮 كل الألعاب</div>
-                    <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
-                    <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
-                    <div class="menu-item" onclick="importFavoritesPrompt()">📂 استيراد المفضلة</div>
-                    <a href="https://t.me/RAF2007mmaaggq" target="_blank" class="menu-item">💬 أريد المساعدة (قروب المشكلات)</a>
-                    <div class="menu-item" onclick="openEmulatorsModal()" style="color: var(--accent-color); font-weight: 900;">🕹️ قسم المحاكيات الشامل</div>
-                    <div class="menu-item" onclick="scrollToSearch()">🔍 البحث السريع</div>
-                </div>
-            </div>
+ <div class="menu-group-label">المكتبة</div>
+ <div class="menu-item" onclick="filterFavorites();rafCloseMenu()">❤️ ألعابك المفضلة</div>
+ <div class="menu-item" onclick="resetFilter();rafCloseMenu()">🎮 كل الألعاب</div>
+ <div class="menu-group-label">نسخ بياناتك</div>
+ <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
+ <div class="menu-item" onclick="importFavoritesPrompt();rafCloseMenu()">📂 استيراد المفضلة</div>
+ <div class="menu-group-label">الأدوات والدعم</div>
+ <div class="menu-item" onclick="rafNexusPanel('help');rafCloseMenu()">🛠️ مركز المساعدة</div>
+ <div class="menu-item" onclick="openEmulatorsModal();rafCloseMenu()">🕹️ قسم المحاكيات الشامل</div>
+ <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
+</div>
+</div></div>
         </div>
 
         <div class="emulators-modal" id="emulatorsModal" role="dialog" aria-modal="true" aria-label="مركز المحاكيات والأدوات">
@@ -1334,12 +1386,10 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 <div class="vx-emu-hero">
                     <span class="vx-emu-kicker">RAF-VX • ANDROID GAMING LAB</span>
                     <h2>مركز المحاكيات</h2>
-                    <p>بوابتك المنظمة لأدوات تشغيل الألعاب، المحاكيات، التعريفات ومجتمع RAF.</p>
+                    <p>بوابتك المنظمة للمحاكيات وأدوات التشغيل والتعريفات ومكتبات الألعاب.</p>
                     <div class="vx-emu-hero-tags"><span>⚙️ أدوات التشغيل</span><span>🎮 منصات متعددة</span><span>📱 Android</span></div>
                 </div>
-                <div class="vx-emu-section-head"><div><small>COMMUNITY</small><h3>مجتمع RAF</h3></div><span>01</span></div>
-                <div class="vx-emu-grid vx-emu-grid-2">
-                    <article class="vx-emu-card"><div class="vx-emu-icon">💬</div><div><h4>قروب الشات الرئيسي</h4><p>للنقاش ومشاركة حلول مشاكل الألعاب والمحاكيات.</p></div><a href="https://t.me/RAF2007mmaaggq" target="_blank" rel="noopener noreferrer" class="emu-btn-link">انضمام للقروب ↗</a></article>
+                <div><h4>قروب الشات الرئيسي</h4><p>للنقاش ومشاركة حلول مشاكل الألعاب والمحاكيات.</p></div><a href="https://t.me/RAF2007mmaaggq" target="_blank" rel="noopener noreferrer" class="emu-btn-link">انضمام للقروب ↗</a></article>
                     <article class="vx-emu-card"><div class="vx-emu-icon">📢</div><div><h4>قناة التحديثات والأخبار</h4><p>تابع الإضافات والإصدارات وأخبار المنصة.</p></div><a href="https://t.me/hdjsqn" target="_blank" rel="noopener noreferrer" class="emu-btn-link">زيارة القناة ↗</a></article>
                 </div>
                 <div class="vx-emu-section-head"><div><small>PC ON ANDROID</small><h3>تشغيل ألعاب الكمبيوتر</h3></div><span>02</span></div>
@@ -1399,7 +1449,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 ⚡ جميع الألعاب مخصصة لمعالجات Snapdragon 8 / 7 / 6 لضمان أفضل أداء خارق
             </div>
 
-            <div class="search-container">
+            <div class="search-container raf-legacy-search">
                 <input type="text" id="searchInput" placeholder="🔍 ابحث باسم اللعبة أو التصنيف..." onkeyup="filterGames()">
                 <span id="vxSearchResults" class="vx-search-count" aria-live="polite">اكتشف مكتبة RAF-VX</span>
             </div>
@@ -3940,7 +3990,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 
         function openEmulatorsModal() {
             document.getElementById('emulatorsModal').classList.add('active');
-            toggleMenu();
+            document.getElementById('menuDropdown')?.classList.remove('active');
         }
 
         function closeEmulatorsModal() {
@@ -4765,8 +4815,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  window.rafNexusSubmitCommunity=()=>{};
  // RAF-VX native language switcher: no Google Translate widget, iframe, badge or external script.
  const RAF_LANG={
-  'الجيل الجديد':'The Next Generation','سجل التحديثات':'Update Log','الرئيسية':'Home','مكتبة الألعاب':'Game Library','المحاكيات':'Emulators','المقارنة':'Compare','المساعدة':'Help','مجتمع RAF-VX':'RAF-VX Community','آخر المشاهدات':'Recently Viewed','لعبة في المكتبة':'Games in Library','المفضلة على جهازك':'Your Favorites','آخر المشاهدات':'Recently Viewed','محلي':'Local','حفظ الإعدادات على جهازك':'Settings saved on your device',
-  '✨ مرحباً بك في RAF-VX NEXUS':'✨ Welcome to RAF-VX NEXUS','منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة تجارب الأداء المنشورة من المجتمع.':'A unified platform to discover games, follow updates, browse titles and review performance reports shared by the community.','🎲 اختر لعبة عشوائية':'🎲 Pick a Random Game','🔗 مشاركة الموقع':'🔗 Share Website','🕘 سجل المشاهدة':'🕘 Viewing History','📋 سجل تحديثات RAF-VX':'📋 RAF-VX Update Log','إضافة لوحة القيادة، قاعدة أجهزة، التنقل بين الأقسام، واللغة.':'Added the dashboard, device database, section navigation and language switching.','أدوات المكتبة الذكية':'Smart Library Tools','المقارنة، آخر المشاهدات، الاختيار العشوائي، والفرز المحلي.':'Comparison, recently viewed, random selection and local sorting.','تنبيه الشفافية':'Transparency Notice','سجل التحديثات الحالي يعرض ما أُضيف في هذه النسخة فقط، ويمكن توسيعه مع كل إصدار لاحق.':'This update log shows what was added in this version and can be expanded with future releases.',
+  'الجيل الجديد':'The Next Generation','سجل التحديثات':'Update Log','الرئيسية':'Home','مكتبة الألعاب':'Game Library','المحاكيات':'Emulators','المقارنة':'Compare','المساعدة':'Help','آخر المشاهدات':'Recently Viewed','لعبة في المكتبة':'Games in Library','المفضلة على جهازك':'Your Favorites','آخر المشاهدات':'Recently Viewed','محلي':'Local','حفظ الإعدادات على جهازك':'Settings saved on your device',
+  '✨ مرحباً بك في RAF-VX NEXUS':'✨ Welcome to RAF-VX NEXUS','منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة توافقها وأدائها.':'A unified platform to discover games, follow updates, browse titles and review performance reports shared by the community.','🎲 اختر لعبة عشوائية':'🎲 Pick a Random Game','🔗 مشاركة الموقع':'🔗 Share Website','🕘 سجل المشاهدة':'🕘 Viewing History','📋 سجل تحديثات RAF-VX':'📋 RAF-VX Update Log','إضافة لوحة القيادة، قاعدة أجهزة، التنقل بين الأقسام، واللغة.':'Added the dashboard, device database, section navigation and language switching.','أدوات المكتبة الذكية':'Smart Library Tools','المقارنة، آخر المشاهدات، الاختيار العشوائي، والفرز المحلي.':'Comparison, recently viewed, random selection and local sorting.','تنبيه الشفافية':'Transparency Notice','سجل التحديثات الحالي يعرض ما أُضيف في هذه النسخة فقط، ويمكن توسيعه مع كل إصدار لاحق.':'This update log shows what was added in this version and can be expanded with future releases.',
   '⬇️ التنزيلات':'⬇️ Downloads','مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق':'Android PC Gaming Hub — discover, compare and check compatibility','مركز تنزيلات الألعاب':'Game Downloads Center','ملفات كل لعبة مجمّعة: APK وDATA وOBB والملفات الإضافية':'All game files grouped together: APK, DATA, OBB and additional files','كل الألعاب':'All Games','ملفات مباشرة محتملة':'Potential Direct Files','صفحات استضافة':'Hosting Pages','السجل':'History','إعادة فحص الروابط':'Rescan Links','بحث باسم اللعبة أو APK أو DATA أو OBB…':'Search game, APK, DATA or OBB…','ملف مباشر محتمل':'Potential Direct File','صفحة استضافة / وسيطة':'Hosting / Intermediate Page','تنزيل / فتح الملف':'Download / Open File','فتح صفحة الملف':'Open File Page','نسخ':'Copy','رجوع':'Back','إغلاق':'Close','ملف':'File','ملفات':'Files','ابحث':'Search','لا يوجد سجل تنزيلات حتى الآن.':'No download history yet.','ما لقينا روابط مطابقة. اضغط «إعادة فحص الروابط» بعد فتح تفاصيل اللعبة.':'No matching links found. Press “Rescan Links” after opening the game details.'
  };
  const RAF_LANG_NODES=new WeakMap();
@@ -4894,178 +4944,122 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 })();
 </script>
 
-
-<style id="rafDownloadsStyles">
-.raf-dl-count{display:inline-flex;min-width:21px;height:21px;align-items:center;justify-content:center;border-radius:20px;background:#20b9a2;color:#061513;font-size:11px;font-weight:900;padding:0 5px}
-#rafDownloadsModal{position:fixed;inset:0;z-index:999999;background:rgba(2,7,15,.86);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:12px}
-#rafDownloadsModal.raf-show{display:flex}
-.raf-dl-window{width:min(960px,100%);height:min(92vh,920px);overflow:hidden;border:1px solid rgba(80,210,199,.38);border-radius:22px;background:linear-gradient(155deg,#101b2a,#07111d 70%);box-shadow:0 24px 90px #000b;color:#eef8ff;display:flex;flex-direction:column}
-.raf-dl-head{padding:14px 17px;border-bottom:1px solid #ffffff18;display:flex;align-items:center;gap:10px}
-.raf-dl-head-copy{min-width:0;flex:1}.raf-dl-head h2{margin:0;font-size:21px}.raf-dl-head p{margin:5px 0 0;color:#9bb0c3;font-size:12px}
-.raf-dl-head-actions{display:flex;gap:7px}
-.raf-dl-close,.raf-dl-back{border:1px solid #ffffff25;background:#ffffff0d;color:#fff;border-radius:11px;min-width:39px;height:39px;font-size:18px}
-.raf-dl-back{font-size:12px;padding:0 12px;min-width:auto}
-.raf-dl-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:12px 17px}
-.raf-dl-stat{background:#ffffff09;border:1px solid #ffffff12;border-radius:13px;padding:9px;text-align:center}.raf-dl-stat b{display:block;font-size:19px;color:#62e0cb}.raf-dl-stat span{font-size:11px;color:#9db1c3}
-.raf-dl-tools{padding:0 17px 11px;display:flex;gap:7px;flex-wrap:wrap}
-.raf-dl-search{flex:1;min-width:150px;border:1px solid #ffffff20;border-radius:11px;background:#050d17;color:white;padding:11px 12px;outline:none}
-.raf-dl-tab,.raf-dl-scan{border:1px solid #ffffff20;border-radius:11px;background:#ffffff0b;color:#c9d8e5;padding:9px 11px;font-size:11px}
-.raf-dl-tab.active,.raf-dl-scan{background:#1aa995;color:#041412;border-color:#1aa995;font-weight:900}
-.raf-dl-list{overflow:auto;padding:0 17px 17px;min-height:140px;overscroll-behavior:contain}
-.raf-dl-game{margin:9px 0;border:1px solid #ffffff17;border-radius:16px;background:#ffffff08;overflow:hidden}
-.raf-dl-game-head{display:flex;align-items:center;gap:10px;padding:12px 13px;background:#ffffff06}
-.raf-dl-icon{width:39px;height:39px;flex:0 0 39px;border-radius:11px;background:#1aa99520;display:grid;place-items:center;font-size:19px}
-.raf-dl-game-name{min-width:0;flex:1;font-weight:900;font-size:13px;overflow-wrap:anywhere}
-.raf-dl-game-count{font-size:10px;color:#9db5c7;background:#ffffff0b;border-radius:20px;padding:5px 8px}
-.raf-dl-file{display:flex;align-items:center;gap:9px;padding:10px 13px;border-top:1px solid #ffffff10}
-.raf-dl-file-info{min-width:0;flex:1}.raf-dl-file-info b{display:block;font-size:12px}.raf-dl-file-info small{display:block;color:#9eb2c4;font-size:10px;margin-top:3px;overflow-wrap:anywhere}
-.raf-dl-badge{display:inline-block;border-radius:30px;padding:3px 7px;margin-top:5px;font-size:9px}
-.raf-dl-badge.direct{background:#123f37;color:#80f0cb}.raf-dl-badge.page{background:#46351b;color:#ffd18a}
-.raf-dl-action{border:0;border-radius:9px;padding:9px 10px;background:#1db59f;color:#041512;font-size:10px;font-weight:900;text-decoration:none;white-space:nowrap}
-.raf-dl-action.secondary{background:#ffffff12;color:#dbe9f5;border:1px solid #ffffff1c}
-.raf-dl-note{margin:0 17px 13px;padding:10px 12px;border-radius:11px;background:#f0a93b12;border:1px solid #f0a93b35;color:#f3d5a4;font-size:10px;line-height:1.7}
-.raf-dl-empty{text-align:center;padding:35px 12px;color:#a9bdcf}
-@media(max-width:600px){.raf-dl-window{height:95vh;border-radius:16px}.raf-dl-head h2{font-size:18px}.raf-dl-summary{padding:9px;gap:6px}.raf-dl-stat{padding:8px 3px}.raf-dl-stat b{font-size:16px}.raf-dl-tools{padding:0 10px 9px}.raf-dl-list{padding:0 10px 12px}.raf-dl-file{flex-wrap:wrap}.raf-dl-file-info{flex-basis:calc(100% - 50px)}.raf-dl-file .raf-dl-action{flex:1;text-align:center}.raf-dl-head{padding:11px}.raf-dl-back{padding:0 8px}}
-.raf-lang-en .raf-dl-head,.raf-lang-en .raf-dl-tools{direction:ltr}.raf-lang-en .raf-dl-game-head,.raf-lang-en .raf-dl-file{direction:ltr;text-align:left}.raf-lang-en .raf-dl-note{text-align:left}
-</style>
-<div id="rafDownloadsModal" aria-hidden="true">
- <section class="raf-dl-window" role="dialog" aria-modal="true" aria-labelledby="rafDlTitle">
-  <header class="raf-dl-head">
-   <button class="raf-dl-back" type="button" onclick="rafCloseDownloads()" aria-label="رجوع">‹ رجوع</button>
-   <div class="raf-dl-head-copy"><h2 id="rafDlTitle">⬇️ مركز تنزيلات الألعاب</h2><p>ملفات كل لعبة مجمّعة: APK وDATA وOBB والملفات الإضافية</p></div>
-   <div class="raf-dl-head-actions"><button class="raf-dl-close" type="button" onclick="rafCloseDownloads()" aria-label="إغلاق">×</button></div>
+<div id="rafSmartSearch" aria-hidden="true">
+ <section class="raf-smart-panel" role="dialog" aria-modal="true" aria-labelledby="rafSmartTitle">
+  <header class="raf-smart-head">
+   <div class="raf-smart-head-copy"><h2 id="rafSmartTitle">🔎 البحث الذكي في RAFVX</h2><p>انتقل مباشرة إلى اللعبة أو افتح أداة المحاكي التي تحتاجها.</p></div>
+   <button class="raf-smart-close" type="button" onclick="closeRafSmartSearch()" aria-label="إغلاق">×</button>
   </header>
-  <div class="raf-dl-summary">
-   <div class="raf-dl-stat"><b id="rafDlGamesCount">0</b><span>ألعاب لديها روابط</span></div>
-   <div class="raf-dl-stat"><b id="rafDlFilesCount">0</b><span>إجمالي ملفات اللعبة</span></div>
-   <div class="raf-dl-stat"><b id="rafDlHistoryCount">0</b><span>روابط تم فتحها</span></div>
+  <div class="raf-smart-tabs">
+   <button class="raf-smart-tab active" type="button" data-smart-tab="games">🎮 الألعاب <span id="rafSmartGameCount">127</span></button>
+   <button class="raf-smart-tab" type="button" data-smart-tab="emulators">🕹️ المحاكيات والأدوات</button>
   </div>
-  <div class="raf-dl-tools">
-   <input id="rafDlSearch" class="raf-dl-search" type="search" placeholder="ابحث باسم اللعبة أو APK أو DATA أو OBB…">
-   <button class="raf-dl-tab active" data-filter="all" type="button">كل الألعاب</button>
-   <button class="raf-dl-tab" data-filter="direct" type="button">ملفات مباشرة محتملة</button>
-   <button class="raf-dl-tab" data-filter="page" type="button">صفحات استضافة</button>
-   <button class="raf-dl-tab" data-filter="history" type="button">السجل</button>
-   <button class="raf-dl-scan" id="rafDlScanBtn" type="button">⟳ إعادة فحص الروابط</button>
-  </div>
-  <div id="rafDlList" class="raf-dl-list"></div>
-  <p class="raf-dl-note">مهم: يعرض المركز جميع روابط الملفات الموجودة داخل صفحة اللعبة ويجمعها تحت اسم اللعبة. «مباشر محتمل» تقدير من شكل الرابط فقط. الفاحص يلتقط الروابط المنشورة في عناصر اللعبة وبياناتها ووجهات التحويل الظاهرة. لا يتجاوز تسجيل الدخول أو CAPTCHA أو قيود الحماية ولا يكشف الروابط التي يخفيها الخادم. عند فتح رابط DATA/OBB، أكمل التنزيل من صفحة الاستضافة إذا طلبت ذلك.</p>
+  <div class="raf-smart-searchbox"><input id="rafSmartInput" type="search" autocomplete="off" placeholder="اكتب اسم اللعبة أو المحاكي…"></div>
+  <div class="raf-smart-count" id="rafSmartCount">كل الألعاب مرتبة أبجديًا</div>
+  <div class="raf-smart-results" id="rafSmartResults"></div>
  </section>
 </div>
-<script id="rafDownloadsManager">
+
+
+<script id="rafSmartSearchScript">
 (function(){
- const modal=document.getElementById('rafDownloadsModal'),list=document.getElementById('rafDlList'),search=document.getElementById('rafDlSearch');
- let activeFilter='all',historyMode=false;
- const directExt=/\.(apk|obb|zip|7z|rar|xapk|apks|aab)(?:$|[?#])/i;
- const releasePath=/github\.com\/[^/]+\/[^/]+\/releases\/download\//i;
- const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- function classify(url){return directExt.test(url)||releasePath.test(url)}
- function labelType(label,url){
-  const s=(label+' '+url).toLowerCase();
-  if(/\bobb\b/.test(s))return 'OBB';
-  if(/\b(data|game data|ملفات اللعبة|ملف اللعبة)\b/.test(s))return 'DATA';
-  if(/\b(apk|application)\b/.test(s)||/\.apk(?:$|[?#])/i.test(url))return 'APK';
-  if(/\.zip|\.7z|\.rar/i.test(url))return 'ARCHIVE';
-  return 'FILE';
- }
- // Scan visible anchors plus common URL-bearing attributes inside every game card.
+ const modal=document.getElementById('rafSmartSearch');
+ const input=document.getElementById('rafSmartInput');
+ const results=document.getElementById('rafSmartResults');
+ let activeTab='games';
+ const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[ًٌٍَُِّْـ]/g,'').toLocaleLowerCase().replace(/[_-]/g,' ').trim();
+ const esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function getGames(){
-  const map=new Map();
-  document.querySelectorAll('.game-card').forEach(card=>{
-   const title=(card.querySelector('.game-title,h3,h2')?.textContent||card.getAttribute('data-name')||'لعبة').trim();
-   if(!map.has(title))map.set(title,[]);
-   const found=new Map();
-   const add=(raw,label)=>{
-    if(!raw)return;
-    try{
-     const u=new URL(raw,location.href).href;
-     if(!/^https?:/i.test(u)||found.has(u))return;
-     found.set(u,{title,label:(label||labelType(label||'',u)).trim()||labelType('',u),url:u,type:labelType(label||'',u),isDirect:classify(u)});
-    }catch(e){}
-   };
-   card.querySelectorAll('.download-group a[href],a[data-href],a[data-url],[data-download-url]').forEach(a=>{
-    add(a.getAttribute('href')||a.getAttribute('data-href')||a.getAttribute('data-url')||a.getAttribute('data-download-url'),(a.textContent||a.getAttribute('aria-label')||'ملف اللعبة').trim());
-   });
-   // Detect links embedded in inline onclick/data attributes, without executing page scripts.
-   card.querySelectorAll('*').forEach(el=>{
-    for(const attr of ['data-href','data-url','data-download-url','onclick']){
-     const val=el.getAttribute?.(attr);if(!val)continue;
-     const matches=val.match(/https?:\/\/[^\s"'<>\\)]+/g)||[];
-     matches.forEach(u=>add(u,(el.textContent||'رابط إضافي').trim().slice(0,70)));
-    }
-   });
-   // Find public URLs embedded in the card markup and unwrap ordinary redirect parameters only.
-   const markup=card.innerHTML;
-   (markup.match(/https?:\/\/[^\s"'<>\\)]+/g)||[]).forEach(u=>add(u,'رابط مكتشف داخل بيانات اللعبة'));
-   [...found.values()].forEach(item=>{try{const u=new URL(item.url);for(const key of ['url','u','target','redirect','redirect_url','download']){const v=u.searchParams.get(key);if(v&&/^https?:/i.test(decodeURIComponent(v))){add(decodeURIComponent(v),'وجهة تحويل ظاهرة في الرابط');}}}catch(e){}});
-   map.get(title).push(...found.values());
+  return [...document.querySelectorAll('#gamesGrid .game-card')].map(card=>({
+   id:card.getAttribute('data-id')||'',
+   title:(card.querySelector('.game-title')?.textContent||card.getAttribute('data-id')||'لعبة').replace(/^\s*[✨🎮🔥⚡]+\s*/,'').trim(),
+   category:card.getAttribute('data-category')||'',
+   card
+  })).sort((a,b)=>a.title.localeCompare(b.title,'en',{sensitivity:'base'}));
+ }
+ function getEmulators(){
+  const hub=document.querySelector('#emulatorsModal .emulators-content');
+  if(!hub)return [];
+  const items=[];
+  hub.querySelectorAll('.vx-emu-card').forEach(card=>{
+   const title=card.querySelector('h4')?.textContent?.trim();
+   if(!title)return;
+   const desc=card.querySelector('p')?.textContent?.trim()||'';
+   const links=[...card.querySelectorAll('a[href]')].map(a=>({label:a.textContent.trim(),url:a.href}));
+   items.push({title,desc,links,icon:card.querySelector('.vx-emu-icon')?.textContent?.trim()||'🕹️'});
   });
-  return [...map.entries()].map(([title,files])=>({title,files})).filter(g=>g.files.length);
+  const libraries=hub.querySelector('.vx-emu-link-grid');
+  if(libraries){
+   const links=[...libraries.querySelectorAll('a[href]')].map(a=>({label:a.textContent.trim(),url:a.href}));
+   items.push({title:'مواقع ومكتبات ألعاب الكمبيوتر',desc:'مواقع خارجية للبحث عن ألعاب الكمبيوتر.',links,icon:'🌐'});
+  }
+  return items;
  }
- function getHistory(){try{return JSON.parse(localStorage.getItem('rafvx_download_history')||'[]')}catch(e){return[]}}
- function setHistory(x){try{localStorage.setItem('rafvx_download_history',JSON.stringify(x.slice(0,80)))}catch(e){}}
- function updateStats(){
-  const games=getGames(),files=games.reduce((n,g)=>n+g.files.length,0);
-  document.getElementById('rafDlGamesCount').textContent=games.length;
-  document.getElementById('rafDlFilesCount').textContent=files;
-  document.getElementById('rafDlHistoryCount').textContent=getHistory().length;
-  document.getElementById('rafDownloadsCount').textContent=getHistory().length;
- }
- function remember(item){
-  const h=getHistory();h.unshift({title:item.title,label:item.label,url:item.url,isDirect:item.isDirect,date:new Date().toLocaleString()});setHistory(h);updateStats();
- }
- function renderFile(item){
-  const row=document.createElement('div');row.className='raf-dl-file';
-  const info=document.createElement('div');info.className='raf-dl-file-info';
-  const name=document.createElement('b');name.textContent=item.type+' — '+item.label;
-  const badge=document.createElement('span');badge.className='raf-dl-badge '+(item.isDirect?'direct':'page');badge.textContent=item.isDirect?'ملف مباشر محتمل':'صفحة استضافة / وسيطة';
-  const url=document.createElement('small');url.textContent=item.url;
-  info.append(name,badge,url);
-  const open=document.createElement('a');open.className='raf-dl-action';open.href=item.url;open.target='_blank';open.rel='noopener noreferrer';open.textContent=item.isDirect?'تنزيل / فتح الملف':'فتح صفحة الملف';
-  open.addEventListener('click',()=>remember(item));
-  const copy=document.createElement('button');copy.className='raf-dl-action secondary';copy.type='button';copy.textContent='نسخ';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(item.url);copy.textContent='✓ نُسخ';setTimeout(()=>copy.textContent='نسخ',1300)}catch(e){prompt('انسخ الرابط:',item.url)}});
-  row.append(info,open,copy);return row;
+ function setTab(tab){
+  activeTab=tab;
+  document.querySelectorAll('[data-smart-tab]').forEach(b=>b.classList.toggle('active',b.dataset.smartTab===tab));
+  input.placeholder=tab==='games'?'ابحث باسم اللعبة…':'ابحث باسم المحاكي أو الأداة…';
+  document.getElementById('rafSmartCount').textContent=tab==='games'?'قائمة الألعاب مرتبة أبجديًا':'المحاكيات مرتبة حسب مركز المحاكيات، مع روابطها وملحقاتها';
+  render();
  }
  function render(){
-  const q=(search.value||'').trim().toLowerCase();list.replaceChildren();
-  if(activeFilter==='history'){
-   const hist=getHistory().filter(x=>(x.title+' '+x.label+' '+x.url).toLowerCase().includes(q));
-   if(!hist.length){list.innerHTML='<div class="raf-dl-empty">لا يوجد سجل تنزيلات حتى الآن.</div>';return;}
-   hist.forEach(x=>{const g=document.createElement('section');g.className='raf-dl-game';const head=document.createElement('div');head.className='raf-dl-game-head';head.innerHTML='<div class="raf-dl-icon">🕘</div><div class="raf-dl-game-name"></div>';head.querySelector('.raf-dl-game-name').textContent=x.title+' • '+(x.date||'');g.append(head);g.append(renderFile({...x,type:labelType(x.label||'',x.url)}));list.append(g);});
-   return;
+  const q=norm(input.value);results.replaceChildren();
+  if(activeTab==='games'){
+   const games=getGames().filter(g=>norm(g.title+' '+g.id+' '+g.category).includes(q));
+   document.getElementById('rafSmartGameCount').textContent=getGames().length;
+   if(!games.length){results.innerHTML='<div class="raf-smart-empty">لم نعثر على لعبة بهذا الاسم.</div>';return;}
+   games.forEach(g=>{
+    const b=document.createElement('button');b.type='button';b.className='raf-smart-result';
+    b.innerHTML='<span class="raf-smart-result-icon">🎮</span><span class="raf-smart-result-copy"><b>'+esc(g.title)+'</b><small>'+esc(g.category||'لعبة')+' • انتقال مباشر إلى مكان اللعبة</small></span><span class="raf-smart-result-arrow">←</span>';
+    b.addEventListener('click',()=>goToGame(g));results.append(b);
+   });
+  }else{
+   const emus=getEmulators().filter(e=>norm(e.title+' '+e.desc+' '+e.links.map(l=>l.label).join(' ')).includes(q));
+   if(!emus.length){results.innerHTML='<div class="raf-smart-empty">لم نعثر على محاكي أو أداة مطابقة.</div>';return;}
+   emus.forEach(e=>{
+    const row=document.createElement('div');row.className='raf-smart-result';row.style.cursor='default';
+    row.innerHTML='<span class="raf-smart-result-icon">'+esc(e.icon)+'</span><span class="raf-smart-result-copy"><b>'+esc(e.title)+'</b><small>'+esc(e.desc)+'</small></span>';
+    results.append(row);
+    if(e.links.length){
+     const links=document.createElement('div');links.className='raf-smart-result-links';
+     e.links.forEach(l=>{const a=document.createElement('a');a.href=l.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=l.label+' ↗';links.append(a);});
+     results.append(links);
+    }
+   });
   }
-  let games=getGames().map(g=>({...g,files:g.files.filter(f=>(activeFilter==='all'||(activeFilter==='direct'?f.isDirect:!f.isDirect))&&(g.title+' '+f.label+' '+f.url).toLowerCase().includes(q))})).filter(g=>g.files.length);
-  if(!games.length){list.innerHTML='<div class="raf-dl-empty">ما لقينا روابط مطابقة. اضغط «إعادة فحص الروابط» بعد فتح تفاصيل اللعبة.</div>';return;}
-  games.forEach(g=>{
-   const box=document.createElement('section');box.className='raf-dl-game';
-   const head=document.createElement('div');head.className='raf-dl-game-head';
-   const icon=document.createElement('div');icon.className='raf-dl-icon';icon.textContent='🎮';
-   const name=document.createElement('div');name.className='raf-dl-game-name';name.textContent=g.title;
-   const count=document.createElement('span');count.className='raf-dl-game-count';count.textContent=g.files.length+' ملف';
-   head.append(icon,name,count);box.append(head);g.files.forEach(f=>box.append(renderFile(f)));list.append(box);
-  });
  }
- let historyPushed=false;
- window.rafOpenDownloads=()=>{
-  updateStats();render();modal.classList.add('raf-show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
-  if(!historyPushed){history.pushState({rafDownloads:true},'','#raf-downloads');historyPushed=true;}
+ function goToGame(g){
+  // Clear old filters so the selected game is guaranteed to be visible.
+  if(typeof currentCategory!=='undefined')currentCategory='all';
+  if(typeof showOnlyFavorites!=='undefined')showOnlyFavorites=false;
+  const oldInput=document.getElementById('searchInput');if(oldInput)oldInput.value='';
+  if(typeof filterGames==='function')filterGames();
+  closeRafSmartSearch();
+  setTimeout(()=>{
+   const card=document.querySelector('#gamesGrid .game-card[data-id="'+CSS.escape(g.id)+'"]');
+   if(card){
+    card.hidden=false;card.scrollIntoView({behavior:'smooth',block:'center'});
+    card.classList.add('raf-search-highlight');
+    setTimeout(()=>card.classList.remove('raf-search-highlight'),2200);
+   }
+  },100);
+ }
+ window.openRafSmartSearch=function(tab='games'){
+  modal.classList.add('active');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+  setTab(tab);input.value='';render();setTimeout(()=>input.focus(),100);
  };
- window.rafCloseDownloads=()=>{
-  if(!modal.classList.contains('raf-show'))return;
-  modal.classList.remove('raf-show');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';
-  if(historyPushed){historyPushed=false;if(location.hash==='#raf-downloads')history.back();}
+ window.closeRafSmartSearch=function(){
+  modal.classList.remove('active');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';
  };
- window.addEventListener('popstate',()=>{
-  if(modal.classList.contains('raf-show')){modal.classList.remove('raf-show');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
-  historyPushed=false;
- });
- modal.addEventListener('click',e=>{if(e.target===modal)window.rafCloseDownloads();});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('raf-show'))window.rafCloseDownloads();});
- search.addEventListener('input',render);
- modal.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{activeFilter=btn.dataset.filter;modal.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===btn));render();}));
- document.getElementById('rafDlScanBtn').addEventListener('click',()=>{updateStats();render();const b=document.getElementById('rafDlScanBtn');b.textContent='✓ اكتمل الفحص';setTimeout(()=>b.textContent='⟳ إعادة فحص الروابط',1500);});
- document.addEventListener('DOMContentLoaded',updateStats);updateStats();
+ document.querySelectorAll('[data-smart-tab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.smartTab)));
+ input.addEventListener('input',render);
+ modal.addEventListener('click',e=>{if(e.target===modal)closeRafSmartSearch();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('active'))closeRafSmartSearch();});
+ window.rafCloseMenu=function(){document.getElementById('menuDropdown')?.classList.remove('active');};
+ window.scrollToSearch=function(){openRafSmartSearch('games');rafCloseMenu();};
+ window.addEventListener('load',()=>{document.getElementById('rafSmartGameCount').textContent=getGames().length;});
 })();
 </script>
+
 </body>
 </html>
