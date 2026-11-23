@@ -1,0 +1,9 @@
+# RAFVX image cover map
+# ضع رابط صورة مباشرًا لكل لعبة، ثم ارفع هذا الملف من زر "اختيار ملف YAML" داخل الموقع.
+# ملاحظة: الاستيراد من داخل الموقع يحفظ الروابط على الجهاز/المتصفح الحالي فقط.
+# للنشر لجميع الزوار، يجب إضافة الصور إلى images/games داخل مستودع GitHub وتحديث مساراتها في HTML.
+covers:
+  gta-5-lite: "https://example.com/gta-5-lite.jpg"
+  gta-v-3gb: "https://example.com/gta-v-3gb.jpg"
+  pes-2018: "https://example.com/pes-2018.jpg"
+  shrek-2: "https://example.com/shrek-2.jpg"
