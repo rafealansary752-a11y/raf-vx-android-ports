@@ -1300,6 +1300,23 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 }
 </style>
 
+
+<style id="raf-home-tools-v2">
+.raf-home-hub{margin:14px 0 18px!important;padding:clamp(14px,2.5vw,23px)!important;border:1px solid rgba(255,55,91,.25);background:linear-gradient(145deg,rgba(20,25,38,.98),rgba(8,13,23,.98));}
+.raf-home-hub>h3{font-size:clamp(18px,2.8vw,23px);margin:0 0 5px;color:#f8fbff}.raf-home-hub>.nexus-muted{margin:0 0 15px;color:#9eacc0;font-size:12px}
+.raf-home-tools{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+.raf-home-tools button,.raf-home-tools a{min-width:0;min-height:91px;padding:12px 8px;border:1px solid rgba(255,255,255,.09);border-radius:15px;background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));color:#f5f7fb;text-decoration:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}
+.raf-home-tools button:active,.raf-home-tools a:active{transform:scale(.97)}.raf-home-tools button:hover,.raf-home-tools a:hover{border-color:rgba(255,55,91,.6);background:rgba(255,40,80,.1)}
+.raf-home-tools span{font-size:22px;line-height:1.2}.raf-home-tools b{font-size:11px;font-weight:900}.raf-home-tools small{font-size:9px;color:#9ba9bd;line-height:1.4}
+.raf-home-smart-search{margin-top:12px;padding:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid rgba(255,55,91,.45);border-radius:16px;background:linear-gradient(110deg,rgba(255,43,82,.14),rgba(21,31,48,.88))}
+.raf-home-smart-search>div{display:flex;align-items:center;gap:11px;min-width:0}.raf-home-search-icon{width:39px;height:39px;flex:0 0 39px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(140deg,#ff3159,#a90b32);font-size:25px;color:white}
+.raf-home-smart-search b{display:block;font-size:13px;color:#fff}.raf-home-smart-search small{display:block;margin-top:4px;color:#a8b4c5;font-size:10px;line-height:1.6}
+.raf-home-smart-search>button{flex:0 0 auto;border:0;border-radius:12px;padding:11px 14px;background:linear-gradient(135deg,#ff3159,#a90b32);color:white;font-weight:900;font-size:11px;cursor:pointer;box-shadow:0 6px 18px rgba(255,35,75,.2)}
+.top-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px}.top-nav-bar{position:relative}
+@media(max-width:720px){.raf-home-tools{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.raf-home-tools button,.raf-home-tools a{min-height:78px}.raf-home-smart-search{align-items:stretch;flex-direction:column}.raf-home-smart-search>button{width:100%;min-height:43px}.raf-home-smart-search small{font-size:9px}}
+@media(min-width:721px) and (max-width:950px){.raf-home-tools{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+
 </head>
 <body>
 
@@ -1308,19 +1325,38 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
 <nav class="nexus-nav" aria-label="التنقل الرئيسي">
  <button onclick="rafNexusPanel('home')">🏠 الرئيسية</button>
- <button class="raf-smart-search-nav" onclick="openRafSmartSearch('games')">🔎 البحث الذكي</button>
+
  <button onclick="openEmulatorsModal()">🕹️ المحاكيات</button>
  <button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button>
  <button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button>
 </nav>
  <div class="nexus-stats"><div class="nexus-stat"><b id="nexusGames">—</b><small>لعبة في المكتبة</small></div><div class="nexus-stat"><b id="nexusFavs">—</b><small>المفضلة على جهازك</small></div><div class="nexus-stat"><b id="nexusRecent">—</b><small>آخر المشاهدات</small></div><div class="nexus-stat"><b>محلي</b><small>حفظ الإعدادات على جهازك</small></div></div>
 </section>
-<section class="nexus-panel" id="nexusPanel-home"><h3>✨ مرحباً بك في RAF-VX NEXUS</h3><p class="nexus-muted">منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة توافقها وأدائها.</p><div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusRandom()">🎲 اختر لعبة عشوائية</button><button class="nexus-btn" onclick="rafNexusShareSite()">🔗 مشاركة الموقع</button><button class="nexus-btn" onclick="rafNexusPanel('recent')">🕘 سجل المشاهدة</button></div></section>
+<section class="nexus-panel raf-home-hub active" id="nexusPanel-home">
+ <h3>✨ مرحباً بك في RAF-VX NEXUS</h3>
+ <p class="nexus-muted">كل أدوات المكتبة والمحاكيات والمساعدة في مكان واحد — بدون قوائم مخفية.</p>
+ <div class="raf-home-tools" aria-label="الأدوات السريعة">
+  <button type="button" onclick="filterFavorites()"><span>❤️</span><b>المفضلة</b><small>ألعابك المحفوظة</small></button>
+  <button type="button" onclick="resetFilter()"><span>🎮</span><b>كل الألعاب</b><small>عرض المكتبة كاملة</small></button>
+  <button type="button" onclick="exportFavorites()"><span>💾</span><b>تصدير المفضلة</b><small>حفظ نسخة احتياطية</small></button>
+  <button type="button" onclick="importFavoritesPrompt()"><span>📂</span><b>استيراد المفضلة</b><small>استعادة نسخة محفوظة</small></button>
+  <button type="button" onclick="openEmulatorsModal()"><span>🕹️</span><b>المحاكيات الشامل</b><small>المحاكيات وملحقاتها</small></button>
+  <a href="https://t.me/RAF2007mmaaggq" target="_blank" rel="noopener noreferrer"><span>🛠️</span><b>مركز المساعدة</b><small>الدخول إلى قروب الشات</small></a>
+  <button type="button" onclick="supportPlatform()"><span>👑</span><b>دعم RAFVX</b><small>دعم المنصة</small></button>
+  <button type="button" onclick="rafNexusPanel('compare')"><span>⚖️</span><b>مقارنة الألعاب</b><small>قارن حتى 3 ألعاب</small></button>
+  <button type="button" onclick="showRecentlyViewed()"><span>🕘</span><b>آخر المشاهدات</b><small>تابع ما فتحته</small></button>
+  <button type="button" onclick="rafNexusPanel('updates')"><span>📋</span><b>سجل التحديثات</b><small>آخر إضافات المنصة</small></button>
+ </div>
+ <div class="raf-home-smart-search">
+  <div><span class="raf-home-search-icon">⌕</span><div><b>البحث الذكي عن الألعاب والمحاكيات</b><small>اختر اللعبة من القائمة وانتقل إليها مباشرة، أو ابحث عن محاكي وملحقاته.</small></div></div>
+  <button type="button" onclick="openRafSmartSearch('games')">افتح البحث الذكي <span>←</span></button>
+ </div>
+</section>
 
 <section class="nexus-panel" id="nexusPanel-updates"><h3>📋 سجل تحديثات RAF-VX</h3><div class="nexus-list"><div class="nexus-box"><b>RAF-VX NEXUS — تحديث الواجهة</b><p>إضافة لوحة القيادة، قاعدة أجهزة، التنقل بين الأقسام، واللغة.</p></div><div class="nexus-box"><b>أدوات المكتبة الذكية</b><p>المقارنة، آخر المشاهدات، الاختيار العشوائي، والفرز المحلي.</p></div><div class="nexus-box"><b>تنبيه الشفافية</b><p>سجل التحديثات الحالي يعرض ما أُضيف في هذه النسخة فقط، ويمكن توسيعه مع كل إصدار لاحق.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-emulators"><h3>🕹️ مركز المحاكيات</h3><button class="nexus-btn" onclick="openEmulatorsModal()">فتح مركز المحاكيات الشامل ✨</button><div class="nexus-grid" style="display:none"><div class="nexus-box"><b>GameHub</b><p>بيئة لتشغيل ألعاب الكمبيوتر على أندرويد. تحقق من توافق الإصدار وتعريف الرسوميات لكل لعبة.</p></div><div class="nexus-box"><b>Winlator</b><p>تشغيل تطبيقات وألعاب ويندوز عبر طبقات توافق. الإعدادات تختلف حسب المعالج واللعبة.</p></div><div class="nexus-box"><b>Eden</b><p>محاكي ألعاب Nintendo Switch على أندرويد؛ الأداء يعتمد على اللعبة والجهاز والإصدار.</p></div><div class="nexus-box"><b>Vita3K</b><p>محاكي PlayStation Vita؛ راجع قائمة التوافق الرسمية لكل عنوان.</p></div><div class="nexus-box"><b>PPSSPP</b><p>محاكي PSP، مع خيارات رسومية وتحكم قابلة للتخصيص.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-compare"><h3>⚖️ مقارنة الألعاب</h3><p class="nexus-muted">استخدم زر «＋ قارن» الموجود على بطاقات الألعاب، ثم افتح أداة المقارنة الموجودة في الموقع.</p><button class="nexus-btn" onclick="document.querySelector('#vxCompareDock button')?.click();document.getElementById('vxCompareDock')?.scrollIntoView({behavior:'smooth'})">فتح قائمة المقارنة</button></section>
-<section class="nexus-panel" id="nexusPanel-help"><h3>🛠️ مركز المساعدة</h3><div class="nexus-grid"><div class="nexus-box"><b>اللعبة لا تبدأ</b><p>تحقق من إصدار المحاكي، ملفات اللعبة، مساحة التخزين، وتعريف الرسوميات.</p></div><div class="nexus-box"><b>شاشة سوداء</b><p>قد تكون المشكلة من واجهة الرسوميات أو تعريف GPU أو ملفات اللعبة.</p></div><div class="nexus-box"><b>تقطيع وانخفاض أداء</b><p>جرّب إعدادات رسومية أقل، وأغلق التطبيقات الخلفية، وتأكد من حرارة الجهاز.</p></div><div class="nexus-box"><b>مشكلة التحكم</b><p>راجع تعيين الأزرار داخل المحاكي وتأكد من اختيار ملف التحكم الصحيح.</p></div></div></section>
+<section class="nexus-panel" id="nexusPanel-help"><h3>🛠️ مركز المساعدة</h3><p><a href="https://t.me/RAF2007mmaaggq" target="_blank" rel="noopener noreferrer" class="nexus-btn">فتح قروب المساعدة على Telegram ↗</a></p><div class="nexus-grid"><div class="nexus-box"><b>اللعبة لا تبدأ</b><p>تحقق من إصدار المحاكي، ملفات اللعبة، مساحة التخزين، وتعريف الرسوميات.</p></div><div class="nexus-box"><b>شاشة سوداء</b><p>قد تكون المشكلة من واجهة الرسوميات أو تعريف GPU أو ملفات اللعبة.</p></div><div class="nexus-box"><b>تقطيع وانخفاض أداء</b><p>جرّب إعدادات رسومية أقل، وأغلق التطبيقات الخلفية، وتأكد من حرارة الجهاز.</p></div><div class="nexus-box"><b>مشكلة التحكم</b><p>راجع تعيين الأزرار داخل المحاكي وتأكد من اختيار ملف التحكم الصحيح.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-recent"><h3>🕘 آخر المشاهدات</h3><div id="nexusRecentList" class="nexus-list"><p class="nexus-muted">ستظهر الألعاب التي فتحت تفاصيلها هنا.</p></div></section>
 
 
@@ -1364,20 +1400,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
             <div class="platform-badge-top">👑 النسخة الملكية الرسمية</div>
             <div class="top-actions">
                 <button class="action-icon-btn" onclick="sharePlatform()" title="مشاركة المنصة">🔗</button>
-                <button class="action-icon-btn" onclick="toggleMenu()" title="القائمة المتقدمة">⋮</button>
-                <div class="menu-dropdown" id="menuDropdown">
- <div class="menu-group-label">المكتبة</div>
- <div class="menu-item" onclick="filterFavorites();rafCloseMenu()">❤️ ألعابك المفضلة</div>
- <div class="menu-item" onclick="resetFilter();rafCloseMenu()">🎮 كل الألعاب</div>
- <div class="menu-group-label">نسخ بياناتك</div>
- <div class="menu-item" onclick="exportFavorites()">💾 تصدير المفضلة</div>
- <div class="menu-item" onclick="importFavoritesPrompt();rafCloseMenu()">📂 استيراد المفضلة</div>
- <div class="menu-group-label">الأدوات والدعم</div>
- <div class="menu-item" onclick="rafNexusPanel('help');rafCloseMenu()">🛠️ مركز المساعدة</div>
- <div class="menu-item" onclick="openEmulatorsModal();rafCloseMenu()">🕹️ قسم المحاكيات الشامل</div>
- <div class="menu-item" onclick="supportPlatform()">👑 دعم منصة 𝐑𝐀𝐅𝐕𝐗</div>
-</div>
-</div></div>
+            </div>
         </div>
 
         <div class="emulators-modal" id="emulatorsModal" role="dialog" aria-modal="true" aria-label="مركز المحاكيات والأدوات">
@@ -1389,7 +1412,9 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                     <p>بوابتك المنظمة للمحاكيات وأدوات التشغيل والتعريفات ومكتبات الألعاب.</p>
                     <div class="vx-emu-hero-tags"><span>⚙️ أدوات التشغيل</span><span>🎮 منصات متعددة</span><span>📱 Android</span></div>
                 </div>
-                <div><h4>قروب الشات الرئيسي</h4><p>للنقاش ومشاركة حلول مشاكل الألعاب والمحاكيات.</p></div><a href="https://t.me/RAF2007mmaaggq" target="_blank" rel="noopener noreferrer" class="emu-btn-link">انضمام للقروب ↗</a></article>
+                <div class="vx-emu-section-head"><div><small>COMMUNITY</small><h3>قنوات RAFVX</h3></div><span>01</span></div>
+                <div class="vx-emu-grid vx-emu-grid-2">
+                    <article class="vx-emu-card"><div class="vx-emu-icon">💬</div><div><h4>قروب الشات الرئيسي</h4><p>للنقاش ومشاركة حلول مشاكل الألعاب والمحاكيات.</p></div><a href="https://t.me/RAF2007mmaaggq" target="_blank" rel="noopener noreferrer" class="emu-btn-link">انضمام للقروب ↗</a></article>
                     <article class="vx-emu-card"><div class="vx-emu-icon">📢</div><div><h4>قناة التحديثات والأخبار</h4><p>تابع الإضافات والإصدارات وأخبار المنصة.</p></div><a href="https://t.me/hdjsqn" target="_blank" rel="noopener noreferrer" class="emu-btn-link">زيارة القناة ↗</a></article>
                 </div>
                 <div class="vx-emu-section-head"><div><small>PC ON ANDROID</small><h3>تشغيل ألعاب الكمبيوتر</h3></div><span>02</span></div>
