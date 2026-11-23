@@ -1496,23 +1496,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 </a>
             </div>
         </header>
-
-        
-
-        <section class="raf-hero" aria-label="مقدمة منصة RAF-VX">
-            <div class="hero-copy">
-                <span class="hero-kicker">RAF-VX / ANDROID PORTS LIBRARY</span>
-                <h1>اللعبة التالية<br><span>تبدأ من هنا.</span></h1>
-                <p>مكتبة منظمة لبورتات ألعاب الأندرويد، مع روابط التحميل والتفاصيل والتصنيفات في مكان واحد.</p>
-                <div class="hero-actions">
-                    <button class="hero-primary" onclick="document.getElementById('searchInput').focus(); document.getElementById('searchInput').scrollIntoView({behavior:'smooth',block:'center'});">استكشف المكتبة <span>←</span></button>
-                    <span class="hero-version">VERSION 12.0.1</span>
-                </div>
-            </div>
-            <div class="hero-orbit" aria-hidden="true"><div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div><div class="orbit-core">VX<span>10</span></div><i class="orbit-dot dot-one"></i><i class="orbit-dot dot-two"></i><i class="orbit-dot dot-three"></i></div>
-            <div class="hero-stats"><div><strong id="heroGameCount">126</strong><span>لعبة في المكتبة</span></div><div><strong>10.0</strong><span>الإصدار الجديد</span></div><div><strong>100%</strong><span>تجربة متجاوبة</span></div></div>
-        </section>
-        <div class="library-section-heading"><div><span>THE LIBRARY</span><h2>اختر مغامرتك القادمة</h2></div><p>ابحث، صفِّ النتائج، واحفظ ألعابك المفضلة.</p></div>
+<p>ابحث، صفِّ النتائج، واحفظ ألعابك المفضلة.</p></div>
 
                 <section class="vx-command-center" aria-label="أدوات مكتبة RAF-VX">
             <div class="vx-command-head">
@@ -4063,25 +4047,50 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
             toggleMenu();
         }
 
-        function exportFavorites() {
-            let favs = localStorage.getItem('rafvx_favorites');
-            if (!favs || JSON.parse(favs).length === 0) {
+        async function exportFavorites() {
+            let favs = [];
+            try { favs = JSON.parse(localStorage.getItem('rafvx_favorites') || '[]'); }
+            catch (e) { alert("تعذر قراءة قائمة المفضلة."); return; }
+            if (!Array.isArray(favs) || favs.length === 0) {
                 alert("⚠️ قائمة المفضلة فارغة حالياً!");
                 return;
             }
-            let blob = new Blob([favs], {type: "application/json"});
-            let url = URL.createObjectURL(blob);
-            let a = document.createElement('a');
-            a.href = url;
-            a.download = "rafvx_favorites_backup.json";
-            a.click();
-            toggleMenu();
+
+            const json = JSON.stringify(favs, null, 2);
+            const fileName = "rafvx_favorites_backup.json";
+            const file = new File([json], fileName, { type: "application/json" });
+
+            // Preferred route on Android/Chrome: open the native share sheet with the backup file.
+            try {
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({ title: "نسخة المفضلة - RAFVX", text: "نسخة احتياطية لألعابك المفضلة", files: [file] });
+                    return;
+                }
+            } catch (err) {
+                if (err && err.name === "AbortError") return;
+            }
+
+            // Standard browser download fallback.
+            try {
+                const blob = new Blob([json], { type: "application/json;charset=utf-8" });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = fileName;
+                a.style.display = "none";
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 2500);
+                alert("إذا لم يبدأ حفظ الملف، فالتطبيق يحتاج تفعيل تنزيل الملفات من Android WebView.");
+            } catch (err) {
+                alert("لم يتمكن التطبيق من حفظ الملف. نحتاج تفعيل تنزيل الملفات في نسخة Android.");
+            }
         }
 
         function importFavoritesPrompt() {
             let input = document.createElement('input');
             input.type = 'file';
-            input.accept = '.json';
+            input.accept = '.json,application/json';
             input.onchange = e => {
                 let file = e.target.files[0];
                 let reader = new FileReader();
@@ -5085,6 +5094,21 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  window.addEventListener('load',()=>{document.getElementById('rafSmartGameCount').textContent=getGames().length;});
 })();
 </script>
+
+
+<style id="rafvx-final-polish">
+/* Splash-matched RAFVX crimson palette */
+:root{--rafvx-red:#ff3159;--rafvx-red-dark:#a90b32;--rafvx-panel:#111722}
+.filter-chips{display:flex!important;flex-wrap:wrap!important;gap:9px!important;justify-content:center!important;margin:14px auto 10px!important;padding:13px!important;border:1px solid rgba(255,49,89,.22)!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(255,49,89,.075),rgba(12,16,25,.94))!important;box-shadow:0 10px 28px rgba(0,0,0,.16)!important}
+.filter-chips .chip{display:inline-flex!important;align-items:center;gap:4px;border-radius:999px!important;padding:10px 14px!important;background:rgba(255,255,255,.045)!important;border:1px solid rgba(255,255,255,.12)!important;color:#e9edf4!important;font-size:12px!important;font-weight:800!important;transition:background .18s,border-color .18s,transform .18s!important}
+.filter-chips .chip.active,.filter-chips .chip:hover{background:linear-gradient(135deg,rgba(255,49,89,.28),rgba(169,11,50,.20))!important;border-color:rgba(255,75,110,.72)!important;color:#fff!important;box-shadow:0 5px 18px rgba(255,35,80,.13)!important}
+.social-links{display:flex!important;justify-content:center!important;margin:8px 0 18px!important}
+.social-links .btn-social{display:inline-flex!important;align-items:center;justify-content:center;border-radius:12px!important;padding:11px 16px!important;background:rgba(255,49,89,.10)!important;border:1px solid rgba(255,49,89,.32)!important;color:#ff9caf!important;font-weight:800!important}
+#rafSmartSearch .raf-smart-head{position:relative;padding-right:64px!important;min-height:72px}
+#rafSmartSearch .raf-smart-close{position:absolute!important;right:14px!important;top:14px!important;display:grid!important;place-items:center!important;width:40px!important;height:40px!important;border-radius:12px!important;background:linear-gradient(135deg,#ff3159,#a90b32)!important;border:1px solid #ff6b89!important;color:#fff!important;font-size:25px!important;line-height:1!important;font-weight:700!important;box-shadow:0 5px 16px rgba(255,49,89,.25)!important;z-index:5}
+#rafSmartSearch .raf-smart-close:active{transform:scale(.94)}
+@media(max-width:520px){.filter-chips{justify-content:flex-start!important;padding:10px!important;gap:7px!important}.filter-chips .chip{padding:9px 11px!important;font-size:11px!important}.social-links .btn-social{width:100%;text-align:center}}
+</style>
 
 </body>
 </html>
