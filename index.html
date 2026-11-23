@@ -1165,7 +1165,16 @@
 #gamesGrid .game-card > .vx-game-actions-wrap > .vx-inline-performance-panel{display:block!important;width:100%!important;margin:10px 0 0!important;}
 @media(max-width:520px){#gamesGrid .game-card > .vx-game-actions-wrap > .vx-card-performance{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:7px!important;padding:8px!important;}#gamesGrid .game-card > .vx-game-actions-wrap .vx-result-btn{font-size:.78rem!important;padding:9px 5px!important;}}
 
-</style>
+
+
+/* RAF Download test + language helper */
+.raf-download-test-row{align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+#rafDownloadTestStatus{font-size:.78rem;min-width:120px}
+.goog-te-banner-frame,.goog-te-gadget,.goog-te-balloon-frame{display:none!important}
+body{top:0!important}
+html{scroll-padding-top:12px}
+.notranslate{translate:no}
+\n</style>
 
     <style id="rafvx-v9-redesign">
       :root{--bg-color:#070b13;--card-bg:rgba(15,23,38,.92);--card-border:rgba(65,218,205,.20);--card-border-hover:rgba(65,218,205,.75);--accent-color:#48e0cf;--accent-gradient:linear-gradient(125deg,#48e0cf,#a6f36b);--text-main:#f2f7fb;--text-muted:#9aabba;--badge-bg:rgba(72,224,207,.12);--badge-border:rgba(72,224,207,.35);--ticker-bg:rgba(72,224,207,.07);--ticker-border:rgba(72,224,207,.2);--vx-panel:#101a2a;--vx-line:rgba(166,243,107,.18)}
@@ -1247,8 +1256,13 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 <body>
 
 <section class="nexus-top" id="rafNexusHome" aria-label="RAF-VX NEXUS">
- <div class="nexus-brand"><div><h2>RAF-VX <span>NEXUS</span></h2><p class="nexus-sub" data-ar="مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق" data-en="Android PC gaming hub — discover, compare and check compatibility">مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق</p></div><span class="nexus-badge">الجيل الجديد</span></div>
+ <div class="nexus-brand"><div><h2 class="notranslate" translate="no">RAF-VX <span>NEXUS</span></h2><p class="nexus-sub" data-ar="مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق" data-en="Android PC gaming hub — discover, compare and check compatibility">مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق</p></div><span class="nexus-badge">الجيل الجديد</span></div>
  <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
+ <div class="nexus-actions raf-download-test-row">
+   <button class="nexus-btn" type="button" id="rafDownloadTestBtn" onclick="rafRunDownloadTest()">⬇️ اختبار RAF Download</button>
+   <span id="rafDownloadTestStatus" class="nexus-muted" role="status" aria-live="polite"></span>
+ </div>
+ <div id="google_translate_element" style="display:none!important" aria-hidden="true"></div>
  <nav class="nexus-nav"><button onclick="rafNexusPanel('home')">🏠 الرئيسية</button><button onclick="document.getElementById('gamesGrid').scrollIntoView({behavior:'smooth'})">🎮 مكتبة الألعاب</button><button onclick="openEmulatorsModal()">🕹️ المحاكيات</button><button onclick="rafNexusPanel('compare')">⚖️ المقارنة</button><button onclick="rafNexusPanel('help')">🛠️ المساعدة</button><button onclick="rafNexusPanel('community')">👥 مجتمع RAF-VX</button><button onclick="rafNexusPanel('recent')">🕘 آخر المشاهدات</button></nav>
  <div class="nexus-stats"><div class="nexus-stat"><b id="nexusGames">—</b><small>لعبة في المكتبة</small></div><div class="nexus-stat"><b id="nexusFavs">—</b><small>المفضلة على جهازك</small></div><div class="nexus-stat"><b id="nexusRecent">—</b><small>آخر المشاهدات</small></div><div class="nexus-stat"><b>محلي</b><small>حفظ الإعدادات على جهازك</small></div></div>
 </section>
@@ -1378,9 +1392,9 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 
             <div class="supervisor-badge">
     <div style="font-size: 1.35rem; font-weight: 800; color: #ff1a40; letter-spacing: 1px;">(Abdulalim)</div>
-    <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted); margin-top: 2px;">مساعد المطور المشرف (Abdulalim)</div>
+    <div class="notranslate" translate="no" style="font-size: 0.88rem; font-weight: 700; color: var(--text-muted); margin-top: 2px;">مساعد المطور المشرف (Abdulalim)</div>
 </div>
-<div class="brand-title">𝐑𝐀𝐅𝐕𝐗</div>
+<div class="brand-title notranslate" translate="no">𝐑𝐀𝐅𝐕𝐗</div>
 
             <p class="subtitle">أقوى ألعاب الأندرويد المحولة بعناية فائقة | خالي تماماً من الإعلانات</p>
 
@@ -3910,7 +3924,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
         </div>
 
         <footer>
-            <p>جميع الحقوق محفوظة منصة <strong>𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار 12.0.1) © 2026</p>
+            <p>جميع الحقوق محفوظة منصة <strong class="notranslate" translate="no">𝐑𝐀𝐅𝐕𝐗</strong> (الإصدار 12.0.1) © 2026</p>
         </footer>
     </div>
 
@@ -4752,7 +4766,67 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  const oldOpen=window.openGameInfoModal;
  if(typeof oldOpen==='function'){window.openGameInfoModal=function(card){oldOpen(card);};}
  window.rafNexusSubmitCommunity=()=>{};
- window.rafNexusLanguage=()=>{const en=document.documentElement.lang!=='en';document.documentElement.lang=en?'en':'ar';document.documentElement.dir=en?'ltr':'rtl';$('rafLangBtn').textContent=en?'🌐 العربية':'🌐 English';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=en?el.dataset.en:el.dataset.ar);localStorage.setItem('rafvx_lang',en?'en':'ar');alert(en?'The main navigation language is switched. Some game-specific content remains in its original language.':'تمت إعادة الواجهة إلى العربية.');};
+ window.rafNexusLanguage=()=>{
+ const current=document.documentElement.lang==='en'?'en':'ar';
+ const next=current==='en'?'ar':'en';
+ const btn=document.getElementById('rafLangBtn');
+ document.documentElement.lang=next;
+ document.documentElement.dir=next==='en'?'ltr':'rtl';
+ if(btn)btn.textContent=next==='en'?'🌐 العربية':'🌐 English';
+ document.querySelectorAll('[data-ar][data-en]').forEach(el=>{
+   el.textContent=next==='en'?el.dataset.en:el.dataset.ar;
+ });
+ localStorage.setItem('rafvx_lang',next);
+ // Use Google's page translator for the full page, including game cards and dialogs.
+ const applyGoogle=()=>{
+   const select=document.querySelector('.goog-te-combo');
+   if(!select)return false;
+   select.value=next==='en'?'en':'ar';
+   select.dispatchEvent(new Event('change',{bubbles:true}));
+   return true;
+ };
+ if(window.google&&google.translate&&google.translate.TranslateElement){
+   if(!applyGoogle())setTimeout(applyGoogle,500);
+ }else if(!window.__rafGoogleTranslateLoading){
+   window.__rafGoogleTranslateLoading=true;
+   window.__rafGoogleTranslateTarget=next;
+   const script=document.createElement('script');
+   script.src='https://translate.google.com/translate_a/element.js?cb=rafGoogleTranslateInit';
+   script.onerror=()=>{window.__rafGoogleTranslateLoading=false;};
+   document.head.appendChild(script);
+ }
+};
+window.rafGoogleTranslateInit=()=>{
+ try{
+   new google.translate.TranslateElement({pageLanguage:'ar',includedLanguages:'ar,en',autoDisplay:false},'google_translate_element');
+   const target=window.__rafGoogleTranslateTarget||localStorage.getItem('rafvx_lang')||'ar';
+   setTimeout(()=>{
+     const select=document.querySelector('.goog-te-combo');
+     if(select){select.value=target;select.dispatchEvent(new Event('change',{bubbles:true}));}
+   },350);
+ }catch(e){console.warn('RAF language helper:',e);}
+};
+window.rafRunDownloadTest=()=>{
+ const status=document.getElementById('rafDownloadTestStatus');
+ const btn=document.getElementById('rafDownloadTestBtn');
+ if(!status||!btn)return;
+ const payload='RAFVX RAF Download test\\nThis is a small test file created by the RAFVX website.\\n';
+ const blob=new Blob([payload],{type:'text/plain;charset=utf-8'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');
+ a.href=url;a.download='RAFVX-download-test.txt';
+ a.style.display='none';document.body.appendChild(a);
+ try{
+   a.click();
+   status.textContent=document.documentElement.lang==='en'?'Download request sent. Check your Downloads folder.':'تم إرسال طلب التنزيل. تحقق من مجلد التنزيلات.';
+   status.style.color='#72e6a6';
+ }catch(err){
+   status.textContent=document.documentElement.lang==='en'?'Download test failed on this browser.':'تعذر تنفيذ الاختبار في هذا المتصفح.';
+   status.style.color='#ff8a8a';
+ }finally{
+   setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},1500);
+ }
+};
  function renderInlineGameResults(card,panel,filter=''){
    const list=panel.querySelector('.vx-inline-result-rows');
    if(!list)return;
@@ -4836,7 +4910,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
    // Retry briefly in case the game's card is appended after DOMContentLoaded.
    let tries=0;const timer=setInterval(()=>{tries++;if(open()||tries>=20)clearInterval(timer);},250);
  }
- document.addEventListener('DOMContentLoaded',()=>{fill();populateRafDeviceSelects();addInlineGameActions();const gamesGrid=document.getElementById('gamesGrid');if(gamesGrid&&'MutationObserver'in window){const gameCardObserver=new MutationObserver(()=>addInlineGameActions(gamesGrid));gameCardObserver.observe(gamesGrid,{childList:true,subtree:true});}setTimeout(rafOpenSharedGame,150);refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en)}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
+ document.addEventListener('DOMContentLoaded',()=>{fill();populateRafDeviceSelects();addInlineGameActions();const gamesGrid=document.getElementById('gamesGrid');if(gamesGrid&&'MutationObserver'in window){const gameCardObserver=new MutationObserver(()=>addInlineGameActions(gamesGrid));gameCardObserver.observe(gamesGrid,{childList:true,subtree:true});}setTimeout(rafOpenSharedGame,150);refreshStats();loadRafExperiences();const lang=localStorage.getItem('rafvx_lang');if(lang==='en'){document.documentElement.lang='en';document.documentElement.dir='ltr';$('rafLangBtn').textContent='🌐 العربية';document.querySelectorAll('[data-ar][data-en]').forEach(el=>el.textContent=el.dataset.en);window.__rafGoogleTranslateTarget='en';if(!window.__rafGoogleTranslateLoading){window.__rafGoogleTranslateLoading=true;const gt=document.createElement('script');gt.src='https://translate.google.com/translate_a/element.js?cb=rafGoogleTranslateInit';gt.onerror=()=>window.__rafGoogleTranslateLoading=false;document.head.appendChild(gt);}}document.addEventListener('click',e=>{if(e.target.closest('.fav-btn'))setTimeout(refreshStats,50)});const old=window.openGameInfoModal;if(typeof old==='function')window.openGameInfoModal=function(c){old(c);setTimeout(()=>{refreshStats();renderRecent()},50)};setInterval(refreshStats,2500);});
  window.addEventListener('hashchange',rafOpenSharedGame);
  window.addEventListener('pageshow',rafOpenSharedGame);
 })();
