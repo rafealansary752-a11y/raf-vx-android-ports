@@ -1,0 +1,82 @@
+name: RAF-VX Game Covers 125 and 127
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  download-covers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download official game cover images
+        run: |
+          python -m pip install --quiet requests pillow
+          python <<'PY'
+          import io
+          import re
+          import requests
+          from PIL import Image
+          from pathlib import Path
+          from html.parser import HTMLParser
+
+          OUT = Path("images/games")
+          OUT.mkdir(parents=True, exist_ok=True)
+
+          class MetaParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.og_image = None
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() != "meta":
+                      return
+                  a = dict(attrs)
+                  if a.get("property", "").lower() == "og:image":
+                      self.og_image = a.get("content")
+                  if a.get("name", "").lower() == "twitter:image" and not self.og_image:
+                      self.og_image = a.get("content")
+
+          def save_jpg(url, target):
+              response = requests.get(url, timeout=40, headers={
+                  "User-Agent": "Mozilla/5.0 RAF-VX-CoverBot/1.0"
+              })
+              response.raise_for_status()
+              image = Image.open(io.BytesIO(response.content)).convert("RGB")
+              image.save(target, "JPEG", quality=94, optimize=True)
+              print(f"Saved {target} ({image.width}x{image.height})")
+
+          # #125 — Hamburger Hill: read the official developer's itch.io page image.
+          page = requests.get(
+              "https://weswaregames.itch.io/hamburger-hill",
+              timeout=40,
+              headers={"User-Agent": "Mozilla/5.0 RAF-VX-CoverBot/1.0"}
+          )
+          page.raise_for_status()
+          parser = MetaParser()
+          parser.feed(page.text)
+          if not parser.og_image:
+              raise RuntimeError("Could not find the official Hamburger Hill page image.")
+          save_jpg(parser.og_image, OUT / "125.jpg")
+
+          # #127 — Assassin's Creed IV: Black Flag: official Steam store header image.
+          save_jpg(
+              "https://cdn.akamai.steamstatic.com/steam/apps/242050/header.jpg",
+              OUT / "127.jpg"
+          )
+          PY
+
+      - name: Commit downloaded images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/games/125.jpg images/games/127.jpg
+          if git diff --cached --quiet; then
+            echo "No image changes to commit."
+          else
+            git commit -m "Add official game covers 125 and 127"
+            git push
+          fi
