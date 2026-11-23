@@ -1,0 +1,98 @@
+name: RAFVX - Add Covers 128 to 131
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  download-covers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download game covers
+        run: |
+          python -m pip install --quiet requests pillow
+          python <<'PY'
+          import io
+          import requests
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from PIL import Image
+
+          OUT = Path("images/games")
+          OUT.mkdir(parents=True, exist_ok=True)
+
+          HEADERS = {
+              "User-Agent": "Mozilla/5.0 (compatible; RAFVXCoverBot/1.0)"
+          }
+
+          class ImageParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.image = None
+
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() != "meta":
+                      return
+                  attrs = dict(attrs)
+                  prop = attrs.get("property", "").lower()
+                  name = attrs.get("name", "").lower()
+                  if prop == "og:image" or name == "twitter:image":
+                      value = attrs.get("content")
+                      if value and not self.image:
+                          self.image = value
+
+          def get_page_image(page_url):
+              response = requests.get(page_url, headers=HEADERS, timeout=45)
+              response.raise_for_status()
+              parser = ImageParser()
+              parser.feed(response.text)
+              if not parser.image:
+                  raise RuntimeError(f"No og:image/twitter:image found at {page_url}")
+              return parser.image
+
+          def save_cover(image_url, filename):
+              response = requests.get(image_url, headers=HEADERS, timeout=45)
+              response.raise_for_status()
+              image = Image.open(io.BytesIO(response.content)).convert("RGB")
+              image.thumbnail((1200, 1200))
+              target = OUT / filename
+              image.save(target, "JPEG", quality=93, optimize=True)
+              print(f"Saved {target}: {image.width}x{image.height}")
+
+          # #128 GTA 5 Lite — use the official GTA V artwork as a representative cover.
+          gta_cover = "https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg"
+          save_cover(gta_cover, "gta-5-lite.jpg")
+
+          # #129 GTA V 3GB — same game artwork, separate file for the separate listing.
+          save_cover(gta_cover, "gta-v-3gb.jpg")
+
+          # #130 PES 2018 — retrieve the cover image exposed by the supplied game page.
+          pes_image = get_page_image(
+              "https://apkvision.org/games/simulation/pes-2018-136016/"
+          )
+          save_cover(pes_image, "pes-2018.jpg")
+
+          # #131 Shrek 2: The Game — retrieve the cover image exposed by the supplied game page.
+          shrek_image = get_page_image(
+              "https://apkvision.org/games/adventure/shrek-2-the-game-136022/"
+          )
+          save_cover(shrek_image, "shrek-2.jpg")
+          PY
+
+      - name: Commit downloaded covers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/games/gta-5-lite.jpg images/games/gta-v-3gb.jpg images/games/pes-2018.jpg images/games/shrek-2.jpg
+          if git diff --cached --quiet; then
+            echo "No new cover images to commit."
+          else
+            git commit -m "Add covers for games 128-131"
+            git push
+          fi
