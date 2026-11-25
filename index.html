@@ -1318,18 +1318,14 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 </style>
 
 
-<style id="rafYamlCoverStyles">
-.raf-yaml-covers{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:13px;margin:16px 0 4px;padding:15px;border:1px solid rgba(82,153,255,.25);border-radius:16px;background:linear-gradient(135deg,rgba(18,38,70,.78),rgba(9,20,39,.82))}
-.raf-yaml-copy{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1 1 250px}.raf-yaml-copy strong{color:#d9eaff;font-size:.95rem}.raf-yaml-copy span{color:#a9c2e4;font-size:.8rem}.raf-yaml-copy small{color:#829bbd;font-size:.7rem;line-height:1.6}
-.raf-yaml-actions{display:flex;gap:8px;flex-wrap:wrap}.raf-yaml-upload,.raf-yaml-reset{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 13px;border-radius:10px;border:1px solid rgba(89,153,255,.35);background:rgba(42,105,190,.2);color:#e5f1ff;font-weight:800;font-size:.78rem;cursor:pointer}.raf-yaml-reset{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.13);color:#b7c8dd}.raf-yaml-status{flex:1 0 100%;font-size:.74rem;color:#9dc9ff}
-</style>
+
 
 </head>
 <body>
 
 <section class="nexus-top" id="rafNexusHome" aria-label="RAF-VX NEXUS">
  <div class="nexus-brand"><div><h2 class="notranslate" translate="no">RAF-VX <span>NEXUS</span></h2><p class="nexus-sub" data-ar="مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق" data-en="Android PC gaming hub — discover, compare and check compatibility">مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق</p></div><span class="nexus-badge">الجيل الجديد</span></div>
- <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 سجل التحديثات</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
+ <div class="nexus-actions"><button class="nexus-btn" onclick="rafNexusPanel('updates')">📋 آخر تحديثات البورت والعاب الجديدة</button><button class="nexus-btn" onclick="rafNexusLanguage()" id="rafLangBtn">🌐 English</button></div>
 <nav class="nexus-nav" aria-label="التنقل الرئيسي">
  <button onclick="rafNexusPanel('home')">🏠 الرئيسية</button>
 
@@ -1352,7 +1348,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
   <button type="button" onclick="supportPlatform()"><span>👑</span><b>دعم RAFVX</b><small>دعم المنصة</small></button>
   <button type="button" onclick="rafNexusPanel('compare')"><span>⚖️</span><b>مقارنة الألعاب</b><small>قارن حتى 3 ألعاب</small></button>
   <button type="button" onclick="showRecentlyViewed()"><span>🕘</span><b>آخر المشاهدات</b><small>تابع ما فتحته</small></button>
-  <button type="button" onclick="rafNexusPanel('updates')"><span>📋</span><b>آخر تحديثات البورتات</b><small>الألعاب والإصدارات الجديدة</small></button>
+  <button type="button" onclick="rafNexusPanel('updates')"><span>📋</span><b>آخر تحديثات البورت والعاب الجديدة</b><small>أحدث الألعاب والتعديلات</small></button>
  </div>
  <div class="raf-home-smart-search">
   <div><span class="raf-home-search-icon">⌕</span><div><b>البحث الذكي عن الألعاب والمحاكيات</b><small>اختر اللعبة من القائمة وانتقل إليها مباشرة، أو ابحث عن محاكي وملحقاته.</small></div></div>
@@ -1361,15 +1357,8 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
 </section>
 
 <section class="nexus-panel" id="nexusPanel-updates">
- <h3>🚀 آخر تحديثات البورتات والإصدارات الجديدة</h3>
- <div class="nexus-list">
-  <div class="nexus-box"><b>🆕 إضافة Red Dead Revolver — #132</b><p>تصنيف أكشن ومغامرات · APK + تنزيل داخلي · الحجم الإجمالي 3GB.</p></div>
-  <div class="nexus-box"><b>🆕 إضافة Left 4 Dead — #133</b><p>تصنيف رعب وأكشن · APK + ملف اللعبة · الحجم الإجمالي 7GB.</p></div>
-  <div class="nexus-box"><b>🆕 إضافة Cars 3: Driven to Win — #134</b><p>تصنيف سباق · APK + ملف اللعبة · الحجم الإجمالي 7GB.</p></div>
-  <div class="nexus-box"><b>🆕 إضافة 007: From Russia With Love — #135</b><p>تصنيف أكشن · APK + ملف اللعبة · الحجم الإجمالي 2GB.</p></div>
-  <div class="nexus-box"><b>🔄 تحديث Assassin's Creed IV: Black Flag</b><p>استبدال رابط APK بالرابط الجديد للإصدار 3.0، وإزالة زر ملف OBB.</p></div>
-  <div class="nexus-box"><b>📌 سجل الإصدارات المستمر</b><p>تُضاف الألعاب والبورتات والتحديثات الجديدة إلى هذا السجل عند تحديث مكتبة RAF-VX.</p></div>
- </div>
+ <h3>🚀 آخر تحديثات البورت والعاب الجديدة</h3>
+ <div class="nexus-list" id="rafAutoUpdatesList" aria-live="polite"></div>
 </section>
 <section class="nexus-panel" id="nexusPanel-emulators"><h3>🕹️ مركز المحاكيات</h3><button class="nexus-btn" onclick="openEmulatorsModal()">فتح مركز المحاكيات الشامل ✨</button><div class="nexus-grid" style="display:none"><div class="nexus-box"><b>GameHub</b><p>بيئة لتشغيل ألعاب الكمبيوتر على أندرويد. تحقق من توافق الإصدار وتعريف الرسوميات لكل لعبة.</p></div><div class="nexus-box"><b>Winlator</b><p>تشغيل تطبيقات وألعاب ويندوز عبر طبقات توافق. الإعدادات تختلف حسب المعالج واللعبة.</p></div><div class="nexus-box"><b>Eden</b><p>محاكي ألعاب Nintendo Switch على أندرويد؛ الأداء يعتمد على اللعبة والجهاز والإصدار.</p></div><div class="nexus-box"><b>Vita3K</b><p>محاكي PlayStation Vita؛ راجع قائمة التوافق الرسمية لكل عنوان.</p></div><div class="nexus-box"><b>PPSSPP</b><p>محاكي PSP، مع خيارات رسومية وتحكم قابلة للتخصيص.</p></div></div></section>
 <section class="nexus-panel" id="nexusPanel-compare"><h3>⚖️ مقارنة الألعاب</h3><p class="nexus-muted">استخدم زر «＋ قارن» الموجود على بطاقات الألعاب، ثم افتح أداة المقارنة الموجودة في الموقع.</p><button class="nexus-btn" onclick="document.querySelector('#vxCompareDock button')?.click();document.getElementById('vxCompareDock')?.scrollIntoView({behavior:'smooth'})">فتح قائمة المقارنة</button></section>
@@ -1527,19 +1516,6 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                 <button class="vx-tool-button" onclick="pickRandomGame()"><b>🎲</b><span>اقترح لعبة<small>اختيار عشوائي</small></span></button>
                 <button class="vx-tool-button" onclick="showRecentlyViewed()"><b>🕘</b><span>آخر المشاهدات<small>تابع ما فتحته</small></span></button>
                 <button class="vx-tool-button" onclick="clearLibrarySearch()"><b>⌕</b><span>إعادة ضبط البحث<small>عرض كل الألعاب</small></span></button>
-            </div>
-            <div class="raf-yaml-covers" id="rafYamlCovers">
-                <div class="raf-yaml-copy">
-                    <strong>🖼️ استيراد أغلفة الألعاب بملف YAML</strong>
-                    <span>ارفع ملف .yml واحدًا لربط صور الأغلفة بمعرّفات الألعاب تلقائيًا.</span>
-                    <small>ملاحظة: تُحفظ الروابط على هذا الجهاز والمتصفح فقط. لن تظهر لكل الزوار إلا بعد إضافة الصور/روابطها إلى ملفات الموقع في GitHub.</small>
-                </div>
-                <div class="raf-yaml-actions">
-                    <label class="raf-yaml-upload" for="rafYamlFile">📂 اختيار ملف YAML</label>
-                    <input id="rafYamlFile" type="file" accept=".yml,.yaml,text/yaml,text/plain" hidden>
-                    <button type="button" class="raf-yaml-reset" id="rafYamlReset">إزالة الصور المستوردة</button>
-                </div>
-                <div class="raf-yaml-status" id="rafYamlStatus" aria-live="polite">بانتظار ملف الأغلفة.</div>
             </div>
             <div class="vx-quick-stats">
                 <div><span>إجمالي المكتبة</span><strong id="vxTotalCount">113</strong><small>لعبة</small></div>
@@ -3993,7 +3969,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
                     <div class="game-details">
                         <div class="game-title">🎮 Assassin's Creed IV: Black Flag</div>
                         <div class="port-tag-text">⚙️ تصنيف: أكشن ومغامرات</div>
-                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag">مغامرات</span></div>
+                        <div class="game-meta"><span class="tag">#أكشن</span><span class="tag">مغامرات</span><span class="tag updated-game">تحديث</span></div>
                         <div class="game-info"><div class="info-item">الحجم الإجمالي: <span class="info-value">12GB</span></div></div>
                     </div>
                 </div>
@@ -5042,7 +5018,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  window.rafNexusSubmitCommunity=()=>{};
  // RAF-VX native language switcher: no Google Translate widget, iframe, badge or external script.
  const RAF_LANG={
-  'الجيل الجديد':'The Next Generation','سجل التحديثات':'Update Log','الرئيسية':'Home','مكتبة الألعاب':'Game Library','المحاكيات':'Emulators','المقارنة':'Compare','المساعدة':'Help','آخر المشاهدات':'Recently Viewed','لعبة في المكتبة':'Games in Library','المفضلة على جهازك':'Your Favorites','آخر المشاهدات':'Recently Viewed','محلي':'Local','حفظ الإعدادات على جهازك':'Settings saved on your device',
+  'الجيل الجديد':'The Next Generation','آخر تحديثات البورت والعاب الجديدة':'Latest Ports & New Games','الرئيسية':'Home','مكتبة الألعاب':'Game Library','المحاكيات':'Emulators','المقارنة':'Compare','المساعدة':'Help','آخر المشاهدات':'Recently Viewed','لعبة في المكتبة':'Games in Library','المفضلة على جهازك':'Your Favorites','آخر المشاهدات':'Recently Viewed','محلي':'Local','حفظ الإعدادات على جهازك':'Settings saved on your device',
   '✨ مرحباً بك في RAF-VX NEXUS':'✨ Welcome to RAF-VX NEXUS','منصة موحدة لاستكشاف الألعاب، متابعة التحديثات، واستعراض الألعاب ومراجعة توافقها وأدائها.':'A unified platform to discover games, follow updates, browse titles and review performance reports shared by the community.','🎲 اختر لعبة عشوائية':'🎲 Pick a Random Game','🔗 مشاركة الموقع':'🔗 Share Website','🕘 سجل المشاهدة':'🕘 Viewing History','📋 سجل تحديثات RAF-VX':'📋 RAF-VX Update Log','إضافة لوحة القيادة، قاعدة أجهزة، التنقل بين الأقسام، واللغة.':'Added the dashboard, device database, section navigation and language switching.','أدوات المكتبة الذكية':'Smart Library Tools','المقارنة، آخر المشاهدات، الاختيار العشوائي، والفرز المحلي.':'Comparison, recently viewed, random selection and local sorting.','تنبيه الشفافية':'Transparency Notice','سجل التحديثات الحالي يعرض ما أُضيف في هذه النسخة فقط، ويمكن توسيعه مع كل إصدار لاحق.':'This update log shows what was added in this version and can be expanded with future releases.',
   '⬇️ التنزيلات':'⬇️ Downloads','مركز ألعاب الكمبيوتر على أندرويد — اكتشف، قارن، وتحقق من التوافق':'Android PC Gaming Hub — discover, compare and check compatibility','مركز تنزيلات الألعاب':'Game Downloads Center','ملفات كل لعبة مجمّعة: APK وDATA وOBB والملفات الإضافية':'All game files grouped together: APK, DATA, OBB and additional files','كل الألعاب':'All Games','ملفات مباشرة محتملة':'Potential Direct Files','صفحات استضافة':'Hosting Pages','السجل':'History','إعادة فحص الروابط':'Rescan Links','بحث باسم اللعبة أو APK أو DATA أو OBB…':'Search game, APK, DATA or OBB…','ملف مباشر محتمل':'Potential Direct File','صفحة استضافة / وسيطة':'Hosting / Intermediate Page','تنزيل / فتح الملف':'Download / Open File','فتح صفحة الملف':'Open File Page','نسخ':'Copy','رجوع':'Back','إغلاق':'Close','ملف':'File','ملفات':'Files','ابحث':'Search','لا يوجد سجل تنزيلات حتى الآن.':'No download history yet.','ما لقينا روابط مطابقة. اضغط «إعادة فحص الروابط» بعد فتح تفاصيل اللعبة.':'No matching links found. Press “Rescan Links” after opening the game details.',
   "كل أدوات المكتبة والمحاكيات والمساعدة في مكان واحد — بدون قوائم مخفية.":"All library tools, emulators and help in one place — no hidden menus.",
@@ -5062,7 +5038,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
   "دعم المنصة":"Support the platform",
   "مقارنة الألعاب":"Compare Games",
   "قارن حتى 3 ألعاب":"Compare up to 3 games",
-  "سجل التحديثات":"Update Log",
+  "آخر تحديثات البورت والعاب الجديدة":"Latest Ports & New Games",
   "آخر إضافات المنصة":"Latest platform updates",
   "البحث الذكي عن الألعاب والمحاكيات":"Smart Game & Emulator Search",
   "اختر اللعبة من القائمة وانتقل إليها مباشرة، أو ابحث عن محاكي وملحقاته.":"Choose a game and jump straight to it, or find an emulator and its add-ons.",
@@ -5271,7 +5247,7 @@ body[dir="ltr"]{text-align:left}body[dir="ltr"] .nexus-list button{text-align:le
  };
  Object.assign(RAF_LANG,{
   'RAF-VX 12.1.10 | مكتبة ألعاب أندرويد':'RAF-VX 12.1.10 | Android Game Library',
-  '📋 سجل التحديثات':'📋 Update Log',
+  '📋 آخر تحديثات البورت والعاب الجديدة':'📋 Latest Ports & New Games',
   '🏠 الرئيسية':'🏠 Home',
   '🕹️ المحاكيات':'🕹️ Emulators',
   '⚖️ المقارنة':'⚖️ Comparison',
@@ -5714,89 +5690,31 @@ a{color:#8fc4ff}
 </style>
 
 
-<script id="rafYamlCoverImporter">
+
+
+<script id="rafAutoUpdates">
 (function(){
-  const input=document.getElementById('rafYamlFile');
-  const status=document.getElementById('rafYamlStatus');
-  const reset=document.getElementById('rafYamlReset');
-  const STORAGE_KEY='rafvx_yaml_cover_map_v1';
-  if(!input||!status||!reset)return;
-
-  function parseCoverYaml(text){
-    const map={};
-    let inCovers=false;
-    let currentId='';
-    const lines=String(text||'').replace(/^\uFEFF/,'').split(/\r?\n/);
-    for(let raw of lines){
-      const line=raw.trim();
-      if(!line||line.startsWith('#')||line==='---')continue;
-      if(/^covers\s*:\s*$/.test(line)){inCovers=true;continue;}
-      if(!inCovers)continue;
-      let m=line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.*?)\s*$/);
-      if(m){
-        currentId=m[1];
-        let value=m[2].replace(/^['"]|['"]$/g,'').trim();
-        if(value)map[currentId]=value;
-        continue;
-      }
-      m=line.match(/^-\s*id\s*:\s*['"]?([A-Za-z0-9_-]+)['"]?\s*$/);
-      if(m){currentId=m[1];continue;}
-      m=line.match(/^(?:image|url|src)\s*:\s*(.*?)\s*$/);
-      if(m&&currentId)map[currentId]=m[1].replace(/^['"]|['"]$/g,'').trim();
-    }
-    return map;
-  }
-
-  function applyMap(map){
-    let applied=0;
-    document.querySelectorAll('#gamesGrid .game-card[data-id]').forEach(card=>{
-      const id=card.getAttribute('data-id');
-      const url=map[id];
-      const img=card.querySelector('.game-cover-img');
-      if(!url||!img)return;
-      img.src=url;
-      img.hidden=false;
-      const fallback=img.nextElementSibling;
-      if(fallback)fallback.hidden=true;
-      applied++;
+  function buildUpdates(){
+    const list=document.getElementById('rafAutoUpdatesList');
+    const grid=document.getElementById('gamesGrid');
+    if(!list||!grid)return;
+    const entries=[];
+    grid.querySelectorAll('.game-card').forEach(card=>{
+      const isNew=card.querySelector('.tag.new-game');
+      const isUpdated=card.querySelector('.tag.updated-game');
+      if(!isNew&&!isUpdated)return;
+      const title=card.querySelector('.game-title')?.textContent?.trim()||'لعبة جديدة';
+      const number=card.querySelector('.game-number-badge')?.textContent?.trim()||'';
+      const category=card.querySelector('.port-tag-text')?.textContent?.replace(/^🧭\s*تصنيف:\s*/,'').trim()||'';
+      const size=card.querySelector('.game-info')?.textContent?.replace(/\s+/g,' ').trim()||'';
+      const type=isUpdated?'🔄 تحديث':'🆕 إضافة';
+      const p=[category,size].filter(Boolean).join(' · ');
+      entries.push({html:'<div class="nexus-box"><b>'+type+' '+title+(number?' — '+number:'')+'</b><p>'+p+'</p></div>'});
     });
-    return applied;
+    list.innerHTML=entries.reverse().map(x=>x.html).join('')||'<div class="nexus-box"><p>لا توجد إضافات أو تحديثات مسجلة حالياً.</p></div>';
   }
-
-  function restore(){
-    try{
-      const saved=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
-      const count=applyMap(saved);
-      if(count)status.textContent='تم استرجاع '+count+' غلاف من الملف المستورد على هذا الجهاز.';
-    }catch(e){status.textContent='تعذر استرجاع روابط الأغلفة المحفوظة.';}
-  }
-
-  input.addEventListener('change',async()=>{
-    const file=input.files&&input.files[0];
-    if(!file)return;
-    try{
-      const text=await file.text();
-      const map=parseCoverYaml(text);
-      const ids=Object.keys(map);
-      if(!ids.length){status.textContent='لم أجد روابط صور. تأكد أن الملف يحتوي قسم covers وروابط الصور.';return;}
-      const count=applyMap(map);
-      localStorage.setItem(STORAGE_KEY,JSON.stringify(map));
-      status.textContent='نجح الاستيراد: '+count+' غلاف. تم حفظ الروابط في هذا المتصفح.';
-    }catch(e){status.textContent='تعذر قراءة ملف YAML. تأكد من صيغة الملف.';}
-    input.value='';
-  });
-
-  reset.addEventListener('click',()=>{
-    localStorage.removeItem(STORAGE_KEY);
-    document.querySelectorAll('#gamesGrid .game-card .game-cover-img[data-raf-cover]').forEach(img=>{
-      const id=img.getAttribute('data-raf-cover');
-      img.src='images/games/'+id+'.jpg';
-    });
-    status.textContent='تمت إزالة روابط الأغلفة المستوردة من هذا المتصفح.';
-  });
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',restore);else restore();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',buildUpdates);else buildUpdates();
 })();
 </script>
-
 </body>
 </html>
