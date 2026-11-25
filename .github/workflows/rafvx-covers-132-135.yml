@@ -1,0 +1,108 @@
+name: RAFVX - Add Covers 132 to 135
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  download-covers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download the four new game covers
+        run: |
+          python -m pip install --quiet requests pillow
+          python <<'PY'
+          import io
+          import requests
+          from pathlib import Path
+          from html.parser import HTMLParser
+          from PIL import Image
+
+          OUT = Path("images/games")
+          OUT.mkdir(parents=True, exist_ok=True)
+
+          HEADERS = {
+              "User-Agent": "Mozilla/5.0 (compatible; RAFVXCoverBot/1.0)"
+          }
+
+          GAMES = [
+              (132, "Red Dead Revolver",
+               "https://apkvision.org/games/action/red-dead-revolver-136021/"),
+              (133, "Left 4 Dead",
+               "https://apkvision.org/games/action/left-4-dead-135976/"),
+              (134, "Cars 3: Driven to Win",
+               "https://apkvision.org/games/racing/cars-3-driven-to-win-136039/"),
+              (135, "007: From Russia With Love",
+               "https://apkvision.org/games/action/007-from-russia-with-love-136031/"),
+          ]
+
+          class ImageParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.image = None
+
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() != "meta":
+                      return
+                  attrs = dict(attrs)
+                  prop = attrs.get("property", "").lower()
+                  name = attrs.get("name", "").lower()
+                  if prop == "og:image" or name == "twitter:image":
+                      value = attrs.get("content")
+                      if value and not self.image:
+                          self.image = value
+
+          session = requests.Session()
+          session.headers.update(HEADERS)
+
+          for game_id, title, page_url in GAMES:
+              print(f"Finding cover for #{game_id}: {title}")
+              response = session.get(page_url, timeout=45)
+              response.raise_for_status()
+
+              parser = ImageParser()
+              parser.feed(response.text)
+              if not parser.image:
+                  raise RuntimeError(
+                      f"No og:image/twitter:image found for {title}: {page_url}"
+                  )
+
+              image_response = session.get(parser.image, timeout=45)
+              image_response.raise_for_status()
+
+              try:
+                  image = Image.open(io.BytesIO(image_response.content)).convert("RGB")
+              except Exception as exc:
+                  raise RuntimeError(
+                      f"Cover returned for {title} is not a valid image: {parser.image}"
+                  ) from exc
+
+              if image.width < 200 or image.height < 200:
+                  raise RuntimeError(
+                      f"Cover for {title} is too small: {image.width}x{image.height}"
+                  )
+
+              image.thumbnail((1200, 1200))
+              target = OUT / f"{game_id}.jpg"
+              image.save(target, "JPEG", quality=93, optimize=True)
+              print(f"Saved {target}: {image.width}x{image.height}")
+
+          PY
+
+      - name: Commit downloaded covers
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/games/132.jpg images/games/133.jpg images/games/134.jpg images/games/135.jpg
+          if git diff --cached --quiet; then
+            echo "No new cover images to commit."
+          else
+            git commit -m "Add covers for games 132-135"
+            git push
+          fi
