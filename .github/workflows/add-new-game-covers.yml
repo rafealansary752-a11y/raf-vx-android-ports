@@ -1,0 +1,73 @@
+name: RAF-VX - Add New Game Covers
+
+on:
+  workflow_dispatch:
+    inputs:
+      gta_v_lite_21gb:
+        description: "Direct JPG URL for GTA V Lite 21GB cover"
+        required: true
+        type: string
+      painkiller_hell_wars:
+        description: "Direct JPG URL for Painkiller Hell Wars cover"
+        required: true
+        type: string
+      nine_sols:
+        description: "Direct JPG URL for Nine Sols cover"
+        required: true
+        type: string
+      bioshock:
+        description: "Direct JPG URL for BioShock cover"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  add-covers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download cover images
+        env:
+          GTA_V_LITE_URL: ${{ inputs.gta_v_lite_21gb }}
+          PAINKILLER_URL: ${{ inputs.painkiller_hell_wars }}
+          NINE_SOLS_URL: ${{ inputs.nine_sols }}
+          BIOSHOCK_URL: ${{ inputs.bioshock }}
+        run: |
+          set -euo pipefail
+          mkdir -p images/games
+
+          download_jpg() {
+            local url="$1"
+            local destination="$2"
+            curl --fail --location --silent --show-error "$url" -o "$destination"
+            file "$destination"
+            if ! file "$destination" | grep -Eqi 'JPEG image data'; then
+              echo "ERROR: $destination is not a JPG/JPEG file. Use a direct JPG image URL."
+              exit 1
+            fi
+          }
+
+          download_jpg "$GTA_V_LITE_URL" "images/games/gta-v-lite-21gb.jpg"
+          download_jpg "$PAINKILLER_URL" "images/games/painkiller-hell-wars.jpg"
+          download_jpg "$NINE_SOLS_URL" "images/games/nine-sols.jpg"
+          download_jpg "$BIOSHOCK_URL" "images/games/bioshock.jpg"
+
+      - name: Commit covers to repository
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images/games/gta-v-lite-21gb.jpg \
+                  images/games/painkiller-hell-wars.jpg \
+                  images/games/nine-sols.jpg \
+                  images/games/bioshock.jpg
+          if git diff --cached --quiet; then
+            echo "No image changes to commit."
+          else
+            git commit -m "Add new RAF-VX game covers"
+            git push
+          fi
