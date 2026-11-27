@@ -5502,11 +5502,11 @@ a{color:#8fc4ff}
 })();
 </script>
         <script>
-/* === RAF-VX 12.3.0 Ultimate Patch — All Games Fix === */
-(function(){
+/* === RAF-VX 12.4.0 Ultimate Fix (All 6 Issues) === */
+(function() {
   'use strict';
 
-  // 1. أرقام ستيم للصور (137-141)
+  // 1. قاموس الصور (133 إلى 141 + GTA 4)
   const COVERS = {
     133: 271590, 134: 39530, 135: 1809540, 136: 7670, 
     137: 2835570, 138: 632470, 139: 50130, 140: 678950, 141: 524220
@@ -5523,70 +5523,85 @@ a{color:#8fc4ff}
     { id: 141, title: 'NieR:Automata', tags: ['Action', 'RPG', 'قصة'], size: '6GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/action/nier-136096/' }
   ];
 
-  // 3. نظام التصنيف الذكي (يقرأ اسم اللعبة ويضع التصنيف المناسب)
+  // 3. تصنيفات ذكية (Steam-style) بناءً على اسم اللعبة
   const HEURISTIC_TAGS = {
-    'gta': ['Action', 'عالم مفتوح'], 'grand theft auto': ['Action', 'عالم مفتوح'],
-    'mafia': ['Action', 'عالم مفتوح', 'قصة'], 'red dead': ['Action', 'عالم مفتوح', 'قصة'],
-    'call of duty': ['Action', 'FPS'], 'battlefield': ['Action', 'FPS'], 'far cry': ['Action', 'FPS', 'عالم مفتوح'],
-    'resident evil': ['رعب', 'Action'], 'outlast': ['رعب', 'بقاء'], 'dead space': ['رعب', 'FPS'], 'phasmophobia': ['رعب', 'تعاوني'],
-    'need for speed': ['سباق', 'عالم مفتوح'], 'tekken': ['قتال'], 'mortal kombat': ['قتال', 'Action'],
-    'naruto': ['Action', 'قتال'], 'dragon ball': ['Action', 'قتال'], 'assassin': ['Action', 'عالم مفتوح', 'تسلل'],
-    'watch dogs': ['Action', 'عالم مفتوح', 'هاكر'], 'god of war': ['Action', 'مغامرات', 'قصة'],
-    'witcher': ['RPG', 'قصة', 'عالم مفتوح'], 'skyrim': ['RPG', 'عالم مفتوح'], 'dark souls': ['RPG', 'Action', 'صعب'], 'elden ring': ['RPG', 'Action'],
-    'minecraft': ['مغامرات', 'بناء'], 'among us': ['اجتماعي', 'ذكاء'], 'hollow knight': ['Metroidvania', 'Action'], 'celeste': ['منصات', 'قصة'],
-    'stardew valley': ['زراعة', 'محاكاة', 'RPG'], 'terraria': ['مغامرات', 'بناء'], 'the sims': ['محاكاة', 'حياة'],
-    'civilization': ['استراتيجية', 'دور'], 'age of empires': ['استراتيجية', 'حرب'], 'total war': ['استراتيجية', 'حرب'],
-    'xcom': ['استراتيجية', 'تكتيك'], 'portal': ['ألغاز', 'منصات'], 'half-life': ['FPS', 'قصة'], 'left 4 dead': ['FPS', 'تعاوني', 'رعب']
+    'gta': ['Action', 'Open World'], 'grand theft auto': ['Action', 'Open World'],
+    'mafia': ['Action', 'Open World', 'Story'], 'red dead': ['Action', 'Open World'],
+    'call of duty': ['Action', 'FPS'], 'battlefield': ['Action', 'FPS'], 'far cry': ['Action', 'FPS', 'Open World'],
+    'resident evil': ['Horror', 'Action'], 'outlast': ['Horror', 'Survival'], 'dead space': ['Horror', 'FPS'],
+    'need for speed': ['Racing', 'Open World'], 'tekken': ['Fighting'], 'mortal kombat': ['Fighting', 'Action'],
+    'naruto': ['Action', 'Fighting'], 'dragon ball': ['Action', 'Fighting'], 'assassin': ['Action', 'Open World', 'Stealth'],
+    'watch dogs': ['Action', 'Open World', 'Hacking'], 'god of war': ['Action', 'Adventure', 'Story'],
+    'witcher': ['RPG', 'Story', 'Open World'], 'skyrim': ['RPG', 'Open World'], 'dark souls': ['RPG', 'Action'], 'elden ring': ['RPG', 'Action'],
+    'minecraft': ['Adventure', 'Sandbox'], 'among us': ['Social', 'Party'], 'hollow knight': ['Metroidvania', 'Action'],
+    'stardew valley': ['Farming', 'Simulation', 'RPG'], 'terraria': ['Adventure', 'Sandbox'], 'the sims': ['Simulation', 'Life'],
+    'civilization': ['Strategy', 'Turn-Based'], 'age of empires': ['Strategy', 'War'], 'total war': ['Strategy', 'War'],
+    'xcom': ['Strategy', 'Tactical'], 'portal': ['Puzzle', 'Platformer'], 'half-life': ['FPS', 'Story'], 'left 4 dead': ['FPS', 'Co-op', 'Horror']
   };
 
   function getTagsForTitle(title, existingTags) {
     if (existingTags && existingTags.length > 0 && existingTags[0] !== '' && existingTags[0] !== 'لعبة' && existingTags[0] !== 'Action') {
-      return existingTags;
+      return existingTags; // لا نغير التصنيف إذا كان موجوداً ومظبوطاً
     }
     const t = title.toLowerCase();
     for (const [key, tags] of Object.entries(HEURISTIC_TAGS)) {
       if (t.includes(key)) return tags;
     }
-    return ['Action', 'قصة']; // تصنيف افتراضي لألعاب البورت
+    return ['Action', 'Story']; // افتراضي
   }
 
-  // 4. الدوال المساعدة
-  function setCover(card, src) {
-    const box = card.querySelector('.game-title-box');
-    if (!box) return;
-    let img = box.querySelector('.game-cover-img');
-    if (!img) {
-      img = document.createElement('img');
-      img.className = 'game-cover-img';
-      img.loading = 'lazy';
-      box.classList.add('game-cover-box');
-      box.prepend(img);
-      const kids = box.querySelectorAll('.game-logo-text,.game-logo-sub');
-      kids.forEach(k => k.style.display = 'none');
+  // 4. إصلاح الصور
+  function fixImages(card, n) {
+    let src = null;
+    if (COVERS[n]) src = COVER_URL(COVERS[n]);
+    else {
+      const t = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
+      if (t.includes('gta 4') || t.includes('gta iv') || t.includes('grand theft auto iv')) src = COVER_URL(GTA4_ID);
     }
-    img.src = src;
+    
+    if (src) {
+      const box = card.querySelector('.game-title-box');
+      if (box) {
+        let img = box.querySelector('.game-cover-img');
+        if (!img) {
+          img = document.createElement('img');
+          img.className = 'game-cover-img';
+          img.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1;';
+          box.classList.add('game-cover-box');
+          box.style.position = 'relative';
+          box.appendChild(img);
+          // إخفاء النص القديم
+          box.querySelectorAll('.game-logo-text,.game-logo-sub').forEach(el => el.style.display = 'none');
+        }
+        img.src = src;
+      }
+    }
   }
 
+  // 5. إصلاح زر المشاركة (نسخ رابط اللعبة الفريد)
   function fixShareButton(card, gameId) {
     card.querySelectorAll('a, button').forEach(btn => {
       if (btn.textContent.includes('مشاركة')) {
+        // إزالة الأحداث القديمة
         const newBtn = btn.cloneNode(true);
         newBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          const url = window.location.origin + window.location.pathname + '#game-' + gameId;
-          navigator.clipboard.writeText(url).then(() => {
-            const oldHtml = newBtn.innerHTML;
-            newBtn.innerHTML = '✅ تم نسخ الرابط!';
+          e.stopPropagation();
+          // رابط اللعبة الفريد (مثلاً #game-137)
+          const gameUrl = window.location.origin + window.location.pathname + '#game-' + gameId;
+          navigator.clipboard.writeText(gameUrl).then(() => {
+            const oldText = newBtn.innerHTML;
+            newBtn.innerHTML = '✅ تم النسخ!';
             newBtn.style.color = '#22c55e';
-            setTimeout(() => { newBtn.innerHTML = oldHtml; newBtn.style.color = ''; }, 2000);
-          }).catch(() => prompt('انسخ رابط اللعبة:', url));
+            setTimeout(() => { newBtn.innerHTML = oldText; newBtn.style.color = ''; }, 2000);
+          }).catch(() => prompt('انسخ رابط اللعبة:', gameUrl));
         });
         btn.replaceWith(newBtn);
       }
     });
   }
 
-  // 5. إضافة ملاحظة Snapdragon داخل نافذة التفاصيل
+  // 6. إضافة ملاحظة Snapdragon داخل نافذة التفاصيل
   function setupSnapdragonObserver() {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -5598,7 +5613,7 @@ a{color:#8fc4ff}
             if (!content) return;
             
             const text = content.textContent;
-            // إذا كانت اللعبة تحتاج Snapdragon 8 Elite لا نضيف الملاحظة
+            // تجاهل إذا كانت اللعبة تحتاج Snapdragon 8 Elite
             if (!/8\s*(elite|إيليت)/i.test(text)) {
               const note = document.createElement('div');
               note.className = 'snapdragon-note';
@@ -5613,29 +5628,40 @@ a{color:#8fc4ff}
     document.querySelectorAll('.game-info-modal').forEach(m => observer.observe(m, { attributes: true }));
   }
 
-  // 6. التشغيل الرئيسي
+  // 7. تحديث العداد وقسم التحديثات
+  function updateUIStats() {
+    // تحديث عدد الألعاب
+    const counter = document.getElementById('nexusGames');
+    if (counter) counter.textContent = '141';
+
+    // تحديث قسم آخر التحديثات
+    const updatesList = document.getElementById('rafAutoUpdatesList');
+    if (updatesList) {
+      const newUpdate = document.createElement('div');
+      newUpdate.className = 'nexus-list';
+      newUpdate.innerHTML = `
+        <div style="padding:10px; border:1px solid #ffffff18; border-radius:12px; background:#ffffff08; margin-bottom:8px;">
+          <strong style="color:#00e5ff;">NEW</strong> تم إضافة ألعاب Buckshot Roulette حتى NieR:Automata (137-141)
+        </div>
+      `;
+      updatesList.insertBefore(newUpdate, updatesList.firstChild);
+    }
+  }
+
+  // 8. التشغيل الرئيسي
   function run() {
     const grid = document.getElementById('gamesGrid');
     if (!grid) return;
 
-    // أ. إصلاح الصور والتصنيفات والأزرار للألعاب القديمة (1-136)
+    // أ. إصلاح الألعاب القديمة (1-136)
     grid.querySelectorAll('.game-card').forEach(card => {
       const badge = card.querySelector('.game-number-badge');
       if (!badge) return;
       const n = parseInt(badge.textContent.trim(), 10);
       if (isNaN(n)) return;
 
-      // إصلاح الصور
-      if (COVERS[n]) {
-        setCover(card, COVER_URL(COVERS[n]));
-      } else {
-        const title = card.querySelector('.game-title')?.textContent.toLowerCase() || '';
-        if (title.includes('gta 4') || title.includes('gta iv') || title.includes('grand theft auto iv')) {
-          setCover(card, COVER_URL(GTA4_ID));
-        }
-      }
-
-      // إصلاح التصنيفات
+      fixImages(card, n);
+      
       const meta = card.querySelector('.game-meta');
       if (meta) {
         const existingTags = Array.from(meta.querySelectorAll('.tag')).map(t => t.textContent.trim());
@@ -5646,7 +5672,6 @@ a{color:#8fc4ff}
         }
       }
 
-      // إصلاح زر المشاركة
       fixShareButton(card, n);
     });
 
@@ -5667,7 +5692,7 @@ a{color:#8fc4ff}
       const titleEl = clone.querySelector('.game-title');
       if (titleEl) titleEl.textContent = g.title;
 
-      setCover(clone, COVER_URL(COVERS[g.id]));
+      fixImages(clone, g.id);
 
       const meta = clone.querySelector('.game-meta');
       if (meta) meta.innerHTML = g.tags.map(t => `<span class="tag new-game">${t}</span>`).join('');
@@ -5692,16 +5717,17 @@ a{color:#8fc4ff}
       else grid.appendChild(clone);
     });
 
-    // ج. تشغيل مراقب Snapdragon
+    // ج. تحديث العداد والتحديثات
+    updateUIStats();
+
+    // د. تشغيل مراقب Snapdragon
     setupSnapdragonObserver();
   }
 
-  // تشغيل فوري
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', run);
-  } else {
-    run();
-  }
+  // ننتظر حتى يتم تحميل الصفحة بالكامل لضمان وجود العناصر
+  window.addEventListener('load', () => {
+    setTimeout(run, 1000); // تأخير بسيط للتأكد من تحميل السكربتات الأخرى
+  });
 })();
         </script>
 </body>
