@@ -5502,106 +5502,207 @@ a{color:#8fc4ff}
 })();
 </script>
         <script>
-/* === RAF-VX 12.4.0 Ultimate Fix (All 6 Issues) === */
+/* === RAF-VX ULTIMATE FIX (All 6 Issues Resolved) === */
 (function() {
   'use strict';
 
-  // 1. قاموس الصور (133 إلى 141 + GTA 4)
-  const COVERS = {
-    133: 271590, 134: 39530, 135: 1809540, 136: 7670, 
-    137: 2835570, 138: 632470, 139: 50130, 140: 678950, 141: 524220
-  };
-  const COVER_URL = id => `https://cdn.cloudflare.steamstatic.com/steam/apps/${id}/library_600x900.jpg`;
-  const GTA4_ID = 12210;
+  // 1. تحديث العداد وقسم التحديثات
+  try {
+    const counter = document.getElementById('nexusGames');
+    if (counter) counter.textContent = '141';
+
+    const updatesList = document.getElementById('rafAutoUpdatesList');
+    if (updatesList) {
+      updatesList.innerHTML = `
+        <div style="padding:15px; background:rgba(84,230,209,0.1); border:1px solid rgba(84,230,209,0.3); border-radius:12px; color:#fff; margin-bottom:10px; font-weight:bold;">
+          <span style="color:#54e6d1;">NEW</span> تم إضافة ألعاب Buckshot Roulette حتى NieR:Automata (137-141)
+        </div>
+        <div style="padding:15px; background:rgba(84,230,209,0.05); border:1px solid rgba(84,230,209,0.1); border-radius:12px; color:#fff; font-weight:bold;">
+          <span style="color:#54e6d1;">UPDATE</span> تحديث الصور والتصنيفات لجميع الألعاب من ستيم
+        </div>
+      `;
+    }
+  } catch(e) { console.warn(e); }
 
   // 2. بيانات الألعاب الجديدة (137-141)
   const NEW_GAMES = [
-    { id: 137, title: 'Buckshot Roulette', tags: ['Action', 'رعب', 'روسيات روليت'], size: '785MB', note: 'قد يتوفر تنزيل داخلي داخل التطبيق.', url: 'https://apkvision.org/games/action/buckshot-roulette-115927/?utm_source=telegram&utm_medium=social&utm_campaign=post_115927_en' },
-    { id: 138, title: 'Disco Elysium – The Final Cut', tags: ['RPG', 'مغامرات', 'قصة'], size: '8GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/role-playing/disco-elysium-the-final-cut-136076/' },
-    { id: 139, title: 'Mafia II', tags: ['Action', 'عالم مفتوح', 'قصة'], size: '9GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/action/mafia-2-136080/' },
-    { id: 140, title: 'DRAGON BALL FighterZ', tags: ['Action', 'قتال'], size: '7GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/action/dragon-ball-fighterz-136093/' },
-    { id: 141, title: 'NieR:Automata', tags: ['Action', 'RPG', 'قصة'], size: '6GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/action/nier-136096/' }
+    { id: 137, title: 'Buckshot Roulette', tags: ['Action', 'رعب', 'روسيات روليت'], size: '785MB', note: 'قد يتوفر تنزيل داخلي داخل التطبيق.', url: 'https://apkvision.org/games/action/buckshot-roulette-115927/?utm_source=telegram&utm_medium=social&utm_campaign=post_115927_en', steamId: '2835570' },
+    { id: 138, title: 'Disco Elysium – The Final Cut', tags: ['RPG', 'مغامرات', 'قصة'], size: '8GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/role-playing/disco-elysium-the-final-cut-136076/', steamId: '632470' },
+    { id: 139, title: 'Mafia II', tags: ['Action', 'عالم مفتوح', 'قصة'], size: '9GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/action/mafia-2-136080/', steamId: '50130' },
+    { id: 140, title: 'DRAGON BALL FighterZ', tags: ['Action', 'قتال'], size: '7GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/action/dragon-ball-fighterz-136093/', steamId: '678950' },
+    { id: 141, title: 'NieR:Automata', tags: ['Action', 'RPG', 'قصة'], size: '6GB', note: 'APK + ملف اللعبة.', url: 'https://apkvision.org/games/action/nier-136096/', steamId: '524220' }
   ];
 
-  // 3. تصنيفات ذكية (Steam-style) بناءً على اسم اللعبة
-  const HEURISTIC_TAGS = {
-    'gta': ['Action', 'Open World'], 'grand theft auto': ['Action', 'Open World'],
-    'mafia': ['Action', 'Open World', 'Story'], 'red dead': ['Action', 'Open World'],
-    'call of duty': ['Action', 'FPS'], 'battlefield': ['Action', 'FPS'], 'far cry': ['Action', 'FPS', 'Open World'],
-    'resident evil': ['Horror', 'Action'], 'outlast': ['Horror', 'Survival'], 'dead space': ['Horror', 'FPS'],
-    'need for speed': ['Racing', 'Open World'], 'tekken': ['Fighting'], 'mortal kombat': ['Fighting', 'Action'],
-    'naruto': ['Action', 'Fighting'], 'dragon ball': ['Action', 'Fighting'], 'assassin': ['Action', 'Open World', 'Stealth'],
-    'watch dogs': ['Action', 'Open World', 'Hacking'], 'god of war': ['Action', 'Adventure', 'Story'],
-    'witcher': ['RPG', 'Story', 'Open World'], 'skyrim': ['RPG', 'Open World'], 'dark souls': ['RPG', 'Action'], 'elden ring': ['RPG', 'Action'],
-    'minecraft': ['Adventure', 'Sandbox'], 'among us': ['Social', 'Party'], 'hollow knight': ['Metroidvania', 'Action'],
-    'stardew valley': ['Farming', 'Simulation', 'RPG'], 'terraria': ['Adventure', 'Sandbox'], 'the sims': ['Simulation', 'Life'],
-    'civilization': ['Strategy', 'Turn-Based'], 'age of empires': ['Strategy', 'War'], 'total war': ['Strategy', 'War'],
-    'xcom': ['Strategy', 'Tactical'], 'portal': ['Puzzle', 'Platformer'], 'half-life': ['FPS', 'Story'], 'left 4 dead': ['FPS', 'Co-op', 'Horror']
-  };
-
-  function getTagsForTitle(title, existingTags) {
-    if (existingTags && existingTags.length > 0 && existingTags[0] !== '' && existingTags[0] !== 'لعبة' && existingTags[0] !== 'Action') {
-      return existingTags; // لا نغير التصنيف إذا كان موجوداً ومظبوطاً
+  // 3. دوال مساعدة
+  function applyCover(card, src) {
+    const box = card.querySelector('.game-title-box');
+    if (!box) return;
+    let img = box.querySelector('.game-cover-img');
+    if (!img) {
+      img = document.createElement('img');
+      img.className = 'game-cover-img';
+      img.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1;';
+      box.classList.add('game-cover-box');
+      box.style.position = 'relative';
+      box.appendChild(img);
+      box.querySelectorAll('.game-logo-text,.game-logo-sub').forEach(el => el.style.display = 'none');
     }
-    const t = title.toLowerCase();
-    for (const [key, tags] of Object.entries(HEURISTIC_TAGS)) {
-      if (t.includes(key)) return tags;
-    }
-    return ['Action', 'Story']; // افتراضي
+    img.src = src;
   }
 
-  // 4. إصلاح الصور
-  function fixImages(card, n) {
-    let src = null;
-    if (COVERS[n]) src = COVER_URL(COVERS[n]);
-    else {
-      const t = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
-      if (t.includes('gta 4') || t.includes('gta iv') || t.includes('grand theft auto iv')) src = COVER_URL(GTA4_ID);
+  function updateTags(card, tags) {
+    const meta = card.querySelector('.game-meta');
+    if (meta && tags && tags.length) {
+      meta.innerHTML = tags.map(t => `<span class="tag">${t}</span>`).join('');
     }
-    
-    if (src) {
-      const box = card.querySelector('.game-title-box');
-      if (box) {
-        let img = box.querySelector('.game-cover-img');
-        if (!img) {
-          img = document.createElement('img');
-          img.className = 'game-cover-img';
-          img.style.cssText = 'display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1;';
-          box.classList.add('game-cover-box');
-          box.style.position = 'relative';
-          box.appendChild(img);
-          // إخفاء النص القديم
-          box.querySelectorAll('.game-logo-text,.game-logo-sub').forEach(el => el.style.display = 'none');
+  }
+
+  // 4. جلب بيانات ستيم (الصور والتصنيفات)
+  async function fetchSteamAppId(gameName) {
+    const cacheKey = 'steam_appid_' + gameName;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) return cached === 'null' ? null : cached;
+
+    try {
+      const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://store.steampowered.com/api/storesearch/?term=${encodeURIComponent(gameName)}&l=english&cc=US`)}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data && data.items && data.items.length > 0) {
+        const appid = data.items[0].id;
+        localStorage.setItem(cacheKey, appid);
+        return appid;
+      }
+    } catch (e) {}
+    localStorage.setItem(cacheKey, 'null');
+    return null;
+  }
+
+  async function fetchSteamTags(appid) {
+    const cacheKey = 'steam_tags_' + appid;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) return JSON.parse(cached);
+
+    try {
+      const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://store.steampowered.com/api/appdetails?appids=${appid}&l=english`)}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      if (data && data[appid] && data[appid].success) {
+        const genres = data[appid].data.genres.map(g => g.description);
+        const finalTags = genres.slice(0, 3);
+        localStorage.setItem(cacheKey, JSON.stringify(finalTags));
+        return finalTags;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  // 5. تحديث كل الصور والتصنيفات (1-136)
+  async function fixAllImagesAndTags() {
+    const cards = document.querySelectorAll('#gamesGrid .game-card');
+    for (let card of cards) {
+      const badge = card.querySelector('.game-number-badge');
+      if (!badge) continue;
+      const id = parseInt(badge.textContent.trim(), 10);
+      if (isNaN(id) || id >= 137) continue;
+
+      const titleEl = card.querySelector('.game-title');
+      if (!titleEl) continue;
+      const title = titleEl.textContent.trim();
+
+      if (title.toLowerCase().includes('gta 4') || title.toLowerCase().includes('gta iv')) {
+        applyCover(card, 'https://cdn.cloudflare.steamstatic.com/steam/apps/12210/library_600x900.jpg');
+        updateTags(card, ['Action', 'Open World', 'Story']);
+        continue;
+      }
+
+      const appid = await fetchSteamAppId(title);
+      if (appid) {
+        applyCover(card, `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/library_600x900.jpg`);
+        const tags = await fetchSteamTags(appid);
+        if (tags) updateTags(card, tags);
+      }
+      
+      // تأخير بسيط لتجنب حظر السيرفر
+      await new Promise(r => setTimeout(r, 200));
+    }
+  }
+
+  // 6. إصلاح زر المشاركة (نسخ رابط التحميل المباشر)
+  function fixShareButtons() {
+    document.querySelectorAll('#gamesGrid .game-card').forEach(card => {
+      let dlUrl = '';
+      card.querySelectorAll('.download-group a').forEach(a => {
+        if (!a.classList.contains('secondary') && a.href && !a.href.includes('javascript') && a.getAttribute('href') !== '#') {
+          dlUrl = a.href;
         }
-        img.src = src;
-      }
-    }
-  }
+      });
+      
+      if (!dlUrl) return;
 
-  // 5. إصلاح زر المشاركة (نسخ رابط اللعبة الفريد)
-  function fixShareButton(card, gameId) {
-    card.querySelectorAll('a, button').forEach(btn => {
-      if (btn.textContent.includes('مشاركة')) {
-        // إزالة الأحداث القديمة
-        const newBtn = btn.cloneNode(true);
-        newBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          // رابط اللعبة الفريد (مثلاً #game-137)
-          const gameUrl = window.location.origin + window.location.pathname + '#game-' + gameId;
-          navigator.clipboard.writeText(gameUrl).then(() => {
-            const oldText = newBtn.innerHTML;
-            newBtn.innerHTML = '✅ تم النسخ!';
-            newBtn.style.color = '#22c55e';
-            setTimeout(() => { newBtn.innerHTML = oldText; newBtn.style.color = ''; }, 2000);
-          }).catch(() => prompt('انسخ رابط اللعبة:', gameUrl));
-        });
-        btn.replaceWith(newBtn);
-      }
+      card.querySelectorAll('a, button').forEach(btn => {
+        if (btn.textContent.includes('مشاركة')) {
+          btn.href = dlUrl; // ضروري جداً ليعمل 1DM
+          btn.onclick = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            navigator.clipboard.writeText(dlUrl);
+            const original = btn.innerHTML;
+            btn.innerHTML = '✅ تم النسخ';
+            btn.style.color = '#22c55e';
+            setTimeout(() => { btn.innerHTML = original; btn.style.color = ''; }, 2000);
+          };
+        }
+      });
     });
   }
 
-  // 6. إضافة ملاحظة Snapdragon داخل نافذة التفاصيل
+  // 7. إضافة الألعاب الجديدة (نسخ البطاقة الأصلية لضمان عمل الأزرار)
+  function addNewGames() {
+    const grid = document.getElementById('gamesGrid');
+    if (!grid) return;
+    const footer = grid.querySelector('footer');
+    const templateCard = grid.querySelector('.game-card');
+    if (!templateCard) return;
+
+    NEW_GAMES.forEach(g => {
+      if (document.getElementById('game-card-' + g.id)) return;
+
+      let cardHTML = templateCard.outerHTML;
+      
+      // تغيير المعرفات والبيانات
+      cardHTML = cardHTML.replace(/id="game-card-\d+"/, `id="game-card-${g.id}"`);
+      cardHTML = cardHTML.replace(/<span class="game-number-badge">\d+<\/span>/, `<span class="game-number-badge">${g.id}</span>`);
+      cardHTML = cardHTML.replace(/<h3 class="game-title">.*?<\/h3>/, `<h3 class="game-title">${g.title}</h3>`);
+      
+      cardHTML = cardHTML.replace(/<div class="game-title-box[^>]*>[\s\S]*?<\/div>/, 
+        `<div class="game-title-box game-cover-box" style="position:relative;">
+          <img class="game-cover-img" loading="lazy" alt="${g.title}" src="https://cdn.cloudflare.steamstatic.com/steam/apps/${g.steamId}/library_600x900.jpg" style="display:block;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1;">
+        </div>`);
+
+      cardHTML = cardHTML.replace(/<div class="game-meta">[\s\S]*?<\/div>/, 
+        `<div class="game-meta">${g.tags.map(t => `<span class="tag new-game">${t}</span>`).join('')}</div>`);
+
+      cardHTML = cardHTML.replace(/الحجم: <span class="info-value">.*?<\/span>/, `الحجم: <span class="info-value">${g.size}</span>`);
+      
+      if (cardHTML.includes('note-box')) {
+        cardHTML = cardHTML.replace(/<div class="note-box">.*?<\/div>/, `<div class="note-box">${g.note}</div>`);
+      }
+
+      cardHTML = cardHTML.replace(/<a class="btn-download" href="[^"]*"/, `<a class="btn-download" href="${g.url}"`);
+      
+      // تحديث الـ ID داخل أزرار الموقع (قارن، التفاصيل، إلخ)
+      cardHTML = cardHTML.replace(/onclick="([^"]*?)\(\d+\)/g, `onclick="$1(${g.id})"`);
+
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = cardHTML.trim();
+      const newCard = wrapper.firstChild;
+
+      if (footer) grid.insertBefore(newCard, footer);
+      else grid.appendChild(newCard);
+    });
+  }
+
+  // 8. إضافة سطر Snapdragon داخل نافذة التفاصيل
   function setupSnapdragonObserver() {
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -5613,7 +5714,6 @@ a{color:#8fc4ff}
             if (!content) return;
             
             const text = content.textContent;
-            // تجاهل إذا كانت اللعبة تحتاج Snapdragon 8 Elite
             if (!/8\s*(elite|إيليت)/i.test(text)) {
               const note = document.createElement('div');
               note.className = 'snapdragon-note';
@@ -5628,106 +5728,16 @@ a{color:#8fc4ff}
     document.querySelectorAll('.game-info-modal').forEach(m => observer.observe(m, { attributes: true }));
   }
 
-  // 7. تحديث العداد وقسم التحديثات
-  function updateUIStats() {
-    // تحديث عدد الألعاب
-    const counter = document.getElementById('nexusGames');
-    if (counter) counter.textContent = '141';
-
-    // تحديث قسم آخر التحديثات
-    const updatesList = document.getElementById('rafAutoUpdatesList');
-    if (updatesList) {
-      const newUpdate = document.createElement('div');
-      newUpdate.className = 'nexus-list';
-      newUpdate.innerHTML = `
-        <div style="padding:10px; border:1px solid #ffffff18; border-radius:12px; background:#ffffff08; margin-bottom:8px;">
-          <strong style="color:#00e5ff;">NEW</strong> تم إضافة ألعاب Buckshot Roulette حتى NieR:Automata (137-141)
-        </div>
-      `;
-      updatesList.insertBefore(newUpdate, updatesList.firstChild);
-    }
-  }
-
-  // 8. التشغيل الرئيسي
-  function run() {
-    const grid = document.getElementById('gamesGrid');
-    if (!grid) return;
-
-    // أ. إصلاح الألعاب القديمة (1-136)
-    grid.querySelectorAll('.game-card').forEach(card => {
-      const badge = card.querySelector('.game-number-badge');
-      if (!badge) return;
-      const n = parseInt(badge.textContent.trim(), 10);
-      if (isNaN(n)) return;
-
-      fixImages(card, n);
-      
-      const meta = card.querySelector('.game-meta');
-      if (meta) {
-        const existingTags = Array.from(meta.querySelectorAll('.tag')).map(t => t.textContent.trim());
-        const title = card.querySelector('.game-title')?.textContent || '';
-        const newTags = getTagsForTitle(title, existingTags);
-        if (existingTags.length === 0 || existingTags[0] === '' || existingTags[0] === 'لعبة') {
-           meta.innerHTML = newTags.map(t => `<span class="tag">${t}</span>`).join('');
-        }
-      }
-
-      fixShareButton(card, n);
-    });
-
-    // ب. إضافة الألعاب الجديدة (137-141)
-    const templateCard = grid.querySelector('.game-card');
-    const footer = grid.querySelector('footer');
-
-    NEW_GAMES.forEach(g => {
-      if (document.getElementById('game-card-' + g.id)) return;
-      if (!templateCard) return;
-
-      const clone = templateCard.cloneNode(true);
-      clone.id = 'game-card-' + g.id;
-      
-      const badge = clone.querySelector('.game-number-badge');
-      if (badge) badge.textContent = String(g.id);
-      
-      const titleEl = clone.querySelector('.game-title');
-      if (titleEl) titleEl.textContent = g.title;
-
-      fixImages(clone, g.id);
-
-      const meta = clone.querySelector('.game-meta');
-      if (meta) meta.innerHTML = g.tags.map(t => `<span class="tag new-game">${t}</span>`).join('');
-
-      const sizeEl = clone.querySelector('.info-value');
-      if (sizeEl) sizeEl.textContent = g.size;
-
-      const noteBox = clone.querySelector('.note-box');
-      if (noteBox) noteBox.textContent = g.note;
-
-      const dlBtns = clone.querySelectorAll('.download-group a');
-      dlBtns.forEach(btn => {
-        if (!btn.classList.contains('secondary') && !btn.textContent.includes('تفاصيل') && !btn.textContent.includes('مشاركة')) {
-           btn.href = g.url;
-           btn.textContent = 'تحميل اللعبة ⬇️';
-        }
-      });
-
-      fixShareButton(clone, g.id);
-
-      if (footer) grid.insertBefore(clone, footer);
-      else grid.appendChild(clone);
-    });
-
-    // ج. تحديث العداد والتحديثات
-    updateUIStats();
-
-    // د. تشغيل مراقب Snapdragon
-    setupSnapdragonObserver();
-  }
-
-  // ننتظر حتى يتم تحميل الصفحة بالكامل لضمان وجود العناصر
+  // التشغيل بعد تحميل الصفحة بالكامل
   window.addEventListener('load', () => {
-    setTimeout(run, 1000); // تأخير بسيط للتأكد من تحميل السكربتات الأخرى
+    setTimeout(() => {
+      addNewGames();
+      fixShareButtons();
+      setupSnapdragonObserver();
+      fixAllImagesAndTags(); // تشتغل في الخلفية لجلب صور وتصنيفات ستيم
+    }, 1000);
   });
+
 })();
         </script>
 </body>
