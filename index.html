@@ -5501,5 +5501,138 @@ a{color:#8fc4ff}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',buildUpdates);else buildUpdates();
 })();
 </script>
+        <script>
+/* === RAF-VX 12.1.14 Patch — covers + Buckshot Roulette #137 === */
+(function(){
+  'use strict';
+
+  const COVER = (id) =>
+    'https://cdn.cloudflare.steamstatic.com/steam/apps/' + id + '/library_600x900.jpg';
+
+  const COVERS = {
+    133: COVER(271590),
+    134: COVER(39530),
+    135: COVER(1809540),
+    136: COVER(7670),
+    137: COVER(2835570),
+  };
+
+  const GTA4_COVER = COVER(12210);
+
+  const NEW_GAME = {
+    id: 137,
+    title: 'Buckshot Roulette',
+    cover: COVERS[137],
+    port: 'APK',
+    tags: ['Action', 'رعب', 'روسيات روليت'],
+    size: '785MB',
+    note: 'قد يتوفر تنزيل داخلي داخل التطبيق.',
+    downloads: [
+      { label: 'تحميل من APKVision',
+        url: 'https://apkvision.org/games/action/buckshot-roulette-115927/?utm_source=telegram&utm_medium=social&utm_campaign=post_115927_en',
+        primary: true }
+    ]
+  };
+
+  function setCover(card, src, alt){
+    const box = card.querySelector('.game-title-box');
+    if(!box) return;
+    let img = box.querySelector('.game-cover-img');
+    if(!img){
+      img = document.createElement('img');
+      img.className = 'game-cover-img';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      box.classList.add('game-cover-box');
+      box.prepend(img);
+      const kids = box.querySelectorAll('.game-logo-text,.game-logo-sub');
+      kids.forEach(k => k.style.display = 'none');
+    }
+    img.alt = alt || 'cover';
+    img.onerror = () => {
+      img.style.display = 'none';
+      const kids = box.querySelectorAll('.game-logo-text,.game-logo-sub');
+      kids.forEach(k => k.style.display = '');
+    };
+    img.onload = () => { img.style.display = 'block'; };
+    img.src = src;
+  }
+
+  function cardNumber(card){
+    const b = card.querySelector('.game-number-badge');
+    if(!b) return 0;
+    const n = parseInt(b.textContent.replace(/[^\d]/g,''), 10);
+    return isNaN(n) ? 0 : n;
+  }
+
+  function fixExisting(){
+    document.querySelectorAll('#gamesGrid .game-card').forEach(card => {
+      const n = cardNumber(card);
+      if(COVERS[n]){ setCover(card, COVERS[n], 'cover-' + n); return; }
+      const t = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
+      if(t.includes('gta 4') || t.includes('gta iv') || t.includes('grand theft auto iv')){
+        setCover(card, GTA4_COVER, 'GTA IV');
+      }
+    });
+  }
+
+  function buildCard(g){
+    const card = document.createElement('div');
+    card.className = 'game-card';
+    card.id = 'game-card-' + g.id;
+    card.innerHTML = `
+      <span class="game-number-badge">${g.id}</span>
+      <button class="fav-btn">🤍</button>
+      <div class="game-main-content">
+        <div class="game-title-box game-cover-box">
+          <img class="game-cover-img" alt="${g.title}" loading="lazy" src="${g.cover}">
+        </div>
+        <div class="game-details">
+          <h3 class="game-title">${g.title}</h3>
+          <span class="port-tag-text">${g.port}</span>
+          <div class="game-meta">
+            ${g.tags.map(t => `<span class="tag new-game">${t}</span>`).join('')}
+          </div>
+          <div class="game-info">
+            <div class="info-item">الحجم: <span class="info-value">${g.size}</span></div>
+          </div>
+          ${g.note ? `<div class="note-box">${g.note}</div>` : ''}
+        </div>
+      </div>
+      <div class="download-group">
+        ${g.downloads.map(d =>
+          `<a class="btn-download${d.primary?'':' secondary'}"
+              href="${d.url}" target="_blank" rel="noopener noreferrer">${d.label}</a>`
+        ).join('')}
+      </div>
+    `;
+    return card;
+  }
+
+  function addNew(){
+    const grid = document.getElementById('gamesGrid');
+    if(!grid) return;
+    if(document.getElementById('game-card-' + NEW_GAME.id)) return;
+    let maxId = 0;
+    grid.querySelectorAll('.game-number-badge').forEach(b => {
+      const n = parseInt(b.textContent.replace(/[^\d]/g,''), 10);
+      if(n > maxId) maxId = n;
+    });
+    if(NEW_GAME.id <= maxId){ NEW_GAME.id = maxId + 1; }
+    grid.appendChild(buildCard(NEW_GAME));
+  }
+
+  function run(){
+    fixExisting();
+    addNew();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', () => setTimeout(run, 1200));
+  } else {
+    setTimeout(run, 1200);
+  }
+})();
+        </script>
 </body>
 </html>
