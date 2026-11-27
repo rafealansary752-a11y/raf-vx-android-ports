@@ -5501,5 +5501,193 @@ a{color:#8fc4ff}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',buildUpdates);else buildUpdates();
 })();
 </script>
+        <script>
+/* === RAF-VX 12.2.0 Patch — Fixes + Buckshot + New Games === */
+(function(){
+  'use strict';
+
+  const COVER = (id) =>
+    'https://cdn.cloudflare.steamstatic.com/steam/apps/' + id + '/library_600x900.jpg';
+
+  const COVERS = {
+    133: COVER(271590),    // GTA V
+    134: COVER(39530),     // Painkiller
+    135: COVER(1809540),   // Nine Sols
+    136: COVER(7670),      // BioShock
+    137: COVER(2835570),   // Buckshot Roulette
+    138: COVER(632470),    // Disco Elysium
+    139: COVER(50130),     // Mafia II
+    140: COVER(678950),    // Dragon Ball FighterZ
+    141: COVER(524220)     // NieR:Automata
+  };
+
+  const GTA4_COVER = COVER(12210);
+
+  const NEW_GAMES = [
+    {
+      id: 137,
+      title: 'Buckshot Roulette',
+      cover: COVERS[137],
+      tags: ['Action', 'رعب', 'روسيات روليت'],
+      size: '785MB',
+      note: 'قد يتوفر تنزيل داخلي داخل التطبيق.',
+      url: 'https://apkvision.org/games/action/buckshot-roulette-115927/?utm_source=telegram&utm_medium=social&utm_campaign=post_115927_en'
+    },
+    {
+      id: 138,
+      title: 'Disco Elysium – The Final Cut',
+      cover: COVERS[138],
+      tags: ['RPG', 'مغامرات', 'قصة'],
+      size: '8GB',
+      note: 'APK + ملف اللعبة.',
+      url: 'https://apkvision.org/games/role-playing/disco-elysium-the-final-cut-136076/'
+    },
+    {
+      id: 139,
+      title: 'Mafia II',
+      cover: COVERS[139],
+      tags: ['Action', 'عالم مفتوح', 'قصة'],
+      size: '9GB',
+      note: 'APK + ملف اللعبة.',
+      url: 'https://apkvision.org/games/action/mafia-2-136080/'
+    },
+    {
+      id: 140,
+      title: 'DRAGON BALL FighterZ',
+      cover: COVERS[140],
+      tags: ['Action', 'قتال'],
+      size: '7GB',
+      note: 'APK + ملف اللعبة.',
+      url: 'https://apkvision.org/games/action/dragon-ball-fighterz-136093/'
+    },
+    {
+      id: 141,
+      title: 'NieR:Automata',
+      cover: COVERS[141],
+      tags: ['Action', 'RPG', 'قصة'],
+      size: '6GB',
+      note: 'APK + ملف اللعبة.',
+      url: 'https://apkvision.org/games/action/nier-136096/'
+    }
+  ];
+
+  function setCover(card, src, alt){
+    const box = card.querySelector('.game-title-box');
+    if(!box) return;
+    let img = box.querySelector('.game-cover-img');
+    if(!img){
+      img = document.createElement('img');
+      img.className = 'game-cover-img';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      box.classList.add('game-cover-box');
+      box.prepend(img);
+      const kids = box.querySelectorAll('.game-logo-text,.game-logo-sub');
+      kids.forEach(k => k.style.display = 'none');
+    }
+    img.alt = alt || 'cover';
+    img.onerror = () => {
+      img.style.display = 'none';
+      const kids = box.querySelectorAll('.game-logo-text,.game-logo-sub');
+      kids.forEach(k => k.style.display = '');
+    };
+    img.onload = () => { img.style.display = 'block'; };
+    img.src = src;
+  }
+
+  function cardNumber(card){
+    const b = card.querySelector('.game-number-badge');
+    if(!b) return 0;
+    const n = parseInt(b.textContent.replace(/[^\d]/g,''), 10);
+    return isNaN(n) ? 0 : n;
+  }
+
+  function fixExisting(){
+    document.querySelectorAll('#gamesGrid .game-card').forEach(card => {
+      const n = cardNumber(card);
+      if(COVERS[n]){ setCover(card, COVERS[n], 'cover-' + n); return; }
+      const t = (card.querySelector('.game-title')?.textContent || '').toLowerCase();
+      if(t.includes('gta 4') || t.includes('gta iv') || t.includes('grand theft auto iv')){
+        setCover(card, GTA4_COVER, 'GTA IV');
+      }
+    });
+  }
+
+  function buildCardFromTemplate(g, templateCard){
+    const clone = templateCard.cloneNode(true);
+    clone.id = 'game-card-' + g.id;
+    
+    const badge = clone.querySelector('.game-number-badge');
+    if(badge) badge.textContent = String(g.id);
+    
+    const titleEl = clone.querySelector('.game-title');
+    if(titleEl) titleEl.textContent = g.title;
+
+    const box = clone.querySelector('.game-title-box');
+    if(box) {
+      box.classList.add('game-cover-box');
+      box.innerHTML = `<img class="game-cover-img" alt="${g.title}" loading="lazy" src="${g.cover}">`;
+    }
+
+    const meta = clone.querySelector('.game-meta');
+    if(meta) {
+      meta.innerHTML = g.tags.map(t => `<span class="tag new-game">${t}</span>`).join('');
+    }
+
+    const sizeEl = clone.querySelector('.info-value');
+    if(sizeEl) sizeEl.textContent = g.size;
+
+    let noteBox = clone.querySelector('.note-box');
+    if(noteBox) {
+      noteBox.textContent = g.note;
+    }
+
+    const dlBtns = clone.querySelectorAll('.download-group a');
+    dlBtns.forEach(btn => {
+      if(!btn.classList.contains('secondary')) {
+         btn.href = g.url;
+         btn.textContent = 'تحميل اللعبة ⬇️';
+      }
+    });
+
+    return clone;
+  }
+
+  function addNewGames(){
+    const grid = document.getElementById('gamesGrid');
+    if(!grid) return;
+
+    const cards = grid.querySelectorAll('.game-card');
+    if(cards.length === 0) return;
+    
+    // نستخدم آخر بطاقة كقالب أساسي
+    const templateCard = cards[cards.length - 1];
+    const footer = grid.querySelector('footer');
+
+    NEW_GAMES.forEach(g => {
+      if(document.getElementById('game-card-' + g.id)) return;
+      
+      const newCard = buildCardFromTemplate(g, templateCard);
+      
+      if (footer) {
+        grid.insertBefore(newCard, footer);
+      } else {
+        grid.appendChild(newCard);
+      }
+    });
+  }
+
+  function run(){
+    fixExisting();
+    addNewGames();
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', () => setTimeout(run, 1200));
+  } else {
+    setTimeout(run, 1200);
+  }
+})();
+        </script>
 </body>
 </html>
